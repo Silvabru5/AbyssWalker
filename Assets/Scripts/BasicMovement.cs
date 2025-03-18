@@ -1,82 +1,65 @@
-//using UnityEngine;
-
-//public class BasicMovement : MonoBehaviour
-//{
-//    public float movSpeed;
-//    float speedX, speedY;
-
-//    Rigidbody2D rb;
-//    // Start is called once before the first execution of Update after the MonoBehaviour is created
-//    void Start()
-//    {
-//        rb = GetComponent<Rigidbody2D>();
-//        rb.gravityScale = 0;
-//        rb.freezeRotation = true; // Prevents unwanted rotation
-//        rb.bodyType = RigidbodyType2D.Kinematic; // Ensures player doesn�t push objects
-//    }
-
-//    // Update is called once per frame
-//    void Update()
-//    {
-//        // ADD RIGIDBODY2D BEFORE APPLYING SCRIPT
-//        speedX = Input.GetAxisRaw("Horizontal") * movSpeed;
-//        speedY = Input.GetAxisRaw("Vertical") * movSpeed;
-
-//        rb.linearVelocity = new Vector2(speedX, speedY);
-//    }
-//    void FixedUpdate()
-//    {
-//        // Move using transform.position (prevents physics-based pushing)
-//        transform.position += new Vector3(speedX, speedY, 0).normalized * movSpeed * Time.fixedDeltaTime;
-//    }
-//}\
 using UnityEngine;
 
 public class BasicMovement : MonoBehaviour
 {
+    // Player movement speed (set in Unity Inspector)
     public float movSpeed;
+
+    // Stores input movement values
     float speedX, speedY;
+
+    // Rigidbody2D component for physics-based movement
     private Rigidbody2D rb;
+
+    // Prevents movement when colliding with enemies
     private bool canMove = true;
 
     void Start()
     {
+        // Get the Rigidbody2D component attached to the player
         rb = GetComponent<Rigidbody2D>();
-        rb.freezeRotation = true; // Prevents unwanted rotation
+
+        // Prevents the Rigidbody from rotating when colliding with objects
+        rb.freezeRotation = true;
     }
 
     void Update()
     {
-        // Get movement input
-        speedX = Input.GetAxisRaw("Horizontal");
-        speedY = Input.GetAxisRaw("Vertical");
+        // Get player input (WASD / Arrow keys / Controller)
+        speedX = Input.GetAxisRaw("Horizontal"); // Left (-1) / Right (1)
+        speedY = Input.GetAxisRaw("Vertical");   // Down (-1) / Up (1)
     }
 
     void FixedUpdate()
     {
+        // Only allow movement if the player is not colliding with an enemy
         if (canMove)
         {
-            rb.linearVelocity = new Vector2(speedX, speedY).normalized * movSpeed;
+            // Normalize input to ensure diagonal movement isn't faster
+            rb.velocity = new Vector2(speedX, speedY).normalized * movSpeed;
         }
         else
         {
-            rb.linearVelocity = Vector2.zero; // Stop movement on collision
+            // Stop player movement when colliding with an enemy
+            rb.velocity = Vector2.zero;
         }
     }
 
+    // **Detect when the player collides with an enemy**
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            canMove = false; // Stop player movement when touching enemy
+            canMove = false; // Stop player movement while touching the enemy
         }
     }
 
+    // **Detect when the player stops colliding with an enemy**
     void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            canMove = true; // Allow movement again if no longer touching enemy
+            canMove = true; // Allow movement again when no longer touching the enemy
         }
     }
 }
