@@ -9154,7 +9154,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas-Props 1_346
+      name: disturbedGrave1
       rect:
         serializedVersion: 2
         x: 256
@@ -9176,7 +9176,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas-Props 1_347
+      name: disturbedGrave2
       rect:
         serializedVersion: 2
         x: 288
@@ -9198,7 +9198,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas-Props 1_348
+      name: disturbedGrave3
       rect:
         serializedVersion: 2
         x: 320
@@ -9220,7 +9220,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas-Props 1_349
+      name: disturbedGrave4
       rect:
         serializedVersion: 2
         x: 352
@@ -9242,7 +9242,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas-Props 1_350
+      name: disturbedGrave5
       rect:
         serializedVersion: 2
         x: 384
@@ -9264,7 +9264,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas-Props 1_351
+      name: disturbedGrave6
       rect:
         serializedVersion: 2
         x: 416
@@ -31436,13 +31436,7 @@ TextureImporter:
       atlas-Props 1_343: 1260874561
       atlas-Props 1_344: -949394636
       atlas-Props 1_345: -585536889
-      atlas-Props 1_346: 1765754607
-      atlas-Props 1_347: -2106863999
-      atlas-Props 1_348: 786961003
-      atlas-Props 1_349: -1925339089
       atlas-Props 1_35: -232670939
-      atlas-Props 1_350: -447856223
-      atlas-Props 1_351: -1420677473
       atlas-Props 1_352: 628559946
       atlas-Props 1_353: -70203525
       atlas-Props 1_354: 1019757075
@@ -32168,6 +32162,12 @@ TextureImporter:
       bridgeTopLeft: -216186610
       bridgeTopMiddle: -633062355
       bridgeTopRight: -1072694735
+      disturbedGrave1: 1765754607
+      disturbedGrave2: -2106863999
+      disturbedGrave3: 786961003
+      disturbedGrave4: -1925339089
+      disturbedGrave5: -447856223
+      disturbedGrave6: -1420677473
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
