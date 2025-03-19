@@ -18,7 +18,7 @@ public class EnemyCollision : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // Stop enemy movement when colliding with the player
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
 
             // Debug message to confirm collision detection
             Debug.Log("Player collided with the enemy!");

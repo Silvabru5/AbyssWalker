@@ -36,12 +36,12 @@ public class BasicMovement : MonoBehaviour
         if (canMove)
         {
             // Normalize input to ensure diagonal movement isn't faster
-            rb.velocity = new Vector2(speedX, speedY).normalized * movSpeed;
+            rb.linearVelocity = new Vector2(speedX, speedY).normalized * movSpeed;
         }
         else
         {
             // Stop player movement when colliding with an enemy
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
         }
     }
 
