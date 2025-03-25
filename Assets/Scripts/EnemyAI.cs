@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -187,5 +187,187 @@ public class EnemyAI : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
+    }
+}*/
+
+using UnityEngine;
+
+public class EnemyAI : MonoBehaviour
+{
+    public Transform player;
+    public float moveSpeed = 2f;
+    public int damage = 10;
+    public float attackCooldown = 1.5f;
+    public float separationDistance = 0.7f; // Minimum distance between skeletons
+
+    private Animator animator;
+    private bool isAttacking = false;
+    private bool canAttack = true;
+    private bool attackRegistered = false;
+    private bool playerInRange = false;
+    private bool lockFlip = false; // Prevents flipping direction mid-attack
+
+    private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rb;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+        }
+    }
+
+    void Update()
+    {
+        if (player == null) return;
+
+        if (!lockFlip) FlipTowardsPlayer();
+
+        if (isAttacking || !canAttack) return;
+
+        if (playerInRange)
+        {
+            StartAttack();
+        }
+        else
+        {
+            MoveTowardsPlayer();
+        }
+    }
+
+    void MoveTowardsPlayer()
+    {
+        if (!playerInRange)
+        {
+            animator.SetBool("isWalking", true);
+            animator.SetBool("isAttacking", false);
+
+            Vector2 direction = (player.position - transform.position).normalized;
+            Vector2 avoidance = AvoidStacking();
+
+            rb.linearVelocity = (direction + avoidance) * moveSpeed;
+        }
+        else
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+    }
+
+    Vector2 AvoidStacking()
+    {
+        Vector2 avoidanceVector = Vector2.zero;
+        Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, separationDistance);
+
+        foreach (Collider2D col in nearbyEnemies)
+        {
+            if (col.gameObject != gameObject && col.CompareTag("Enemy"))
+            {
+                Vector2 diff = (Vector2)transform.position - (Vector2)col.transform.position;
+                avoidanceVector += diff.normalized;
+            }
+        }
+
+        return avoidanceVector * 0.5f;
+    }
+
+    void StartAttack()
+    {
+        if (!isAttacking && canAttack)
+        {
+            isAttacking = true;
+            canAttack = false;
+            attackRegistered = false;
+            lockFlip = true;
+
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isAttacking", true);
+
+            rb.linearVelocity = Vector2.zero;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            playerInRange = true;
+            rb.linearVelocity = Vector2.zero;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            playerInRange = false;
+            CancelAttack();
+        }
+    }
+
+    // This is called via Animation Event
+    public void RegisterHit()
+    {
+        if (attackRegistered) return;
+
+        if (playerInRange)
+        {
+            PlayerHealth health = player.GetComponent<PlayerHealth>();
+            if (health != null)
+            {
+                health.TakeDamage(damage);
+                Debug.Log("Enemy hit the player!");
+            }
+            attackRegistered = true;
+        }
+        else
+        {
+            Debug.Log("Player dodged the attack!");
+            CancelAttack();
+        }
+    }
+
+    // This is called via Animation Event
+    public void EndAttack()
+    {
+        isAttacking = false;
+        lockFlip = false;
+        animator.SetBool("isAttacking", false);
+        Invoke("ResetAttackCooldown", attackCooldown);
+    }
+
+    void CancelAttack()
+    {
+        isAttacking = false;
+        lockFlip = false;
+        animator.SetBool("isAttacking", false);
+        animator.SetBool("isWalking", true);
+        rb.linearVelocity = Vector2.zero;
+        Invoke("ResetAttackCooldown", attackCooldown);
+    }
+
+    void ResetAttackCooldown()
+    {
+        canAttack = true;
+    }
+    public void InterruptAttack()
+    {
+        isAttacking = false;
+        canAttack = false;
+        animator.SetBool("isAttacking", false);
+        rb.linearVelocity = Vector2.zero;
+    }
+
+    void FlipTowardsPlayer()
+    {
+        if (player == null) return;
+        if (lockFlip) return;
+
+        spriteRenderer.flipX = player.position.x < transform.position.x;
     }
 }

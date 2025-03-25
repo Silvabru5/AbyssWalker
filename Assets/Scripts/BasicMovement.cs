@@ -13,7 +13,7 @@ public class BasicMovement : MonoBehaviour
 
     // Prevents movement when colliding with enemies
     private bool canMove = true;
-
+    public Vector2 LastMoveDirection { get; private set; } = Vector2.right;
     void Start()
     {
         // Get the Rigidbody2D component attached to the player
@@ -28,6 +28,12 @@ public class BasicMovement : MonoBehaviour
         // Get player input (WASD / Arrow keys / Controller)
         speedX = Input.GetAxisRaw("Horizontal"); // Left (-1) / Right (1)
         speedY = Input.GetAxisRaw("Vertical");   // Down (-1) / Up (1)
+
+        Vector2 inputDir = new Vector2(speedX, speedY);
+        if (inputDir != Vector2.zero)
+        {
+            LastMoveDirection = inputDir.normalized;
+        }
     }
 
     void FixedUpdate()

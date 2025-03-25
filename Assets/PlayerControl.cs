@@ -6,7 +6,7 @@ public class PlayerControl : MonoBehaviour
     public float movSpeed = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
-
+    public Vector2 LastMoveDirection { get; private set; } = Vector2.right;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,6 +27,12 @@ public class PlayerControl : MonoBehaviour
         animator.SetFloat("Horizontal", horizontal);
         animator.SetFloat("Vertical", vertical);
         animator.SetBool("IsMoving", movement != Vector2.zero);
+
+        if (movement != Vector2.zero)
+        {
+            LastMoveDirection = movement.normalized;
+        }
+
     }
 
     void FixedUpdate()

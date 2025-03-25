@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
 
     // Tracks the player's current health
     private int currentHealth;
-
+    
     void Start()
     {
         // Set the player's health to max when the game starts

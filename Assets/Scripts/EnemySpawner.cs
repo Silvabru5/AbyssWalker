@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     // Handles enemy spawning at random locations
-    void SpawnEnemy()
+    /*void SpawnEnemy()
     {
         // Ensure there are enemy prefabs and spawn points available before spawning
         if (enemyPrefabs.Length == 0 || spawnPoints.Length == 0) return;
@@ -41,6 +41,28 @@ public class EnemySpawner : MonoBehaviour
 
         // Instantiate (spawn) the selected enemy at the chosen spawn point
         Instantiate(enemyPrefabs[randomEnemyIndex], spawnPoints[randomSpawnIndex].position, Quaternion.identity);
+    }*/
+    void SpawnEnemy()
+    {
+        if (enemyPrefabs.Length == 0 || spawnPoints.Length == 0)
+        {
+            Debug.LogWarning("Spawner: No prefabs or spawn points assigned!");
+            return;
+        }
+
+        int randomEnemyIndex = Random.Range(0, enemyPrefabs.Length);
+        int randomSpawnIndex = Random.Range(0, spawnPoints.Length);
+
+        GameObject selectedEnemy = enemyPrefabs[randomEnemyIndex];
+        Transform selectedSpawnPoint = spawnPoints[randomSpawnIndex];
+
+        if (selectedEnemy == null)
+        {
+            Debug.LogWarning($"Spawner: enemyPrefabs[{randomEnemyIndex}] is null!");
+            return;
+        }
+
+        Instantiate(selectedEnemy, selectedSpawnPoint.position, Quaternion.identity);
     }
 
     // Counts the number of active enemies in the scene
