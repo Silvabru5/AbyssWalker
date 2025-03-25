@@ -13377,7 +13377,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset-Terrain_528
+      name: pitTopMiddle
       rect:
         serializedVersion: 2
         x: 64
@@ -14279,7 +14279,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset-Terrain_569
+      name: pitTopLeft
       rect:
         serializedVersion: 2
         x: 0
@@ -14367,7 +14367,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset-Terrain_573
+      name: pitTopRight
       rect:
         serializedVersion: 2
         x: 128
@@ -16303,7 +16303,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset-Terrain_661
+      name: pitMiddleLeft
       rect:
         serializedVersion: 2
         x: 0
@@ -16347,7 +16347,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset-Terrain_663
+      name: pitMiddle
       rect:
         serializedVersion: 2
         x: 64
@@ -16391,7 +16391,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset-Terrain_665
+      name: pitMiddleRight
       rect:
         serializedVersion: 2
         x: 128
@@ -17095,7 +17095,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset-Terrain_697
+      name: pitBottomLeft
       rect:
         serializedVersion: 2
         x: 0
@@ -17183,7 +17183,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset-Terrain_701
+      name: pitBottomRight
       rect:
         serializedVersion: 2
         x: 128
@@ -17711,7 +17711,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset-Terrain_725
+      name: pitBottomMiddle
       rect:
         serializedVersion: 2
         x: 64
@@ -43939,7 +43939,6 @@ TextureImporter:
       Tileset-Terrain_525: -2722096431356523280
       Tileset-Terrain_526: 4084808430609232488
       Tileset-Terrain_527: 7313445521399523600
-      Tileset-Terrain_528: 2842459350644735871
       Tileset-Terrain_529: -3387923378118733776
       Tileset-Terrain_53: 9003415970513142078
       Tileset-Terrain_530: -3418066931459082014
@@ -43979,12 +43978,10 @@ TextureImporter:
       Tileset-Terrain_566: 1470626330
       Tileset-Terrain_567: 1485317154
       Tileset-Terrain_568: -1893079579
-      Tileset-Terrain_569: -245676720
       Tileset-Terrain_57: 1603047605062120703
       Tileset-Terrain_570: 1911443191
       Tileset-Terrain_571: -13491554
       Tileset-Terrain_572: 1913016236
-      Tileset-Terrain_573: 1091162731
       Tileset-Terrain_574: 1186515413
       Tileset-Terrain_575: -1682740206
       Tileset-Terrain_576: -1941130902
@@ -44072,11 +44069,8 @@ TextureImporter:
       Tileset-Terrain_659: -2071482057
       Tileset-Terrain_66: 426306337075041341
       Tileset-Terrain_660: 1597368106
-      Tileset-Terrain_661: 260974624
       Tileset-Terrain_662: 398212078
-      Tileset-Terrain_663: -1200459006
       Tileset-Terrain_664: -641568095
-      Tileset-Terrain_665: -987761576
       Tileset-Terrain_666: 2126235126
       Tileset-Terrain_667: -349825900
       Tileset-Terrain_668: 1137371465
@@ -44106,13 +44100,11 @@ TextureImporter:
       Tileset-Terrain_694: -446755704
       Tileset-Terrain_695: 330870934
       Tileset-Terrain_696: 1098677573
-      Tileset-Terrain_697: -1451286756
       Tileset-Terrain_698: -340852742
       Tileset-Terrain_699: 532679647
       Tileset-Terrain_7: 5459104743145720177
       Tileset-Terrain_70: 7312888123758109228
       Tileset-Terrain_700: 1173469195
-      Tileset-Terrain_701: 1271897903
       Tileset-Terrain_702: 616430760
       Tileset-Terrain_703: 1108186273
       Tileset-Terrain_704: -17448824
@@ -44135,7 +44127,6 @@ TextureImporter:
       Tileset-Terrain_722: -1896315798
       Tileset-Terrain_723: 360453622
       Tileset-Terrain_724: -1193146715
-      Tileset-Terrain_725: 1972388143
       Tileset-Terrain_726: 1982910934
       Tileset-Terrain_727: -124042665
       Tileset-Terrain_728: -1133509044
@@ -44439,6 +44430,15 @@ TextureImporter:
       Tileset-Terrain_997: 653968425
       Tileset-Terrain_998: 2009831469
       Tileset-Terrain_999: -2041614801
+      pitBottomLeft: -1451286756
+      pitBottomMiddle: 1972388143
+      pitBottomRight: 1271897903
+      pitMiddle: -1200459006
+      pitMiddleLeft: 260974624
+      pitMiddleRight: -987761576
+      pitTopLeft: -245676720
+      pitTopMiddle: 2842459350644735871
+      pitTopRight: 1091162731
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
