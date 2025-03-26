@@ -16,6 +16,7 @@ public class PlayerMovementSS : MonoBehaviour
     [SerializeField] private float _attackSpeed;
     [SerializeField] private float _attackDamage;
     [SerializeField] private LayerMask _enemyLayers;
+    [SerializeField] private LayerMask _bossLayers;
     float nextAttkTime = 0f;
 
     //Dashing variables
@@ -63,7 +64,14 @@ public class PlayerMovementSS : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<BossSmallEnemies>().TakeDamage(_attackDamage);
-            Debug.Log("Hit" + enemy.name);
+                Debug.Log("Hit" + enemy.name);
+        }
+
+        Collider2D[] bossEnemies = Physics2D.OverlapCircleAll(_attkPnt.position, _attackRange, _bossLayers);
+        foreach (Collider2D boss in bossEnemies)
+        {
+            boss.GetComponent<BossMonster>().TakeDamage(_attackDamage); 
+            Debug.Log("HIT: " +  boss.name);
         }
     }
 
