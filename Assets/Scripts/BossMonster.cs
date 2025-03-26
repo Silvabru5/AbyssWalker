@@ -7,6 +7,7 @@ public class BossMonster : MonoBehaviour
     [SerializeField] private Animator _anim;
     [SerializeField] private GameObject[] monsters;
     [SerializeField] private Collider2D _bCollider;
+    [SerializeField] private GameObject platForms;
     void Start()
     {
         _anim = GetComponent<Animator>();
@@ -15,7 +16,7 @@ public class BossMonster : MonoBehaviour
         _bCollider.enabled = false;
     }
 
-    void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         _current -= damage;
         _anim.SetTrigger("Hit");
@@ -28,7 +29,7 @@ public class BossMonster : MonoBehaviour
 
     void Die()
     {
-        _anim.SetBool("Dead", true);
+      //  _anim.SetBool("Dead", true);
         Debug.Log("Boss Dead");
     }
     // Update is called once per frame
@@ -38,7 +39,10 @@ public class BossMonster : MonoBehaviour
         if (monsters[0].GetComponent<BossSmallEnemies>().isDead == true && monsters[1].GetComponent<BossSmallEnemies>().isDead == true &&
             monsters[2].GetComponent<BossSmallEnemies>().isDead == true && monsters[3].GetComponent<BossSmallEnemies>().isDead == true)
         {
+            _anim.SetBool("isLowered",true);
             _bCollider.enabled = true;
+            platForms.SetActive(true);
         }
+        
     }
 }
