@@ -1,68 +1,80 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public GameObject narrowCone;
-    public GameObject wideCone;
-    public float showDuration = 0.2f;
-    public float offsetDistance = 1f;
+    public GameObject basicAttackHitbox;   // the triangle hitbox for the basic attack
+    public GameObject strongAttackHitbox;  // the rectangle hitbox for the strong attack
 
-    private PlayerControl playerControl;
+    public float attackCooldown = 1f;      // how long between attacks
+    public float hitboxShowTime = 0.2f;    // how long the hitbox stays active
+    public float offsetDistance = 1f;      // how far in front of the player the hitbox appears
+
+    private bool canAttack = true;         // controls if player is allowed to attack
+    private PlayerControl playerControl;   // reference to the movement script to get aim direction
 
     void Start()
     {
+        // get a reference to the player movement script
         playerControl = GetComponent<PlayerControl>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TriggerAttack(narrowCone);
-        }
+        // don’t do anything if player can’t attack or reference is missing
+        if (!canAttack || playerControl == null) return;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        // left mouse button = basic attack (triangle)
+        if (Input.GetMouseButtonDown(0))
         {
-            TriggerAttack(wideCone);
+            StartCoroutine(PerformAttack(basicAttackHitbox, true));
+        }
+        // right mouse button = strong attack (rectangle)
+        else if (Input.GetMouseButtonDown(1))
+        {
+            StartCoroutine(PerformAttack(strongAttackHitbox, false));
         }
     }
 
-    void TriggerAttack(GameObject cone)
+    IEnumerator PerformAttack(GameObject hitbox, bool rotateWithDirection)
     {
-        if (cone == null || playerControl == null)
-        {
-            Debug.LogWarning("Missing reference in PlayerAttack script.");
-            return;
-        }
+        canAttack = false;
 
+        // get the direction the player is facing
         Vector2 aimDir = playerControl.LastMoveDirection;
-        if (aimDir != Vector2.zero)
-        {
-            float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
 
-            // Only rotate the narrow cone
-            if (cone == narrowCone)
+        // move the hitbox in front of the player
+        hitbox.transform.localPosition = aimDir * offsetDistance;
+
+        // rotate the hitbox if needed
+        if (rotateWithDirection)
+        {
+            // triangle faces the aim direction
+            hitbox.transform.localRotation = Quaternion.Euler(0, 0, angle - 90f);
+        }
+        else
+        {
+            // rectangle only rotates if facing up/down
+            if (Mathf.Abs(aimDir.y) > Mathf.Abs(aimDir.x))
             {
-                cone.transform.localRotation = Quaternion.Euler(0, 0, angle - 90f); // Adjusted with offset
+                hitbox.transform.localRotation = Quaternion.Euler(0, 0, 90f);
             }
             else
             {
-                // Don't rotate wide cone
-                cone.transform.localRotation = Quaternion.identity;
+                hitbox.transform.localRotation = Quaternion.identity;
             }
-
-            // Move both cones in the direction the player is aiming
-            cone.transform.localPosition = aimDir.normalized * offsetDistance;
         }
 
-        cone.SetActive(true);
-        Invoke(nameof(HideAllCones), showDuration);
-    }
+        // show the hitbox
+        hitbox.SetActive(true);
+        yield return new WaitForSeconds(hitboxShowTime);
 
+        // hide the hitbox after it hits
+        hitbox.SetActive(false);
 
-    void HideAllCones()
-    {
-        narrowCone.SetActive(false);
-        wideCone.SetActive(false);
+        // wait for cooldown to finish before next attack is allowed
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
     }
 }

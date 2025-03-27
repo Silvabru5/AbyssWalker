@@ -2,72 +2,55 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    // List of enemy prefabs (Skeleton, Spider, Undead)
+    // list of enemy prefabs (skeleton, spider, undead)
     public GameObject[] enemyPrefabs;
 
-    // Spawn locations where enemies will appear
+    // spawn locations where enemies will appear
     public Transform[] spawnPoints;
 
-    // Time interval (in seconds) between enemy spawns
+    // how often to spawn new enemies (in seconds)
     public float spawnRate = 3f;
 
-    // Maximum number of enemies allowed on screen at a time
+    // maximum number of enemies allowed at once
     public int maxEnemies = 10;
 
-    // Tracks the time of the next enemy spawn
+    // tracks when the next enemy should spawn
     private float nextSpawnTime = 0f;
+    // counter for level progression
+    public int numOfEnemiesDead = 0;
 
+    // just increments this is called in enemyHealth when an enemy dies
+    public void EnemyDied()
+    {
+        numOfEnemiesDead++;
+        Debug.Log("Enemies dead: " + numOfEnemiesDead);
+    }
     void Update()
     {
-        // Check if it's time to spawn a new enemy and if the max enemy limit isn't reached
+        // check if it's time to spawn and if we're under the enemy limit
         if (Time.time >= nextSpawnTime && CountEnemies() < maxEnemies)
         {
             SpawnEnemy();
-            nextSpawnTime = Time.time + spawnRate; // Schedule the next spawn
+            nextSpawnTime = Time.time + spawnRate;
         }
     }
 
-    // Handles enemy spawning at random locations
-    /*void SpawnEnemy()
-    {
-        // Ensure there are enemy prefabs and spawn points available before spawning
-        if (enemyPrefabs.Length == 0 || spawnPoints.Length == 0) return;
-
-        // Select a random enemy from the enemyPrefabs list
-        int randomEnemyIndex = Random.Range(0, enemyPrefabs.Length);
-
-        // Select a random spawn location from the spawnPoints list
-        int randomSpawnIndex = Random.Range(0, spawnPoints.Length);
-
-        // Instantiate (spawn) the selected enemy at the chosen spawn point
-        Instantiate(enemyPrefabs[randomEnemyIndex], spawnPoints[randomSpawnIndex].position, Quaternion.identity);
-    }*/
+    // picks a random enemy and spawn point and creates the enemy in the scene
     void SpawnEnemy()
     {
-        if (enemyPrefabs.Length == 0 || spawnPoints.Length == 0)
-        {
-            Debug.LogWarning("Spawner: No prefabs or spawn points assigned!");
-            return;
-        }
-
         int randomEnemyIndex = Random.Range(0, enemyPrefabs.Length);
         int randomSpawnIndex = Random.Range(0, spawnPoints.Length);
 
         GameObject selectedEnemy = enemyPrefabs[randomEnemyIndex];
         Transform selectedSpawnPoint = spawnPoints[randomSpawnIndex];
 
-        if (selectedEnemy == null)
-        {
-            Debug.LogWarning($"Spawner: enemyPrefabs[{randomEnemyIndex}] is null!");
-            return;
-        }
-
+        // create the enemy at the spawn location
         Instantiate(selectedEnemy, selectedSpawnPoint.position, Quaternion.identity);
     }
 
-    // Counts the number of active enemies in the scene
+    // counts all currently active enemies by checking how many have the EnemyHealth component
     int CountEnemies()
     {
-        return GameObject.FindGameObjectsWithTag("Enemy").Length;
+        return GameObject.FindObjectsByType<EnemyHealth>(FindObjectsSortMode.None).Length;
     }
 }

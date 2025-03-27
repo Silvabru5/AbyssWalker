@@ -1,236 +1,53 @@
-/*using UnityEngine;
-
-public class EnemyAI : MonoBehaviour
-{
-    public Transform player;
-    public float moveSpeed = 2f;
-    public int damage = 10;
-    public float attackCooldown = 1.5f;
-    public float separationDistance = 0.7f; // Minimum distance between skeletons
-
-    private Animator animator;
-    private bool isAttacking = false;
-    private bool canAttack = true;
-    private bool attackRegistered = false;
-    private bool playerInRange = false;
-    private bool lockFlip = false; // Prevents flipping direction mid-attack
-
-    private SpriteRenderer spriteRenderer;
-    private Rigidbody2D rb;
-
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
-
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
-        {
-            player = playerObj.transform;
-        }
-    }
-
-    void Update()
-    {
-        if (player == null) return;
-
-        if (!lockFlip) // Prevent flipping during attack animations
-        {
-            FlipTowardsPlayer();
-        }
-
-        if (isAttacking || !canAttack) return; // Prevent movement if attacking
-
-        if (playerInRange)
-        {
-            StartAttack();
-        }
-        else
-        {
-            MoveTowardsPlayer();
-        }
-    }
-
-    void MoveTowardsPlayer()
-    {
-        if (!playerInRange) // Only move if not in range
-        {
-            animator.SetBool("isWalking", true);
-            animator.SetBool("isAttacking", false);
-
-            Vector2 direction = (player.position - transform.position).normalized;
-            Vector2 avoidance = AvoidStacking(); // Prevent perfect stacking
-
-            rb.linearVelocity = (direction + avoidance) * moveSpeed;
-        }
-        else
-        {
-            rb.linearVelocity = Vector2.zero; // Stop movement when in range
-        }
-    }
-
-    // **Function to prevent stacking**
-    Vector2 AvoidStacking()
-    {
-        Vector2 avoidanceVector = Vector2.zero;
-        Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, separationDistance);
-
-        foreach (Collider2D col in nearbyEnemies)
-        {
-            if (col.gameObject != gameObject && col.CompareTag("Enemy")) // Check if it's another skeleton
-            {
-                Vector2 diff = (Vector2)transform.position - (Vector2)col.transform.position;
-                avoidanceVector += diff.normalized; // Move slightly away
-            }
-        }
-
-        return avoidanceVector * 0.5f; // Scale down the avoidance effect
-    }
-
-    void StartAttack()
-    {
-        if (!isAttacking && canAttack)
-        {
-            isAttacking = true;
-            canAttack = false;
-            attackRegistered = false;
-            lockFlip = true; // Lock facing direction
-
-            animator.SetBool("isWalking", false);
-            animator.SetBool("isAttacking", true);
-
-            rb.linearVelocity = Vector2.zero; // Stop movement while attacking
-        }
-    }
-
-    // **Detect when the player enters attack range**
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            playerInRange = true;
-            rb.linearVelocity = Vector2.zero; // Stop moving when player is in range
-        }
-    }
-
-    // **Detect when the player leaves attack range**
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            playerInRange = false;
-            CancelAttack();
-        }
-    }
-
-    // **Called from Animation Event when the skeleton swings its weapon**
-    public void RegisterHit()
-    {
-        if (attackRegistered) return;
-
-        if (playerInRange)
-        {
-            player.GetComponent<PlayerHealth>()?.TakeDamage(damage);
-            Debug.Log("Enemy hit the player!");
-            attackRegistered = true;
-        }
-        else
-        {
-            Debug.Log("Player dodged the attack!");
-            CancelAttack();
-        }
-    }
-
-    // **Called at the end of the attack animation (set as Animation Event)**
-    public void EndAttack()
-    {
-        if (!playerInRange)
-        {
-            CancelAttack();
-        }
-        else
-        {
-            isAttacking = false;
-            lockFlip = false; // Allow flipping again
-            animator.SetBool("isAttacking", false);
-            Invoke("ResetAttackCooldown", attackCooldown);
-        }
-    }
-
-    void CancelAttack()
-    {
-        isAttacking = false;
-        lockFlip = false; // Allow flipping again
-        animator.SetBool("isAttacking", false);
-        animator.SetBool("isWalking", true);
-        rb.linearVelocity = Vector2.zero;
-
-        Invoke("ResetAttackCooldown", attackCooldown);
-    }
-
-    void ResetAttackCooldown()
-    {
-        canAttack = true;
-    }
-
-    void FlipTowardsPlayer()
-    {
-        if (player == null) return;
-        if (lockFlip) return; // Prevent flipping mid-attack
-
-        if (player.position.x < transform.position.x)
-        {
-            spriteRenderer.flipX = true;
-        }
-        else
-        {
-            spriteRenderer.flipX = false;
-        }
-    }
-}*/
-
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform player;
-    public float moveSpeed = 2f;
-    public int damage = 10;
-    public float attackCooldown = 1.5f;
-    public float separationDistance = 0.7f; // Minimum distance between skeletons
+    public Transform player; // reference to the player's transform
+    public float moveSpeed = 2f; // how fast the enemy moves
+    public int damage = 10; // how much damage the enemy deals to the player
+    public float attackCooldown = 1.5f; // time between each attack
+    public float separationDistance = 0.7f; // how close enemies can be before pushing apart
 
-    private Animator animator;
-    private bool isAttacking = false;
-    private bool canAttack = true;
-    private bool attackRegistered = false;
-    private bool playerInRange = false;
-    private bool lockFlip = false; // Prevents flipping direction mid-attack
+    private Animator animator; // handles animation transitions
+    private Rigidbody2D rb; // handles movement with physics
+    private SpriteRenderer spriteRenderer; // allows flipping the sprite left/right
 
-    private SpriteRenderer spriteRenderer;
-    private Rigidbody2D rb;
+    [HideInInspector] public bool isAttacking = false; // true if currently attacking
+    [HideInInspector] public bool canAttack = true; // true if allowed to attack
+    [HideInInspector] public bool isDead = false; // true if enemy is dead and should stop logic
+
+    private bool attackRegistered = false; // prevents multiple hits in one attack
+    private bool playerInRange = false; // true when player is inside attack trigger zone
+    private bool lockFlip = false; // prevents flipping during attack
 
     void Start()
     {
+        // get all required components
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
 
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
+        // find the player in the scene using their health component (no tags used)
+        PlayerHealth foundPlayer = Object.FindFirstObjectByType<PlayerHealth>();
+
+        if (foundPlayer != null)
         {
-            player = playerObj.transform;
+            player = foundPlayer.transform;
         }
     }
 
     void Update()
     {
-        if (player == null) return;
+        // stop logic if player is gone or enemy is dead
+        if (player == null || isDead) return;
 
+        // flip the enemy toward the player unless locked
         if (!lockFlip) FlipTowardsPlayer();
 
+        // don't act if already attacking or cooling down
         if (isAttacking || !canAttack) return;
 
+        // attack if close, otherwise move toward player
         if (playerInRange)
         {
             StartAttack();
@@ -243,39 +60,41 @@ public class EnemyAI : MonoBehaviour
 
     void MoveTowardsPlayer()
     {
-        if (!playerInRange)
+        if (!playerInRange && !isAttacking && canAttack)
         {
             animator.SetBool("isWalking", true);
-            animator.SetBool("isAttacking", false);
 
+            // move toward player with slight push to avoid overlapping with others
             Vector2 direction = (player.position - transform.position).normalized;
             Vector2 avoidance = AvoidStacking();
-
             rb.linearVelocity = (direction + avoidance) * moveSpeed;
         }
         else
         {
+            // stop moving and walking animation
+            animator.SetBool("isWalking", false);
             rb.linearVelocity = Vector2.zero;
         }
     }
 
     Vector2 AvoidStacking()
     {
+        // prevents enemies from standing in the exact same spot
         Vector2 avoidanceVector = Vector2.zero;
-        Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, separationDistance);
 
-        foreach (Collider2D col in nearbyEnemies)
+        Collider2D[] nearby = Physics2D.OverlapCircleAll(transform.position, separationDistance);
+        foreach (Collider2D col in nearby)
         {
-            if (col.gameObject != gameObject && col.CompareTag("Enemy"))
+            if (col != null && col.gameObject != gameObject && col.GetComponent<EnemyAI>())
             {
                 Vector2 diff = (Vector2)transform.position - (Vector2)col.transform.position;
                 avoidanceVector += diff.normalized;
             }
         }
 
-        return avoidanceVector * 0.5f;
+        return avoidanceVector * 0.5f; // scale down how strong the push is
     }
-
+    // starts the attack if the enemy can attack and isn't already doing so
     void StartAttack()
     {
         if (!isAttacking && canAttack)
@@ -287,87 +106,88 @@ public class EnemyAI : MonoBehaviour
 
             animator.SetBool("isWalking", false);
             animator.SetBool("isAttacking", true);
-
             rb.linearVelocity = Vector2.zero;
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    // runs when the player enters the enemy’s trigger zone
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.CompareTag("Player"))
+        if (other.GetComponent<PlayerHealth>() != null)
         {
             playerInRange = true;
             rb.linearVelocity = Vector2.zero;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (collision.CompareTag("Player"))
+        if (other.GetComponent<PlayerHealth>() != null)
         {
             playerInRange = false;
             CancelAttack();
         }
     }
 
-    // This is called via Animation Event
+    // called from animation event mid-swing
     public void RegisterHit()
     {
         if (attackRegistered) return;
 
-        if (playerInRange)
+        if (playerInRange && player != null)
         {
             PlayerHealth health = player.GetComponent<PlayerHealth>();
             if (health != null)
             {
                 health.TakeDamage(damage);
-                Debug.Log("Enemy hit the player!");
             }
+
             attackRegistered = true;
         }
         else
         {
-            Debug.Log("Player dodged the attack!");
             CancelAttack();
         }
     }
 
-    // This is called via Animation Event
+    // called from animation event at end of attack
     public void EndAttack()
     {
         isAttacking = false;
         lockFlip = false;
         animator.SetBool("isAttacking", false);
-        Invoke("ResetAttackCooldown", attackCooldown);
+        Invoke(nameof(ResetAttackCooldown), attackCooldown);
     }
-
+    // stops the current attack and resets animations/movement
     void CancelAttack()
     {
         isAttacking = false;
         lockFlip = false;
         animator.SetBool("isAttacking", false);
-        animator.SetBool("isWalking", true);
+        animator.SetBool("isWalking", false);
         rb.linearVelocity = Vector2.zero;
-        Invoke("ResetAttackCooldown", attackCooldown);
+        Invoke(nameof(ResetAttackCooldown), attackCooldown);
     }
-
+    // lets the enemy attack again after cooldown
     void ResetAttackCooldown()
     {
         canAttack = true;
     }
+
+    // interrupts the attack immediately (like when hit)
     public void InterruptAttack()
     {
         isAttacking = false;
+        lockFlip = false;
         canAttack = false;
         animator.SetBool("isAttacking", false);
         rb.linearVelocity = Vector2.zero;
     }
-
+    // flips the enemy to face the player
     void FlipTowardsPlayer()
     {
-        if (player == null) return;
-        if (lockFlip) return;
+        if (player == null || lockFlip) return;
 
+        // flip sprite depending on whether player is to the left or right
         spriteRenderer.flipX = player.position.x < transform.position.x;
     }
 }
