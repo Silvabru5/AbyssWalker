@@ -17,6 +17,7 @@ public class PlayerMovementSS : MonoBehaviour
     [SerializeField] private float _attackDamage;
     [SerializeField] private LayerMask _enemyLayers;
     [SerializeField] private LayerMask _bossLayers;
+    bool isAttacking = false;
     float nextAttkTime = 0f;
 
     //Dashing variables
@@ -43,11 +44,13 @@ public class PlayerMovementSS : MonoBehaviour
         }
         if (Time.time >= nextAttkTime)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && controller.m_Grounded)
             {
                 Attack();
                 nextAttkTime = Time.time + _attackSpeed;
+                isAttacking = false;
             }
+    
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
@@ -60,18 +63,35 @@ public class PlayerMovementSS : MonoBehaviour
     void Attack()
     {
         _anim.SetTrigger("Attack");
+        isAttacking = true;
+        _runSpeed = 0;
+        StartCoroutine(AttackCD());
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attkPnt.position, _attackRange, _enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<BossSmallEnemies>().TakeDamage(_attackDamage);
-                Debug.Log("Hit" + enemy.name);
-        }
+            if (enemy.gameObject.activeInHierarchy) // Check if spawned
+            {
+                BossSmallEnemies smallEnemy = enemy.GetComponent<BossSmallEnemies>();
+                if (smallEnemy != null)
+                {
+                    smallEnemy.TakeDamage(_attackDamage);
+                    Debug.Log("Hit " + enemy.name);
+                }
 
-        Collider2D[] bossEnemies = Physics2D.OverlapCircleAll(_attkPnt.position, _attackRange, _bossLayers);
-        foreach (Collider2D boss in bossEnemies)
-        {
-            boss.GetComponent<BossMonster>().TakeDamage(_attackDamage); 
-            Debug.Log("HIT: " +  boss.name);
+                BossMonster bossEnemy = enemy.GetComponent<BossMonster>();
+                if (bossEnemy != null)
+                {
+                    bossEnemy.TakeDamage(_attackDamage);
+                    Debug.Log("HIT: " + bossEnemy.name);
+                }
+
+                SpawnEnemies spawnEnemy = enemy.GetComponent<SpawnEnemies>();
+                if (spawnEnemy != null)
+                {
+                    spawnEnemy.TakeDamage(_attackDamage);
+                    Debug.Log("HIT: " + spawnEnemy.name);
+                }
+            }
         }
     }
 
@@ -85,7 +105,9 @@ public class PlayerMovementSS : MonoBehaviour
         {
             _anim.SetInteger("AnimState", 0);
         }
-            controller.Move(_horizontalMove * Time.fixedDeltaTime, false, jump);
+
+        controller.Move(_horizontalMove * Time.fixedDeltaTime, false, jump);
+       
         jump = false;
     }
 
@@ -97,7 +119,10 @@ public class PlayerMovementSS : MonoBehaviour
         {
             return;
         }
-        PlayerInput();
+        if (!isAttacking)
+        {
+            PlayerInput();
+        }
     }
 
     private void OnDrawGizmos()
@@ -113,6 +138,7 @@ public class PlayerMovementSS : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
+        isAttacking = true;
         float originalGravity = controller.rb.gravityScale;
         controller.rb.gravityScale = 0;
         controller.rb.linearVelocity = new Vector2(transform.localScale.x * dashingPower, 0f);
@@ -121,8 +147,16 @@ public class PlayerMovementSS : MonoBehaviour
         _trailRenderer.emitting = false;
         controller.rb.gravityScale = originalGravity;
         isDashing = false;
+        isAttacking = false;
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
 
+    }
+
+    private IEnumerator AttackCD()
+    {
+        yield return new WaitForSeconds(0.75f);
+        _runSpeed = 25;
+        isAttacking = false;
     }
 }
