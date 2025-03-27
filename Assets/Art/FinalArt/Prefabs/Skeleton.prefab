@@ -221,7 +221,10 @@ MonoBehaviour:
   moveSpeed: 2
   damage: 10
   attackCooldown: 1.5
-  separationDistance: 0.7
+  separationDistance: 0.3
+  isAttacking: 0
+  canAttack: 1
+  isDead: 0
 --- !u!61 &1045865876432864809
 BoxCollider2D:
   m_ObjectHideFlags: 0
