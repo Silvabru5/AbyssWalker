@@ -1,0 +1,741 @@
+fileFormatVersion: 2
+guid: 0749a1e846d918544821133738c53afe
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5567224389075586212
+    second: Skull3_Glow_0
+  - first:
+      213: 4516490296478694493
+    second: Skull3_Glow_1
+  - first:
+      213: 8011035394600132843
+    second: Skull3_Glow_2
+  - first:
+      213: 7209273412807603378
+    second: Skull3_Glow_3
+  - first:
+      213: -5218956016586833384
+    second: Skull3_Glow_4
+  - first:
+      213: -8005490153434484935
+    second: Skull3_Glow_5
+  - first:
+      213: -602939703253702413
+    second: Skull3_Glow_6
+  - first:
+      213: -6025480250214473169
+    second: Skull3_Glow_7
+  - first:
+      213: -608652514211964238
+    second: Skull3_Glow_8
+  - first:
+      213: 1278288004643624586
+    second: Skull3_Glow_9
+  - first:
+      213: -7074094868404263199
+    second: Skull3_Glow_10
+  - first:
+      213: 8662049686594741645
+    second: Skull3_Glow_11
+  - first:
+      213: 6768565635125683264
+    second: Skull3_Glow_12
+  - first:
+      213: -2465886832843016862
+    second: Skull3_Glow_13
+  - first:
+      213: 2265733171286669567
+    second: Skull3_Glow_14
+  - first:
+      213: -4407407766042813597
+    second: Skull3_Glow_15
+  - first:
+      213: -7046713075702188939
+    second: Skull3_Glow_16
+  - first:
+      213: -3196121075373269330
+    second: Skull3_Glow_17
+  - first:
+      213: -8993696462586964581
+    second: Skull3_Glow_18
+  - first:
+      213: 4575479211999261683
+    second: Skull3_Glow_19
+  - first:
+      213: -5084163658640114039
+    second: Skull3_Glow_20
+  - first:
+      213: 8262861684810323852
+    second: Skull3_Glow_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Skull3_Glow_0
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4accdbfd511c24d40800000000000000
+      internalID: 5567224389075586212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_1
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5c7c19cefbcdae30800000000000000
+      internalID: 4516490296478694493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_2
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be0e8324f3aec2f60800000000000000
+      internalID: 8011035394600132843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_3
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b4b01bf8fb7c0460800000000000000
+      internalID: 7209273412807603378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_4
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81244f4772b8297b0800000000000000
+      internalID: -5218956016586833384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_5
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93f66afce19c6e090800000000000000
+      internalID: -8005490153434484935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_6
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f8659ec88de1a7f0800000000000000
+      internalID: -602939703253702413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_7
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f22a5d403a1316ca0800000000000000
+      internalID: -6025480250214473169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_8
+      rect:
+        serializedVersion: 2
+        x: 1259
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ba5fba53c1ad87f0800000000000000
+      internalID: -608652514211964238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_9
+      rect:
+        serializedVersion: 2
+        x: 1409
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a861d65ea246db110800000000000000
+      internalID: 1278288004643624586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_10
+      rect:
+        serializedVersion: 2
+        x: 1559
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e6a9558234c3dd90800000000000000
+      internalID: -7074094868404263199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_11
+      rect:
+        serializedVersion: 2
+        x: 1709
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d856344eb48c53870800000000000000
+      internalID: 8662049686594741645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_12
+      rect:
+        serializedVersion: 2
+        x: 1859
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04425907596ceed50800000000000000
+      internalID: 6768565635125683264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_13
+      rect:
+        serializedVersion: 2
+        x: 2009
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26534188df867cdd0800000000000000
+      internalID: -2465886832843016862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_14
+      rect:
+        serializedVersion: 2
+        x: 2159
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff87c5e9050817f10800000000000000
+      internalID: 2265733171286669567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_15
+      rect:
+        serializedVersion: 2
+        x: 2309
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36b58bcfcfdb5d2c0800000000000000
+      internalID: -4407407766042813597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_16
+      rect:
+        serializedVersion: 2
+        x: 2459
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 574bba0facb053e90800000000000000
+      internalID: -7046713075702188939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_17
+      rect:
+        serializedVersion: 2
+        x: 2609
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eae9c33d0d815a3d0800000000000000
+      internalID: -3196121075373269330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_18
+      rect:
+        serializedVersion: 2
+        x: 2759
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9511d9c7b8ff2380800000000000000
+      internalID: -8993696462586964581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_19
+      rect:
+        serializedVersion: 2
+        x: 2909
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f37664f91e5f7f30800000000000000
+      internalID: 4575479211999261683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_20
+      rect:
+        serializedVersion: 2
+        x: 3059
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98e3ecae61c6179b0800000000000000
+      internalID: -5084163658640114039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull3_Glow_21
+      rect:
+        serializedVersion: 2
+        x: 3209
+        y: 60
+        width: 30
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c871e4f7ce49ba270800000000000000
+      internalID: 8262861684810323852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Skull3_Glow_0: 5567224389075586212
+      Skull3_Glow_1: 4516490296478694493
+      Skull3_Glow_10: -7074094868404263199
+      Skull3_Glow_11: 8662049686594741645
+      Skull3_Glow_12: 6768565635125683264
+      Skull3_Glow_13: -2465886832843016862
+      Skull3_Glow_14: 2265733171286669567
+      Skull3_Glow_15: -4407407766042813597
+      Skull3_Glow_16: -7046713075702188939
+      Skull3_Glow_17: -3196121075373269330
+      Skull3_Glow_18: -8993696462586964581
+      Skull3_Glow_19: 4575479211999261683
+      Skull3_Glow_2: 8011035394600132843
+      Skull3_Glow_20: -5084163658640114039
+      Skull3_Glow_21: 8262861684810323852
+      Skull3_Glow_3: 7209273412807603378
+      Skull3_Glow_4: -5218956016586833384
+      Skull3_Glow_5: -8005490153434484935
+      Skull3_Glow_6: -602939703253702413
+      Skull3_Glow_7: -6025480250214473169
+      Skull3_Glow_8: -608652514211964238
+      Skull3_Glow_9: 1278288004643624586
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

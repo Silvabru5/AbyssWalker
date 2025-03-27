@@ -1,0 +1,689 @@
+fileFormatVersion: 2
+guid: 1a4e5df15e467e949957ce1c2a057b47
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3798909108736392248
+    second: Glow_Skull1_0
+  - first:
+      213: 303608511611580080
+    second: Glow_Skull1_1
+  - first:
+      213: 2352448884134075699
+    second: Glow_Skull1_2
+  - first:
+      213: -4112513479196679038
+    second: Glow_Skull1_3
+  - first:
+      213: -1789887564432361091
+    second: Glow_Skull1_4
+  - first:
+      213: 2735902143874975868
+    second: Glow_Skull1_5
+  - first:
+      213: 3655600239812733366
+    second: Glow_Skull1_6
+  - first:
+      213: 6551432788072669514
+    second: Glow_Skull1_7
+  - first:
+      213: 4206111579156682172
+    second: Glow_Skull1_8
+  - first:
+      213: 643729173907355850
+    second: Glow_Skull1_9
+  - first:
+      213: -4298263682353771352
+    second: Glow_Skull1_10
+  - first:
+      213: 8118614202357210235
+    second: Glow_Skull1_11
+  - first:
+      213: 4579273960241052618
+    second: Glow_Skull1_12
+  - first:
+      213: -1011276195461341146
+    second: Glow_Skull1_13
+  - first:
+      213: 5364142768574244054
+    second: Glow_Skull1_14
+  - first:
+      213: 3618569721256264003
+    second: Glow_Skull1_15
+  - first:
+      213: 1793888888225619106
+    second: Glow_Skull1_16
+  - first:
+      213: -8077288506127282792
+    second: Glow_Skull1_17
+  - first:
+      213: 9210039141707530021
+    second: Glow_Skull1_18
+  - first:
+      213: -6342488536715141701
+    second: Glow_Skull1_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Glow_Skull1_0
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83c7a38f4bf68b430800000000000000
+      internalID: 3798909108736392248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_1
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bea46d2552a63400800000000000000
+      internalID: 303608511611580080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_2
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33d531bdbc395a020800000000000000
+      internalID: 2352448884134075699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_3
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 284e97a97ca6de6c0800000000000000
+      internalID: -4112513479196679038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_4
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d79be1e4eba0927e0800000000000000
+      internalID: -1789887564432361091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_5
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c78c5e12180e7f520800000000000000
+      internalID: 2735902143874975868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_6
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b9eed6cc0d4bb230800000000000000
+      internalID: 3655600239812733366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_7
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a412be6e86d5bea50800000000000000
+      internalID: 6551432788072669514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_8
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb59a41423c1f5a30800000000000000
+      internalID: 4206111579156682172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_9
+      rect:
+        serializedVersion: 2
+        x: 1410
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac8bd46e54cfee800800000000000000
+      internalID: 643729173907355850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_10
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ac475e34ff7954c0800000000000000
+      internalID: -4298263682353771352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_11
+      rect:
+        serializedVersion: 2
+        x: 1710
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7c51ff4a9c1ba070800000000000000
+      internalID: 8118614202357210235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_12
+      rect:
+        serializedVersion: 2
+        x: 1860
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acb3d51a769dc8f30800000000000000
+      internalID: 4579273960241052618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_13
+      rect:
+        serializedVersion: 2
+        x: 2010
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 620e7bf78a937f1f0800000000000000
+      internalID: -1011276195461341146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_14
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d429557d63417a40800000000000000
+      internalID: 5364142768574244054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_15
+      rect:
+        serializedVersion: 2
+        x: 2310
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 341c67e4dfdb73230800000000000000
+      internalID: 3618569721256264003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_16
+      rect:
+        serializedVersion: 2
+        x: 2460
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ac553d707c25e810800000000000000
+      internalID: 1793888888225619106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_17
+      rect:
+        serializedVersion: 2
+        x: 2610
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89d00f326e4b7ef80800000000000000
+      internalID: -8077288506127282792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_18
+      rect:
+        serializedVersion: 2
+        x: 2760
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52fbbe07dc1a0df70800000000000000
+      internalID: 9210039141707530021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glow_Skull1_19
+      rect:
+        serializedVersion: 2
+        x: 2910
+        y: 54
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbd5b11a744faf7a0800000000000000
+      internalID: -6342488536715141701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Glow_Skull1_0: 3798909108736392248
+      Glow_Skull1_1: 303608511611580080
+      Glow_Skull1_10: -4298263682353771352
+      Glow_Skull1_11: 8118614202357210235
+      Glow_Skull1_12: 4579273960241052618
+      Glow_Skull1_13: -1011276195461341146
+      Glow_Skull1_14: 5364142768574244054
+      Glow_Skull1_15: 3618569721256264003
+      Glow_Skull1_16: 1793888888225619106
+      Glow_Skull1_17: -8077288506127282792
+      Glow_Skull1_18: 9210039141707530021
+      Glow_Skull1_19: -6342488536715141701
+      Glow_Skull1_2: 2352448884134075699
+      Glow_Skull1_3: -4112513479196679038
+      Glow_Skull1_4: -1789887564432361091
+      Glow_Skull1_5: 2735902143874975868
+      Glow_Skull1_6: 3655600239812733366
+      Glow_Skull1_7: 6551432788072669514
+      Glow_Skull1_8: 4206111579156682172
+      Glow_Skull1_9: 643729173907355850
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

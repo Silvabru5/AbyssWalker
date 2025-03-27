@@ -16,7 +16,6 @@ public class PlayerMovementSS : MonoBehaviour
     [SerializeField] private float _attackSpeed;
     [SerializeField] private float _attackDamage;
     [SerializeField] private LayerMask _enemyLayers;
-    [SerializeField] private LayerMask _bossLayers;
     bool isAttacking = false;
     float nextAttkTime = 0f;
 
@@ -37,7 +36,7 @@ public class PlayerMovementSS : MonoBehaviour
             return;
         }
         _horizontalMove = Input.GetAxisRaw("Horizontal") * _runSpeed;
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !isAttacking)
         {
             jump = true;
             _anim.SetTrigger("Jump");
@@ -46,11 +45,11 @@ public class PlayerMovementSS : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1") && controller.m_Grounded)
             {
+                jump = false;
                 Attack();
-                nextAttkTime = Time.time + _attackSpeed;
+                nextAttkTime = Time.time + 1f / _attackSpeed ;
                 isAttacking = false;
             }
-    
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
@@ -155,7 +154,7 @@ public class PlayerMovementSS : MonoBehaviour
 
     private IEnumerator AttackCD()
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.67f);
         _runSpeed = 25;
         isAttacking = false;
     }
