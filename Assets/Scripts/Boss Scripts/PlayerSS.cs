@@ -46,31 +46,34 @@ public class PlayerSS : MonoBehaviour
     }
     private void Update()
     {
-        if (isDashing)
+        if (!isDead)
         {
-            return;
-        }
-        _horizontalMove = Input.GetAxisRaw("Horizontal") * _runSpeed;
-        if (Input.GetButtonDown("Jump") && !isAttacking)
-        {
-            jump = true;
-            _anim.SetTrigger("Jump");
-        }
-        if (Time.time >= nextAttkTime)
-        {
-            if (Input.GetButtonDown("Fire1") && controller.m_Grounded)
+            if (isDashing)
             {
-                jump = false;
-                Attack();
-                nextAttkTime = Time.time + 1f / _attackSpeed ;
-                isAttacking = false;
+                return;
             }
-        }
+            _horizontalMove = Input.GetAxisRaw("Horizontal") * _runSpeed;
+            if (Input.GetButtonDown("Jump") && !isAttacking)
+            {
+                jump = true;
+                _anim.SetTrigger("Jump");
+            }
+            if (Time.time >= nextAttkTime)
+            {
+                if (Input.GetButtonDown("Fire1") && controller.m_Grounded)
+                {
+                    jump = false;
+                    Attack();
+                    nextAttkTime = Time.time + 1f / _attackSpeed;
+                    isAttacking = false;
+                }
+            }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-        {
-            _anim.SetTrigger("Dash");
-            StartCoroutine(Dash());
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+            {
+                _anim.SetTrigger("Dash");
+                StartCoroutine(Dash());
+            }
         }
     }
 
@@ -80,6 +83,10 @@ public class PlayerSS : MonoBehaviour
         isAttacking = true;
         _runSpeed = 0;
         StartCoroutine(AttackCD());
+    }
+
+    void DealDamage()
+    {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attkPnt.position, _attackRange, _enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -118,9 +125,11 @@ public class PlayerSS : MonoBehaviour
     void Dead()
     {
         _anim.SetTrigger("Death");
+        _runSpeed = 0;
+        _collider.enabled = false;
         canDash = false;
     }
-    void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         if (iFrame)
         {
@@ -178,12 +187,13 @@ public class PlayerSS : MonoBehaviour
         Gizmos.DrawWireSphere(_attkPnt.position, _attackRange);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.GetComponent<isEnemy>())
         {
             TakeDamage(10f);
-            if (!iFrame)
+            if(!iFrame)
             {
                 Destroy(collision.gameObject);
             }
