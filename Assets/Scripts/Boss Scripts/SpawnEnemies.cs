@@ -14,46 +14,45 @@ public class SpawnEnemies : MonoBehaviour
         _currentHealth = _maxHealth;
         _anim.SetFloat("CurrentHP", 100);
         _col = GetComponent<Collider2D>();
-        Respawn();
+
+        _anim.SetTrigger("Death");
+        StartCoroutine(RespawnEnemy());
     }
 
     public void TakeDamage(float damage)
     {
         _currentHealth -= damage;
         _anim.SetTrigger("Hurt");
-
         if (_currentHealth <= 0)
         {
-            isDead = true;
             Die();
         }
     }
 
     void Die()
     {
+        isDead = true;
         _anim.SetTrigger("Death");
         _col.enabled = false;
-        Respawn();
         Debug.Log("Enemy Died");
+        StartCoroutine(RespawnEnemy());
+     
     }
 
-    public void Respawn()
-    {
-        _anim.SetTrigger("Death");
-        _col.enabled = true;
-        _currentHealth = _maxHealth;
-        StartCoroutine(RespawnEnemy());
-    }
     // Update is called once per frame
     void Update()
     {
         _anim.SetFloat("CurrentHP", (_currentHealth / _maxHealth) * 100);
+
     }
 
     private IEnumerator RespawnEnemy()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(8f);
+        isDead = false;
         _anim.SetTrigger("Recover");
+        _col.enabled = true;
+        _currentHealth = _maxHealth;
     }
 
 }

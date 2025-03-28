@@ -5,6 +5,7 @@ public class BossSmallEnemies : MonoBehaviour
 {
     [SerializeField] private float _maxHealth = 100f;
     [SerializeField] private float _currentHealth;
+    [SerializeField] private float _healthPercent;
     [SerializeField] private Animator _anim;
     [SerializeField] private GameObject _spawner;
     [SerializeField] private Transform _pivot;
@@ -41,7 +42,8 @@ public class BossSmallEnemies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _anim.SetFloat("CurrentHP", (_currentHealth/_maxHealth) * 100);
+        _healthPercent = (_currentHealth / _maxHealth) * 100;
+        _anim.SetFloat("CurrentHP",_healthPercent);
     }
 
 }
