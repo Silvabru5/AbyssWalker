@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 1176932947}
   - component: {fileID: 1176932946}
   - component: {fileID: 1176932945}
+  - component: {fileID: 1176932950}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -296,7 +297,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.34, y: 0.43}
+  m_Size: {x: 2.125, y: 2.6875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -317,6 +318,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1176932950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176932944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c862d8739a2325444b58b10ea172ee75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicAttackHitbox: {fileID: 1379640380451984043, guid: 41ad0bb47d957f6439055887e96062eb, type: 3}
+  strongAttackHitbox: {fileID: 0}
+  attackCooldown: 1
+  hitboxShowTime: 0.2
+  offsetDistance: 1
 --- !u!1 &1214220641
 GameObject:
   m_ObjectHideFlags: 0
