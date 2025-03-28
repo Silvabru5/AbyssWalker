@@ -1,13 +1,14 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerMovementSS : MonoBehaviour
+public class PlayerSS : MonoBehaviour
 {
     //Character Controller variables
     [SerializeField] private CharacterController2D controller;
     [SerializeField] private float _horizontalMove = 0;
     [SerializeField] private float _runSpeed = 0;
     [SerializeField] private Animator _anim;
+    private Collider2D _collider;
     bool jump = false;
 
     //Attack related variables
@@ -27,8 +28,22 @@ public class PlayerMovementSS : MonoBehaviour
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
 
+    //Player Health
+    [SerializeField] private float _maxHealth = 100f;
+    [SerializeField] private float _currentHealth = 0f;
+    [SerializeField] private float iFrameDuration = 1.5f;
+    [SerializeField] private float blinkDuration = 0.1f;
+    private bool isDead = false;
+    private bool iFrame = false;
+    private SpriteRenderer _spriteRenderer;
 
-
+    private void Start()
+    {
+        _anim = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _currentHealth = _maxHealth;
+        _collider = GetComponent<Collider2D>();
+    }
     private void Update()
     {
         if (isDashing)
@@ -90,10 +105,40 @@ public class PlayerMovementSS : MonoBehaviour
                     spawnEnemy.TakeDamage(_attackDamage);
                     Debug.Log("HIT: " + spawnEnemy.name);
                 }
+
+                isEnemy skullEnemy = enemy.GetComponent<isEnemy>();
+                if (skullEnemy != null)
+                {
+                    skullEnemy.TakeDamage(_attackDamage);
+                    Debug.Log("HIT: " + skullEnemy.name);
+                }
             }
         }
     }
+    void Dead()
+    {
+        _anim.SetTrigger("Death");
+        canDash = false;
+    }
+    void TakeDamage(float damage)
+    {
+        if (iFrame)
+        {
+            return;
+        }
+        _currentHealth -= damage;
+        _anim.SetTrigger("Hurt");
 
+        if(_currentHealth <= 0)
+        {
+            isDead = true;
+            Dead();
+        }
+        else
+        {
+            StartCoroutine(IFrames());
+        }
+    }
     void PlayerInput()
     {
         if (_horizontalMove >= 1 || _horizontalMove <= -1)
@@ -118,7 +163,7 @@ public class PlayerMovementSS : MonoBehaviour
         {
             return;
         }
-        if (!isAttacking)
+        if (!isAttacking && !isDead)
         {
             PlayerInput();
         }
@@ -133,11 +178,25 @@ public class PlayerMovementSS : MonoBehaviour
         Gizmos.DrawWireSphere(_attkPnt.position, _attackRange);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.GetComponent<isEnemy>())
+        {
+            TakeDamage(10f);
+            if (!iFrame)
+            {
+                Destroy(collision.gameObject);
+            }
+        }
+    }
+
     private IEnumerator Dash()
     {
         canDash = false;
         isDashing = true;
         isAttacking = true;
+        iFrame = true;
+        _collider.enabled = false;
         float originalGravity = controller.rb.gravityScale;
         controller.rb.gravityScale = 0;
         controller.rb.linearVelocity = new Vector2(transform.localScale.x * dashingPower, 0f);
@@ -147,6 +206,8 @@ public class PlayerMovementSS : MonoBehaviour
         controller.rb.gravityScale = originalGravity;
         isDashing = false;
         isAttacking = false;
+        iFrame = false;
+        _collider.enabled = true;
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
 
@@ -157,5 +218,22 @@ public class PlayerMovementSS : MonoBehaviour
         yield return new WaitForSeconds(0.67f);
         _runSpeed = 25;
         isAttacking = false;
+    }
+
+    private IEnumerator IFrames()
+    {
+        iFrame = true;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < iFrameDuration)
+        {
+            _spriteRenderer.enabled = !_spriteRenderer.enabled;
+            yield return new WaitForSeconds(blinkDuration);
+            elapsedTime += blinkDuration;
+        }
+
+        _spriteRenderer.enabled = true;
+        iFrame = false;
+
     }
 }
