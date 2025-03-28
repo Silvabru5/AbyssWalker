@@ -12,21 +12,40 @@ public class PlayerAttack : MonoBehaviour
 
     private bool canAttack = true;         // controls if player is allowed to attack
     private PlayerControl playerControl;   // reference to the movement script to get aim direction
+    
+    private Animator animator; //to use animator
 
     void Start()
     {
         // get a reference to the player movement script
         playerControl = GetComponent<PlayerControl>();
+        animator = GetComponentInParent<Animator>();
     }
 
     void Update()
     {
-        // don’t do anything if player can’t attack or reference is missing
+        // donï¿½t do anything if player canï¿½t attack or reference is missing
         if (!canAttack || playerControl == null) return;
 
         // left mouse button = basic attack (triangle)
         if (Input.GetMouseButtonDown(0))
         {
+            //Tristan Mod
+            //getting where the player last faced
+            Vector2 aimDir = playerControl.LastMoveDirection;
+
+
+            //using animation blend tree params to decide attack direction
+            animator.SetFloat("AttackHorizontal", aimDir.x);
+            animator.SetFloat("AttackVertical", aimDir.y);
+
+            //trigger basic attack
+            animator.SetTrigger("BasicAttack");
+
+
+
+
+
             StartCoroutine(PerformAttack(basicAttackHitbox, true));
         }
         // right mouse button = strong attack (rectangle)
