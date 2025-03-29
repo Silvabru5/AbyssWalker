@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class BossSmallEnemies : MonoBehaviour
@@ -9,12 +10,15 @@ public class BossSmallEnemies : MonoBehaviour
     [SerializeField] private Animator _anim;
     [SerializeField] private GameObject _spawner;
     [SerializeField] private Transform _pivot;
+   
     private Collider2D _col;
+    public HealthBar healthBar;
     public bool isDead = false;
      void Start()
     {
         _anim = GetComponent<Animator>();
         _currentHealth = _maxHealth;
+        healthBar.SetMaxHealth(_maxHealth);
         _anim.SetFloat("CurrentHP", 100);
         _col = GetComponent<Collider2D>();
         _spawner = GameObject.Find("SpawnPoints");
@@ -23,6 +27,7 @@ public class BossSmallEnemies : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _currentHealth -= damage;
+        healthBar.SetHealth(_currentHealth);
         _anim.SetTrigger("isHit");
 
         if(_currentHealth <= 0)

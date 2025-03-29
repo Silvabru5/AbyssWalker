@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class BossAttacks : MonoBehaviour
 {
+    //Flying Skull Variables
     [SerializeField] private GameObject[] _skullPrefabs;
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private Transform _transform;
-    private BossMonster _monster;
+    [SerializeField] private GameObject[] monsters;
     private Animator _anim;
     private bool _spawning;
     int randomIndex = 0;
@@ -16,8 +17,7 @@ public class BossAttacks : MonoBehaviour
     void Start()
     {
         _anim = GetComponent<Animator>();
-        _monster = GetComponent<BossMonster>();
-        
+       
     }
 
     void SpawnEnemies()
@@ -44,9 +44,15 @@ public class BossAttacks : MonoBehaviour
         {
             StartCoroutine(Spawner());
         }
-   
+        if (monsters[0].GetComponent<BossSmallEnemies>().isDead == true && monsters[1].GetComponent<BossSmallEnemies>().isDead == true &&
+            monsters[2].GetComponent<BossSmallEnemies>().isDead == true && monsters[3].GetComponent<BossSmallEnemies>().isDead == true)
+        {
+
+        }
+
     }
 
+   
     private IEnumerator Spawner()
     {
         _spawning = true;
@@ -55,4 +61,5 @@ public class BossAttacks : MonoBehaviour
         _spawning = false; 
 
     }
+
 }
