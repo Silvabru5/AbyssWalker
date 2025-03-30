@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform player; // reference to the player's transform
+    //  public Transform player; // reference to the player's transform
+    public GameObject player;
     public float moveSpeed = 2f; // how fast the enemy moves
     public int damage = 10; // how much damage the enemy deals to the player
     public float attackCooldown = 1.5f; // time between each attack
@@ -22,18 +23,20 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.Find("Character");
         // get all required components
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
 
         // find the player in the scene using their health component (no tags used)
-        PlayerHealth foundPlayer = Object.FindFirstObjectByType<PlayerHealth>();
+        PlayerHealth foundPlayer = player.GetComponent<PlayerHealth>();
+            //Object.FindFirstObjectByType<PlayerHealth>();
 
-        if (foundPlayer != null)
-        {
-            player = foundPlayer.transform;
-        }
+        //if (foundPlayer != null)
+        //{
+        //    player = foundPlayer.transform;
+        //}
     }
 
     void Update()
@@ -65,7 +68,7 @@ public class EnemyAI : MonoBehaviour
             animator.SetBool("isWalking", true);
 
             // move toward player with slight push to avoid overlapping with others
-            Vector2 direction = (player.position - transform.position).normalized;
+            Vector2 direction = (player.transform.position - transform.position).normalized;
             Vector2 avoidance = AvoidStacking();
             rb.linearVelocity = (direction + avoidance) * moveSpeed;
         }
@@ -99,6 +102,9 @@ public class EnemyAI : MonoBehaviour
     {
         if (!isAttacking && canAttack)
         {
+            if (transform.GetComponent<isSkeleton>())    SoundManager.PlaySound(SoundTypeEffects.ENEMY_ATTACK_SKELETON, 1);
+            else if (transform.GetComponent<isSpider>()) SoundManager.PlaySound(SoundTypeEffects.ENEMY_ATTACK_SPIDER, 1);
+            else if (transform.GetComponent<isZombie>()) SoundManager.PlaySound(SoundTypeEffects.ENEMY_ATTACK_ZOMBIE, 1);
             isAttacking = true;
             canAttack = false;
             attackRegistered = false;
@@ -137,9 +143,7 @@ public class EnemyAI : MonoBehaviour
         {
             PlayerHealth health = player.GetComponent<PlayerHealth>();
             if (health != null)
-            {
                 health.TakeDamage(damage);
-            }
 
             attackRegistered = true;
         }
@@ -188,6 +192,6 @@ public class EnemyAI : MonoBehaviour
         if (player == null || lockFlip) return;
 
         // flip sprite depending on whether player is to the left or right
-        spriteRenderer.flipX = player.position.x < transform.position.x;
+        spriteRenderer.flipX = player.transform.position.x < transform.position.x;
     }
 }

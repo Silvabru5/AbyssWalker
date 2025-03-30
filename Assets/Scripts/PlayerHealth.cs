@@ -17,7 +17,10 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_DEATH, 1);
             Debug.Log("Player has died.");
         }
+        else
+            SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_TAKES_DAMAGE, 1);
     }
 }
