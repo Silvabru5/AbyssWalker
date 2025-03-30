@@ -210,6 +210,11 @@ MonoBehaviour:
   attackRange: 0.75
   attackSpeed: 1
   attackDmg: 15
+  player: {fileID: 0}
   Player:
     serializedVersion: 2
     m_Bits: 512
+  _enemyLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  moveSpeed: 2

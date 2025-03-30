@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -10,9 +12,23 @@ public class BossMonster : MonoBehaviour
     [SerializeField] private Collider2D _bCollider;
     [SerializeField] private GameObject platForms;
     [SerializeField] private TextMeshProUGUI _text;
+    private bool isDead;
     private float _healthPercent;
-
     public HealthBar healthBar;
+
+    public bool getDead()
+    {
+        return isDead;
+    }
+    public float getHealth()
+    {
+        return _current;
+    }
+
+    public float getMaxHealth()
+    {
+        return _maxHealth;
+    }
     void Start()
     {
         _anim = GetComponent<Animator>();
@@ -31,12 +47,14 @@ public class BossMonster : MonoBehaviour
         if(_current <= 0)
         {
             Die();
+            isDead = true;
         }
     }
 
     void Die()
     {
-      //  _anim.SetBool("Dead", true);
+       _anim.SetBool("Dead", true);
+        StartCoroutine(Death());
         Debug.Log("Boss Dead");
     }
     // Update is called once per frame
@@ -46,13 +64,18 @@ public class BossMonster : MonoBehaviour
         _healthPercent = Mathf.Max(0,_healthPercent);
         _anim.SetFloat("CurrentHP", _healthPercent);
         _text.text = _healthPercent.ToString("F1") + "%";
-        if (monsters[0].GetComponent<BossSmallEnemies>().isDead == true && monsters[1].GetComponent<BossSmallEnemies>().isDead == true &&
-            monsters[2].GetComponent<BossSmallEnemies>().isDead == true && monsters[3].GetComponent<BossSmallEnemies>().isDead == true)
+        if (monsters.All(m => m.GetComponent<BossSmallEnemies>().isDead))
         {
             _anim.SetBool("isLowered",true);
             _bCollider.enabled = true;
             platForms.SetActive(true);
         }
         
+    }
+
+    private IEnumerator Death()
+    {
+        yield return new WaitForSeconds(3f);
+        gameObject.SetActive(false);
     }
 }

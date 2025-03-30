@@ -43,6 +43,8 @@ public class PlayerSS : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _currentHealth = _maxHealth;
         _collider = GetComponent<Collider2D>();
+        StartCoroutine(StartTimer());
+       
     }
     private void Update()
     {
@@ -126,7 +128,7 @@ public class PlayerSS : MonoBehaviour
     {
         _anim.SetTrigger("Death");
         _runSpeed = 0;
-        _collider.enabled = false;
+        controller.rb.linearVelocity = new Vector2(0f,0f);
         canDash = false;
     }
     public void TakeDamage(float damage)
@@ -192,11 +194,15 @@ public class PlayerSS : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<isEnemy>())
         {
-            TakeDamage(10f);
             if(!iFrame)
             {
+                TakeDamage(10f);
                 Destroy(collision.gameObject);
             }
+        }
+        if(collision.gameObject.GetComponent<isFire>())
+        {
+            TakeDamage(15f);
         }
     }
 
@@ -245,5 +251,13 @@ public class PlayerSS : MonoBehaviour
         _spriteRenderer.enabled = true;
         iFrame = false;
 
+    }
+
+    private IEnumerator StartTimer()
+    {
+        isDead = true;
+        _anim.SetTrigger("Recover");
+        yield return new WaitForSeconds(1f);
+        isDead = false;
     }
 }

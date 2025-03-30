@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class BossAttacks : MonoBehaviour
@@ -8,8 +9,13 @@ public class BossAttacks : MonoBehaviour
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private Transform _transform;
     [SerializeField] private GameObject[] monsters;
+    [SerializeField] private GameObject[] firepillarsObjects;
+    private BossMonster boss;
+    private float spawnTime = 5f;
     private Animator _anim;
     private bool _spawning;
+    private bool _triggeredWall = false;
+    private float spellDelay=4f;
     int randomIndex = 0;
     int randomSpawn = 0;
 
@@ -17,7 +23,7 @@ public class BossAttacks : MonoBehaviour
     void Start()
     {
         _anim = GetComponent<Animator>();
-       
+       boss  = GetComponent<BossMonster>();
     }
 
     void SpawnEnemies()
@@ -40,26 +46,46 @@ public class BossAttacks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_spawning)
+        if (!boss.getDead())
         {
-            StartCoroutine(Spawner());
-        }
-        if (monsters[0].GetComponent<BossSmallEnemies>().isDead == true && monsters[1].GetComponent<BossSmallEnemies>().isDead == true &&
-            monsters[2].GetComponent<BossSmallEnemies>().isDead == true && monsters[3].GetComponent<BossSmallEnemies>().isDead == true)
-        {
+            if (!_spawning)
+            {
+                StartCoroutine(Spawner());
+            }
+            else if (!_triggeredWall && monsters.All(m => m.GetComponent<BossSmallEnemies>().isDead))
+            {
+                _triggeredWall = true; // Prevent multiple activations
+                StartCoroutine(FireWall());
+                if (boss.getHealth() < boss.getMaxHealth() * 0.5f)
+                {
+                    spawnTime = 2.5f;
+                    spellDelay = 2f;
+                }
+            }
 
         }
-
     }
 
    
     private IEnumerator Spawner()
     {
         _spawning = true;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(spawnTime);
         SpawnEnemies();  
         _spawning = false; 
 
     }
 
+    private IEnumerator FireWall()
+    {
+        _anim.SetTrigger("Casting");
+        yield return new WaitForSeconds(spellDelay);
+        foreach(GameObject pilar in firepillarsObjects)
+        {
+            pilar.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            pilar.SetActive(false);
+        }
+        _triggeredWall=false;
+    }
 }

@@ -35,14 +35,4 @@ public class SpawnPoints : MonoBehaviour
             }
         }
     }
-
-    private void Start()
-    {
-        
-    }
-
-    private void Update()
-    {
- 
-    }
 }
