@@ -93,6 +93,12 @@ public class EnemyHealth : MonoBehaviour
         if (spawner != null)
         {
             spawner.EnemyDied();  // shared counter increases
+            // handles the UI for the boss meter
+            BossMeterUI bossMeter = FindAnyObjectByType<BossMeterUI>();
+            if (bossMeter != null)
+            {
+                bossMeter.RegisterKill();
+            }
         }
 
         // play the death animation
@@ -127,4 +133,9 @@ public class EnemyHealth : MonoBehaviour
     { 
         Destroy(gameObject); // remove the enemy from the scene
     }
+    public float GetHealthPercent()
+    {
+        return (float)currentHealth / maxHealth;
+    }
+
 }

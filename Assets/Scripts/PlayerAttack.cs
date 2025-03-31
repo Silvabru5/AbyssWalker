@@ -24,8 +24,8 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        // don�t do anything if player can�t attack or reference is missing
-        if (!canAttack || playerControl == null) return;
+        // don�t do anything if player cant attack or reference is missing
+        if (!canAttack || playerControl == null || Time.timeScale == 0f) return;
 
         // left mouse button = basic attack (triangle)
         if (Input.GetMouseButtonDown(0))
