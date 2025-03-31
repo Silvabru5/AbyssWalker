@@ -1010,6 +1010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  deathAnimationTime: 4.5
   healthText: {fileID: 1248414917}
 --- !u!61 &143111954
 BoxCollider2D:
@@ -1525,7 +1526,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: e33cb33fd923bf346a77c1902cc640b1, type: 3}
   m_Resource: {fileID: 8300000, guid: e33cb33fd923bf346a77c1902cc640b1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.555
   m_Pitch: 1
   Loop: 0
   Mute: 1

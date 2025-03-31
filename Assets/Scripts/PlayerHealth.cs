@@ -1,10 +1,14 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     private int currentHealth;
+
+    private Animator animator;
+    public  float deathAnimationTime = 0.1f;
 
     public TextMeshProUGUI healthText; // drag the health ui text here in the inspector
 
@@ -14,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         UpdateHealthText(); // update the UI with initial health
         InvokeRepeating(nameof(RegenerateHealth), 3f, 3f); // heal 2 hp every 3 seconds
+        animator = GetComponent<Animator>(); //get death anim if health depletes
     }
 
     // this updates the health text every frame to match the current health
@@ -31,23 +36,45 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_DEATH, 1);
+            animator.SetTrigger("DeathTrigger");
+
+            // SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_DEATH, 1);
             Debug.Log("Player has died.");
+            StartCoroutine(DeathSequence());
 
             // find the game over manager in the scene and show the game over screen
-            GameOverManager gameOver = FindAnyObjectByType<GameOverManager>();
-            if (gameOver != null)
-            {
-                gameOver.ShowGameOver();
-            }
-            else
-            {
-                Debug.LogWarning("GameOverManager not found in scene!");
-            }
+            // GameOverManager gameOver = FindAnyObjectByType<GameOverManager>();
+            // if (gameOver != null)
+            // {
+                // gameOver.ShowGameOver();
+            // }
+            // else
+            // {
+                // Debug.LogWarning("GameOverManager not found in scene!");
+            // }
         }
         else
         {
             SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_TAKES_DAMAGE, 1);
+        }
+    }
+
+
+    private IEnumerator DeathSequence()
+    {
+        
+        SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_DEATH, 1);
+
+        yield return new WaitForSeconds(deathAnimationTime);
+
+        GameOverManager gameOver = FindAnyObjectByType<GameOverManager>();
+         if (gameOver != null)
+        {
+            gameOver.ShowGameOver();
+        }
+        else
+        {
+            Debug.LogWarning("GameOverManager not found in scene!");
         }
     }
 
