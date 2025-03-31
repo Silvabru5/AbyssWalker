@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerSS : MonoBehaviour
 {
     //Character Controller variables
@@ -33,6 +33,7 @@ public class PlayerSS : MonoBehaviour
     [SerializeField] private float _currentHealth = 0f;
     [SerializeField] private float iFrameDuration = 1.5f;
     [SerializeField] private float blinkDuration = 0.1f;
+    [SerializeField] private HealthBar _healthBar;
     private bool isDead = false;
     private bool iFrame = false;
     private SpriteRenderer _spriteRenderer;
@@ -42,12 +43,14 @@ public class PlayerSS : MonoBehaviour
         _anim = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _currentHealth = _maxHealth;
+        _healthBar.SetMaxHealth(_maxHealth);
         _collider = GetComponent<Collider2D>();
         StartCoroutine(StartTimer());
        
     }
     private void Update()
     {
+       
         if (!isDead)
         {
             if (isDashing)
@@ -138,6 +141,7 @@ public class PlayerSS : MonoBehaviour
             return;
         }
         _currentHealth -= damage;
+        _healthBar.SetHealth(_currentHealth);
         _anim.SetTrigger("Hurt");
 
         if(_currentHealth <= 0)

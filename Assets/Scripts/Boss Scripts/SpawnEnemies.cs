@@ -19,7 +19,7 @@ public class SpawnEnemies : MonoBehaviour
     [SerializeField] private LayerMask _enemyLayers;
     private GameObject boss;
 
-    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float moveSpeed = 0f;
     private bool canChase = false;
     private bool m_FacingRight = false;
     void Start()
@@ -96,7 +96,7 @@ public class SpawnEnemies : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if (canChase && player != null)
+        if (!isDead && canChase && player != null)
         {
             if (!IsTooCloseToOtherEnemy())
             {
@@ -111,7 +111,7 @@ public class SpawnEnemies : MonoBehaviour
         isDead = false;
         canChase = true;
         _anim.SetTrigger("Recover");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         moveSpeed = 2f;
         _col.enabled = true;
         _currentHealth = _maxHealth;

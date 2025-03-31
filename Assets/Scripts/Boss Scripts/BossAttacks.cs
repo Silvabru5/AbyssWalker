@@ -15,7 +15,7 @@ public class BossAttacks : MonoBehaviour
     private Animator _anim;
     private bool _spawning;
     private bool _triggeredWall = false;
-    private float spellDelay=4f;
+    private float spellDelay=5f;
     int randomIndex = 0;
     int randomSpawn = 0;
 
@@ -54,12 +54,12 @@ public class BossAttacks : MonoBehaviour
             }
             else if (!_triggeredWall && monsters.All(m => m.GetComponent<BossSmallEnemies>().isDead))
             {
-                _triggeredWall = true; // Prevent multiple activations
+                _triggeredWall = true;// Prevent multiple activations
                 StartCoroutine(FireWall());
                 if (boss.getHealth() < boss.getMaxHealth() * 0.5f)
                 {
                     spawnTime = 2.5f;
-                    spellDelay = 2f;
+                    spellDelay = 3f;
                 }
             }
 
