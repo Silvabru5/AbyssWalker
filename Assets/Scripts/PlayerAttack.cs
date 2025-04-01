@@ -1,4 +1,5 @@
 using System.Collections;
+// using System.Numerics;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -14,6 +15,7 @@ public class PlayerAttack : MonoBehaviour
     private PlayerControl playerControl;   // reference to the movement script to get aim direction
     
     private Animator animator; //to use animator
+    private bool isFacingRight;
 
     void Start()
     {
@@ -51,6 +53,15 @@ public class PlayerAttack : MonoBehaviour
         // right mouse button = strong attack (rectangle)
         else if (Input.GetMouseButtonDown(1))
         {
+
+            //getting where the player last faced
+            Vector2 aimDir = playerControl.LastMoveDirection;
+
+            animator.SetFloat("Horizontal", aimDir.x);
+            animator.SetFloat("Vertical", aimDir.y);
+
+
+            animator.SetTrigger("StrongTrigger");
             StartCoroutine(PerformAttack(strongAttackHitbox, false));
         }
     }
@@ -59,6 +70,7 @@ public class PlayerAttack : MonoBehaviour
     {
         canAttack = false;
         SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_ATTACK, 1);
+
         // get the direction the player is facing
         Vector2 aimDir = playerControl.LastMoveDirection;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;

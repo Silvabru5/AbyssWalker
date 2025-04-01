@@ -1,0 +1,767 @@
+fileFormatVersion: 2
+guid: 57d01db808e0d4b4b8c293be89d58238
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4795287988249400195
+    second: BarbHeavyLeft-Sheet_0
+  - first:
+      213: 4983172411945333357
+    second: BarbHeavyLeft-Sheet_1
+  - first:
+      213: -204454110549617143
+    second: BarbHeavyLeft-Sheet_2
+  - first:
+      213: -1472004425454064649
+    second: BarbHeavyLeft-Sheet_3
+  - first:
+      213: 8889656112326953442
+    second: BarbHeavyLeft-Sheet_4
+  - first:
+      213: -2300540996217977633
+    second: BarbHeavyLeft-Sheet_5
+  - first:
+      213: -2283222857972479314
+    second: BarbHeavyLeft-Sheet_6
+  - first:
+      213: 8224199445118782078
+    second: BarbHeavyLeft-Sheet_7
+  - first:
+      213: 4267325893134520833
+    second: BarbHeavyLeft-Sheet_8
+  - first:
+      213: -5553595922498816967
+    second: BarbHeavyLeft-Sheet_9
+  - first:
+      213: 1549047212097226368
+    second: BarbHeavyLeft-Sheet_10
+  - first:
+      213: 1013809480136884870
+    second: BarbHeavyLeft-Sheet_11
+  - first:
+      213: -4676322251781931046
+    second: BarbHeavyLeft-Sheet_12
+  - first:
+      213: 5890198578144669542
+    second: BarbHeavyLeft-Sheet_13
+  - first:
+      213: -3147633989714655860
+    second: BarbHeavyLeft-Sheet_14
+  - first:
+      213: -7544712081442724402
+    second: BarbHeavyLeft-Sheet_15
+  - first:
+      213: 9031490477063487167
+    second: BarbHeavyLeft-Sheet_16
+  - first:
+      213: -3901136776787074138
+    second: BarbHeavyLeft-Sheet_17
+  - first:
+      213: -2634504009901415274
+    second: BarbHeavyLeft-Sheet_18
+  - first:
+      213: -3609786326920610887
+    second: BarbHeavyLeft-Sheet_19
+  - first:
+      213: 5217659005485795774
+    second: BarbHeavyLeft-Sheet_20
+  - first:
+      213: 4954071714262890074
+    second: BarbHeavyLeft-Sheet_21
+  - first:
+      213: -2649403045286201649
+    second: BarbHeavyLeft-Sheet_22
+  - first:
+      213: 3103347108737158891
+    second: BarbHeavyLeft-Sheet_23
+  - first:
+      213: 4273467033497687695
+    second: BarbHeavyLeft-Sheet_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 1535
+        width: 30
+        height: 43
+      alignment: 9
+      pivot: {x: 0.34026745, y: 0.47428006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3839d4fc4094c8240800000000000000
+      internalID: 4795287988249400195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 1471
+        width: 31
+        height: 43
+      alignment: 9
+      pivot: {x: 0.32163817, y: 0.49999717}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d62378c18e8c72540800000000000000
+      internalID: 4983172411945333357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 1407
+        width: 31
+        height: 43
+      alignment: 9
+      pivot: {x: 0.32163817, y: 0.49999717}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90652d7d112a92df0800000000000000
+      internalID: -204454110549617143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1343
+        width: 31
+        height: 40
+      alignment: 9
+      pivot: {x: 0.3216384, y: 0.54607236}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fbe10926c3629be0800000000000000
+      internalID: -1472004425454064649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 1285
+        width: 46
+        height: 43
+      alignment: 9
+      pivot: {x: 0.21151991, y: 0.48285338}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e9c0ae72276e5b70800000000000000
+      internalID: 8889656112326953442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 1223
+        width: 46
+        height: 43
+      alignment: 9
+      pivot: {x: 0.21151991, y: 0.47428006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd444391726d210e0800000000000000
+      internalID: -2300540996217977633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 1161
+        width: 46
+        height: 43
+      alignment: 9
+      pivot: {x: 0.20350663, y: 0.45713627}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaa8f7f58ec5050e0800000000000000
+      internalID: -2283222857972479314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 1099
+        width: 46
+        height: 43
+      alignment: 9
+      pivot: {x: 0.21151991, y: 0.47428006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7a054852d9322270800000000000000
+      internalID: 8224199445118782078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 1035
+        width: 43
+        height: 49
+      alignment: 9
+      pivot: {x: 0.23425515, y: 0.3796337}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1021c116a46983b30800000000000000
+      internalID: 4267325893134520833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 972
+        width: 43
+        height: 49
+      alignment: 9
+      pivot: {x: 0.24282756, y: 0.37963495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9347665cee9ade2b0800000000000000
+      internalID: -5553595922498816967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 909
+        width: 43
+        height: 49
+      alignment: 9
+      pivot: {x: 0.23425515, y: 0.39468074}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0864d517b325f7510800000000000000
+      internalID: 1549047212097226368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 845
+        width: 70
+        height: 52
+      alignment: 9
+      pivot: {x: 0.44207495, y: 0.4149346}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6828b7dc956c11e00800000000000000
+      internalID: 1013809480136884870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 778
+        width: 71
+        height: 52
+      alignment: 9
+      pivot: {x: 0.45327425, y: 0.42911237}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adf784f20bd5a1fb0800000000000000
+      internalID: -4676322251781931046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 713
+        width: 74
+        height: 55
+      alignment: 9
+      pivot: {x: 0.47011214, y: 0.4396806}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66fe2d236603eb150800000000000000
+      internalID: 5890198578144669542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 647
+        width: 69
+        height: 56
+      alignment: 9
+      pivot: {x: 0.43589336, y: 0.40126365}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c85cc10309b5154d0800000000000000
+      internalID: -3147633989714655860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 579
+        width: 69
+        height: 50
+      alignment: 9
+      pivot: {x: 0.4786309, y: 0.45576537}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec52205e55ccb4790800000000000000
+      internalID: -7544712081442724402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 511
+        width: 60
+        height: 54
+      alignment: 9
+      pivot: {x: 0.49385625, y: 0.4453905}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbe31bdecbc465d70800000000000000
+      internalID: 9031490477063487167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 447
+        width: 58
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5381322, y: 0.37493405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a3e46745c06cd9c0800000000000000
+      internalID: -3901136776787074138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 383
+        width: 65
+        height: 56
+      alignment: 9
+      pivot: {x: 0.53402567, y: 0.3815166}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 694eb7aaf8c507bd0800000000000000
+      internalID: -2634504009901415274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 319
+        width: 60
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5860097, y: 0.36176953}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bbb5dc067677edc0800000000000000
+      internalID: -3609786326920610887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 255
+        width: 45
+        height: 42
+      alignment: 9
+      pivot: {x: 0.7785074, y: 0.49999928}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb9491d9839d86840800000000000000
+      internalID: 5217659005485795774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 191
+        width: 45
+        height: 42
+      alignment: 9
+      pivot: {x: 0.7948903, y: 0.49999964}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a563370f9f560c440800000000000000
+      internalID: 4954071714262890074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 127
+        width: 44
+        height: 42
+      alignment: 9
+      pivot: {x: 0.79321516, y: 0.4999989}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc6b0eaa7fd6b3bd0800000000000000
+      internalID: -2649403045286201649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 63
+        width: 42
+        height: 42
+      alignment: 9
+      pivot: {x: 0.7808479, y: 0.48244712}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bee830fc0cd411b20800000000000000
+      internalID: 3103347108737158891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarbHeavyLeft-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 0
+        width: 36
+        height: 41
+      alignment: 9
+      pivot: {x: 0.73550254, y: 0.47302768}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f86d8fa00a76e4b30800000000000000
+      internalID: 4273467033497687695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 80506d00bbd43494ca1c320331d980f0
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      BarbHeavyLeft-Sheet_0: 4795287988249400195
+      BarbHeavyLeft-Sheet_1: 4983172411945333357
+      BarbHeavyLeft-Sheet_10: 1549047212097226368
+      BarbHeavyLeft-Sheet_11: 1013809480136884870
+      BarbHeavyLeft-Sheet_12: -4676322251781931046
+      BarbHeavyLeft-Sheet_13: 5890198578144669542
+      BarbHeavyLeft-Sheet_14: -3147633989714655860
+      BarbHeavyLeft-Sheet_15: -7544712081442724402
+      BarbHeavyLeft-Sheet_16: 9031490477063487167
+      BarbHeavyLeft-Sheet_17: -3901136776787074138
+      BarbHeavyLeft-Sheet_18: -2634504009901415274
+      BarbHeavyLeft-Sheet_19: -3609786326920610887
+      BarbHeavyLeft-Sheet_2: -204454110549617143
+      BarbHeavyLeft-Sheet_20: 5217659005485795774
+      BarbHeavyLeft-Sheet_21: 4954071714262890074
+      BarbHeavyLeft-Sheet_22: -2649403045286201649
+      BarbHeavyLeft-Sheet_23: 3103347108737158891
+      BarbHeavyLeft-Sheet_24: 4273467033497687695
+      BarbHeavyLeft-Sheet_3: -1472004425454064649
+      BarbHeavyLeft-Sheet_4: 8889656112326953442
+      BarbHeavyLeft-Sheet_5: -2300540996217977633
+      BarbHeavyLeft-Sheet_6: -2283222857972479314
+      BarbHeavyLeft-Sheet_7: 8224199445118782078
+      BarbHeavyLeft-Sheet_8: 4267325893134520833
+      BarbHeavyLeft-Sheet_9: -5553595922498816967
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
