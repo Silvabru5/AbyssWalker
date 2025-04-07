@@ -38,6 +38,8 @@ public class PlayerSS : MonoBehaviour
     private bool iFrame = false;
     private SpriteRenderer _spriteRenderer;
 
+    //MISC
+    private GameObject _gameManager;
     private void Start()
     {
         _anim = GetComponent<Animator>();
@@ -45,6 +47,7 @@ public class PlayerSS : MonoBehaviour
         _currentHealth = _maxHealth;
         _healthBar.SetMaxHealth(_maxHealth);
         _collider = GetComponent<Collider2D>();
+        _gameManager = GameObject.Find("UIManager");
         StartCoroutine(StartTimer());
        
     }
@@ -132,6 +135,7 @@ public class PlayerSS : MonoBehaviour
         _anim.SetTrigger("Death");
         _runSpeed = 0;
         controller.rb.linearVelocity = new Vector2(0f,0f);
+        _gameManager.GetComponent<GameOverManager>().ShowGameOver();
         canDash = false;
     }
     public void TakeDamage(float damage)

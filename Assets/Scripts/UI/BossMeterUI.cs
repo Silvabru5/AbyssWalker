@@ -20,15 +20,31 @@ public class BossMeterUI : MonoBehaviour
     private Color originalColor;        // stores the original text color
     public Color flashColor = Color.red; // color to flash when boss is ready
 
+    private GameObject enemySpawner;
+
     // this runs when the game starts and sets the initial UI state
     void Start()
     {
         bossMeterFill.fillAmount = 0f;
-
-        if (killCountText != null)
+        enemySpawner = GameObject.Find("EnemySpawner");
+        //killCountText.text = enemySpawner.GetComponent<EnemySpawner>().maxEnemies.ToString();
+        if (enemySpawner != null)
         {
-            killCountText.text = $"0 / {killsNeeded} enemies killed";
+            killsNeeded = enemySpawner.GetComponent<EnemySpawner>().maxEnemies;
+
+            if (killCountText != null)
+            {
+                killCountText.text = $"0 / {killsNeeded} enemies killed";
+            }
         }
+        else
+        {
+            Debug.LogWarning("EnemySpawner not assigned to BossMeterUI.");
+        }
+        //if (killCountText != null)
+        //{
+        //    killCountText.text = $"0 / {killsNeeded} enemies killed";
+        //}
     }
 
     // this handles flashing the boss meter text when the meter is full

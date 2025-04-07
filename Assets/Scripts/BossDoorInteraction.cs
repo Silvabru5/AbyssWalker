@@ -54,6 +54,8 @@ public class BossDoorInteraction : MonoBehaviour
             if (killCount >= threshold)
             {
                 SoundManager.PlaySoundWaitForCompletion(SoundTypeEffects.BOSS_DOOR_ENTER);
+                GameObject.Find("BackgroundMusic").GetComponent<AudioSource>().Stop();
+                SoundManager.PlayBackgroundMusic(SoundTypeBackground.BACKGROUND_BOSS);
                 // do this in that scene            SoundManager.PlayBackgroundMusic(SoundTypeBackground.BACKGROUND_BOSS);
                 SceneManager.LoadScene(2); // load scene with build index 2 (boss scene) - File->Build Profiles->Scene List 
             }

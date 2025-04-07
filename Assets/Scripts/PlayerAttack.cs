@@ -108,4 +108,9 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }
+
+    public void PlayScreenShake()
+    {
+        ScreenShakeControllerTopDown.instance.StartShake(0.2f, 0.4f);
+    }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossMonster : MonoBehaviour
 {
@@ -78,7 +79,8 @@ public class BossMonster : MonoBehaviour
     private IEnumerator Death()
     {
         ScreenShakeController.instance.StartShake(3f, 0.5f);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         gameObject.SetActive(false);
+        SceneManager.LoadScene(0);
     }
 }

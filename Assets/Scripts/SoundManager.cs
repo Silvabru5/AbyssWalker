@@ -39,15 +39,20 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource backgroundMusicSource;
     [SerializeField] private AudioSource soundEffectsSource;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+        if (instance == null) instance = this;
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (instance == null) instance = this;
+
         instance.backgroundMusicSource.clip = instance.soundListBackground[1];
         instance.backgroundMusicSource.Play();
     }
 
-    public static void PlaySound(SoundTypeEffects sound, float volume = 1)
+    public static void PlaySound(SoundTypeEffects sound, float volume = 0.35f)
     {
         // PlayOneShot - play a clip one time with settings set in the AudioSource
         instance.soundEffectsSource.PlayOneShot(instance.soundListEffects[(int)sound], volume);
@@ -60,7 +65,7 @@ public class SoundManager : MonoBehaviour
     }
 
     // play a sound aand wait until complete
-    public static void PlaySoundWaitForCompletion(SoundTypeEffects sound, float volume = 1)
+    public static void PlaySoundWaitForCompletion(SoundTypeEffects sound, float volume = 0.35f)
     {
         PlaySound(sound, volume);
         instance.StartCoroutine(instance.WaitForSound(instance.soundEffectsSource)); // wait for the audio clip to complete before continuing
@@ -76,5 +81,5 @@ public class SoundManager : MonoBehaviour
     }
 
     public AudioSource getSoundEffectsSource() { return soundEffectsSource; }
-
+    
 }
