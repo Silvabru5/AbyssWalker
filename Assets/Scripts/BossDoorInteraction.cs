@@ -38,7 +38,7 @@ public class BossDoorInteraction : MonoBehaviour
             if (messageShowingTimer <= 0)
             {
                 messageShowingTimer = 0;
-                GameObject.Find("MessageTextBox").GetComponent<TextMeshProUGUI>().text = "";
+                GameObject.Find("MessageTextBox").GetComponent<TextMeshProUGUI>().text = string.Empty;
             }
         }
     }
