@@ -41,10 +41,11 @@ public class BossMonster : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _current -= damage;
+        ScreenShakeController.instance.StartShake(0.2f, 0.4f);
         healthBar.SetHealth(_current);
         _anim.SetTrigger("Hit");
 
-        if(_current <= 0)
+        if (_current <= 0)
         {
             Die();
             isDead = true;
@@ -53,28 +54,30 @@ public class BossMonster : MonoBehaviour
 
     void Die()
     {
-       _anim.SetBool("Dead", true);
+        _anim.SetBool("Dead", true);
+        _bCollider.enabled = false;
         StartCoroutine(Death());
         Debug.Log("Boss Dead");
     }
     // Update is called once per frame
     void Update()
     {
-        _healthPercent = (_current/ _maxHealth) * 100;
-        _healthPercent = Mathf.Max(0,_healthPercent);
+        _healthPercent = (_current / _maxHealth) * 100;
+        _healthPercent = Mathf.Max(0, _healthPercent);
         _anim.SetFloat("CurrentHP", _healthPercent);
         _text.text = _healthPercent.ToString("F1") + "%";
         if (monsters.All(m => m.GetComponent<BossSmallEnemies>().isDead))
         {
-            _anim.SetBool("isLowered",true);
+            _anim.SetBool("isLowered", true);
             _bCollider.enabled = true;
             platForms.SetActive(true);
         }
-        
+
     }
 
     private IEnumerator Death()
     {
+        ScreenShakeController.instance.StartShake(3f, 0.5f);
         yield return new WaitForSeconds(3f);
         gameObject.SetActive(false);
     }

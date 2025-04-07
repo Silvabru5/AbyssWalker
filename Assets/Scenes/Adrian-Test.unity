@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 9c4908046aeabde498af5c73ecff2a1f, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 36132040}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7955288, y: 0.1644166, z: -0.027988333}
+  m_LocalPosition: {x: -0.7955288, y: 0.1644166, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2903,7 +2903,7 @@ GameObject:
   - component: {fileID: 877540672}
   - component: {fileID: 877540671}
   - component: {fileID: 877540674}
-  - component: {fileID: 877540675}
+  - component: {fileID: 877540676}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2928,8 +2928,8 @@ Camera:
   m_GameObject: {fileID: 877540670}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.050980397, g: 0.13333334, b: 0.20392159, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3029,15 +3029,19 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!45 &877540675
-Skybox:
+--- !u!114 &877540676
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877540670}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: 0642ddc9142c0c8459ad26473f02c432, type: 2}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126b25200cf1d75439c48ca14d905ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationMultiplier: 7.5
 --- !u!1 &981288651
 GameObject:
   m_ObjectHideFlags: 0
@@ -7604,7 +7608,7 @@ MonoBehaviour:
   _attkPnt: {fileID: 1735374870}
   _attackRange: 0.75
   _attackSpeed: 2
-  _attackDamage: 55
+  _attackDamage: 30
   _enemyLayers:
     serializedVersion: 2
     m_Bits: 256
