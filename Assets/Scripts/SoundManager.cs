@@ -81,5 +81,10 @@ public class SoundManager : MonoBehaviour
     }
 
     public AudioSource getSoundEffectsSource() { return soundEffectsSource; }
+
+    public static void OnAwake()
+    {
+        PlayBackgroundMusic(SoundTypeBackground.BACKGROUND_TITLE);
+    }
     
 }

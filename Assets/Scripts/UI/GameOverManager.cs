@@ -45,12 +45,16 @@ public class GameOverManager : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f;
+        GameObject.Find("BackgroundMusic").GetComponent<AudioSource>().Stop();
+        SoundManager.PlayBackgroundMusic(SoundTypeBackground.BACKGROUND_GAME);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     // this loads the main menu scene and resumes the game
     public void QuitToMainMenu()
     {
+        GameObject.Find("BackgroundMusic").GetComponent<AudioSource>().Stop();
+        SoundManager.PlayBackgroundMusic(SoundTypeBackground.BACKGROUND_TITLE);
         Time.timeScale = 1f;
         SceneManager.LoadScene(0); // replace with your actual main menu scene name
     }

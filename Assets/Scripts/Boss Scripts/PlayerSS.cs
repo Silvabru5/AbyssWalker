@@ -103,6 +103,7 @@ public class PlayerSS : MonoBehaviour
                 BossSmallEnemies smallEnemy = enemy.GetComponent<BossSmallEnemies>();
                 if (smallEnemy != null)
                 {
+                    SoundManager.PlaySound(SoundTypeEffects.ENEMY_TAKES_DAMAGE_ZOMBIE); // play a sound
                     smallEnemy.TakeDamage(_attackDamage);
                     Debug.Log("Hit " + enemy.name);
                 }
@@ -110,6 +111,7 @@ public class PlayerSS : MonoBehaviour
                 BossMonster bossEnemy = enemy.GetComponent<BossMonster>();
                 if (bossEnemy != null)
                 {
+                    SoundManager.PlaySound(SoundTypeEffects.ENEMY_TAKES_DAMAGE_SKELETON); // play a sound
                     bossEnemy.TakeDamage(_attackDamage);
                     Debug.Log("HIT: " + bossEnemy.name);
                 }
@@ -117,6 +119,7 @@ public class PlayerSS : MonoBehaviour
                 SpawnEnemies spawnEnemy = enemy.GetComponent<SpawnEnemies>();
                 if (spawnEnemy != null)
                 {
+                    SoundManager.PlaySound(SoundTypeEffects.ENEMY_TAKES_DAMAGE_SPIDER); // play a sound
                     spawnEnemy.TakeDamage(_attackDamage);
                     Debug.Log("HIT: " + spawnEnemy.name);
                 }
@@ -124,6 +127,7 @@ public class PlayerSS : MonoBehaviour
                 isEnemy skullEnemy = enemy.GetComponent<isEnemy>();
                 if (skullEnemy != null)
                 {
+                    SoundManager.PlaySound(SoundTypeEffects.ENEMY_TAKES_DAMAGE_SPIDER); // play a sound
                     skullEnemy.TakeDamage(_attackDamage);
                     Debug.Log("HIT: " + skullEnemy.name);
                 }
@@ -150,11 +154,13 @@ public class PlayerSS : MonoBehaviour
 
         if(_currentHealth <= 0)
         {
+            SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_DEATH); // play a sound
             isDead = true;
             Dead();
         }
         else
         {
+            SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_TAKES_DAMAGE); // play a sound
             StartCoroutine(IFrames());
         }
     }
