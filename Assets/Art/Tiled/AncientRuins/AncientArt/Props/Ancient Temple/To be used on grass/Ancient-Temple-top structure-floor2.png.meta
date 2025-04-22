@@ -160,7 +160,7 @@ TextureImporter:
         width: 316
         height: 221
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ancient-Temple-top structure-floor2_0: 7201101124656912879
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

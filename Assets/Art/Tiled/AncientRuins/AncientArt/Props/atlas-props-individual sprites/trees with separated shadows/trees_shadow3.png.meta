@@ -160,7 +160,7 @@ TextureImporter:
         width: 69
         height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      trees_shadow3_0: -3442635697413310663
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

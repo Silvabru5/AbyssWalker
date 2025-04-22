@@ -160,7 +160,7 @@ TextureImporter:
         width: 295
         height: 153
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ancient-Temple-entrance stairs_0: -8750394726248903282
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

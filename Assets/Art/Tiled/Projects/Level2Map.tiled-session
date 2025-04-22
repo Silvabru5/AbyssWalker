@@ -44,7 +44,7 @@
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Tileset-Terrain-old prison.tsx": {
             "dynamicWrapping": false,
-            "scaleInDock": 1,
+            "scaleInDock": 0.75,
             "scaleInEditor": 1
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/atlas-props-sprites.tsx": {
@@ -58,11 +58,11 @@
             "scaleInEditor": 1
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/VampireLevel.tmx": {
-            "scale": 0.5,
-            "selectedLayer": 0,
+            "scale": 3,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 1137,
-                "y": 1209
+                "x": 1098.5,
+                "y": 1534.5
             }
         }
     },
@@ -71,7 +71,6 @@
     "map.lastUsedFormat": "tmx",
     "map.width": 75,
     "openFiles": [
-        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Maps/VampireLevel.tmx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/atlas-props.tsx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/atlas-props-sprites.tsx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Blood pool - standard style - with spikes - transparency.tsx",
@@ -85,7 +84,6 @@
     ],
     "project": "Level2Map.tiled-project",
     "recentFiles": [
-        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Maps/VampireLevel.tmx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/atlas-props.tsx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/atlas-props-sprites.tsx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Blood pool - standard style - with spikes - transparency.tsx",
@@ -95,6 +93,7 @@
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Tileset - wall 1.tsx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Tileset - wall 2.tsx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Tileset-Terrain-old prison.tsx",
-        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/VampireLevel.tmx"
+        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/VampireLevel.tmx",
+        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Maps/VampireLevel.tmx"
     ]
 }

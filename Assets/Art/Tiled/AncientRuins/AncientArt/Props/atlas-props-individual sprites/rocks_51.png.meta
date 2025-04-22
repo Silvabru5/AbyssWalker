@@ -160,7 +160,7 @@ TextureImporter:
         width: 96
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rocks_51_0: -1937603516233026744
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
