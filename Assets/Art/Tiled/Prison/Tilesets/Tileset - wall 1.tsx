@@ -85,12 +85,12 @@
  <tile id="16">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="12" height="32"/>
-   <object id="2" x="12" y="0" width="20" height="18"/>
+   <object id="2" x="12" y="0" width="20" height="14.75"/>
   </objectgroup>
  </tile>
  <tile id="17">
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="12" height="18"/>
+   <object id="1" x="0" y="0" width="10.5" height="15.75"/>
   </objectgroup>
  </tile>
  <tile id="18" probability="0"/>
@@ -100,9 +100,9 @@
   </objectgroup>
  </tile>
  <tile id="20">
-  <objectgroup>
-   <object id="1" x="0" y="0" width="20" height="18"/>
-   <object id="2" x="20" y="0" width="12" height="32"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="20" height="14"/>
+   <object id="2" x="20.25" y="0" width="11.75" height="32"/>
   </objectgroup>
  </tile>
  <tile id="21">
@@ -242,25 +242,25 @@
  </tile>
  <tile id="48">
   <objectgroup draworder="index" id="2">
-   <object id="1" x="12" y="8" width="20" height="24"/>
-   <object id="2" x="0" y="0" width="12" height="32"/>
+   <object id="1" x="9.25" y="13.75" width="22.75" height="18.25"/>
+   <object id="2" x="0" y="0" width="9.125" height="32"/>
   </objectgroup>
  </tile>
  <tile id="49">
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="8" width="12" height="24"/>
+   <object id="1" x="0" y="12.75" width="8.75" height="19.25"/>
   </objectgroup>
  </tile>
  <tile id="50" probability="0"/>
  <tile id="51">
   <objectgroup draworder="index" id="2">
-   <object id="1" x="20" y="8" width="12" height="24"/>
+   <object id="1" x="22.625" y="11" width="9.375" height="21"/>
   </objectgroup>
  </tile>
  <tile id="52">
   <objectgroup draworder="index" id="2">
    <object id="1" x="20" y="0" width="12" height="32"/>
-   <object id="2" x="0" y="8" width="20" height="24"/>
+   <object id="2" x="0" y="13.375" width="20" height="18.625"/>
   </objectgroup>
  </tile>
  <tile id="53">
@@ -330,19 +330,19 @@
  </tile>
  <tile id="65" probability="0">
   <objectgroup draworder="index" id="2">
-   <object id="1" x="12" y="8" width="20" height="24"/>
-   <object id="3" x="0" y="0" width="12" height="32"/>
+   <object id="1" x="7.5" y="11.875" width="24.5" height="20.125"/>
+   <object id="3" x="-0.125" y="0.375" width="7.5" height="32"/>
   </objectgroup>
  </tile>
  <tile id="66">
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="8" width="32" height="24"/>
+   <object id="1" x="0" y="11.375" width="32" height="20.625"/>
   </objectgroup>
  </tile>
  <tile id="67" probability="0">
-  <objectgroup>
-   <object id="1" x="20" y="0" width="12" height="32"/>
-   <object id="2" x="0" y="8" width="20" height="24"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="22.625" y="0" width="9.375" height="32"/>
+   <object id="2" x="0" y="11.875" width="22.625" height="20.125"/>
   </objectgroup>
  </tile>
  <tile id="69">
