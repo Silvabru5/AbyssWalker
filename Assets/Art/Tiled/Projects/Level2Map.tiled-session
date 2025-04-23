@@ -31,6 +31,7 @@
             "scaleInEditor": 1
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Blood pool - style2 - with spikes.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -45,24 +46,24 @@
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Tileset-Terrain-old prison.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInEditor": 2
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/atlas-props-sprites.tsx": {
             "dynamicWrapping": true,
-            "scaleInDock": 0.125,
+            "scaleInDock": 0.25,
             "scaleInEditor": 1
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/atlas-props.tsx": {
             "dynamicWrapping": false,
-            "scaleInDock": 0.5,
+            "scaleInDock": 0.25,
             "scaleInEditor": 1
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/VampireLevel.tmx": {
-            "scale": 0.5,
-            "selectedLayer": 3,
+            "scale": 0.33,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 1055,
-                "y": 903
+                "x": 1319.6969696969697,
+                "y": 659.090909090909
             }
         }
     },
@@ -70,6 +71,7 @@
     "map.height": 50,
     "map.lastUsedFormat": "tmx",
     "map.width": 75,
+    "mapScene.enableWorlds": true,
     "openFiles": [
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/atlas-props.tsx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/atlas-props-sprites.tsx",
