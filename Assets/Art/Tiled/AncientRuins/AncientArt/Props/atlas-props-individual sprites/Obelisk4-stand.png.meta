@@ -69,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -323,6 +323,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: st2u_x0y0-w128h96
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 96
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcccf10fda9f43a48bde1cd7e6989fa9
+      internalID: -672278476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -344,6 +366,7 @@ TextureImporter:
       Obelisk4-stand_4: -6321530259464669083
       Obelisk4-stand_5: 4416036571619483462
       Obelisk4-stand_6: -2559348386308717915
+      st2u_x0y0-w128h96: -672278476
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

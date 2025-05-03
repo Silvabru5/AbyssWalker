@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.9" tiledversion="1.9.2" name="garden border" tilewidth="32" tileheight="32" tilecount="36" columns="9">
- <image source="../../Tilesets/garden border.png" width="288" height="128"/>
+<tileset version="1.10" tiledversion="1.11.2" name="garden border" tilewidth="32" tileheight="32" tilecount="36" columns="9">
+ <image source="../AncientArt/Tilesets/garden border.png" width="288" height="128"/>
  <wangsets>
   <wangset name="garden border" type="edge" tile="11">
    <wangcolor name="" color="#ff0000" tile="-1" probability="1"/>

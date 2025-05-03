@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.9" tiledversion="1.9.2" name="Tileset-Terrain2" tilewidth="32" tileheight="32" tilecount="4030" columns="62">
- <image source="../../Tilesets/Tileset-Terrain2.png" width="1984" height="2080"/>
+<tileset version="1.10" tiledversion="1.11.2" name="Tileset-Terrain2" tilewidth="32" tileheight="32" tilecount="4030" columns="62">
+ <image source="../AncientArt/Tilesets/Tileset-Terrain2.png" width="1984" height="2080"/>
  <wangsets>
   <wangset name="1 tile platform - grass to grass" type="corner" tile="3282">
    <wangcolor name="" color="#ff0000" tile="3282" probability="1"/>

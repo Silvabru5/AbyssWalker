@@ -893,6 +893,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VampireLevel
       objectReference: {fileID: 0}
+    - target: {fileID: -8836765024368038769, guid: b87e17cc4dc676f4fb26b2b17f5fb54c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -7176149757697196922, guid: b87e17cc4dc676f4fb26b2b17f5fb54c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

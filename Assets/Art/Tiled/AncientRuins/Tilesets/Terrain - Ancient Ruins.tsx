@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.9" tiledversion="1.9.2" name="Terrain - Ancient Ruins" tilewidth="32" tileheight="32" tilecount="2209" columns="47">
- <image source="../../Tilesets/Tileset-Terrain.png" width="1515" height="1504"/>
+<tileset version="1.10" tiledversion="1.11.2" name="Terrain - Ancient Ruins" tilewidth="32" tileheight="32" tilecount="2209" columns="47">
+ <image source="../AncientArt/Tilesets/Tileset-Terrain.png" width="1515" height="1504"/>
  <tile id="119" probability="3"/>
  <tile id="166" probability="3"/>
  <tile id="190" probability="10"/>

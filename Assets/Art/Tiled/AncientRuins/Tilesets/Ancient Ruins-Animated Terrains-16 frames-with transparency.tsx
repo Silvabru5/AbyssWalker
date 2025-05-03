@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.9" tiledversion="1.9.2" name="Ancient Ruins-Animated Terrains-16 frames-with transparency" tilewidth="32" tileheight="32" tilecount="2340" columns="52">
- <image source="../../Tilesets/Transparency version/Tileset-Animated Terrains-16 frames-with transparency.png" width="1670" height="1440"/>
+<tileset version="1.10" tiledversion="1.11.2" name="Ancient Ruins-Animated Terrains-16 frames-with transparency" tilewidth="32" tileheight="32" tilecount="2340" columns="52">
+ <image source="../AncientArt/Tilesets/Transparency version/Tileset-Animated Terrains-16 frames-with transparency.png" width="1670" height="1440"/>
  <tile id="52">
   <animation>
    <frame tileid="52" duration="100"/>
