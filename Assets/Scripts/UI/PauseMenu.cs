@@ -10,7 +10,16 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI; // drag the pause menu panel from the canvas here
     public GameObject soundMenuUI; // drag the sound menu panel from the canvas here
+    public GameObject configManager;
+
     private bool isPaused = false; // tracks whether the game is currently paused
+
+    // on load, read the values from the singleton that reads the config file and saves values into a dictionary then set the volumes
+    private void Start()
+    {
+        GameObject.Find("BackgroundMusic").GetComponent<AudioSource>().volume = ConfigManager.Instance.GetInt("musicVolume") / 100f;
+        GameObject.Find("SoundEffects").GetComponent<AudioSource>().volume = ConfigManager.Instance.GetInt("effectsVolume") / 100f;
+    }
 
     // this checks for the escape key each frame to toggle pause
     void Update()
@@ -104,5 +113,9 @@ public class PauseMenu : MonoBehaviour
         GameObject.Find("BackgroundMusic").GetComponent<AudioSource>().volume = musicVolume.ToFloat() / 100;
         GameObject.Find("SoundEffects").GetComponent<AudioSource>().volume = effectsVolume.ToFloat() / 100;
 
+        // save the changes to the config file using the singleton pattern
+        ConfigManager.Instance.SetInt("musicVolume", musicVolume.ToInt());
+        ConfigManager.Instance.SetInt("effectsVolume", effectsVolume.ToInt());
+        ConfigManager.Instance.SaveConfigFile();
     }
 }
