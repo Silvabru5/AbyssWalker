@@ -5,6 +5,8 @@ using System.Xml.Serialization;
 
 public class ExperienceManager : MonoBehaviour
 {
+    public static ExperienceManager instance;
+
     [SerializeField] AnimationCurve experienceCurve;
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] TextMeshProUGUI experienceText;
@@ -14,6 +16,15 @@ public class ExperienceManager : MonoBehaviour
 
     int currentLevel, totalExperience;
     int previousLevelsExp, nextLevelExp;
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,6 +38,15 @@ public class ExperienceManager : MonoBehaviour
         {
             AddExperience(5);
         }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            AddExperience(20);
+        }
+    }
+
+    public int GetCurrentLevel()
+    {
+        return currentLevel;
     }
 
     public void AddExperience(int amount)
@@ -61,7 +81,12 @@ public class ExperienceManager : MonoBehaviour
         int end = nextLevelExp - previousLevelsExp;
 
         levelText.text = currentLevel.ToString();
-        experienceText.text = start + " exp / " + end + " exp";
+        float percentage = (float)start / (float)end;
+        experienceText.text = (percentage * 100f).ToString("F2") +" %" + " / " + "100.00%";
         experienceFill.fillAmount = (float)start / (float)end;
+        if(currentLevel == levelCap) {
+            experienceText.text = "0.00 %";
+            experienceFill.fillAmount = 0;
+        }
     }
 }

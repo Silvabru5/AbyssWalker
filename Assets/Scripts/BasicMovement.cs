@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BasicMovement : MonoBehaviour
 {
+    [SerializeField] int currentLevel;
+    [SerializeField] int skillPoints;
     // Player movement speed (set in Unity Inspector)
     public float movSpeed;
 
@@ -21,6 +23,8 @@ public class BasicMovement : MonoBehaviour
 
         // Prevents the Rigidbody from rotating when colliding with objects
         rb.freezeRotation = true;
+
+        
     }
 
     void Update()
@@ -34,6 +38,8 @@ public class BasicMovement : MonoBehaviour
         {
             LastMoveDirection = inputDir.normalized;
         }
+
+        UpdateLevel();
     }
 
     void FixedUpdate()
@@ -67,5 +73,10 @@ public class BasicMovement : MonoBehaviour
         {
             canMove = true; // Allow movement again when no longer touching the enemy
         }
+    }
+
+    void UpdateLevel()
+    {
+        currentLevel = ExperienceManager.instance.GetCurrentLevel();
     }
 }

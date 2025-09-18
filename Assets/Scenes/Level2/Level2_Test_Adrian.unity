@@ -423,7 +423,6 @@ GameObject:
   - component: {fileID: 494529228}
   - component: {fileID: 494529227}
   - component: {fileID: 494529231}
-  - component: {fileID: 494529232}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -443,6 +442,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f408633d2c783f4096ea92300c9534a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentLevel: 0
+  skillPoints: 0
   movSpeed: 5
 --- !u!50 &494529228
 Rigidbody2D:
@@ -587,13 +588,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &494529232
+--- !u!1 &708304211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 708304213}
+  - component: {fileID: 708304212}
+  m_Layer: 0
+  m_Name: ExperienceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &708304212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 494529226}
+  m_GameObject: {fileID: 708304211}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a99229a758ae364abe91128e794df94, type: 3}
@@ -612,13 +630,13 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 10
-      value: 100
-      inSlope: 26.487644
-      outSlope: 26.487644
+      time: 20
+      value: 1500
+      inSlope: 159.64809
+      outSlope: 159.64809
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.022260284
+      inWeight: 0.03767128
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -626,7 +644,22 @@ MonoBehaviour:
   levelText: {fileID: 155261504}
   experienceText: {fileID: 786535610}
   experienceFill: {fileID: 804322226}
-  levelCap: 10
+  levelCap: 20
+--- !u!4 &708304213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708304211}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 317.3484, y: 465.6612, z: -3.4507086}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &724572055
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,7 +883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -846.23883, y: 272.6139}
+  m_AnchoredPosition: {x: -967.5852, y: -321.51672}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &786535610
@@ -900,15 +933,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -938,7 +971,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 100.56782, y: 0, z: -132.97998, w: -65.18536}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1014,7 +1047,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.319
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -12556,3 +12589,4 @@ SceneRoots:
   - {fileID: 494529230}
   - {fileID: 1106206930}
   - {fileID: 724572058}
+  - {fileID: 708304213}
