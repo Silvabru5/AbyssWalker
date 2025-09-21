@@ -1,5 +1,4 @@
 using System.Collections;
-// using System.Numerics;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -13,8 +12,9 @@ public class PlayerAttack : MonoBehaviour
 
     private bool canAttack = true;         // controls if player is allowed to attack
     private PlayerControl playerControl;   // reference to the movement script to get aim direction
+    private AimingCursor aimingCursor;     // added to get aiming direction
     
-    private Animator animator; //to use animator
+    private Animator animator;             // to use animator
     private bool isFacingRight;
 
     void Start()
@@ -22,57 +22,39 @@ public class PlayerAttack : MonoBehaviour
         // get a reference to the player movement script
         playerControl = GetComponent<PlayerControl>();
         animator = GetComponentInParent<Animator>();
+        aimingCursor = GetComponent<AimingCursor>(); // used to determine player orientation and determine attack vectors
     }
 
     void Update()
     {
-        // don�t do anything if player cant attack or reference is missing
+        // don't do anything if player can't attack or reference is missing
         if (!canAttack || playerControl == null || Time.timeScale == 0f) return;
 
-        // left mouse button = basic attack (triangle)
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
-            //Tristan Mod
-            //getting where the player last faced
-            Vector2 aimDir = playerControl.LastMoveDirection;
-
-
-            //using animation blend tree params to decide attack direction
+            Vector2 aimDir = new Vector2(aimingCursor.direction.x, aimingCursor.direction.y);
             animator.SetFloat("AttackHorizontal", aimDir.x);
             animator.SetFloat("AttackVertical", aimDir.y);
-
-            //trigger basic attack
-            animator.SetTrigger("BasicAttack");
-
-
-
-
-
-            StartCoroutine(PerformAttack(basicAttackHitbox, true));
-        }
-        // right mouse button = strong attack (rectangle)
-        else if (Input.GetMouseButtonDown(1))
-        {
-
-            //getting where the player last faced
-            Vector2 aimDir = playerControl.LastMoveDirection;
-
-            animator.SetFloat("Horizontal", aimDir.x);
-            animator.SetFloat("Vertical", aimDir.y);
-
-
-            animator.SetTrigger("StrongTrigger");
-            StartCoroutine(PerformAttack(strongAttackHitbox, false));
+            // left mouse button = basic attack (triangle)
+            if (Input.GetMouseButtonDown(0))
+            {
+                animator.SetTrigger("BasicAttack");
+                StartCoroutine(PerformAttack(basicAttackHitbox, aimDir, true));
+            }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                animator.SetTrigger("StrongTrigger");
+                StartCoroutine(PerformAttack(strongAttackHitbox, aimDir, false));
+            }
         }
     }
 
-    IEnumerator PerformAttack(GameObject hitbox, bool rotateWithDirection)
+    IEnumerator PerformAttack(GameObject hitbox, Vector2 aimDir, bool rotateWithDirection)
     {
         canAttack = false;
         SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_ATTACK, 1);
 
         // get the direction the player is facing
-        Vector2 aimDir = playerControl.LastMoveDirection;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
 
         // move the hitbox in front of the player
