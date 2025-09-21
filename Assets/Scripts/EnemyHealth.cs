@@ -9,11 +9,16 @@ public class EnemyHealth : MonoBehaviour
     private bool isDead = false; // tracks if enemy is already dead
     [HideInInspector]
     private bool isHurting = false; // tracks if enemy is currently playing hurt animation
-    
+
+    private string enemyType; 
+
     void Start()
     {
         currentHealth = maxHealth; // set health at start
         animator = GetComponent<Animator>(); // get animator attached to this object
+        if (this.GetComponentInParent<isSpider>() != null) enemyType = "spider";
+        else if (this.GetComponentInParent<isZombie>() != null) enemyType = "zombie";
+        else if (this.GetComponentInParent<isSkeleton>() != null) enemyType = "skeleton";
     }
 
     // called whenever the enemy takes damage
@@ -35,10 +40,16 @@ public class EnemyHealth : MonoBehaviour
         // if health hits zero or below, kill the enemy
         if (currentHealth <= 0)
         {
+            if (enemyType == "spider") SoundManager.PlaySound(SoundTypeEffects.ENEMY_DEATH_SPIDER);
+            else if (enemyType == "zombie") SoundManager.PlaySound(SoundTypeEffects.ENEMY_DEATH_ZOMBIE);
+            else if (enemyType == "skeleton") SoundManager.PlaySound(SoundTypeEffects.ENEMY_DEATH_SKELETON);
             Die();
         }
         else
         {
+            if (enemyType == "spider") SoundManager.PlaySound(SoundTypeEffects.ENEMY_TAKES_DAMAGE_SPIDER);
+            else if (enemyType == "zombie") SoundManager.PlaySound(SoundTypeEffects.ENEMY_TAKES_DAMAGE_ZOMBIE);
+            else if (enemyType == "skeleton") SoundManager.PlaySound(SoundTypeEffects.ENEMY_TAKES_DAMAGE_SKELETON);
             // play the hurt animation
             PlayHurtAnimation();
         }

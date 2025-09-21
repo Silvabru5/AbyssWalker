@@ -1,5 +1,5 @@
 using System.Collections;
-using Unity.VisualScripting;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public enum SoundTypeEffects
@@ -22,6 +22,7 @@ public enum SoundTypeEffects
     BOSS_DOOR_ENTER,
     BOSS_DOOR_BLOCKED
 }
+
 public enum SoundTypeBackground
 {
     BACKGROUND_TITLE,
@@ -29,62 +30,71 @@ public enum SoundTypeBackground
     BACKGROUND_BOSS
 }
 
+// make an array to represent the ENUM of sounds, for each sound, make an array of possible clips to play
+[System.Serializable]
+public class SoundEffectEntry
+{
+    public SoundTypeEffects type;
+    public AudioClip[] clips;   // multiple variations per enum
+}
+
 
 [RequireComponent(typeof(AudioSource))]
 public class SoundManager : MonoBehaviour
 {
     private static SoundManager instance;
+
+    [Header("Background Music")]
     [SerializeField] private AudioClip[] soundListBackground;
-    [SerializeField] private AudioClip[] soundListEffects;
     [SerializeField] private AudioSource backgroundMusicSource;
+
+    [Header("Sound Effects")]
+    [SerializeField] private SoundEffectEntry[] soundEffects;
     [SerializeField] private AudioSource soundEffectsSource;
 
     private void Awake()
     {
         DontDestroyOnLoad(this);
         if (instance == null) instance = this;
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+        else Destroy(gameObject); // prevent duplicates
 
-        instance.backgroundMusicSource.clip = instance.soundListBackground[0];
-        instance.backgroundMusicSource.Play();
+        // play title screen background music
+        PlayBackgroundMusic(SoundTypeBackground.BACKGROUND_TITLE);
     }
 
+
+    // sound effects
     public static void PlaySound(SoundTypeEffects sound, float volume = 0.35f)
     {
-        // PlayOneShot - play a clip one time with settings set in the AudioSource
-        instance.soundEffectsSource.PlayOneShot(instance.soundListEffects[(int)sound], volume);
+        // if the sound is to be a takes damage, attack sounds only play some of the time
+        if (Regex.IsMatch(sound.ToString(), "(_TAKES_DAMAGE|_ATTACK)$") & Random.Range(0, 2) == 0) return;
+
+        foreach (var entry in instance.soundEffects)
+            if (entry.type == sound && entry.clips.Length > 0)
+            {
+                instance.soundEffectsSource.PlayOneShot(entry.clips[Random.Range(0, entry.clips.Length)], volume);
+                return;
+            }
     }
 
     public IEnumerator WaitForSound(AudioSource audioSource)
     {
         yield return new WaitWhile(() => audioSource.isPlaying);
-        Debug.Log("Sound has finished playing!");
     }
 
-    // play a sound aand wait until complete
-    public static void PlaySoundWaitForCompletion(SoundTypeEffects sound, float volume = 0.35f)
+    public static void PlaySoundWaitForCompletion(SoundTypeEffects sound)
     {
-        PlaySound(sound, volume);
-        instance.StartCoroutine(instance.WaitForSound(instance.soundEffectsSource)); // wait for the audio clip to complete before continuing
+        PlaySound(sound);
+        instance.StartCoroutine(instance.WaitForSound(instance.soundEffectsSource));
     }
 
-    public static void PlayBackgroundMusic(SoundTypeBackground sound, float volume = .25f)
+
+    // background music
+    public static void PlayBackgroundMusic(SoundTypeBackground sound)
     {
         instance.backgroundMusicSource.Stop();
         instance.backgroundMusicSource.clip = instance.soundListBackground[(int)sound];
         instance.backgroundMusicSource.loop = true;
-        instance.backgroundMusicSource.volume = volume;
         instance.backgroundMusicSource.Play();
     }
-
-    public AudioSource getSoundEffectsSource() { return soundEffectsSource; }
-
-    public static void OnAwake()
-    {
-        PlayBackgroundMusic(SoundTypeBackground.BACKGROUND_TITLE);
-    }
-    
 }

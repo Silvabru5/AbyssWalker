@@ -377,25 +377,59 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2ff2c6635a5c4b54282f0d6831a72961, type: 3}
   - {fileID: 8300000, guid: b9d96224978f47343bee693d8862aa7a, type: 3}
   - {fileID: 8300000, guid: ce3f787aa68f34346bcb575a7a6ea14c, type: 3}
-  soundListEffects:
-  - {fileID: 8300000, guid: e33cb33fd923bf346a77c1902cc640b1, type: 3}
-  - {fileID: 8300000, guid: 3c977c554d0f16746a523c0cdf4e4b6f, type: 3}
-  - {fileID: 8300000, guid: b2068b41369589e42999695261feca14, type: 3}
-  - {fileID: 8300000, guid: 8338f859740eaa94fb6db3cd7b7df791, type: 3}
-  - {fileID: 8300000, guid: ace5e38f182b1e04e8b4a463a43f3512, type: 3}
-  - {fileID: 8300000, guid: 0d98df4d67d07bc498ba001ed944635c, type: 3}
-  - {fileID: 8300000, guid: 32591d02e98b7a6429da4c5375923809, type: 3}
-  - {fileID: 8300000, guid: 6999f417b09a3f5428c4d1d24c58eb68, type: 3}
-  - {fileID: 8300000, guid: 5a27a5c18d595a2478d77bc97a78b581, type: 3}
-  - {fileID: 8300000, guid: c0100c815220f67498842628f231eaa4, type: 3}
-  - {fileID: 8300000, guid: 064f4fe68a2264e46ae8271f56adb422, type: 3}
-  - {fileID: 8300000, guid: aa6e467e07a747746a00c3554d494bab, type: 3}
-  - {fileID: 8300000, guid: cb673297a98b7df4f8dcd2a94efab982, type: 3}
-  - {fileID: 8300000, guid: 064f4fe68a2264e46ae8271f56adb422, type: 3}
-  - {fileID: 8300000, guid: cd6cd0bdffbedaa4a9fd4fdb1751c6e8, type: 3}
-  - {fileID: 8300000, guid: 171889998100fe34fb385098d65c809f, type: 3}
-  - {fileID: 8300000, guid: 3767c6e49b5b4c344bb5566686d0a530, type: 3}
   backgroundMusicSource: {fileID: 901302865}
+  soundEffects:
+  - type: 0
+    clips:
+    - {fileID: 0}
+  - type: 1
+    clips:
+    - {fileID: 8300000, guid: 3c977c554d0f16746a523c0cdf4e4b6f, type: 3}
+  - type: 2
+    clips:
+    - {fileID: 8300000, guid: b2068b41369589e42999695261feca14, type: 3}
+  - type: 3
+    clips:
+    - {fileID: 8300000, guid: 8338f859740eaa94fb6db3cd7b7df791, type: 3}
+  - type: 4
+    clips:
+    - {fileID: 8300000, guid: ace5e38f182b1e04e8b4a463a43f3512, type: 3}
+  - type: 5
+    clips:
+    - {fileID: 8300000, guid: 0d98df4d67d07bc498ba001ed944635c, type: 3}
+  - type: 6
+    clips:
+    - {fileID: 8300000, guid: 32591d02e98b7a6429da4c5375923809, type: 3}
+  - type: 7
+    clips:
+    - {fileID: 8300000, guid: 6999f417b09a3f5428c4d1d24c58eb68, type: 3}
+  - type: 8
+    clips:
+    - {fileID: 8300000, guid: 5a27a5c18d595a2478d77bc97a78b581, type: 3}
+  - type: 9
+    clips:
+    - {fileID: 8300000, guid: c0100c815220f67498842628f231eaa4, type: 3}
+  - type: 10
+    clips:
+    - {fileID: 8300000, guid: 064f4fe68a2264e46ae8271f56adb422, type: 3}
+  - type: 11
+    clips:
+    - {fileID: 8300000, guid: aa6e467e07a747746a00c3554d494bab, type: 3}
+  - type: 12
+    clips:
+    - {fileID: 8300000, guid: cb673297a98b7df4f8dcd2a94efab982, type: 3}
+  - type: 13
+    clips:
+    - {fileID: 8300000, guid: d58e64ce85e952243a432cb8a855b860, type: 3}
+  - type: 14
+    clips:
+    - {fileID: 8300000, guid: cd6cd0bdffbedaa4a9fd4fdb1751c6e8, type: 3}
+  - type: 15
+    clips:
+    - {fileID: 8300000, guid: 171889998100fe34fb385098d65c809f, type: 3}
+  - type: 16
+    clips:
+    - {fileID: 8300000, guid: 3767c6e49b5b4c344bb5566686d0a530, type: 3}
   soundEffectsSource: {fileID: 1229714338}
 --- !u!82 &432708956
 AudioSource:
@@ -409,7 +443,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.332
   m_Pitch: 1
   Loop: 0
@@ -811,7 +845,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
@@ -1043,7 +1077,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.743
   m_Pitch: 1
   Loop: 0
@@ -1431,6 +1465,7 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 1058103250}
   soundMenuUI: {fileID: 0}
   configManager: {fileID: 0}
+  soundManager: {fileID: 0}
 --- !u!4 &1933419718
 Transform:
   m_ObjectHideFlags: 0

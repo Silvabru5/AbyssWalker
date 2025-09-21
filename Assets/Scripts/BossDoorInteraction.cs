@@ -53,10 +53,9 @@ public class BossDoorInteraction : MonoBehaviour
             Debug.Log("Hero interacted with boss door");
             if (killCount >= threshold)
             {
-                SoundManager.PlaySoundWaitForCompletion(SoundTypeEffects.BOSS_DOOR_ENTER);
-                GameObject.Find("BackgroundMusic").GetComponent<AudioSource>().Stop();
+                SoundManager.PlaySound(SoundTypeEffects.BOSS_DOOR_ENTER);
                 SoundManager.PlayBackgroundMusic(SoundTypeBackground.BACKGROUND_BOSS);
-                // do this in that scene            SoundManager.PlayBackgroundMusic(SoundTypeBackground.BACKGROUND_BOSS);
+                SoundManager.PlaySoundWaitForCompletion(SoundTypeEffects.BOSS_DOOR_ENTER);
                 SceneManager.LoadScene(2); // load scene with build index 2 (boss scene) - File->Build Profiles->Scene List 
             }
             else if (messageShowingTimer <= 0 && killCount < threshold) // only interact here if the message timer is not depleted

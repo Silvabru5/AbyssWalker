@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI; // drag the pause menu panel from the canvas here
     public GameObject soundMenuUI; // drag the sound menu panel from the canvas here
     public GameObject configManager;
+    public SoundManager soundManager;
 
     private bool isPaused = false; // tracks whether the game is currently paused
 
@@ -19,6 +20,7 @@ public class PauseMenu : MonoBehaviour
     {
         GameObject.Find("BackgroundMusic").GetComponent<AudioSource>().volume = ConfigManager.Instance.GetInt("musicVolume") / 100f;
         GameObject.Find("SoundEffects").GetComponent<AudioSource>().volume = ConfigManager.Instance.GetInt("effectsVolume") / 100f;
+        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 
     // this checks for the escape key each frame to toggle pause
@@ -73,6 +75,7 @@ public class PauseMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        SoundManager.PlayBackgroundMusic(SoundTypeBackground.BACKGROUND_BOSS);
         SceneManager.LoadScene(1);
     }
 

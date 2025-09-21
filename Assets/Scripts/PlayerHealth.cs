@@ -32,19 +32,21 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-        currentHealth = Mathf.Max(0, currentHealth); // prevent negative health
+//        currentHealth = Mathf.Max(0, currentHealth); // prevent negative health
         Debug.Log($"Player HP: {currentHealth}");
 
-        if (currentHealth <= 0)
+        if (currentHealth > -99999 && currentHealth <= 0)
         {
+            currentHealth = -99999; // flag to say this has already triggered - no more death sounds
             animator.SetTrigger("DeathTrigger");
+            SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_DEATH);
 
             // SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_DEATH, 1);
             Debug.Log("Player has died.");
             StartCoroutine(DeathSequence());
         }
         else
-            SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_TAKES_DAMAGE, 1);
+            SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_TAKES_DAMAGE);
     }
 
 
