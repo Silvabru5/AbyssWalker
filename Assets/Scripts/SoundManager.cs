@@ -48,7 +48,7 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
 
-        instance.backgroundMusicSource.clip = instance.soundListBackground[1];
+        instance.backgroundMusicSource.clip = instance.soundListBackground[0];
         instance.backgroundMusicSource.Play();
     }
 
