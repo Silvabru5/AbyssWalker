@@ -7,6 +7,8 @@ public class AimingCursor : MonoBehaviour
     private const float RADIUS = 3f;       // Distance from player
     private Animator animator;
 
+    public Vector3 direction; // direction between player and aiming target, also used in PlayerAttack
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -22,7 +24,7 @@ public class AimingCursor : MonoBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
         // Find the direction from player to mouse as a unit vector
-        Vector3 direction = (mousePos - player.position).normalized;
+        direction = (mousePos - player.position).normalized;
 
         // Place the marker at fixed radius (constant set above)
         cursorMarker.position = player.position + direction * RADIUS;

@@ -3506,6 +3506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicAttackHitbox: {fileID: 0}
   strongAttackHitbox: {fileID: 0}
+  target: {fileID: 0}
   attackCooldown: 0.5
   hitboxShowTime: 0.2
   offsetDistance: 1
@@ -83403,6 +83404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicAttackHitbox: {fileID: 1460835178}
   strongAttackHitbox: {fileID: 241284739}
+  target: {fileID: 1837154177}
   attackCooldown: 1
   hitboxShowTime: 0.2
   offsetDistance: 1
@@ -83637,7 +83639,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1977234618}
   cursorMarker: {fileID: 1837154178}
-  radius: 2
 --- !u!1 &1982644253
 GameObject:
   m_ObjectHideFlags: 0
@@ -83981,7 +83982,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1977234618}
   cursorMarker: {fileID: 1837154178}
-  radius: 5
 --- !u!1 &1996960338
 GameObject:
   m_ObjectHideFlags: 0

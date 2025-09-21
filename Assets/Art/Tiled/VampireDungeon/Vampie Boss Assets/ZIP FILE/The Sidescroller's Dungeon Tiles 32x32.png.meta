@@ -196,6 +196,58 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -872,7 +924,37 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      The Sidescroller's Dungeon Tiles 32x32_0: -5906747530496280430
+      The Sidescroller's Dungeon Tiles 32x32_1: -8608615733328085002
+      The Sidescroller's Dungeon Tiles 32x32_10: 606505304659302304
+      The Sidescroller's Dungeon Tiles 32x32_11: -6706433258261740199
+      The Sidescroller's Dungeon Tiles 32x32_12: -9189484238119634858
+      The Sidescroller's Dungeon Tiles 32x32_13: 262993857192426784
+      The Sidescroller's Dungeon Tiles 32x32_14: -1526252341942824856
+      The Sidescroller's Dungeon Tiles 32x32_15: -4214775927353949256
+      The Sidescroller's Dungeon Tiles 32x32_16: -6821034383488011310
+      The Sidescroller's Dungeon Tiles 32x32_17: -3843172281730380475
+      The Sidescroller's Dungeon Tiles 32x32_18: 3039116475837414306
+      The Sidescroller's Dungeon Tiles 32x32_19: -7447699392815010646
+      The Sidescroller's Dungeon Tiles 32x32_2: -6802691665753887990
+      The Sidescroller's Dungeon Tiles 32x32_20: -5962885248863252169
+      The Sidescroller's Dungeon Tiles 32x32_21: 2384245303616757334
+      The Sidescroller's Dungeon Tiles 32x32_22: -5056845086896400425
+      The Sidescroller's Dungeon Tiles 32x32_23: -7929623766450570397
+      The Sidescroller's Dungeon Tiles 32x32_24: -8320522703265836686
+      The Sidescroller's Dungeon Tiles 32x32_25: -7084031501084802215
+      The Sidescroller's Dungeon Tiles 32x32_26: 3958167624002468178
+      The Sidescroller's Dungeon Tiles 32x32_27: -4701042872867124089
+      The Sidescroller's Dungeon Tiles 32x32_28: -2422573994002961781
+      The Sidescroller's Dungeon Tiles 32x32_29: 2147725299448199427
+      The Sidescroller's Dungeon Tiles 32x32_3: -2049152872799768372
+      The Sidescroller's Dungeon Tiles 32x32_4: 5088170959482629314
+      The Sidescroller's Dungeon Tiles 32x32_5: 4376025586920280008
+      The Sidescroller's Dungeon Tiles 32x32_6: 7668858064187872787
+      The Sidescroller's Dungeon Tiles 32x32_7: 9110169147289113813
+      The Sidescroller's Dungeon Tiles 32x32_8: 3616306031505842927
+      The Sidescroller's Dungeon Tiles 32x32_9: 7787356640728192644
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
