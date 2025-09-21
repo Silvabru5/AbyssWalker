@@ -1,15 +1,16 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.InputSystem.Processors;
 
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
-    private int currentHealth;
+    [HideInInspector] public int currentHealth;
 
     private Animator animator;
     public  float deathAnimationTime = 0.1f;
-
+    [HideInInspector]
     public TextMeshProUGUI healthText; // drag the health ui text here in the inspector
 
     // this runs when the game starts and sets up the player's health and health regen
@@ -41,22 +42,9 @@ public class PlayerHealth : MonoBehaviour
             // SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_DEATH, 1);
             Debug.Log("Player has died.");
             StartCoroutine(DeathSequence());
-
-            // find the game over manager in the scene and show the game over screen
-            // GameOverManager gameOver = FindAnyObjectByType<GameOverManager>();
-            // if (gameOver != null)
-            // {
-                // gameOver.ShowGameOver();
-            // }
-            // else
-            // {
-                // Debug.LogWarning("GameOverManager not found in scene!");
-            // }
         }
         else
-        {
             SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_TAKES_DAMAGE, 1);
-        }
     }
 
 
@@ -68,14 +56,10 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(deathAnimationTime);
 
         GameOverManager gameOver = FindAnyObjectByType<GameOverManager>();
-         if (gameOver != null)
-        {
+        if (gameOver != null)
             gameOver.ShowGameOver();
-        }
         else
-        {
             Debug.LogWarning("GameOverManager not found in scene!");
-        }
     }
 
     // this returns the player's current health as a percentage (0.0 to 1.0)
@@ -87,7 +71,7 @@ public class PlayerHealth : MonoBehaviour
     // this slowly heals the player over time, up to their max health
     void RegenerateHealth()
     {
-        if (currentHealth < maxHealth)
+        if (currentHealth < maxHealth && currentHealth > 0)
         {
             int healAmount = Mathf.Min(2, maxHealth - currentHealth);
             currentHealth += healAmount;
@@ -99,8 +83,6 @@ public class PlayerHealth : MonoBehaviour
     private void UpdateHealthText()
     {
         if (healthText != null)
-        {
             healthText.text = $"{currentHealth} / {maxHealth}";
-        }
     }
 }

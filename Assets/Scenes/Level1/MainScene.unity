@@ -3506,7 +3506,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicAttackHitbox: {fileID: 0}
   strongAttackHitbox: {fileID: 0}
-  target: {fileID: 0}
   attackCooldown: 0.5
   hitboxShowTime: 0.2
   offsetDistance: 1
@@ -83404,7 +83403,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicAttackHitbox: {fileID: 1460835178}
   strongAttackHitbox: {fileID: 241284739}
-  target: {fileID: 1837154177}
   attackCooldown: 1
   hitboxShowTime: 0.2
   offsetDistance: 1
@@ -83639,6 +83637,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1977234618}
   cursorMarker: {fileID: 1837154178}
+  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &1982644253
 GameObject:
   m_ObjectHideFlags: 0
@@ -83886,7 +83885,6 @@ GameObject:
   - component: {fileID: 1992408037}
   - component: {fileID: 1992408036}
   - component: {fileID: 1992408035}
-  - component: {fileID: 1992408040}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -83968,20 +83966,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1992408040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1992408034}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5f1de2549a33e24da4cb9fc7cfb05df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1977234618}
-  cursorMarker: {fileID: 1837154178}
 --- !u!1 &1996960338
 GameObject:
   m_ObjectHideFlags: 0
