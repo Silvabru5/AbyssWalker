@@ -37,6 +37,8 @@ public class AimingCursor : MonoBehaviour
         animator.SetFloat("Vertical", direction.y);
         animator.SetFloat("Horizontal", direction.x);
 
+        
+
         // Rotate the player aim with the way they face
 
     }
