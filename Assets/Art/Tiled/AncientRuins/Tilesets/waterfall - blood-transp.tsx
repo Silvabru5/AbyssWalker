@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.9" tiledversion="1.9.2" name="waterfall-blood-transp" tilewidth="32" tileheight="32" tilecount="209" columns="19">
- <image source="../../Tilesets/Transparency version/waterfall-blood-transparency.png" width="608" height="352"/>
+<tileset version="1.10" tiledversion="1.11.2" name="waterfall-blood-transp" tilewidth="32" tileheight="32" tilecount="209" columns="19">
+ <image source="../AncientArt/Tilesets/Transparency version/waterfall-blood-transparency.png" width="608" height="352"/>
  <tile id="1">
   <animation>
    <frame tileid="1" duration="100"/>

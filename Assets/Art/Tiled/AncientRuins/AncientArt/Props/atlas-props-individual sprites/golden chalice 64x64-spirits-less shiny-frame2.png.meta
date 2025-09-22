@@ -54,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -163,7 +163,7 @@ TextureImporter:
         width: 30
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -185,7 +185,7 @@ TextureImporter:
         width: 7
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -194,6 +194,28 @@ TextureImporter:
       bones: []
       spriteID: f8199b9312da945e0800000000000000
       internalID: -1924817007510187633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: st2u_x0y0-w64h64
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3b738bdcce35c14898ae7963d860bb9
+      internalID: -1165032474
       vertices: []
       indices: 
       edges: []
@@ -214,6 +236,7 @@ TextureImporter:
     nameFileIdTable:
       golden chalice 64x64-spirits-less shiny-frame2_0: -3253601193215577539
       golden chalice 64x64-spirits-less shiny-frame2_1: -1924817007510187633
+      st2u_x0y0-w64h64: -1165032474
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -26,16 +26,22 @@ public class PlayerControl : MonoBehaviour
     public bool isDashing = false;
     public TrailRenderer _trailRenderer;
 
+    // used to disable movement after death
+    private PlayerHealth playerHealth;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         _trailRenderer = transform.Find("Trail").GetComponent<TrailRenderer>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     void Update()
     {
+        // if dead, allow no movements
+        if (playerHealth.currentHealth <= 0) return;
 
         //if not dashing do normal movement
         if(!isDashing)

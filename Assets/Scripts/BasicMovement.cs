@@ -11,11 +11,17 @@ public class BasicMovement : MonoBehaviour
     // Rigidbody2D component for physics-based movement
     private Rigidbody2D rb;
 
+    // track if player is alive/dead
+    private PlayerHealth playerHealth;
+
     // Prevents movement when colliding with enemies
     private bool canMove = true;
+
     public Vector2 LastMoveDirection { get; private set; } = Vector2.right;
     void Start()
     {
+        playerHealth = GetComponent<PlayerHealth>();
+
         // Get the Rigidbody2D component attached to the player
         rb = GetComponent<Rigidbody2D>();
 
@@ -25,21 +31,24 @@ public class BasicMovement : MonoBehaviour
 
     void Update()
     {
-        // Get player input (WASD / Arrow keys / Controller)
-        speedX = Input.GetAxisRaw("Horizontal"); // Left (-1) / Right (1)
-        speedY = Input.GetAxisRaw("Vertical");   // Down (-1) / Up (1)
-
-        Vector2 inputDir = new Vector2(speedX, speedY);
-        if (inputDir != Vector2.zero)
+        if (canMove && playerHealth.currentHealth > 0)
         {
-            LastMoveDirection = inputDir.normalized;
+            // Get player input (WASD / Arrow keys / Controller)
+            speedX = Input.GetAxisRaw("Horizontal"); // Left (-1) / Right (1)
+            speedY = Input.GetAxisRaw("Vertical");   // Down (-1) / Up (1)
+
+            Vector2 inputDir = new Vector2(speedX, speedY);
+            if (inputDir != Vector2.zero)
+            {
+                LastMoveDirection = inputDir.normalized;
+            }
         }
     }
 
     void FixedUpdate()
     {
         // Only allow movement if the player is not colliding with an enemy
-        if (canMove)
+        if (canMove && playerHealth.currentHealth > 0)
         {
             // Normalize input to ensure diagonal movement isn't faster
             rb.linearVelocity = new Vector2(speedX, speedY).normalized * movSpeed;

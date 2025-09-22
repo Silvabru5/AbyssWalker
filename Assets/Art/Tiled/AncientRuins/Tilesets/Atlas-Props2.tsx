@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.9" tiledversion="1.9.2" name="Atlas-Props 2" tilewidth="32" tileheight="32" tilecount="2600" columns="50">
- <image source="../../Props/Atlas-Props 2.png" width="1600" height="1664"/>
+<tileset version="1.10" tiledversion="1.11.2" name="Atlas-Props 2" tilewidth="32" tileheight="32" tilecount="2600" columns="50">
+ <image source="../AncientArt/Props/Atlas-Props 2.png" width="1600" height="1664"/>
  <tile id="1251">
   <animation>
    <frame tileid="1251" duration="100"/>
