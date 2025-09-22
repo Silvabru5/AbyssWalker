@@ -36,20 +36,24 @@ public class EnemyHealth : MonoBehaviour
         {
             ai.InterruptAttack();
         }
-
+        
         // if health hits zero or below, kill the enemy
         if (currentHealth <= 0)
-        {
+        { /*
             if (enemyType == "spider") SoundManager.PlaySound(SoundTypeEffects.ENEMY_DEATH_SPIDER);
             else if (enemyType == "zombie") SoundManager.PlaySound(SoundTypeEffects.ENEMY_DEATH_ZOMBIE);
-            else if (enemyType == "skeleton") SoundManager.PlaySound(SoundTypeEffects.ENEMY_DEATH_SKELETON);
+            else if (enemyType == "skeleton") SoundManager.PlaySound(SoundTypeEffects.ENEMY_DEATH_SKELETON); */
+            if(enemyType == "spider") { ExperienceManager.instance.AddExperience(2); }
+            else if(enemyType == "zombie") { ExperienceManager.instance.AddExperience(5); }
+            else if(enemyType == "skeleton") { ExperienceManager.instance.AddExperience(7); }
             Die();
         }
         else
         {
+            /*
             if (enemyType == "spider") SoundManager.PlaySound(SoundTypeEffects.ENEMY_TAKES_DAMAGE_SPIDER);
             else if (enemyType == "zombie") SoundManager.PlaySound(SoundTypeEffects.ENEMY_TAKES_DAMAGE_ZOMBIE);
-            else if (enemyType == "skeleton") SoundManager.PlaySound(SoundTypeEffects.ENEMY_TAKES_DAMAGE_SKELETON);
+            else if (enemyType == "skeleton") SoundManager.PlaySound(SoundTypeEffects.ENEMY_TAKES_DAMAGE_SKELETON); */
             // play the hurt animation
             PlayHurtAnimation();
         }

@@ -34,6 +34,8 @@ public class ExperienceManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckLevelUp();
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             AddExperience(5);
@@ -82,7 +84,7 @@ public class ExperienceManager : MonoBehaviour
 
         levelText.text = currentLevel.ToString();
         float percentage = (float)start / (float)end;
-        experienceText.text = (percentage * 100f).ToString("F2") +" %" + " / " + "100.00%";
+        experienceText.text = (percentage * 100f).ToString("F2") +" %";
         experienceFill.fillAmount = (float)start / (float)end;
         if(currentLevel == levelCap) {
             experienceText.text = "0.00 %";
