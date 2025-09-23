@@ -11,7 +11,7 @@ public class TestAttack : MonoBehaviour
     [SerializeField] private float _attackSpeed;
     [SerializeField] private int _attackDamage;
     [SerializeField] private LayerMask _enemyLayers;
-    bool isAttacking = false;
+    private bool isAttacking = false;
     float nextAttkTime = 0f;
 
     //Player Level Variables

@@ -198,7 +198,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3764445054084472124, guid: dcc84f640b69fdc4b829f70439d6e227, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 2033433023}
   m_SourcePrefab: {fileID: 100100000, guid: dcc84f640b69fdc4b829f70439d6e227, type: 3}
 --- !u!1 &115190662
 GameObject:
@@ -412,6 +415,7 @@ MonoBehaviour:
   _enemyLayers:
     serializedVersion: 2
     m_Bits: 256
+  currentLevel: 0
 --- !u!1 &148228996
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,7 +711,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5188311810717762487, guid: 14562d0ef5170744ea22a6646e13a3ef, type: 3}
+      insertIndex: 7
+      addedObject: {fileID: 1072261363}
   m_SourcePrefab: {fileID: 100100000, guid: 14562d0ef5170744ea22a6646e13a3ef, type: 3}
 --- !u!1 &338853856
 GameObject:
@@ -863,7 +870,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7158932129712686433, guid: b1f8f5bef14afd549809c3081ea66b00, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 1868410417}
   m_SourcePrefab: {fileID: 100100000, guid: b1f8f5bef14afd549809c3081ea66b00, type: 3}
 --- !u!1 &708304211
 GameObject:
@@ -898,14 +908,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 16.195145
+      outSlope: 16.195145
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.08047946
     - serializedVersion: 3
       time: 20
       value: 1500
@@ -1766,6 +1776,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058364218}
   m_CullTransparentMesh: 1
+--- !u!1 &1072261352 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5188311810717762487, guid: 14562d0ef5170744ea22a6646e13a3ef, type: 3}
+  m_PrefabInstance: {fileID: 311743043}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1072261363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072261352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f5ef7758cbe17d49a09dd972b6d1743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: spider
+  baseExp: 0
+  enemyLevel: 0
+  growthFactor: 1
 --- !u!1 &1102382613
 GameObject:
   m_ObjectHideFlags: 0
@@ -12549,6 +12580,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1868410406 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7158932129712686433, guid: b1f8f5bef14afd549809c3081ea66b00, type: 3}
+  m_PrefabInstance: {fileID: 661496678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1868410417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868410406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f5ef7758cbe17d49a09dd972b6d1743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: skeleton
+  baseExp: 0
+  enemyLevel: 0
+  growthFactor: 1.4
 --- !u!1 &1935602904 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6626115905076929793, guid: b87e17cc4dc676f4fb26b2b17f5fb54c, type: 3}
@@ -12714,6 +12766,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2033433012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3764445054084472124, guid: dcc84f640b69fdc4b829f70439d6e227, type: 3}
+  m_PrefabInstance: {fileID: 8633760}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2033433023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033433012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f5ef7758cbe17d49a09dd972b6d1743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: zombie
+  baseExp: 0
+  enemyLevel: 0
+  growthFactor: 1.2
 --- !u!1 &2112137409
 GameObject:
   m_ObjectHideFlags: 0

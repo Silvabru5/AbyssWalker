@@ -1,0 +1,40 @@
+﻿using UnityEngine;
+
+public class EnemyLevel : MonoBehaviour
+{
+    public string enemyType;
+
+    [SerializeField] private int baseExp;
+    [SerializeField] private int enemyLevel;
+    [SerializeField] private float growthFactor;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        int playerLevel = ExperienceManager.instance.GetCurrentLevel();
+        // Assign base exp values that will increase base on players level
+        baseExp = enemyType switch
+        {
+            "spider" => 2,
+            "zombie" => 4,
+            "skeleton" => 7,
+            _ => 1
+        };
+
+        //We can assign more creatures to this switch and change levels based on player.
+        enemyLevel = enemyType switch
+        {
+            "spider" => Mathf.Max(1, playerLevel - 2), // 2 levels below
+            "zombie" => playerLevel,                  // same level
+            "skeleton" => playerLevel + 2,            // 2 above
+            _ => playerLevel
+        };
+    }
+
+    public int CalculateExp()
+    {
+        int exp = Mathf.RoundToInt(baseExp * Mathf.Pow(growthFactor, enemyLevel - 1));
+        Debug.Log($"{enemyType} (Lvl {enemyLevel}) → Base: {baseExp}, Exp: {exp}");
+        return exp; 
+    }
+}
