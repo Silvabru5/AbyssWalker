@@ -9,11 +9,12 @@ public class EnemyHealth : MonoBehaviour
     private bool isDead = false; // tracks if enemy is already dead
     [HideInInspector]
     private bool isHurting = false; // tracks if enemy is currently playing hurt animation
-
     private string enemyType; 
 
+    EnemyLevel level;
     void Start()
     {
+        level = GetComponent<EnemyLevel>();
         currentHealth = maxHealth; // set health at start
         animator = GetComponent<Animator>(); // get animator attached to this object
         if (this.GetComponentInParent<isSpider>() != null) enemyType = "spider";
@@ -43,9 +44,8 @@ public class EnemyHealth : MonoBehaviour
             if (enemyType == "spider") SoundManager.PlaySound(SoundTypeEffects.ENEMY_DEATH_SPIDER);
             else if (enemyType == "zombie") SoundManager.PlaySound(SoundTypeEffects.ENEMY_DEATH_ZOMBIE);
             else if (enemyType == "skeleton") SoundManager.PlaySound(SoundTypeEffects.ENEMY_DEATH_SKELETON); */
-            if(enemyType == "spider") { ExperienceManager.instance.AddExperience(2); }
-            else if(enemyType == "zombie") { ExperienceManager.instance.AddExperience(5); }
-            else if(enemyType == "skeleton") { ExperienceManager.instance.AddExperience(7); }
+            ExperienceManager.instance.AddExperience(level.CalculateExp());
+            
             Die();
         }
         else

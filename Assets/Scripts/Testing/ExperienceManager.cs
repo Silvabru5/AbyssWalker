@@ -14,7 +14,7 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] int levelCap;
 
 
-    int currentLevel, totalExperience;
+    int currentLevel = 1, totalExperience;
     int previousLevelsExp, nextLevelExp;
 
     private void Awake()
