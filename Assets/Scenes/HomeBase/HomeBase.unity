@@ -202,6 +202,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &176227913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 176227914}
+  m_Layer: 9
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &176227914
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176227913}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 424806665}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &205497732
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +521,7 @@ GameObject:
   - component: {fileID: 424806667}
   - component: {fileID: 424806669}
   - component: {fileID: 424806668}
+  - component: {fileID: 424806671}
   m_Layer: 9
   m_Name: Mage
   m_TagString: Player
@@ -640,6 +672,7 @@ Transform:
   m_Children:
   - {fileID: 724338169}
   - {fileID: 1827914389}
+  - {fileID: 176227914}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &424806666
@@ -728,6 +761,22 @@ MonoBehaviour:
   player: {fileID: 424806665}
   cursorMarker: {fileID: 1827914389}
   direction: {x: 0, y: 0, z: 0}
+--- !u!114 &424806671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424806656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e35d7bdf216c0a45b9d9ae66d9f316f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 176227914}
+  projectilePrefab: {fileID: 4583401842386575310, guid: db6fdcceeef7c674aa8e4d151dd037db, type: 3}
+  projectileSpeed: 10
+  fireRate: 0.5
 --- !u!1001 &723602658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1479,7 +1528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1827914389}
   - component: {fileID: 1827914390}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
