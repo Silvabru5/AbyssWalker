@@ -14,6 +14,7 @@ public class SelectCharacter : MonoBehaviour
 
     public void ChangeCharacter()
     {
+        Debug.Log("Button pressed!");  // test line
         number = 1 - number; // toggle between 0 and 1
         ShowCharacter();
     }
