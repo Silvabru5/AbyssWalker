@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int maxHealth = 20; // how much health the enemy starts with
-    private int currentHealth; // current health value
+    private float currentHealth; // current health value
     private Animator animator; // reference to the animator
     [HideInInspector]
     private bool isDead = false; // tracks if enemy is already dead
@@ -23,7 +23,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
     // called whenever the enemy takes damage
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         // if already dead or still flinching, ignore new damage
         if (isDead || isHurting) return;
