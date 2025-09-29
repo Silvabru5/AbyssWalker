@@ -52,7 +52,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator PerformAttack(GameObject hitbox, Vector2 aimDir, bool rotateWithDirection)
     {
         canAttack = false;
-        SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_ATTACK, 1);
+        // SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_ATTACK, 1);
 
         // get the direction the player is facing
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;

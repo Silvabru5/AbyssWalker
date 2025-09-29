@@ -27,7 +27,7 @@ public class BossDoorInteraction : MonoBehaviour
         killCount = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().numOfEnemiesDead;
         if (!bossDoorOpen && killCount >= threshold)
         {
-            SoundManager.PlaySound(SoundTypeEffects.BOSS_DOOR_OPENS);
+            // SoundManager.PlaySound(SoundTypeEffects.BOSS_DOOR_OPENS);
             bossDoorOpen = true;
             GameObject.Find("MessageTextBox").GetComponent<TextMeshProUGUI>().text = "You have vanquished enough enemies to face the boss. A mysterious portal has now opened.";// display a message
         }
@@ -53,14 +53,14 @@ public class BossDoorInteraction : MonoBehaviour
             Debug.Log("Hero interacted with boss door");
             if (killCount >= threshold)
             {
-                SoundManager.PlaySound(SoundTypeEffects.BOSS_DOOR_ENTER);
-                SoundManager.PlayBackgroundMusic(SoundTypeBackground.BACKGROUND_BOSS);
-                SoundManager.PlaySoundWaitForCompletion(SoundTypeEffects.BOSS_DOOR_ENTER);
+                //SoundManager.PlaySound(SoundTypeEffects.BOSS_DOOR_ENTER);
+                //SoundManager.PlayBackgroundMusic(SoundTypeBackground.BACKGROUND_BOSS);
+                //SoundManager.PlaySoundWaitForCompletion(SoundTypeEffects.BOSS_DOOR_ENTER);
                 SceneManager.LoadScene(2); // load scene with build index 2 (boss scene) - File->Build Profiles->Scene List 
             }
             else if (messageShowingTimer <= 0 && killCount < threshold) // only interact here if the message timer is not depleted
             {
-                SoundManager.PlaySound(SoundTypeEffects.BOSS_DOOR_BLOCKED); // play a sound
+                //SoundManager.PlaySound(SoundTypeEffects.BOSS_DOOR_BLOCKED); // play a sound
                 GameObject.Find("MessageTextBox").GetComponent<TextMeshProUGUI>().text = "You have not vanquished enough enemies to proceed to the boss level";// display a message
                 messageShowingTimer = messageDuration;
             }

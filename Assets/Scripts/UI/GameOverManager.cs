@@ -46,7 +46,7 @@ public class GameOverManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         GameObject.Find("BackgroundMusic").GetComponent<AudioSource>().Stop();
-        SoundManager.PlayBackgroundMusic(SoundTypeBackground.BACKGROUND_GAME);
+         // SoundManager.PlayBackgroundMusic(SoundTypeBackground.BACKGROUND_GAME);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -54,7 +54,7 @@ public class GameOverManager : MonoBehaviour
     public void QuitToMainMenu()
     {
         GameObject.Find("BackgroundMusic").GetComponent<AudioSource>().Stop();
-        SoundManager.PlayBackgroundMusic(SoundTypeBackground.BACKGROUND_TITLE);
+        // SoundManager.PlayBackgroundMusic(SoundTypeBackground.BACKGROUND_TITLE);
         Time.timeScale = 1f;
         SceneManager.LoadScene(0); // replace with your actual main menu scene name
     }
