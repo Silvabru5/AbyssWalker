@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.InputSystem.Processors;
+using System;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -39,21 +40,22 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth = -99999; // flag to say this has already triggered - no more death sounds
             animator.SetTrigger("DeathTrigger");
-            SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_DEATH);
+            // SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_DEATH);
 
             // SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_DEATH, 1);
             Debug.Log("Player has died.");
             StartCoroutine(DeathSequence());
         }
         else
-            SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_TAKES_DAMAGE);
+            Console.WriteLine("uncomment pls");
+            // SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_TAKES_DAMAGE);
     }
 
 
     private IEnumerator DeathSequence()
     {
         
-        SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_DEATH, 1);
+        // SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_DEATH, 1);
 
         yield return new WaitForSeconds(deathAnimationTime);
 
