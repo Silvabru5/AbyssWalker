@@ -29,6 +29,8 @@ public class SelectCharacter : MonoBehaviour
         ShowCharacter();
     }
 
+    // change number to an enum later
+
     private void ShowCharacter()
     {
         character1.SetActive(number == 0);
