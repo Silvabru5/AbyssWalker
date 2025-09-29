@@ -815,6 +815,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 1468124631
       objectReference: {fileID: 0}
+    - target: {fileID: 6325701462370481263, guid: b1f8f5bef14afd549809c3081ea66b00, type: 3}
+      propertyPath: maxHealth
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 7158932129712686433, guid: b1f8f5bef14afd549809c3081ea66b00, type: 3}
       propertyPath: m_Name
       value: Skeleton
@@ -875,78 +879,6 @@ PrefabInstance:
       insertIndex: 6
       addedObject: {fileID: 1868410417}
   m_SourcePrefab: {fileID: 100100000, guid: b1f8f5bef14afd549809c3081ea66b00, type: 3}
---- !u!1 &708304211
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 708304213}
-  - component: {fileID: 708304212}
-  m_Layer: 0
-  m_Name: ExperienceManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &708304212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708304211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a99229a758ae364abe91128e794df94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  experienceCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 16.195145
-      outSlope: 16.195145
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.08047946
-    - serializedVersion: 3
-      time: 20
-      value: 1500
-      inSlope: 159.64809
-      outSlope: 159.64809
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.03767128
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  levelText: {fileID: 155261504}
-  experienceText: {fileID: 786535610}
-  experienceFill: {fileID: 804322226}
-  levelCap: 20
---- !u!4 &708304213
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708304211}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 317.3484, y: 465.6612, z: -3.4507086}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &724572055
 GameObject:
   m_ObjectHideFlags: 0
@@ -2120,6 +2052,98 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1356963975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1356963978}
+  - component: {fileID: 1356963977}
+  - component: {fileID: 1356963976}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1356963976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356963975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3cad249222f224f8778c9abeb0a35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillPoints: 16
+  damageLevel: 0
+  critChanceLevel: 0
+  critDamageLevel: 0
+  defenseLevel: 0
+  healthLevel: 0
+  skillCap: 4
+--- !u!114 &1356963977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356963975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a99229a758ae364abe91128e794df94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 16.195145
+      outSlope: 16.195145
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.08047946
+    - serializedVersion: 3
+      time: 20
+      value: 1500
+      inSlope: 159.64809
+      outSlope: 159.64809
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.03767128
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  levelText: {fileID: 155261504}
+  experienceText: {fileID: 786535610}
+  experienceFill: {fileID: 804322226}
+  levelCap: 20
+--- !u!4 &1356963978
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356963975}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.839268, y: -9.113115, z: 0.7776965}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1477333018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12969,8 +12993,8 @@ SceneRoots:
   - {fileID: 754564043}
   - {fileID: 1106206930}
   - {fileID: 724572058}
-  - {fileID: 708304213}
   - {fileID: 115190668}
   - {fileID: 311743043}
   - {fileID: 8633760}
   - {fileID: 661496678}
+  - {fileID: 1356963978}
