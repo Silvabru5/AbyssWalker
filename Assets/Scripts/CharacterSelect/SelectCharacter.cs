@@ -3,56 +3,80 @@ using UnityEngine.SceneManagement;
 
 public class SelectCharacter : MonoBehaviour
 {
-    public GameObject character1;
-    public GameObject character2;
 
-    public GameObject characterTitle1;
-    public GameObject characterTitle2;
 
-    public GameObject characterDescription1;
-    public GameObject characterDescription2;
+    //using enums to make readable and in case we  add characters later
+    public enum CharacterType
+    {
+        Warrior,
+        Mage
+    }
 
-    public GameObject characterIcon1;
-    public GameObject characterIcon2;
 
-    private int number = 0;
+    //Enum type that is defaulted to warrior / the character the player is currently selecting
+    public CharacterType currentCharacter = CharacterType.Warrior;
+
+    //array of characters to be in the scene
+    [Header("Character Objects")]
+    public GameObject[] characters;
+
+
+    //below is for UI elements with specific text/images for each character
+    [Header("Titles")]
+    public GameObject[] titles; 
+
+    [Header("Descriptions")]
+    public GameObject[] descriptions;
+
+    [Header("Icons")]
+    public GameObject[] icons;
 
     void Start()
     {
+        //on scene start show the character, defaulted to warrior
         ShowCharacter();
     }
 
+
+    
     public void ChangeCharacter()
     {
-        Debug.Log("Button pressed!");  // test line
-        number = 1 - number; // toggle between 0 and 1
+
+        //if a player clicks on the swap button, move to next character
+        //
+        int nextIndex = ((int)currentCharacter + 1) % characters.Length;
+
+        //update character using the enum
+        currentCharacter = (CharacterType)nextIndex;
+
+        //show new character on ui
         ShowCharacter();
     }
 
-    // change number to an enum later
 
     private void ShowCharacter()
     {
-        character1.SetActive(number == 0);
-        character2.SetActive(number == 1);
 
-        characterDescription1.SetActive(number == 0);
-        characterDescription2.SetActive(number == 1);
+        //cast enum value as an integer to loop thru array of characters
+        int index = (int)currentCharacter;
 
-        characterTitle1.SetActive(number == 0);
-        characterTitle2.SetActive(number == 1);
-
-        characterIcon1.SetActive(number == 0);
-        characterIcon2.SetActive(number == 1);
+        //loop thru all ui elements and only activate the selected character/index
+        for (int i = 0; i < characters.Length; i++)
+        {
+            characters[i].SetActive(i == index);
+            titles[i].SetActive(i == index);
+            descriptions[i].SetActive(i == index);
+            icons[i].SetActive(i == index);
+        }
 
     }
 
 
-    //after selecting character, use player prefs to save what the player selected and load the homebase scene with the number
+    //after selecting character, use player prefs to save what the player selected and load the homebase scene with the number representing character
     public void PlayGame()
     {
-        PlayerPrefs.SetInt("SelectedCharacter", number);
-        //PlayerPrefs.Save();
+        PlayerPrefs.SetInt("SelectedCharacter", (int)currentCharacter);
+        //PlayerPrefs.Save(); commented out for testing purposes
 
         SceneManager.LoadScene("HomeBase");
     }

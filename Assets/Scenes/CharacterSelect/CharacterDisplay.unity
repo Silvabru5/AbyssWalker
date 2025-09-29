@@ -1659,14 +1659,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba816c61a3258724b95f5cd382a75838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character1: {fileID: 1694260081}
-  character2: {fileID: 992848559}
-  characterTitle1: {fileID: 2114845190}
-  characterTitle2: {fileID: 451255932}
-  characterDescription1: {fileID: 1059637957}
-  characterDescription2: {fileID: 1242181399}
-  characterIcon1: {fileID: 1937975978}
-  characterIcon2: {fileID: 2105830602}
+  currentCharacter: 0
+  characters:
+  - {fileID: 1694260081}
+  - {fileID: 992848559}
+  titles:
+  - {fileID: 2114845190}
+  - {fileID: 451255932}
+  descriptions:
+  - {fileID: 1059637957}
+  - {fileID: 1242181399}
+  icons:
+  - {fileID: 1937975978}
+  - {fileID: 2105830602}
 --- !u!4 &1442149769
 Transform:
   m_ObjectHideFlags: 0
