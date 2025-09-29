@@ -1,9 +1,9 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerStatUpgrade : MonoBehaviour
+public class StatManager : MonoBehaviour
 {
-    public static PlayerStatUpgrade instance;
+    public static StatManager instance;
 
     //Stat upgrades available for player - all floats to calculate percent increases
     private float damageIncrease;
@@ -92,5 +92,27 @@ public class PlayerStatUpgrade : MonoBehaviour
             critDamageLevel++;
         }
         critDamage = 1f + (critDamageLevel * 0.08f);
-    } 
+    }
+
+    public void UpgradeHealth()
+    {
+        if (healthLevel != levelCap)
+        {
+            skillPoints--;
+            healthLevel++;
+        }
+
+        healthAmount = 1f + (healthLevel * 0.1f); //10% health increase per level
+    }
+
+    public void UpgradeDefense()
+    {
+        if(defenseLevel != levelCap)
+        {
+            skillPoints--;
+            defenseLevel++;
+        }
+
+        defenseAmount = 1f + (defenseLevel * 0.2f);
+    }
 }
