@@ -1,9 +1,19 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SelectCharacter : MonoBehaviour
 {
     public GameObject character1;
     public GameObject character2;
+
+    public GameObject characterTitle1;
+    public GameObject characterTitle2;
+
+    public GameObject characterDescription1;
+    public GameObject characterDescription2;
+
+    public GameObject characterIcon1;
+    public GameObject characterIcon2;
 
     private int number = 0;
 
@@ -23,5 +33,25 @@ public class SelectCharacter : MonoBehaviour
     {
         character1.SetActive(number == 0);
         character2.SetActive(number == 1);
+
+        characterDescription1.SetActive(number == 0);
+        characterDescription2.SetActive(number == 1);
+
+        characterTitle1.SetActive(number == 0);
+        characterTitle2.SetActive(number == 1);
+
+        characterIcon1.SetActive(number == 0);
+        characterIcon2.SetActive(number == 1);
+
+    }
+
+
+    //after selecting character, use player prefs to save what the player selected and load the homebase scene with the number
+    public void PlayGame()
+    {
+        PlayerPrefs.SetInt("SelectedCharacter", number);
+        //PlayerPrefs.Save();
+
+        SceneManager.LoadScene("HomeBase");
     }
 }
