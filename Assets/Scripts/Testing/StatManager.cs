@@ -6,22 +6,23 @@ public class StatManager : MonoBehaviour
     public static StatManager instance;
 
     //Stat upgrades available for player - all floats to calculate percent increases
-    private float damageIncrease;
-    private float critChance;
-    private float critDamage;
-    private float healthAmount;
-    private float defenseAmount;
+    private float damageIncrease = 1;
+    private float critChance = 0;
+    private float critDamage = 1.15f;
+    private float healthAmount = 1;
+    private float defenseAmount = 0;
 
     //Counters for skill point total
-    private int skillPoints;
-    private int damageLevel;
-    private int critChanceLevel;
-    private int critDamageLevel;
-    private int defenseLevel;
-    private int healthLevel;
+    [SerializeField] private int skillPoints;
+    [SerializeField] private int damageLevel;
+    [SerializeField] private int critChanceLevel;
+    [SerializeField] private int critDamageLevel;
+    [SerializeField] private int defenseLevel;
+    [SerializeField] private int healthLevel;
 
     //Level Cap viewable within the Inspector
-    [SerializeField] private int levelCap;
+    [SerializeField] private int skillCap;
+    
 
     private void Awake()
     {
@@ -66,7 +67,7 @@ public class StatManager : MonoBehaviour
     //Spend Skill Points
     public void UpgradeDamage()
     {
-        if(damageLevel != levelCap)
+        if(damageLevel != skillCap)
         {
             skillPoints--;
             damageLevel++;
@@ -76,27 +77,27 @@ public class StatManager : MonoBehaviour
 
     public void UpgradeCritChance()
     {
-        if (critChanceLevel != levelCap)
+        if (critChanceLevel != skillCap)
         {
             skillPoints--;
             critChanceLevel++;
         }
-        critChance = Mathf.Min(critChanceLevel * 0.1f, 1f);
+        critChance = Mathf.Min(critChanceLevel * 0.25f, 1f);
     }
 
     public void UpgradeCritDamage()
     {
-        if(critDamageLevel != levelCap)
+        if(critDamageLevel != skillCap)
         {
             skillPoints--;
             critDamageLevel++;
         }
-        critDamage = 1f + (critDamageLevel * 0.08f);
+        critDamage = 1f + (critDamageLevel * 0.25f); // 25% chance to hit
     }
 
     public void UpgradeHealth()
     {
-        if (healthLevel != levelCap)
+        if (healthLevel != skillCap)
         {
             skillPoints--;
             healthLevel++;
@@ -107,12 +108,13 @@ public class StatManager : MonoBehaviour
 
     public void UpgradeDefense()
     {
-        if(defenseLevel != levelCap)
+        if(defenseLevel != skillCap)
         {
             skillPoints--;
             defenseLevel++;
         }
 
-        defenseAmount = 1f + (defenseLevel * 0.2f);
+        defenseAmount = 1f - (defenseLevel * 0.15f);
+        defenseAmount = Mathf.Max(defenseAmount, 0.1f);
     }
 }

@@ -6,8 +6,8 @@ using System;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
-    [HideInInspector] public int currentHealth;
+    public float maxHealth = 100;
+    [HideInInspector] public float currentHealth;
 
     private Animator animator;
     public  float deathAnimationTime = 0.1f;
@@ -30,9 +30,9 @@ public class PlayerHealth : MonoBehaviour
     }
 
     // this handles the player taking damage and checks if they die
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
-        currentHealth -= amount;
+        currentHealth -= CalculateDamage(amount);
 //        currentHealth = Mathf.Max(0, currentHealth); // prevent negative health
         Debug.Log($"Player HP: {currentHealth}");
 
@@ -69,7 +69,7 @@ public class PlayerHealth : MonoBehaviour
     // this returns the player's current health as a percentage (0.0 to 1.0)
     public float GetHealthPercent()
     {
-        return Mathf.Clamp01((float)currentHealth / maxHealth);
+        return Mathf.Clamp01(currentHealth / maxHealth);
     }
 
     // this slowly heals the player over time, up to their max health
@@ -77,7 +77,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (currentHealth < maxHealth && currentHealth > 0)
         {
-            int healAmount = Mathf.Min(2, maxHealth - currentHealth);
+            float healAmount = Mathf.Min(2, maxHealth - currentHealth);
             currentHealth += healAmount;
             Debug.Log($"Regenerated {healAmount} HP. Current HP: {currentHealth}");
         }
@@ -88,5 +88,11 @@ public class PlayerHealth : MonoBehaviour
     {
         if (healthText != null)
             healthText.text = $"{currentHealth} / {maxHealth}";
+    }
+
+    float CalculateDamage(float amount)
+    {
+        float calculatedDamage = amount * StatManager.instance.GetDefenseAmount();
+        return calculatedDamage;
     }
 }

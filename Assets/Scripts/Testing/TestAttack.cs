@@ -11,7 +11,7 @@ public class TestAttack : MonoBehaviour
     [SerializeField] private float _attackSpeed;
     [SerializeField] private int _attackDamage;
     [SerializeField] private LayerMask _enemyLayers;
-    private bool isAttacking = false;
+    private bool isAttacking;
     float nextAttkTime = 0f;
 
     //Player Level Variables
@@ -35,6 +35,21 @@ public class TestAttack : MonoBehaviour
                 isAttacking = false;
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            StatManager.instance.UpgradeDamage();
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            StatManager.instance.UpgradeCritChance();
+            Debug.Log(StatManager.instance.GetCritChance() * 100);
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            StatManager.instance.UpgradeCritDamage();
+            Debug.Log(StatManager.instance.GetCritDamage());
+        }
     }
 
     void DealDamage()
@@ -44,21 +59,40 @@ public class TestAttack : MonoBehaviour
         {
             if(enemy.GetComponent<isSpider>())
             {
-                enemy.GetComponent<EnemyHealth>().TakeDamage(_attackDamage);
+                enemy.GetComponent<EnemyHealth>().TakeDamage(CalculateAttack());
                     
             }
             if (enemy.GetComponent<isSkeleton>())
             {
-                enemy.GetComponent<EnemyHealth>().TakeDamage(_attackDamage);
+                enemy.GetComponent<EnemyHealth>().TakeDamage(CalculateAttack());
                 
             }
             if (enemy.GetComponent<isZombie>())
             {
-                enemy.GetComponent<EnemyHealth>().TakeDamage(_attackDamage);
+                enemy.GetComponent<EnemyHealth>().TakeDamage(CalculateAttack());
             }
         }
 
-    }            
+    }     
+    
+    float CalculateAttack()
+    {
+        float calulatedAttack = _attackDamage * StatManager.instance.GetDamageIncrease();
+
+        float critRoll = Random.value;
+        bool isCrit = critRoll < StatManager.instance.GetCritChance();
+
+        if (isCrit)
+        {
+            calulatedAttack *= StatManager.instance.GetCritDamage();
+            Debug.Log("Crit hit: " + calulatedAttack);
+        }
+        else
+        {
+            Debug.Log("Hit: " + calulatedAttack);
+        }
+        return calulatedAttack;
+    }
     void Attack()
     {
         _anim.SetTrigger("Attack");
@@ -68,7 +102,7 @@ public class TestAttack : MonoBehaviour
     }
     private IEnumerator AttackCD()
     {
-        yield return new WaitForSeconds(0.67f);
+        yield return new WaitForSeconds(1f);
         isAttacking = false;
     }
     private void OnDrawGizmos()
