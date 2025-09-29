@@ -1,6 +1,17 @@
 using System.Collections;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.Rendering;
+using static UnityEngine.EventSystems.EventTrigger;
+
+// SoundManager.cs
+// Created by: Carey Cunningham
+// Purpose: To handle all sound effects and background music within the game
+//          This script stays persistent so it can be called from any scene
+// Usage: load in the Title scene
+//        from other scenes:
+//           SoundManager.PlaySound(SoundTypeEffects.BAT_ATTACK);
+//           SoundManager.PlayBackgroundMusic(SoundTypeBackground.CEMETERY_BOSS);
 
 // used this enum to define the different sound effect types
 public enum SoundTypeEffects
@@ -30,8 +41,8 @@ public enum SoundTypeEffects
     LEVEL_UP,
     SKILL_UP, SKILL_RESET,
     //  Objects
-    CEMETERY_TOTEM_TAKES_DAMAGE, CEMETERY_TOTEM_DESTROY, CEMETERY_BOSS_DOOR_BLOCKED, CEMETERY_DOOR_UNBLOCKED, CEMETERY_DORR_ENTER,
-    CAVE_TOTEM_TAKES_DAMAGE, CAVE_TOTEM_DESTROY, CAVE_BOSS_DOOR_BLOCKED, CAVE_DOOR_UNBLOCKED, CAVE_DORR_ENTER,
+    CEMETERY_TOTEM_TAKES_DAMAGE, CEMETERY_TOTEM_DESTROY, CEMETERY_BOSS_DOOR_BLOCKED, CEMETERY_DOOR_UNBLOCKED, CEMETERY_DOOR_ENTER,
+    CAVE_TOTEM_TAKES_DAMAGE, CAVE_TOTEM_DESTROY, CAVE_BOSS_DOOR_BLOCKED, CAVE_DOOR_UNBLOCKED, CAVE_DOOR_ENTER,
     SKILL_UP_VENDOR_INTERACTION
 }
 
@@ -54,6 +65,13 @@ public class SoundEffectEntry
     public AudioClip[] clips;   // multiple variations per enum
 }
 
+// create a class with 2 variables to allow for the sound effects to have differering amounts of sound options per sound type
+[System.Serializable]
+public class BackgroundSoundEntry
+{
+    public SoundTypeBackground type;
+    public AudioClip[] clips;   // multiple variations per enum
+}
 
 [RequireComponent(typeof(AudioSource))]
 public class SoundManager : MonoBehaviour
@@ -61,8 +79,8 @@ public class SoundManager : MonoBehaviour
     private static SoundManager instance;
 
     [Header("Background Music")]
-    [SerializeField] private AudioClip[] soundListBackground;    // drop down populated by the enum above
-    [SerializeField] private AudioSource backgroundMusicSource;  // used this enum to define the different sound types
+    [SerializeField] private BackgroundSoundEntry[] soundListBackground; // drop down populated by the enum above
+    [SerializeField] private AudioSource backgroundMusicSource;      // used this enum to define the different sound types
 
     [Header("Sound Effects")]
     [SerializeField] private SoundEffectEntry[] soundEffects;  // drop down populated by the enum above 
@@ -92,18 +110,18 @@ public class SoundManager : MonoBehaviour
 
         // look through the sound effect lists for any categories that match the one passed in and play a random one from the list
         foreach (var entry in instance.soundEffects)
-            if (entry.type == sound && entry.clips.Length > 0)
+            if (entry.type == sound && entry.clips.Length > 0) // if any match and have audio clips in them proceed, otherwise do nothing
             {
                 instance.soundEffectsSource.PlayOneShot(entry.clips[Random.Range(0, entry.clips.Length)], volume);
                 return;
             }
     }
 
+    // play a sound and wait for completion
     public IEnumerator WaitForSound(AudioSource audioSource)
     {
         yield return new WaitWhile(() => audioSource.isPlaying);
     }
-
     public static void PlaySoundWaitForCompletion(SoundTypeEffects sound)
     {
         PlaySound(sound);
@@ -115,8 +133,15 @@ public class SoundManager : MonoBehaviour
     public static void PlayBackgroundMusic(SoundTypeBackground sound)
     {
         instance.backgroundMusicSource.Stop();
-        instance.backgroundMusicSource.clip = instance.soundListBackground[(int)sound];
-        instance.backgroundMusicSource.loop = true;
-        instance.backgroundMusicSource.Play();
+        // look through the sound effect lists for any categories that match the one passed in and play a random one from the list
+        foreach (var entry in instance.soundListBackground) // look through background sounds
+            if (entry.type == sound && entry.clips.Length > 0)  // if any match and have audio clips in them proceed, otherwise do nothing
+            {
+                // select a random matching sound file then play it
+                instance.backgroundMusicSource.clip = entry.clips[Random.Range(0, entry.clips.Length)];
+                instance.backgroundMusicSource.loop = true;
+                instance.backgroundMusicSource.Play();
+                return;
+            }
     }
 }
