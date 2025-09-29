@@ -217,260 +217,71 @@
 //        spriteRenderer.flipX = player.transform.position.x < transform.position.x;
 //    }
 //}
+// END OF OLD SCRIPT REMOVE WHEN NEW SCRIPT CONFIRMED WORKING
 
 
-//// This script controls basic enemy AI with the raycast addition to prevent enemies from walking into objects endlessly
-//using System.Security.Cryptography;
-//using UnityEngine;
-
-//public class EnemyAI : MonoBehaviour
-//{
-//    public GameObject player;
-//    public float moveSpeed = 2f;
-//    public int damage = 10;
-//    public float attackCooldown = 1.5f;
-//    public float separationDistance = 0.7f;
-
-//    private Vector2 avoidanceDirection = Vector2.zero;
-//    private float avoidanceTimer = 0f;
-//    private const float avoidanceDuration = 3f; // seconds to keep avoiding
-
-//    private Animator animator;
-//    private Rigidbody2D rb;
-//    private SpriteRenderer spriteRenderer;
-
-//    [HideInInspector] public bool isAttacking = false;
-//    [HideInInspector] public bool canAttack = true;
-//    [HideInInspector] public bool isDead = false;
-
-//    private bool attackRegistered = false;
-//    private bool playerInRange = false;
-//    private bool lockFlip = false;
-
-//    void Start()
-//    {
-//        player = GameObject.Find("Character");
-//        animator = GetComponent<Animator>();
-//        spriteRenderer = GetComponent<SpriteRenderer>();
-//        rb = GetComponent<Rigidbody2D>();
-//    }
-
-//    void Update()
-//    {
-//        if (player == null || isDead) return;
-
-//        if (!lockFlip) FlipTowardsPlayer();
-
-//        if (isAttacking || !canAttack) return;
-
-//        if (playerInRange)
-//        {
-//            StartAttack();
-//        }
-//        else
-//        {
-//            MoveTowardsPlayer();
-//        }
-//    }
-
-//    void MoveTowardsPlayer()
-//    {
-//        if (!playerInRange && !isAttacking && canAttack)
-//        {
-//            animator.SetBool("isWalking", true);
-
-//            Vector2 direction = (player.transform.position - transform.position).normalized;
-//            float rayDistance = 1.6f;
-//            LayerMask obstacleMask = LayerMask.GetMask("Obstacle");
-
-//            // Check direct path
-//            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, rayDistance, obstacleMask);
-//            Debug.DrawRay(transform.position, direction * rayDistance, Color.red);
-
-//            if (hit.collider != null)
-//            {
-//                // Try left and right perpendicular directions
-//                Vector2 perpLeft = Vector2.Perpendicular(direction).normalized;
-//                Vector2 perpRight = -perpLeft;
-
-//                RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, perpLeft, rayDistance, obstacleMask);
-//                RaycastHit2D hitRight = Physics2D.Raycast(transform.position, perpRight, rayDistance, obstacleMask);
-
-//                // Prefer the side that is not blocked
-//                if (hitLeft.collider == null)
-//                {
-//                    direction = perpLeft;
-//                    Debug.DrawRay(transform.position, direction * rayDistance, Color.yellow);
-//                }
-//                else if (hitRight.collider == null)
-//                {
-//                    direction = perpRight;
-//                    Debug.DrawRay(transform.position, direction * rayDistance, Color.yellow);
-//                }
-//                else
-//                {
-//                    // Both sides blocked, stop
-//                    direction = Vector2.zero;
-//                }
-//            }
-
-//            Vector2 avoidance = AvoidStacking();
-//            Vector2 targetVelocity = (direction + avoidance).normalized * moveSpeed;
-//            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, targetVelocity, 0.2f);
-//        }
-//        else
-//        {
-//            animator.SetBool("isWalking", false);
-//            rb.linearVelocity = Vector2.zero;
-//        }
-//    }
-
-//    Vector2 AvoidStacking()
-//    {
-//        Vector2 avoidanceVector = Vector2.zero;
-//        Collider2D[] nearby = Physics2D.OverlapCircleAll(transform.position, separationDistance);
-
-//        foreach (Collider2D col in nearby)
-//        {
-//            if (col != null && col.gameObject != gameObject && col.GetComponent<EnemyAI>())
-//            {
-//                Vector2 diff = (Vector2)transform.position - (Vector2)col.transform.position;
-//                avoidanceVector += diff.normalized;
-//            }
-//        }
-
-//        return avoidanceVector * 0.5f;
-//    }
-
-//    void StartAttack()
-//    {
-//        if (!isAttacking && canAttack)
-//        {
-//            isAttacking = true;
-//            canAttack = false;
-//            attackRegistered = false;
-//            lockFlip = true;
-
-//            animator.SetBool("isWalking", false);
-//            animator.SetBool("isAttacking", true);
-//            rb.linearVelocity = Vector2.zero;
-//        }
-//    }
-
-//    void OnTriggerEnter2D(Collider2D other)
-//    {
-//        if (other.GetComponent<PlayerHealth>() != null)
-//        {
-//            playerInRange = true;
-//            rb.linearVelocity = Vector2.zero;
-//        }
-//    }
-
-//    void OnTriggerExit2D(Collider2D other)
-//    {
-//        if (other.GetComponent<PlayerHealth>() != null)
-//        {
-//            playerInRange = false;
-//            CancelAttack();
-//        }
-//    }
-
-//    public void RegisterHit()
-//    {
-//        if (attackRegistered) return;
-
-//        if (playerInRange && player != null)
-//        {
-//            PlayerHealth health = player.GetComponent<PlayerHealth>();
-//            if (health != null)
-//                health.TakeDamage(damage);
-
-//            attackRegistered = true;
-//        }
-//        else
-//        {
-//            CancelAttack();
-//        }
-//    }
-
-//    public void EndAttack()
-//    {
-//        isAttacking = false;
-//        lockFlip = false;
-//        animator.SetBool("isAttacking", false);
-//        Invoke(nameof(ResetAttackCooldown), attackCooldown);
-//    }
-
-//    void CancelAttack()
-//    {
-//        isAttacking = false;
-//        lockFlip = false;
-//        animator.SetBool("isAttacking", false);
-//        animator.SetBool("isWalking", false);
-//        rb.linearVelocity = Vector2.zero;
-//        Invoke(nameof(ResetAttackCooldown), attackCooldown);
-//    }
-
-//    void ResetAttackCooldown()
-//    {
-//        canAttack = true;
-//    }
-
-//    public void InterruptAttack()
-//    {
-//        isAttacking = false;
-//        lockFlip = false;
-//        canAttack = false;
-//        animator.SetBool("isAttacking", false);
-//        rb.linearVelocity = Vector2.zero;
-//    }
-
-//    void FlipTowardsPlayer()
-//    {
-//        if (player == null || lockFlip) return;
-//        spriteRenderer.flipX = player.transform.position.x < transform.position.x;
-//    }
-//}
 
 
+
+
+
+
+
+
+
+
+
+// UPDATED SCRIPT TO AVOID OBSTACLES BETTER (Uses Raycasts)
+// enemyai.cs
+// this script controls basic enemy behavior in a 2d game. it makes the enemy chase the player, avoid obstacles using raycasts, and keeps enemies from stacking on top of each other.
+// if the enemy gets close enough to the player, it starts an attack animation and deals damage. if an obstacle is in the way, the enemy picks a side to go around it and remembers that direction until the path is clear.
+// the script also prevents enemies from getting stuck together by pushing them apart, and adds a little random movement if two enemies are blocking each other to break deadlocks.
+// all movement uses physics (rigidbody2d), and the sprite flips to face the player. attack logic is handled with cooldowns and animation events.
+// basically, this makes enemies feel smart and not get stuck or clump up, while still being simple and efficient for 2d games.
 using UnityEngine;
-using System.Collections.Generic;
 
 public class EnemyAI : MonoBehaviour
 {
+    // reference to the player object
     public GameObject player;
+    // how fast the enemy moves
     public float moveSpeed = 2f;
+    // how much damage the enemy deals to the player
     public int damage = 10;
+    // time between each attack
     public float attackCooldown = 1.5f;
+    // how close enemies can be before pushing apart
     public float separationDistance = 0.7f;
 
+    // animator handles animation transitions
     private Animator animator;
+    // rigidbody2d handles movement with physics
     private Rigidbody2D rb;
+    // lets us flip the sprite left/right
     private SpriteRenderer spriteRenderer;
 
+    // these flags control attack and death logic
     [HideInInspector] public bool isAttacking = false;
     [HideInInspector] public bool canAttack = true;
     [HideInInspector] public bool isDead = false;
 
+    // used to prevent multiple hits in one attack
     private bool attackRegistered = false;
+    // true when player is inside attack trigger zone
     private bool playerInRange = false;
+    // prevents flipping during attack
     private bool lockFlip = false;
+    // true if we're currently avoiding an obstacle
+    private bool isAvoiding = false;
 
-    // Avoidance persistence fields
+    // stores the direction we're using to avoid obstacles
     private Vector2 avoidanceDirection = Vector2.zero;
-    private float avoidanceTimer = 0f;
-
-    private float stuckTimer = 0f;
-    private const float stuckThreshold = 2.0f; // seconds before forced escape
-    private const float avoidanceDuration = 2.0f; // seconds to keep avoiding
-
-    // Path memory fields
-    private List<Vector2> recentBlockedDirections = new List<Vector2>();
-    private const int maxMemory = 3; // Number of directions to remember
 
     void Start()
     {
+        // find the player in the scene (by name)
         player = GameObject.Find("Character");
+        // get all required components
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -478,12 +289,16 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
+        // bail out if player is gone or we're dead
         if (player == null || isDead) return;
 
+        // flip the enemy toward the player unless we're attacking
         if (!lockFlip) FlipTowardsPlayer();
 
+        // don't do anything if we're attacking or can't attack yet
         if (isAttacking || !canAttack) return;
 
+        // if player is close, start attack, otherwise chase them
         if (playerInRange)
         {
             StartAttack();
@@ -494,53 +309,54 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    // handles all movement logic for the enemy
+    // 1. only moves if not attacking, not dead, and not in attack range
+    // 2. calculates direction to the player
+    // 3. uses a circlecast to check for obstacles directly ahead
+    // 4. if blocked, tries to pick a side (left/right) to go around the obstacle
+    // 5. if both sides are blocked, tries diagonal directions (up-left, down-left, up-right, down-right)
+    // 6. if all directions are blocked, picks a random direction to try and escape
+    // 7. remembers the chosen avoidance direction until the path is clear
+    // 8. also calculates an avoidance vector to keep enemies from stacking
+    // 9. blends movement smoothly, moving more decisively when avoiding obstacles
+    // 10. stops and plays idle animation if unable to move
     void MoveTowardsPlayer()
     {
         if (!playerInRange && !isAttacking && canAttack)
         {
             animator.SetBool("isWalking", true);
 
+            // figure out which way to go to reach the player
             Vector2 direction = (player.transform.position - transform.position).normalized;
             float rayDistance = 1f;
             float radius = 0.3f;
             LayerMask obstacleMask = LayerMask.GetMask("Obstacle");
 
+            // check if there's an obstacle in the way
             RaycastHit2D hitCenter = Physics2D.CircleCast(transform.position, radius, direction, rayDistance, obstacleMask);
-            RaycastHit2D hitUp = Physics2D.CircleCast(transform.position, radius, direction + Vector2.up * 0.2f, rayDistance, obstacleMask);
-            RaycastHit2D hitDown = Physics2D.CircleCast(transform.position, radius, direction + Vector2.down * 0.2f, rayDistance, obstacleMask);
 
-            bool blocked = hitCenter.collider != null || hitUp.collider != null || hitDown.collider != null;
-
-            Debug.DrawRay(transform.position, direction * rayDistance, Color.red);
-
-            // Stuck detection
-            if (blocked)
+            if (hitCenter.collider != null)
             {
-                stuckTimer += Time.deltaTime;
-                if (avoidanceTimer <= 0f)
+                // if we're not already avoiding, pick a side to go around the obstacle
+                if (!isAvoiding)
                 {
-                    // Add blocked direction to memory
-                    AddBlockedDirection(direction);
-
                     Vector2 perpLeft = Vector2.Perpendicular(direction).normalized;
                     Vector2 perpRight = -perpLeft;
 
                     RaycastHit2D hitLeft = Physics2D.CircleCast(transform.position, radius, perpLeft, rayDistance, obstacleMask);
                     RaycastHit2D hitRight = Physics2D.CircleCast(transform.position, radius, perpRight, rayDistance, obstacleMask);
 
-                    // Prefer directions not recently blocked
-                    if (hitLeft.collider == null && !IsDirectionBlocked(perpLeft))
+                    if (hitLeft.collider == null)
                     {
-                        direction = perpLeft;
-                        Debug.DrawRay(transform.position, direction * rayDistance, Color.yellow);
+                        avoidanceDirection = perpLeft;
                     }
-                    else if (hitRight.collider == null && !IsDirectionBlocked(perpRight))
+                    else if (hitRight.collider == null)
                     {
-                        direction = perpRight;
-                        Debug.DrawRay(transform.position, direction * rayDistance, Color.yellow);
+                        avoidanceDirection = perpRight;
                     }
                     else
                     {
+                        // try diagonals if both sides are blocked
                         Vector2 diagUpLeft = (perpLeft + Vector2.up).normalized;
                         Vector2 diagDownLeft = (perpLeft + Vector2.down).normalized;
                         Vector2 diagUpRight = (perpRight + Vector2.up).normalized;
@@ -551,102 +367,56 @@ public class EnemyAI : MonoBehaviour
                         RaycastHit2D hitDiagUpRight = Physics2D.CircleCast(transform.position, radius, diagUpRight, rayDistance, obstacleMask);
                         RaycastHit2D hitDiagDownRight = Physics2D.CircleCast(transform.position, radius, diagDownRight, rayDistance, obstacleMask);
 
-                        if (hitDiagUpLeft.collider == null && !IsDirectionBlocked(diagUpLeft))
+                        if (hitDiagUpLeft.collider == null)
                         {
-                            direction = diagUpLeft;
-                            Debug.DrawRay(transform.position, direction * rayDistance, Color.magenta);
+                            avoidanceDirection = diagUpLeft;
                         }
-                        else if (hitDiagDownLeft.collider == null && !IsDirectionBlocked(diagDownLeft))
+                        else if (hitDiagDownLeft.collider == null)
                         {
-                            direction = diagDownLeft;
-                            Debug.DrawRay(transform.position, direction * rayDistance, Color.magenta);
+                            avoidanceDirection = diagDownLeft;
                         }
-                        else if (hitDiagUpRight.collider == null && !IsDirectionBlocked(diagUpRight))
+                        else if (hitDiagUpRight.collider == null)
                         {
-                            direction = diagUpRight;
-                            Debug.DrawRay(transform.position, direction * rayDistance, Color.magenta);
+                            avoidanceDirection = diagUpRight;
                         }
-                        else if (hitDiagDownRight.collider == null && !IsDirectionBlocked(diagDownRight))
+                        else if (hitDiagDownRight.collider == null)
                         {
-                            direction = diagDownRight;
-                            Debug.DrawRay(transform.position, direction * rayDistance, Color.magenta);
+                            avoidanceDirection = diagDownRight;
                         }
                         else
                         {
-                            direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * moveSpeed;
+                            // all directions blocked, so just pick a random direction and hope for the best
+                            avoidanceDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
                         }
                     }
-                    avoidanceDirection = direction;
-                    avoidanceTimer = avoidanceDuration;
+                    isAvoiding = true;
                 }
-                else
-                {
-                    direction = avoidanceDirection;
-                    avoidanceTimer -= Time.deltaTime;
-                }
-
-                // If stuck for too long, force random escape
-                if (stuckTimer > stuckThreshold)
-                {
-                    direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * moveSpeed;
-                    avoidanceDirection = direction;
-                    avoidanceTimer = avoidanceDuration;
-                    stuckTimer = 0f;
-                }
+                // keep moving in the avoidance direction until the path is clear
+                direction = avoidanceDirection;
             }
             else
             {
-                avoidanceTimer = 0f;
-                stuckTimer = 0f;
+                // path is clear, go straight toward the player
+                isAvoiding = false;
+                avoidanceDirection = Vector2.zero;
             }
 
-            Vector2 avoidance = AvoidStacking(blocked);
-            float lerpFactor = blocked ? 0.5f : 0.2f;
+            // keep enemies from stacking on top of each other
+            Vector2 avoidance = AvoidStacking(isAvoiding);
+
+            // move a little more decisively if we're avoiding something
+            float lerpFactor = isAvoiding ? 0.5f : 0.2f;
             Vector2 targetVelocity = (direction + avoidance).normalized * moveSpeed;
             rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, targetVelocity, lerpFactor);
         }
         else
         {
+            // stop moving if we're attacking or can't move
             animator.SetBool("isWalking", false);
             rb.linearVelocity = Vector2.zero;
         }
     }
-
-    // Path memory helpers
-    private void AddBlockedDirection(Vector2 dir)
-    {
-        // Store normalized direction
-        dir = dir.normalized;
-        if (!recentBlockedDirections.Exists(d => Vector2.Dot(d, dir) > 0.95f))
-        {
-            recentBlockedDirections.Add(dir);
-            if (recentBlockedDirections.Count > maxMemory)
-                recentBlockedDirections.RemoveAt(0);
-        }
-    }
-
-    private bool IsDirectionBlocked(Vector2 dir)
-    {
-        dir = dir.normalized;
-        return recentBlockedDirections.Exists(d => Vector2.Dot(d, dir) > 0.95f);
-    }
-
-    //Vector2 AvoidStacking()
-    //{
-    //    Vector2 avoidanceVector = Vector2.zero;
-    //    Collider2D[] nearby = Physics2D.OverlapCircleAll(transform.position, separationDistance);
-
-    //    foreach (Collider2D col in nearby)
-    //    {
-    //        if (col != null && col.gameObject != gameObject && col.GetComponent<EnemyAI>())
-    //        {
-    //            Vector2 diff = (Vector2)transform.position - (Vector2)col.transform.position;
-    //            avoidanceVector += diff.normalized;
-    //        }
-    //    }
-
-    //    return avoidanceVector * 0.5f;
-    //}
+    // keeps enemies from clumping together, and adds a little randomness if they're stuck
     Vector2 AvoidStacking(bool blocked)
     {
         Vector2 avoidanceVector = Vector2.zero;
@@ -657,19 +427,22 @@ public class EnemyAI : MonoBehaviour
             if (col != null && col.gameObject != gameObject && col.GetComponent<EnemyAI>())
             {
                 Vector2 diff = (Vector2)transform.position - (Vector2)col.transform.position;
-                float dist = diff.magnitude;
-                if (dist < separationDistance * 0.7f) // Only push if very close
-                {
-                    avoidanceVector += diff.normalized * (1.0f - dist / separationDistance);
-                }
+                avoidanceVector += diff.normalized;
             }
         }
 
-        // Smooth and scale avoidance
-        float avoidanceScale = blocked ? 0.2f : 0.5f; // Less avoidance when blocked
-        return avoidanceVector * avoidanceScale;
+        avoidanceVector *= 0.5f;
+
+        // if we're blocked and the push is tiny, add a little random wiggle to break deadlock
+        if (blocked && avoidanceVector.magnitude < 0.1f)
+        {
+            avoidanceVector += new Vector2(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
+        }
+
+        return avoidanceVector;
     }
 
+    // starts the attack if the enemy can attack and isn't already doing so
     void StartAttack()
     {
         if (!isAttacking && canAttack)
@@ -685,6 +458,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    // runs when the player enters the enemy's trigger zone
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<PlayerHealth>() != null)
@@ -694,6 +468,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    // runs when the player leaves the enemy's trigger zone
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.GetComponent<PlayerHealth>() != null)
@@ -703,6 +478,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    // called from animation event mid-swing
     public void RegisterHit()
     {
         if (attackRegistered) return;
@@ -721,6 +497,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    // called from animation event at end of attack
     public void EndAttack()
     {
         isAttacking = false;
@@ -729,6 +506,7 @@ public class EnemyAI : MonoBehaviour
         Invoke(nameof(ResetAttackCooldown), attackCooldown);
     }
 
+    // stops the current attack and resets animations/movement
     void CancelAttack()
     {
         isAttacking = false;
@@ -739,11 +517,13 @@ public class EnemyAI : MonoBehaviour
         Invoke(nameof(ResetAttackCooldown), attackCooldown);
     }
 
+    // lets the enemy attack again after cooldown
     void ResetAttackCooldown()
     {
         canAttack = true;
     }
 
+    // interrupts the attack immediately (like when hit)
     public void InterruptAttack()
     {
         isAttacking = false;
@@ -753,6 +533,7 @@ public class EnemyAI : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
     }
 
+    // flips the enemy to face the player
     void FlipTowardsPlayer()
     {
         if (player == null || lockFlip) return;
