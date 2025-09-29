@@ -309,16 +309,17 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    // moves the enemy toward the player, avoiding obstacles and other enemies
-    // - uses raycasts to detect obstacles and picks a side to go around them
-    // - remembers the avoidance direction until the path to the player is clear
-    // - keeps enemies from stacking by pushing them apart if they're too close
-    // - adds a little random movement if two enemies are stuck together to break deadlocks
-    // - flips the sprite to always face the player
-    // - starts an attack animation and deals damage when close enough to the player
-    // - handles attack cooldowns and prevents multiple hits per attack
-    // - stops all movement and logic if the enemy is dead
-    // - uses animation events to sync attack logic with visuals
+    // handles all movement logic for the enemy
+    // 1. only moves if not attacking, not dead, and not in attack range
+    // 2. calculates direction to the player
+    // 3. uses a circlecast to check for obstacles directly ahead
+    // 4. if blocked, tries to pick a side (left/right) to go around the obstacle
+    // 5. if both sides are blocked, tries diagonal directions (up-left, down-left, up-right, down-right)
+    // 6. if all directions are blocked, picks a random direction to try and escape
+    // 7. remembers the chosen avoidance direction until the path is clear
+    // 8. also calculates an avoidance vector to keep enemies from stacking
+    // 9. blends movement smoothly, moving more decisively when avoiding obstacles
+    // 10. stops and plays idle animation if unable to move
     void MoveTowardsPlayer()
     {
         if (!playerInRange && !isAttacking && canAttack)
@@ -345,7 +346,6 @@ public class EnemyAI : MonoBehaviour
                     RaycastHit2D hitLeft = Physics2D.CircleCast(transform.position, radius, perpLeft, rayDistance, obstacleMask);
                     RaycastHit2D hitRight = Physics2D.CircleCast(transform.position, radius, perpRight, rayDistance, obstacleMask);
 
-                    // try left first, then right, otherwise just wiggle randomly
                     if (hitLeft.collider == null)
                     {
                         avoidanceDirection = perpLeft;
@@ -356,8 +356,38 @@ public class EnemyAI : MonoBehaviour
                     }
                     else
                     {
-                        // both sides blocked, so just pick a random direction and hope for the best
-                        avoidanceDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+                        // try diagonals if both sides are blocked
+                        Vector2 diagUpLeft = (perpLeft + Vector2.up).normalized;
+                        Vector2 diagDownLeft = (perpLeft + Vector2.down).normalized;
+                        Vector2 diagUpRight = (perpRight + Vector2.up).normalized;
+                        Vector2 diagDownRight = (perpRight + Vector2.down).normalized;
+
+                        RaycastHit2D hitDiagUpLeft = Physics2D.CircleCast(transform.position, radius, diagUpLeft, rayDistance, obstacleMask);
+                        RaycastHit2D hitDiagDownLeft = Physics2D.CircleCast(transform.position, radius, diagDownLeft, rayDistance, obstacleMask);
+                        RaycastHit2D hitDiagUpRight = Physics2D.CircleCast(transform.position, radius, diagUpRight, rayDistance, obstacleMask);
+                        RaycastHit2D hitDiagDownRight = Physics2D.CircleCast(transform.position, radius, diagDownRight, rayDistance, obstacleMask);
+
+                        if (hitDiagUpLeft.collider == null)
+                        {
+                            avoidanceDirection = diagUpLeft;
+                        }
+                        else if (hitDiagDownLeft.collider == null)
+                        {
+                            avoidanceDirection = diagDownLeft;
+                        }
+                        else if (hitDiagUpRight.collider == null)
+                        {
+                            avoidanceDirection = diagUpRight;
+                        }
+                        else if (hitDiagDownRight.collider == null)
+                        {
+                            avoidanceDirection = diagDownRight;
+                        }
+                        else
+                        {
+                            // all directions blocked, so just pick a random direction and hope for the best
+                            avoidanceDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+                        }
                     }
                     isAvoiding = true;
                 }
@@ -386,7 +416,6 @@ public class EnemyAI : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
         }
     }
-
     // keeps enemies from clumping together, and adds a little randomness if they're stuck
     Vector2 AvoidStacking(bool blocked)
     {
