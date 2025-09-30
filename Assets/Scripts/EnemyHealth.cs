@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -17,10 +18,10 @@ public class EnemyHealth : MonoBehaviour
         level = GetComponent<EnemyLevel>();
         currentHealth = maxHealth; // set health at start
         animator = GetComponent<Animator>(); // get animator attached to this object
-        if (this.GetComponentInParent<isSpider>() != null) enemyType = "spider";
-        else if (this.GetComponentInParent<isZombie>() != null) enemyType = "zombie";
-        else if (this.GetComponentInParent<isSkeleton>() != null) enemyType = "skeleton";
+        enemyType = SoundManager.GetPlayerOrEnemyType(this.gameObject);
     }
+
+
 
     // called whenever the enemy takes damage
     public void TakeDamage(float amount)
@@ -40,20 +41,19 @@ public class EnemyHealth : MonoBehaviour
         
         // if health hits zero or below, kill the enemy
         if (currentHealth <= 0)
-        { /*
-            if (enemyType == "spider") SoundManager.PlaySound(SoundTypeEffects.ENEMY_DEATH_SPIDER);
-            else if (enemyType == "zombie") SoundManager.PlaySound(SoundTypeEffects.ENEMY_DEATH_ZOMBIE);
-            else if (enemyType == "skeleton") SoundManager.PlaySound(SoundTypeEffects.ENEMY_DEATH_SKELETON); */
+        {
+            // if a death sound is defined in the enum, play it
+            if (Enum.TryParse(enemyType + "_DEATH", out SoundTypeEffects key))
+                SoundManager.PlaySound(key);
+
             ExperienceManager.instance.AddExperience(level.CalculateExp());
-            
             Die();
         }
         else
         {
-            /*
-            if (enemyType == "spider") SoundManager.PlaySound(SoundTypeEffects.ENEMY_TAKES_DAMAGE_SPIDER);
-            else if (enemyType == "zombie") SoundManager.PlaySound(SoundTypeEffects.ENEMY_TAKES_DAMAGE_ZOMBIE);
-            else if (enemyType == "skeleton") SoundManager.PlaySound(SoundTypeEffects.ENEMY_TAKES_DAMAGE_SKELETON); */
+            // if a takes damage sound is defined in the enum, play it
+            if (Enum.TryParse(enemyType + "_TAKES_DAMAGE", out SoundTypeEffects key))
+                SoundManager.PlaySound(key);
             // play the hurt animation
             PlayHurtAnimation();
         }

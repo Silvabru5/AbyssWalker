@@ -238,7 +238,9 @@
 // the script also prevents enemies from getting stuck together by pushing them apart, and adds a little random movement if two enemies are blocking each other to break deadlocks.
 // all movement uses physics (rigidbody2d), and the sprite flips to face the player. attack logic is handled with cooldowns and animation events.
 // basically, this makes enemies feel smart and not get stuck or clump up, while still being simple and efficient for 2d games.
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -276,6 +278,7 @@ public class EnemyAI : MonoBehaviour
 
     // stores the direction we're using to avoid obstacles
     private Vector2 avoidanceDirection = Vector2.zero;
+    private string enemyType;
 
     void Start()
     {
@@ -285,6 +288,8 @@ public class EnemyAI : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        enemyType = SoundManager.GetPlayerOrEnemyType(this.gameObject);
+
     }
 
     void Update()
@@ -455,6 +460,10 @@ public class EnemyAI : MonoBehaviour
             animator.SetBool("isWalking", false);
             animator.SetBool("isAttacking", true);
             rb.linearVelocity = Vector2.zero;
+
+            // if an attack sound is defined in the enum, play it
+            if (Enum.TryParse(enemyType + "_ATTACK", out SoundTypeEffects key))
+                SoundManager.PlaySound(key);
         }
     }
 

@@ -13,7 +13,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 //           SoundManager.PlaySound(SoundTypeEffects.BAT_ATTACK);
 //           SoundManager.PlayBackgroundMusic(SoundTypeBackground.CEMETERY_BOSS);
 
-// used this enum to define the different sound effect types
+// use this enum to define the different sound effect types
 public enum SoundTypeEffects
 {
     // Player Characters
@@ -105,8 +105,10 @@ public class SoundManager : MonoBehaviour
     // sound effects
     public static void PlaySound(SoundTypeEffects sound, float volume = 0.35f)
     {
-        // if the sound is to be a takes damage, attack sounds only play some of the time
-        if (Regex.IsMatch(sound.ToString(), "(_TAKES_DAMAGE|_ATTACK)$") & Random.Range(0, 2) == 0) return;
+        // // if the sound is to be a takes damage, attack sounds only play some of the time
+        // if (Regex.IsMatch(sound.ToString(), "(_TAKES_DAMAGE|_ATTACK)$") & Random.Range(0, 2) == 0) return;
+
+        // thing to try later, if playing sounds >= threshold, return without sound
 
         // look through the sound effect lists for any categories that match the one passed in and play a random one from the list
         foreach (var entry in instance.soundEffects)
@@ -128,8 +130,7 @@ public class SoundManager : MonoBehaviour
         instance.StartCoroutine(instance.WaitForSound(instance.soundEffectsSource));
     }
 
-
-    // background music
+        // background music
     public static void PlayBackgroundMusic(SoundTypeBackground sound)
     {
         instance.backgroundMusicSource.Stop();
@@ -143,5 +144,17 @@ public class SoundManager : MonoBehaviour
                 instance.backgroundMusicSource.Play();
                 return;
             }
+    }
+
+    // read the aspects attached to determine which sound to play, return string needs to match the enum of effects above
+    public static string GetPlayerOrEnemyType(GameObject obj)
+    {
+        if (obj.GetComponentInParent<isSpider>() != null) return "SPIDER";
+        else if (obj.GetComponentInParent<isZombie>() != null) return "ZOMBIE";
+        else if (obj.GetComponentInParent<isSkeleton>() != null) return "SKELETON";
+        else if (obj.GetComponentInParent<isBat>() != null) return "BAT";
+        else if (obj.GetComponentInParent<isBuffZombie>() != null) return "BUFF_ZOMBIE";
+        else if (obj.GetComponentInParent<isGhoul>() != null) return "GHOUL";
+        else return "";
     }
 }

@@ -75,7 +75,7 @@ public class PauseMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        // SoundManager.PlayBackgroundMusic(SoundTypeBackground.BACKGROUND_BOSS);
+        SoundManager.PlayBackgroundMusic(SoundTypeBackground.CEMETERY);
         SceneManager.LoadScene(1);
     }
 
