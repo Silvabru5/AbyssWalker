@@ -238,6 +238,7 @@
 // the script also prevents enemies from getting stuck together by pushing them apart, and adds a little random movement if two enemies are blocking each other to break deadlocks.
 // all movement uses physics (rigidbody2d), and the sprite flips to face the player. attack logic is handled with cooldowns and animation events.
 // basically, this makes enemies feel smart and not get stuck or clump up, while still being simple and efficient for 2d games.
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -322,22 +323,23 @@ public class EnemyAI : MonoBehaviour
     // 10. stops and plays idle animation if unable to move
     void MoveTowardsPlayer()
     {
+        // 1. only moves if not attacking, not dead, and not in attack range
         if (!playerInRange && !isAttacking && canAttack)
         {
             animator.SetBool("isWalking", true);
 
-            // figure out which way to go to reach the player
+            // 2. calculates direction to the player
             Vector2 direction = (player.transform.position - transform.position).normalized;
             float rayDistance = 1f;
             float radius = 0.3f;
-            LayerMask obstacleMask = LayerMask.GetMask("Obstacle");
+            LayerMask obstacleMask = LayerMask.GetMask("Obstacle", "Border");
 
-            // check if there's an obstacle in the way
+            // 3. uses a circlecast to check for obstacles directly ahead
             RaycastHit2D hitCenter = Physics2D.CircleCast(transform.position, radius, direction, rayDistance, obstacleMask);
 
             if (hitCenter.collider != null)
             {
-                // if we're not already avoiding, pick a side to go around the obstacle
+                // 4. if blocked, tries to pick a side (left/right) to go around the obstacle
                 if (!isAvoiding)
                 {
                     Vector2 perpLeft = Vector2.Perpendicular(direction).normalized;
@@ -348,15 +350,15 @@ public class EnemyAI : MonoBehaviour
 
                     if (hitLeft.collider == null)
                     {
-                        avoidanceDirection = perpLeft;
+                        avoidanceDirection = perpLeft; // 4. left side clear
                     }
                     else if (hitRight.collider == null)
                     {
-                        avoidanceDirection = perpRight;
+                        avoidanceDirection = perpRight; // 4. right side clear
                     }
                     else
                     {
-                        // try diagonals if both sides are blocked
+                        // 5. if both sides are blocked, tries diagonal directions
                         Vector2 diagUpLeft = (perpLeft + Vector2.up).normalized;
                         Vector2 diagDownLeft = (perpLeft + Vector2.down).normalized;
                         Vector2 diagUpRight = (perpRight + Vector2.up).normalized;
@@ -369,61 +371,70 @@ public class EnemyAI : MonoBehaviour
 
                         if (hitDiagUpLeft.collider == null)
                         {
-                            avoidanceDirection = diagUpLeft;
+                            avoidanceDirection = diagUpLeft; 
                         }
                         else if (hitDiagDownLeft.collider == null)
                         {
-                            avoidanceDirection = diagDownLeft;
+                            avoidanceDirection = diagDownLeft; 
                         }
                         else if (hitDiagUpRight.collider == null)
                         {
-                            avoidanceDirection = diagUpRight;
+                            avoidanceDirection = diagUpRight; 
                         }
                         else if (hitDiagDownRight.collider == null)
                         {
-                            avoidanceDirection = diagDownRight;
+                            avoidanceDirection = diagDownRight; 
                         }
                         else
                         {
-                            // all directions blocked, so just pick a random direction and hope for the best
+                            // 6. if all directions are blocked, picks a random direction to try and escape
                             avoidanceDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
                         }
                     }
-                    isAvoiding = true;
+                    isAvoiding = true; // 7. remembers the chosen avoidance direction until the path is clear
                 }
-                // keep moving in the avoidance direction until the path is clear
+                // 7. keep moving in the avoidance direction until the path is clear
                 direction = avoidanceDirection;
             }
             else
             {
-                // path is clear, go straight toward the player
+                // 7. path is clear, go straight toward the player
                 isAvoiding = false;
                 avoidanceDirection = Vector2.zero;
             }
 
-            // keep enemies from stacking on top of each other
+            // 8. also calculates an avoidance vector to keep enemies from stacking
             Vector2 avoidance = AvoidStacking(isAvoiding);
 
-            // move a little more decisively if we're avoiding something
+            // 9. blends movement smoothly, moving more decisively when avoiding obstacles
             float lerpFactor = isAvoiding ? 0.5f : 0.2f;
             Vector2 targetVelocity = (direction + avoidance).normalized * moveSpeed;
             rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, targetVelocity, lerpFactor);
         }
         else
         {
-            // stop moving if we're attacking or can't move
+            // 10. stops and plays idle animation if unable to move
             animator.SetBool("isWalking", false);
             rb.linearVelocity = Vector2.zero;
         }
     }
+
     // keeps enemies from clumping together, and adds a little randomness if they're stuck
+    // 1. finds all nearby colliders within separationDistance
+    // 2. for each nearby enemy, calculates a push-away vector
+    // 3. combines all push vectors and scales down the strength
+    // 4. if blocked and push is tiny, adds a little random wiggle to break deadlock
+    // 5. returns the final avoidance vector
     Vector2 AvoidStacking(bool blocked)
     {
         Vector2 avoidanceVector = Vector2.zero;
+
+        // 1. finds all nearby colliders within separationDistance
         Collider2D[] nearby = Physics2D.OverlapCircleAll(transform.position, separationDistance);
 
         foreach (Collider2D col in nearby)
         {
+            // 2. for each nearby enemy, calculates a push-away vector
             if (col != null && col.gameObject != gameObject && col.GetComponent<EnemyAI>())
             {
                 Vector2 diff = (Vector2)transform.position - (Vector2)col.transform.position;
@@ -431,14 +442,16 @@ public class EnemyAI : MonoBehaviour
             }
         }
 
+        // 3. combines all push vectors and scales down the strength
         avoidanceVector *= 0.5f;
 
-        // if we're blocked and the push is tiny, add a little random wiggle to break deadlock
+        // 4. if blocked and push is tiny, adds a little random wiggle to break deadlock
         if (blocked && avoidanceVector.magnitude < 0.1f)
         {
             avoidanceVector += new Vector2(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
         }
 
+        // 5. returns the final avoidance vector
         return avoidanceVector;
     }
 
