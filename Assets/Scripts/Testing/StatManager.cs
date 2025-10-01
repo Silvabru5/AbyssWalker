@@ -64,6 +64,7 @@ public class StatManager : MonoBehaviour
         return defenseAmount;
     }
 
+
     //Spend Skill Points
     public void UpgradeDamage()
     {
@@ -100,7 +101,7 @@ public class StatManager : MonoBehaviour
         if (healthLevel != skillCap)
         {
             skillPoints--;
-            healthLevel++;
+            healthAmount++;
         }
 
         healthAmount = 1f + (healthLevel * 0.1f); //10% health increase per level
@@ -111,7 +112,7 @@ public class StatManager : MonoBehaviour
         if(defenseLevel != skillCap)
         {
             skillPoints--;
-            defenseLevel++;
+            defenseAmount++;
         }
 
         defenseAmount = 1f - (defenseLevel * 0.15f);
