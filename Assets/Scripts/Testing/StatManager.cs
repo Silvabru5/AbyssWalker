@@ -64,13 +64,18 @@ public class StatManager : MonoBehaviour
         return defenseAmount;
     }
 
+    void UpgradeStat(int stat)
+    {
+        skillPoints--;
+        stat++;
+    }
+
     //Spend Skill Points
     public void UpgradeDamage()
     {
         if(damageLevel != skillCap)
         {
-            skillPoints--;
-            damageLevel++;
+           UpgradeStat(damageLevel);
         }
         damageIncrease = 1f + (damageLevel * 0.15f);
     }
@@ -79,8 +84,7 @@ public class StatManager : MonoBehaviour
     {
         if (critChanceLevel != skillCap)
         {
-            skillPoints--;
-            critChanceLevel++;
+            UpgradeStat(critChanceLevel);
         }
         critChance = Mathf.Min(critChanceLevel * 0.25f, 1f);
     }
@@ -89,8 +93,7 @@ public class StatManager : MonoBehaviour
     {
         if(critDamageLevel != skillCap)
         {
-            skillPoints--;
-            critDamageLevel++;
+           UpgradeStat(critDamageLevel);
         }
         critDamage = 1f + (critDamageLevel * 0.25f); // 25% chance to hit
     }
@@ -99,8 +102,7 @@ public class StatManager : MonoBehaviour
     {
         if (healthLevel != skillCap)
         {
-            skillPoints--;
-            healthLevel++;
+            UpgradeStat(healthLevel);
         }
 
         healthAmount = 1f + (healthLevel * 0.1f); //10% health increase per level
@@ -110,8 +112,7 @@ public class StatManager : MonoBehaviour
     {
         if(defenseLevel != skillCap)
         {
-            skillPoints--;
-            defenseLevel++;
+            UpgradeStat(defenseLevel);
         }
 
         defenseAmount = 1f - (defenseLevel * 0.15f);
