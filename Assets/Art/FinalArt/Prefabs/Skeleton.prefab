@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6325701462370481263}
   - component: {fileID: 5082512188777644342}
   - component: {fileID: 1045865876432864809}
+  - component: {fileID: 1950418637025576598}
   m_Layer: 8
   m_Name: Skeleton
   m_TagString: Enemy
@@ -284,3 +285,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5393714, y: 0.479004}
   m_EdgeRadius: 0
+--- !u!114 &1950418637025576598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7158932129712686433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f5ef7758cbe17d49a09dd972b6d1743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: skeleton
+  baseExp: 0
+  enemyLevel: 0
+  growthFactor: 1.5
