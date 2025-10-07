@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="70" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="1">
- <tileset firstgid="1" source="Vampire_Dungeon.tsx"/>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="70" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="27">
+ <tileset firstgid="1" name="Vampire_Dungeon" tilewidth="32" tileheight="32" tilecount="399" columns="21">
+  <image source="Vampie Boss Assets/ZIP FILE/The Sidescroller's Dungeon Tiles 32x32.png" trans="ff00ff" width="672" height="608"/>
+ </tileset>
  <tileset firstgid="400" source="TorchVAMPLVL2.tsx"/>
  <layer id="1" name="Base" width="100" height="70">
   <data encoding="csv">
@@ -298,6 +300,36 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="10" name="Collision">
+  <properties>
+   <property name="collision" type="bool" value="true"/>
+  </properties>
+  <object id="1" x="784" y="1774" width="2" height="170"/>
+  <object id="2" x="796" y="1938" width="264" height="2"/>
+  <object id="3" x="1070" y="1948" width="24" height="10"/>
+  <object id="4" x="787.333" y="1932" width="274" height="8"/>
+  <object id="5" x="1064.33" y="1949" width="13.3333" height="9.66667"/>
+  <object id="6" x="1090.67" y="1966.67" width="13.3333" height="7.33333"/>
+  <object id="7" x="782.667" y="1936.67" width="0.666667" height="1.33333"/>
+  <object id="8" x="778.667" y="1932" width="284" height="17.3333"/>
+  <object id="9" x="771.667" y="1763.33" width="274" height="14"/>
+  <object id="11" x="1022.67" y="1698" width="16" height="72.6667"/>
+  <object id="12" x="1039.33" y="1694.67" width="450" height="14.6667"/>
+  <object id="13" x="1058" y="1948.67" width="24.6667" height="14.6667"/>
+  <object id="14" x="1082.67" y="1964" width="28" height="15.3333"/>
+  <object id="15" x="1106.67" y="1973.33" width="344.667" height="10.6667"/>
+  <object id="16" x="1126.67" y="1864.67" width="83.3333" height="15.3333"/>
+  <object id="17" x="1224" y="1801.33" width="113.333" height="16.6667"/>
+  <object id="18" x="1351.33" y="1864.67" width="82" height="16.6667"/>
+  <object id="19" x="1445.33" y="1966.67" width="14" height="14.6667"/>
+  <object id="20" x="1461.33" y="1954.67" width="26" height="16"/>
+  <object id="21" x="1487.33" y="1940.67" width="21.3333" height="14.6667"/>
+  <object id="22" x="1509.33" y="1946" width="1.33333"/>
+  <object id="23" x="1496.67" y="1938" width="350.667" height="14"/>
+  <object id="24" x="1833.33" y="1696" width="21.3333" height="252.667"/>
+  <object id="25" x="1470" y="1694" width="383.333" height="16.6667"/>
+  <object id="26" x="773.333" y="1762" width="18.6667" height="186"/>
+ </objectgroup>
  <layer id="6" name="Background Assets" width="100" height="70">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
