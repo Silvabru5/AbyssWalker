@@ -22,7 +22,7 @@ public class StatManager : MonoBehaviour
 
     //Level Cap viewable within the Inspector
     [SerializeField] private int skillCap;
-    
+
 
     private void Awake()
     {
@@ -32,7 +32,7 @@ public class StatManager : MonoBehaviour
         }
 
     }
-    
+
     //On levelup call this function
     public void AddSkillPoint()
     {
@@ -68,7 +68,7 @@ public class StatManager : MonoBehaviour
     //Spend Skill Points
     public void UpgradeDamage()
     {
-        if(damageLevel != skillCap)
+        if (damageLevel != skillCap)
         {
             skillPoints--;
             damageLevel++;
@@ -88,7 +88,7 @@ public class StatManager : MonoBehaviour
 
     public void UpgradeCritDamage()
     {
-        if(critDamageLevel != skillCap)
+        if (critDamageLevel != skillCap)
         {
             skillPoints--;
             critDamageLevel++;
@@ -101,7 +101,7 @@ public class StatManager : MonoBehaviour
         if (healthLevel != skillCap)
         {
             skillPoints--;
-            healthAmount++;
+            healthLevel++;
         }
 
         healthAmount = 1f + (healthLevel * 0.1f); //10% health increase per level
@@ -109,13 +109,19 @@ public class StatManager : MonoBehaviour
 
     public void UpgradeDefense()
     {
-        if(defenseLevel != skillCap)
+        if (defenseLevel != skillCap)
         {
             skillPoints--;
-            defenseAmount++;
+            defenseLevel++;
         }
 
         defenseAmount = 1f - (defenseLevel * 0.15f);
         defenseAmount = Mathf.Max(defenseAmount, 0.1f);
+    }
+
+    //Tristan Addition - Getter for skill points to update UI
+    public int GetSkillPoints()
+    {
+        return skillPoints;
     }
 }
