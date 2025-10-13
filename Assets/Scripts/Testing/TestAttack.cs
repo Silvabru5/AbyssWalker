@@ -10,6 +10,8 @@ public class TestAttack : MonoBehaviour
     [SerializeField] private float _attackRange;
     [SerializeField] private float _attackSpeed;
     [SerializeField] private int _attackDamage;
+    [SerializeField] private int levelMultiplier;
+    [SerializeField] private float scaleFactor;
     [SerializeField] private LayerMask _enemyLayers;
     private bool isAttacking;
     float nextAttkTime = 0f;
@@ -77,7 +79,8 @@ public class TestAttack : MonoBehaviour
     
     float CalculateAttack()
     {
-        float calulatedAttack = _attackDamage * StatManager.instance.GetDamageIncrease();
+        levelMultiplier = ExperienceManager.instance.GetCurrentLevel();
+        float calulatedAttack = (_attackDamage * (1f + scaleFactor * levelMultiplier)) * StatManager.instance.GetDamageIncrease();
 
         float critRoll = Random.value;
         bool isCrit = critRoll < StatManager.instance.GetCritChance();

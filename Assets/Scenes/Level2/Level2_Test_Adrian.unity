@@ -412,6 +412,8 @@ MonoBehaviour:
   _attackRange: 0.46
   _attackSpeed: 1
   _attackDamage: 15
+  levelMultiplier: 0
+  scaleFactor: 0.05
   _enemyLayers:
     serializedVersion: 2
     m_Bits: 256

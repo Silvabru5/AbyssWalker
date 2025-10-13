@@ -8,6 +8,9 @@
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/AncientRuins/Ancient Ruins example map.tmx": {
             "scale": 0.34363281249999994,
             "selectedLayer": 0,
@@ -156,24 +159,32 @@
             "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 1180,
-                "y": 1126
+                "x": 2065,
+                "y": 1312
             }
         },
+        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/FOG.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Level1Revamp.tmx": {
-            "scale": 0.33,
-            "selectedLayer": 1,
+            "expandedObjectLayers": [
+                7
+            ],
+            "scale": 0.75,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": -72.72727272727275,
-                "y": 289.3939393939394
+                "x": 808.6666666666667,
+                "y": 578.6666666666666
             }
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Sample Map.tmx": {
-            "scale": 0.75,
-            "selectedLayer": 7,
+            "scale": 0.5,
+            "selectedLayer": 11,
             "viewCenter": {
-                "x": 580,
-                "y": 261.33333333333326
+                "x": -25,
+                "y": 250
             }
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Tilesets/Terrain - cemetery.tsx": {
@@ -181,11 +192,13 @@
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Tilesets/atlas-Props.tsx": {
             "dynamicWrapping": false,
-            "scaleInDock": 0.33
+            "scaleInDock": 0.33,
+            "scaleInEditor": 1
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Tilesets/atlas-props-sprites.tsx": {
             "dynamicWrapping": true,
-            "scaleInDock": 0.0625
+            "scaleInDock": 0.0625,
+            "scaleInEditor": 0.125
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Tilesets/fences.tsx": {
             "dynamicWrapping": false,
@@ -275,7 +288,8 @@
             }
         }
     },
-    "last.imagePath": "E:/Projects/AbyssWalker/Assets/Art/Tiled/AncientRuins/AncientArt/Tilesets/Transparency version",
+    "last.externalTilesetPath": "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor",
+    "last.imagePath": "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/Props/animated",
     "map.height": 50,
     "map.lastUsedFormat": "tmx",
     "map.width": 75,
@@ -286,18 +300,22 @@
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Level1Revamp.tmx"
     ],
     "project": "Level2Map.tiled-project",
+    "property.type": "object",
     "recentFiles": [
-        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Cemetery example map.tmx",
+        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/FOG.tsx",
+        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Tilesets/atlas-props-sprites.tsx",
+        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Tilesets/atlas-Props.tsx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Sample Map.tmx",
+        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Cemetery example map.tmx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Level1Revamp.tmx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/atlas-props.tsx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Blood pool - style2 - with spikes.tsx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Tileset-Terrain-old prison.tsx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Tileset - wall 2.tsx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Tileset - wall 1.tsx",
-        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Blood pool - style2 - with spikes - transparency.tsx",
-        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Blood pool - standard style - with spikes.tsx",
-        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/atlas-props-sprites.tsx",
-        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Blood pool - standard style - with spikes - transparency.tsx"
-    ]
+        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Blood pool - style2 - with spikes - transparency.tsx"
+    ],
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.type": 1
 }
