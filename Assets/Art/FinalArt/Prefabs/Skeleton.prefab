@@ -13,12 +13,11 @@ GameObject:
   - component: {fileID: 6306149599783660282}
   - component: {fileID: 8089249926704721071}
   - component: {fileID: 1913839946219146027}
-  - component: {fileID: 8846091775959435080}
   - component: {fileID: 7269955022104825655}
   - component: {fileID: 6325701462370481263}
   - component: {fileID: 5082512188777644342}
-  - component: {fileID: 1045865876432864809}
   - component: {fileID: 1950418637025576598}
+  - component: {fileID: 6969012092738390239}
   m_Layer: 8
   m_Name: Skeleton
   m_TagString: Enemy
@@ -94,9 +93,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: 1468124631
+  m_SortingLayer: 5
+  m_SortingOrder: 0
   m_Sprite: {fileID: -248464049575990572, guid: 710c54be24aba6c4e9328201c81dfc69, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -157,42 +156,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &8846091775959435080
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7158932129712686433}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.02559052, y: -0.022178572}
-  m_Radius: 0.5
 --- !u!114 &7269955022104825655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,8 +202,24 @@ MonoBehaviour:
   isAttacking: 0
   canAttack: 1
   isDead: 0
---- !u!61 &1045865876432864809
-BoxCollider2D:
+--- !u!114 &1950418637025576598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7158932129712686433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f5ef7758cbe17d49a09dd972b6d1743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: skeleton
+  baseExp: 0
+  enemyLevel: 0
+  growthFactor: 1.5
+--- !u!70 &6969012092738390239
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -249,7 +228,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 0c866b2626a1f594980fe70d8ce36cfa, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -273,31 +252,6 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.02559048, y: 0.000000044703484}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.09375, y: 1.25}
-    newSize: {x: 1.1569278, y: 1.3125}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.5393714, y: 0.479004}
-  m_EdgeRadius: 0
---- !u!114 &1950418637025576598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7158932129712686433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f5ef7758cbe17d49a09dd972b6d1743, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyType: skeleton
-  baseExp: 0
-  enemyLevel: 0
-  growthFactor: 1.5
+  m_Offset: {x: 0.035894353, y: -0.0042419834}
+  m_Size: {x: 0.47375703, y: 1.2584842}
+  m_Direction: 0
