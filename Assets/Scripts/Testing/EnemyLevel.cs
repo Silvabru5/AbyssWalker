@@ -18,12 +18,14 @@ public class EnemyLevel : MonoBehaviour
             "spider" => 2,
             "zombie" => 4,
             "skeleton" => 7,
+            "bat" => 5,
             _ => 1
         };
 
         //We can assign more creatures to this switch and change levels based on player.
         enemyLevel = enemyType switch
         {
+            "bat" => Mathf.Max(1, playerLevel - 2),
             "spider" => Mathf.Max(1, playerLevel - 2), // 2 levels below
             "zombie" => playerLevel,                  // same level
             "skeleton" => playerLevel + 2,            // 2 above
@@ -31,7 +33,7 @@ public class EnemyLevel : MonoBehaviour
         };
     }
 
-    public int CalculateExp()
+    public int CalculateExp() // Calculating the amount of exp distributed based on enemy type
     {
         int exp = Mathf.RoundToInt(baseExp * Mathf.Pow(growthFactor, enemyLevel - 1));
         Debug.Log($"{enemyType} (Lvl {enemyLevel}) → Base: {baseExp}, Exp: {exp}");

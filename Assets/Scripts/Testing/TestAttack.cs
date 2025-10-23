@@ -13,7 +13,7 @@ public class TestAttack : MonoBehaviour
     [SerializeField] private int levelMultiplier;
     [SerializeField] private float scaleFactor;
     [SerializeField] private LayerMask _enemyLayers;
-    private bool isAttacking;
+    private bool isAttacking = false;
     float nextAttkTime = 0f;
 
     //Player Level Variables
@@ -72,6 +72,10 @@ public class TestAttack : MonoBehaviour
             if (enemy.GetComponent<isZombie>())
             {
                 enemy.GetComponent<EnemyHealth>().TakeDamage(CalculateAttack());
+            }
+            if(enemy.GetComponent<isBat>())
+            {
+                enemy.GetComponent <EnemyHealth>().TakeDamage(CalculateAttack());
             }
         }
 

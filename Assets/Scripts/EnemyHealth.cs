@@ -10,15 +10,18 @@ public class EnemyHealth : MonoBehaviour
     private bool isDead = false; // tracks if enemy is already dead
     [HideInInspector]
     private bool isHurting = false; // tracks if enemy is currently playing hurt animation
-    private string enemyType; 
-
+    private string enemyType;
+    EnemyAI ai;
     EnemyLevel level;
+    Rigidbody2D rb;
     void Start()
     {
         level = GetComponent<EnemyLevel>();
         currentHealth = maxHealth; // set health at start
         animator = GetComponent<Animator>(); // get animator attached to this object
         enemyType = SoundManager.GetPlayerOrEnemyType(this.gameObject);
+        ai = GetComponent<EnemyAI>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
 
@@ -33,7 +36,6 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= amount;
 
         // if enemy is currently attacking, cancel the attack
-        EnemyAI ai = GetComponent<EnemyAI>();
         if (ai != null && ai.isAttacking)
         {
             ai.InterruptAttack();
@@ -70,7 +72,7 @@ public class EnemyHealth : MonoBehaviour
         }
 
         // cancel current attack (if attacking)
-        EnemyAI ai = GetComponent<EnemyAI>();
+        
         if (ai != null) ai.InterruptAttack();
 
         // wait a bit before resetting the hurt state
@@ -83,7 +85,6 @@ public class EnemyHealth : MonoBehaviour
         isHurting = false;
 
         // allow enemy to attack again if still alive
-        EnemyAI ai = GetComponent<EnemyAI>();
         if (ai != null)
         {
             ai.canAttack = true;
@@ -123,11 +124,9 @@ public class EnemyHealth : MonoBehaviour
         }
 
         // stop any enemy behavior
-        EnemyAI ai = GetComponent<EnemyAI>();
         if (ai != null) ai.enabled = false;
 
         // stop all movement
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
