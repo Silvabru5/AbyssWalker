@@ -19,6 +19,9 @@ public class EnemyLevel : MonoBehaviour
             "zombie" => 4,
             "skeleton" => 7,
             "bat" => 5,
+            "buff zombie" => 12,
+            "rust skeleton" => 18,
+            "sword skeleton" => 22,
             _ => 1
         };
 
@@ -29,6 +32,9 @@ public class EnemyLevel : MonoBehaviour
             "spider" => Mathf.Max(1, playerLevel - 2), // 2 levels below
             "zombie" => playerLevel,                  // same level
             "skeleton" => playerLevel + 2,            // 2 above
+            "buff zombie" => playerLevel + 2,            // 2 above
+            "rust skeleton" => playerLevel + 3,
+            "sword skeleton" => playerLevel + 4,
             _ => playerLevel
         };
     }

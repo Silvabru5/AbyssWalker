@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
-using static TreeEditor.TreeGroup;
+using Random = UnityEngine.Random;
 
 public class BatMovement : MonoBehaviour
 {
-    [SerializeField] private Transform _target1;
-    [SerializeField] private Transform _target2;
+    [SerializeField] private Transform[] _targets;
     [SerializeField] private Transform _enemyView;
     [SerializeField] private float _viewRange;
 
@@ -14,8 +14,8 @@ public class BatMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private LayerMask _playerLayer;
 
-    private Vector2 movePos;
-    private Vector2 endPos;
+    private Transform movePos;
+    private Transform endPos;
     private SpriteRenderer spriteRenderer;
     private float lastTValue;
     private bool isChasing;
@@ -24,12 +24,23 @@ public class BatMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        movePos = _target1.position;
-        endPos = _target2.position; 
+        //Set a random amount of movement speed so that bats do not overlap 
+        moveSpeed = Random.Range(0.05f, 0.15f);
+        // Find all points with tag "BatPoint"
+        Transform[] allPoints = GameObject.Find("Positions").GetComponentsInChildren<Transform>();
+
+        // Exclude the parent itself
+        allPoints = System.Array.FindAll(allPoints, t => t != allPoints[0]);
+
+        int pairIndex = Random.Range(0, allPoints.Length / 2);
+        movePos = allPoints[pairIndex * 2];
+        endPos = allPoints[pairIndex * 2 + 1];
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         ai = GetComponent<EnemyAI>();
 
         ai.enabled = false;
+
     }
 
     // Update is called once per frame
@@ -44,7 +55,7 @@ public class BatMovement : MonoBehaviour
         {
             // Horizontal movement using PingPong
             float t = Mathf.PingPong(Time.time * moveSpeed, 1f);
-            Vector2 basePos = Vector2.Lerp(movePos, endPos, t);
+            Vector2 basePos = Vector2.Lerp(movePos.position, endPos.position, t);
 
             // Vertical sine-wave motion
             float sineOffset = Mathf.Sin(Time.time * moveFreq) * moveAmplitude;
@@ -64,18 +75,20 @@ public class BatMovement : MonoBehaviour
     }
     void CheckForPlayer()
     {
-
+        // check if the player is in the radius
         Collider2D foundPlayer = Physics2D.OverlapCircle(_enemyView.position, _viewRange, _playerLayer);
       
         if (foundPlayer != null && foundPlayer.GetComponent<isHero>())
         {
+            //Enable AI behaviour and stop the sine wave movement
             isChasing = true;
             ai.enabled = true;
          
         }
  
     }
-    private void OnDrawGizmos()
+
+    private void OnDrawGizmos() // Drawing view to see ranges
     {
         if (_enemyView == null)
         {

@@ -77,6 +77,10 @@ public class TestAttack : MonoBehaviour
             {
                 enemy.GetComponent <EnemyHealth>().TakeDamage(CalculateAttack());
             }
+            if(enemy.GetComponent<isBuffZombie>())
+            {
+                enemy.GetComponent<EnemyHealth>().TakeDamage(CalculateAttack());
+            }
         }
 
     }     

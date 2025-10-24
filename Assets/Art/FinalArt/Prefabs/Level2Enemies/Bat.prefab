@@ -108,8 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f7af61bb6d7054c858b33ce6e6a9fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target1: {fileID: 0}
-  _target2: {fileID: 0}
+  _targets: []
   _enemyView: {fileID: 757099411836692439}
   _viewRange: 4
   moveFreq: 4
@@ -168,7 +167,7 @@ MonoBehaviour:
   enemyType: bat
   baseExp: 0
   enemyLevel: 0
-  growthFactor: 1.4
+  growthFactor: 1.15
 --- !u!58 &8120507059736386226
 CircleCollider2D:
   m_ObjectHideFlags: 0
