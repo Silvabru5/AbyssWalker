@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="70" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="40">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="70" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="47">
  <tileset firstgid="1" name="Vampire_Dungeon" tilewidth="32" tileheight="32" tilecount="399" columns="21">
   <image source="Vampie Boss Assets/ZIP FILE/The Sidescroller's Dungeon Tiles 32x32.png" trans="ff00ff" width="672" height="608"/>
  </tileset>
@@ -305,27 +305,23 @@
    <property name="collision" type="bool" value="true"/>
   </properties>
   <object id="1" x="784" y="1774" width="2" height="170"/>
-  <object id="2" x="796" y="1938" width="264" height="2"/>
-  <object id="3" x="1070" y="1948" width="24" height="10"/>
-  <object id="4" x="787.333" y="1932" width="274" height="8"/>
-  <object id="5" x="1064.33" y="1949" width="13.3333" height="9.66667"/>
-  <object id="6" x="1090.67" y="1966.67" width="13.3333" height="7.33333"/>
   <object id="7" x="782.667" y="1936.67" width="0.666667" height="1.33333"/>
-  <object id="8" x="778.667" y="1924.67" width="284" height="24.6666"/>
+  <object id="8" x="778.667" y="1930" width="284" height="19.3333"/>
   <object id="9" x="771.667" y="1763.33" width="274" height="14"/>
   <object id="11" x="1022.67" y="1698" width="16" height="72.6667"/>
   <object id="12" x="1039.33" y="1694.67" width="450" height="14.6667"/>
-  <object id="13" x="1058" y="1948.67" width="24.6667" height="14.6667"/>
-  <object id="14" x="1082.67" y="1964" width="28" height="15.3333"/>
-  <object id="15" x="1106.67" y="1964.66" width="344.667" height="19.3334"/>
-  <object id="19" x="1445.33" y="1966.67" width="14" height="14.6667"/>
-  <object id="20" x="1461.33" y="1954.67" width="26" height="16"/>
-  <object id="21" x="1487.33" y="1940.67" width="21.3333" height="14.6667"/>
+  <object id="15" x="1107.34" y="1959.99" width="344.667" height="19.3334"/>
   <object id="22" x="1509.33" y="1946" width="1.33333"/>
-  <object id="23" x="1496.67" y="1938" width="350.667" height="14"/>
+  <object id="23" x="1496.67" y="1929.33" width="350.667" height="22.6667"/>
   <object id="24" x="1833.33" y="1696" width="21.3333" height="252.667"/>
   <object id="25" x="1470" y="1694" width="383.333" height="16.6667"/>
   <object id="26" x="773.333" y="1762" width="18.6667" height="186"/>
+  <object id="45" x="1108.12" y="1961.04">
+   <polygon points="0,0 -44.7802,-31.0972 -47.303,6.47858 0,6.47858"/>
+  </object>
+  <object id="46" x="1450.16" y="1961.79">
+   <polygon points="0,0 46.4369,-32.5455 49.053,6.78031 0,6.78031"/>
+  </object>
  </objectgroup>
  <layer id="6" name="Background Assets" width="100" height="70">
   <data encoding="csv">
@@ -484,12 +480,12 @@
    </properties>
   </object>
   <object id="30" gid="88" x="1310" y="1825.33" width="32" height="32"/>
-  <object id="32" gid="87" x="1378.67" y="1888.67" width="32" height="32"/>
+  <object id="32" gid="87" x="1376.42" y="1889.67" width="32" height="32"/>
   <object id="34" gid="86" x="1344" y="1890" width="32" height="32"/>
   <object id="35" gid="86" x="1118.67" y="1890" width="32" height="32"/>
   <object id="36" gid="86" x="1217.33" y="1826.67" width="32" height="32"/>
   <object id="37" gid="88" x="1314" y="1825.33" width="32" height="32"/>
-  <object id="38" gid="88" x="1410" y="1889.33" width="32" height="32"/>
+  <object id="38" gid="88" x="1409" y="1889.58" width="32" height="32"/>
   <object id="39" gid="88" x="1184" y="1890" width="32" height="32"/>
  </objectgroup>
  <layer id="3" name="Border" width="100" height="70">

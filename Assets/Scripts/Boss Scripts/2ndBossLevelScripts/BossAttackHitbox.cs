@@ -2,12 +2,26 @@ using UnityEngine;
 
 public class BossAttackHitbox : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    [SerializeField] private int damage = 10;
+    private bool active;
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-        PlayerHitEffect player = collision.GetComponent<PlayerHitEffect>();
+        if (!active) return;
+
+        var player = other.GetComponent<PlayerSSBoss2>();
         if (player != null)
         {
-            player.TriggerBlink();
+            player.TakeDamage(damage);
+
+            // Optional blink / flash if you have PlayerHitEffect attached
+            var blink = player.GetComponent<PlayerHitEffect>();
+            if (blink != null)
+                blink.TriggerBlink();
         }
     }
+
+    // Called by animation events or boss script
+    public void ActivateHitbox() => active = true;
+    public void DeactivateHitbox() => active = false;
 }
