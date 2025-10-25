@@ -79,8 +79,8 @@ public class PauseMenu : MonoBehaviour
     {
         SoundManager.PlayBackgroundMusic(SoundTypeBackground.CHARACTER_SELECT);
         SceneLoader.instance.LoadSpecificLevel(1); // CHARACTER SELECT
-        characterSelectUI.SetActive(true);
         GameObject.Find("GameManager").GetComponent<SaveAndLoadManager>().LoadData();
+        characterSelectUI.SetActive(true);
         startMenuUI.SetActive(false);
        
     }

@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class SelectCharacter : MonoBehaviour
 {
 
+    [SerializeField] private GameObject characterSelectUI; // drag the pause menu panel from the canvas here
+
 
     //using enums to make readable and in case we  add characters later
     public enum CharacterType
@@ -79,5 +81,6 @@ public class SelectCharacter : MonoBehaviour
         //PlayerPrefs.Save(); commented out for testing purposes
 
         SceneLoader.instance.LoadSpecificLevel(2);
+        characterSelectUI.SetActive(false);
     }
 }

@@ -3,11 +3,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
+    [SerializeField] private GameObject crossfade;
     [SerializeField] private float transitionTime;
     [SerializeField] private Canvas gameCanvas;
     public static SceneLoader instance;
-    [SerializeField] Canvas canvas;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -18,15 +17,17 @@ public class SceneLoader : MonoBehaviour
     }
     void Start()
     {
+        
+       
         DontDestroyOnLoad(this.gameObject);
         DontDestroyOnLoad(gameCanvas);
-        DontDestroyOnLoad(canvas);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        
+        if (Input.GetKeyDown(KeyCode.P))
         {
             LoadNextLevel();
         }
@@ -45,7 +46,8 @@ public class SceneLoader : MonoBehaviour
     
     IEnumerator LoadLevel(int levelIndex)
     {
-        anim.SetTrigger("Start");
+        crossfade = GameObject.Find("Crossfade");
+        crossfade.GetComponent<Animator>().SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
 
