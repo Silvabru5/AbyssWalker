@@ -17,9 +17,13 @@ public class PlayerSpawner : MonoBehaviour
         {
             player = Instantiate(warriorPrefab);
         }
-        else
+        else if (selected == 1)
         {
             player = Instantiate(magePrefab);
+        }
+        else
+        {
+            player = Instantiate(warriorPrefab); // Default to warrior if invalid selection
         }
 
 

@@ -12,6 +12,12 @@ public class AimingCursor : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+
+        if (player == null)
+        player = transform; 
+
+    if (cursorMarker == null)
+        cursorMarker = transform.Find("CursorMarker"); 
     }
 
     void Update()
