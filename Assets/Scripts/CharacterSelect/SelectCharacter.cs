@@ -78,6 +78,6 @@ public class SelectCharacter : MonoBehaviour
         PlayerPrefs.SetInt("SelectedCharacter", (int)currentCharacter);
         //PlayerPrefs.Save(); commented out for testing purposes
 
-        SceneManager.LoadScene("HomeBase");
+        SceneLoader.instance.LoadSpecificLevel(2);
     }
 }

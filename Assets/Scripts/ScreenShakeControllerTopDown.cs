@@ -15,7 +15,7 @@ public class ScreenShakeControllerTopDown : MonoBehaviour
     }
     private void Start()
     {
-        player = GameObject.Find("Character");
+        player = GameObject.FindGameObjectWithTag("Player");
         source = player.GetComponent<CinemachineImpulseSource>();
     }
     private void Update()

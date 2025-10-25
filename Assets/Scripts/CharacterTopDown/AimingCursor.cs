@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class AimingCursor : MonoBehaviour
 {
-    public Transform player;         // Drag your player here
-    public Transform cursorMarker;   // Drag the crosshair/hash object
+    [SerializeField] private Transform player;         // Drag your player here
+    [SerializeField] private GameObject cursorMarker;   // Drag the crosshair/hash object
     private const float RADIUS = 3f;       // Distance from player
     private Animator animator;
 
@@ -12,15 +12,12 @@ public class AimingCursor : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        player = GetComponent<Transform>();
+        cursorMarker = GameObject.Find("Target");
 
-        if (player == null)
-        player = transform; 
+    }        
 
-    if (cursorMarker == null)
-        cursorMarker = transform.Find("CursorMarker"); 
-    }
-
-    void Update()
+    void FixedUpdate()
     {
         // Get mouse position in world space
         Vector3 mousePos = Input.mousePosition;
@@ -33,11 +30,11 @@ public class AimingCursor : MonoBehaviour
         direction = (mousePos - player.position).normalized;
 
         // Place the marker at fixed radius (constant set above)
-        cursorMarker.position = player.position + direction * RADIUS;
+        cursorMarker.transform.position = player.position + direction * RADIUS;
 
         // Rotate the target marker
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        cursorMarker.rotation = Quaternion.Euler(0, 0, angle);
+        cursorMarker.transform.rotation = Quaternion.Euler(0, 0, angle);
 
         // Rotate player to face marker
         animator.SetFloat("Vertical", direction.y);

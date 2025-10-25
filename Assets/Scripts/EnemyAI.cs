@@ -283,7 +283,7 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         // find the player in the scene (by name)
-        player = GameObject.Find("Character");
+        player = GameObject.FindWithTag("Player");
         // get all required components
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();

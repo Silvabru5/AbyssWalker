@@ -8,9 +8,11 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenuUI; // drag the pause menu panel from the canvas here
+    [SerializeField] private GameObject pauseMenuUI; // drag the pause menu panel from the canvas here
+    [SerializeField] private GameObject startMenuUI; // drag the pause menu panel from the canvas here
+    [SerializeField] private GameObject characterSelectUI; // drag the pause menu panel from the canvas here
+  
     public GameObject soundMenuUI; // drag the sound menu panel from the canvas here
-    public GameObject configManager;
     public SoundManager soundManager;
 
     private bool isPaused = false; // tracks whether the game is currently paused
@@ -76,8 +78,11 @@ public class PauseMenu : MonoBehaviour
     public void PlayGame()
     {
         SoundManager.PlayBackgroundMusic(SoundTypeBackground.CHARACTER_SELECT);
-        SceneManager.LoadScene(2); // CHARACTER SELECT
-        GameObject.Find("SaveManager").GetComponent<SaveAndLoadManager>().LoadData();
+        SceneLoader.instance.LoadSpecificLevel(1); // CHARACTER SELECT
+        characterSelectUI.SetActive(true);
+        GameObject.Find("GameManager").GetComponent<SaveAndLoadManager>().LoadData();
+        startMenuUI.SetActive(false);
+       
     }
 
     public void SoundMenu()

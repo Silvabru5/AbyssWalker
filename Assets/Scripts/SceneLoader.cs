@@ -5,10 +5,22 @@ public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private Animator anim;
     [SerializeField] private float transitionTime;
+    [SerializeField] private Canvas gameCanvas;
+    public static SceneLoader instance;
+    [SerializeField] Canvas canvas;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
     void Start()
     {
-        
+        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameCanvas);
+        DontDestroyOnLoad(canvas);
     }
 
     // Update is called once per frame
@@ -20,11 +32,17 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
-    private void LoadNextLevel()
+    public void LoadNextLevel()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
+    public void LoadSpecificLevel(int buildIndex)
+    {
+        StartCoroutine(LoadLevel(buildIndex));
+        
+    }
+    
     IEnumerator LoadLevel(int levelIndex)
     {
         anim.SetTrigger("Start");
@@ -33,4 +51,7 @@ public class SceneLoader : MonoBehaviour
 
         SceneManager.LoadScene(levelIndex);
     }
+
+ 
+
 }
