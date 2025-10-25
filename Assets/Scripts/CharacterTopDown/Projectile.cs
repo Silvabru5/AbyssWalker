@@ -17,6 +17,7 @@ public class FireboltScript : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             Destroy(gameObject);
+            // need damage code here
         }
     }
 }

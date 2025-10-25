@@ -22,7 +22,7 @@ public class OpenDoor : MonoBehaviour
         {
             col.enabled = false;
             anim.SetBool("isOpen", doorOpened);
-            
+            SoundManager.PlaySound(SoundTypeEffects.GATE_OPENING);         
         }
     }
 

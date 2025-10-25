@@ -2429,6 +2429,12 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 9d39fba2f824cf041947fee2babd7c04, type: 3}
     - {fileID: 8300000, guid: e687a099fdd32a44e9bb83c0ae468938, type: 3}
     - {fileID: 8300000, guid: 3a029cb418055ea4bb7e09db075a3f89, type: 3}
+  - type: 63
+    clips: []
+  - type: 64
+    clips: []
+  - type: 65
+    clips: []
   soundEffectsSource: {fileID: 1229714338}
 --- !u!82 &432708956
 AudioSource:
@@ -5017,11 +5023,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154133218}
   m_CullTransparentMesh: 1
---- !u!95 &1227271200 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2357102364290609902, guid: 26bffa7dfeacd2a4b94a82a0cd7bb772, type: 3}
-  m_PrefabInstance: {fileID: 4913680945952051786}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1229714337
 GameObject:
   m_ObjectHideFlags: 0
@@ -5965,7 +5966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d254b2f61b52741bb9363ab2cf2742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 1227271200}
+  crossfade: {fileID: 0}
   transitionTime: 1
   gameCanvas: {fileID: 1058103253}
 --- !u!114 &1453322962

@@ -52,6 +52,8 @@ public class MageAttack : MonoBehaviour
         //rotating projectile to match direction its going
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg; //math atan gets angled fired in radians * by Rad2Deg for degree fired
         proj.transform.rotation = Quaternion.Euler(0, 0, angle); //projectile shoots out in angle appropriate for direction aimed
+        
+        SoundManager.PlaySound(SoundTypeEffects.MAGE_ATTACK);
 
         Debug.Log("Fire bolt!!");
     }

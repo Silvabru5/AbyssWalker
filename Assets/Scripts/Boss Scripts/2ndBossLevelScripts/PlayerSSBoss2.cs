@@ -131,6 +131,7 @@ public class PlayerSSBoss2 : MonoBehaviour
         _anim.SetTrigger("Attack");
         isAttacking = true;
         _runSpeed = 0;
+        SoundManager.PlaySound(SoundTypeEffects.WARRIOR_ATTACK);
         StartCoroutine(AttackCD());
         
     }
@@ -180,11 +181,13 @@ public class PlayerSSBoss2 : MonoBehaviour
             {
                 Debug.Log("[Player] Damaging BossMonster component on: " + enemy.name);
                 bossA.TakeDamage(10f);
+                SoundManager.PlaySound(SoundTypeEffects.VAMPIRE_TAKES_DAMAGE);
             }
             else if (bossB != null)
             {
                 Debug.Log("[Player] Damaging BossMonsterDracula component on: " + enemy.name);
                 bossB.TakeDamage(10f);
+                SoundManager.PlaySound(SoundTypeEffects.VAMPIRE_TAKES_DAMAGE);
             }
             else
             {
@@ -197,6 +200,7 @@ public class PlayerSSBoss2 : MonoBehaviour
     {
         // Step 1: Play death animation and disable input
         _anim.SetTrigger("Death");
+        SoundManager.PlaySound(SoundTypeEffects.WARRIOR_DEATH);
         _runSpeed = 0;
         controller.rb.linearVelocity = new Vector2(0f, 0f);
         _gameManager.GetComponent<GameOverManager>().ShowGameOver();
@@ -221,6 +225,7 @@ public class PlayerSSBoss2 : MonoBehaviour
         }
         else
         {
+            SoundManager.PlaySound(SoundTypeEffects.WARRIOR_TAKES_DAMAGE);
             StartCoroutine(IFrames());
         }
     }
@@ -241,6 +246,7 @@ public class PlayerSSBoss2 : MonoBehaviour
         controller.rb.gravityScale = 0;
         controller.rb.linearVelocity = new Vector2(transform.localScale.x * dashingPower, 0f);
         _trailRenderer.emitting = true;
+        SoundManager.PlaySound(SoundTypeEffects.WARRIOR_DASH_PORTAL);
         yield return new WaitForSeconds(dashingTime);
 
         // Step 4: End dash and reset

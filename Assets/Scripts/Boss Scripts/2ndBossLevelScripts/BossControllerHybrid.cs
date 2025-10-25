@@ -1109,7 +1109,6 @@ public class BossControllerHybrid : MonoBehaviour
     private void TryAttack()
     {
         if (isAttacking || Time.time < lastMeleeTime + meleeCooldown) return;
-
         StartCoroutine(DoMeleeAttack());
         lastMeleeTime = Time.time;
     }
@@ -1128,6 +1127,8 @@ public class BossControllerHybrid : MonoBehaviour
 
         float attackDuration = 1.0f;
         float elapsed = 0f;
+
+        SoundManager.PlaySound(SoundTypeEffects.WARRIOR_ATTACK);
 
         while (elapsed < attackDuration)
         {

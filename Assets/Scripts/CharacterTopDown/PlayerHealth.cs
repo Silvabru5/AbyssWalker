@@ -38,17 +38,16 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth > -99999 && currentHealth <= 0)
         {
+            SoundManager.PlaySound(SoundTypeEffects.WARRIOR_DEATH);
             currentHealth = -99999; // flag to say this has already triggered - no more death sounds
             animator.SetTrigger("DeathTrigger");
-            // SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_DEATH);
 
             // SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_DEATH, 1);
             Debug.Log("Player has died.");
             StartCoroutine(DeathSequence());
         }
         else
-            Console.WriteLine("uncomment pls");
-            // SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_TAKES_DAMAGE);
+            SoundManager.PlaySound(SoundTypeEffects.WARRIOR_TAKES_DAMAGE);
     }
 
 

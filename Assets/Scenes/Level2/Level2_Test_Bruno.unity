@@ -1805,8 +1805,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1054969842}
+  startMenuUI: {fileID: 0}
+  characterSelectUI: {fileID: 0}
   soundMenuUI: {fileID: 0}
-  configManager: {fileID: 0}
   soundManager: {fileID: 0}
 --- !u!4 &668278529
 Transform:
