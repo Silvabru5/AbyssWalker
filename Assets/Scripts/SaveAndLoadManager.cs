@@ -12,6 +12,7 @@ public class CharacterData
     public int experience;
     public int skillPointsDamage;
     public int skillPointsDefense;
+    public int skillPointsHealth;
     public int skillPointsCritChance;
     public int skillPointsCritDamage;
     public int highestBossDefeated;
@@ -24,6 +25,7 @@ public class CharacterData
     private const int MAX_EXPERIENCE = 99999;
     private const int MAX_SKILL_POINTS_DAMAGE = 99;
     private const int MAX_SKILL_POINTS_DEFENSE = 99;
+    private const int MAX_SKILL_POINTS_HEALTH = 99;
     private const int MAX_SKILL_POINTS_CRIT_CHANCE = 99;
     private const int MAX_SKILL_POINTS_CRIT_DAMAGE = 99;
     private const int MAX_BOSS_LEVEL_DEFEATED = 2;
@@ -34,6 +36,7 @@ public class CharacterData
         experience = 0;
         skillPointsDamage = 0;
         skillPointsDefense = 0;
+        skillPointsHealth = 0;
         skillPointsCritChance = 0;
         skillPointsCritDamage = 0;
         highestBossDefeated = 0;
@@ -47,6 +50,7 @@ public class CharacterData
         return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"Experience={experience}," +
             $"SkillPointsDamage={skillPointsDamage}," +
             $"SkillPointsDefense={skillPointsDefense}," +
+            $"SkillPointsDefense={skillPointsHealth}," +
             $"SkillPointsCritChance={skillPointsCritChance}," +
             $"SkillPointsCritDamage={skillPointsCritDamage}," +
             $"HighestBossDefeated={highestBossDefeated}"));
@@ -82,6 +86,7 @@ public class CharacterData
             if (key == "Experience" && value > 0 && value <= MAX_EXPERIENCE) experience = value;
             else if (key == "SkillPointsDamage" && value > 0 && value <= MAX_SKILL_POINTS_DAMAGE) skillPointsDamage = value;
             else if (key == "SkillPointsDefense" && value > 0 && value <= MAX_SKILL_POINTS_DEFENSE) skillPointsDefense = value;
+            else if (key == "SkillPointsHealth" && value > 0 && value <= MAX_SKILL_POINTS_HEALTH) skillPointsDefense = value;
             else if (key == "SkillPointsCritChance" && value > 0 && value <= MAX_SKILL_POINTS_CRIT_CHANCE) skillPointsCritChance = value;
             else if (key == "SkillPointsCritDamage" && value > 0 && value <= MAX_SKILL_POINTS_CRIT_DAMAGE) skillPointsCritDamage = value;
             else if (key == "HighestBossDefeated" && value > 0 && value <= MAX_BOSS_LEVEL_DEFEATED) highestBossDefeated = value;

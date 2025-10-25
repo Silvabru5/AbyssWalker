@@ -50,6 +50,7 @@ public enum SoundTypeEffects
 public enum SoundTypeBackground
 {
     MAIN_MENU,
+    CHARACTER_SELECT,
     HOME_BASE,
     CEMETERY,
     CEMETERY_BOSS,
