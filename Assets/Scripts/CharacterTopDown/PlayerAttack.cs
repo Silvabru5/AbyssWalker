@@ -93,6 +93,6 @@ public class PlayerAttack : MonoBehaviour
 
     public void PlayScreenShake()
     {
-        ScreenShakeControllerTopDown.instance.StartShake(0.2f, 0.4f);
+        ScreenShakeControllerTopDown.instance.StartShake();
     }
 }
