@@ -124,4 +124,12 @@ public class TestAttack : MonoBehaviour
         }
         Gizmos.DrawWireSphere(_attkPnt.position, _attackRange);
     }
+
+    public void Interactable()
+    {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+
+        }
+    }
 }
