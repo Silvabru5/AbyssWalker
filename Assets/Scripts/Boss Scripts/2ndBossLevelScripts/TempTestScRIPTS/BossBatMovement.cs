@@ -37,9 +37,9 @@ public class BossBatMovement : MonoBehaviour
         endPos = allPoints[pairIndex * 2 + 1];
 
         spriteRenderer = GetComponent<SpriteRenderer>();
-        ai = GetComponent<EnemyAI>();
+        //ai = GetComponent<EnemyAI>();
 
-        ai.enabled = false;
+        //ai.enabled = false;
 
     }
 
