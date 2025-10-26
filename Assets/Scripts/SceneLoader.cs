@@ -53,7 +53,8 @@ public class SceneLoader : MonoBehaviour
 
         yield return new WaitForSeconds(transitionTime);
 
-        SceneManager.LoadScene(levelIndex);
+        // LoadSceneMode.Single ensures the old scene is removed
+        SceneManager.LoadScene(levelIndex,LoadSceneMode.Single);
     }
 
     public void LoadSpecificLevel(int buildIndex)

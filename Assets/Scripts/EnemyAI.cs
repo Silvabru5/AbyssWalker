@@ -547,17 +547,18 @@ public class EnemyAI : MonoBehaviour
     // interrupts the attack immediately (like when hit)
     public void InterruptAttack()
     {
-        isAttacking = false;
-        lockFlip = false;
-        canAttack = false;
-        animator.SetBool("isAttacking", false);
-        rb.linearVelocity = Vector2.zero;
+        // if the player was killed after this call but before it is complete, this action no longer needs to happen
+        if (player == null) return; else isAttacking = false;
+        if (player == null) return; else lockFlip = false;
+        if (player == null) return; else canAttack = false;
+        if (player == null) return; else animator.SetBool("isAttacking", false);
+        if (player == null) return; else rb.linearVelocity = Vector2.zero;
     }
 
     // flips the enemy to face the player
     void FlipTowardsPlayer()
     {
         if (player == null || lockFlip) return;
-        spriteRenderer.flipX = player.transform.position.x < transform.position.x;
+        if (player == null) return; else spriteRenderer.flipX = player.transform.position.x < transform.position.x;
     }
 }
