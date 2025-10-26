@@ -47,6 +47,7 @@ public class PlayerSSBoss2 : MonoBehaviour
         _currentHealth = _maxHealth;
         _gameManager = GameObject.Find("UIManager");
         StartCoroutine(StartTimer());
+
     }
 
     private void Update()
@@ -57,6 +58,7 @@ public class PlayerSSBoss2 : MonoBehaviour
 
         // Step 2: Handle horizontal input
         _horizontalMove = Input.GetAxisRaw("Horizontal") * _runSpeed;
+
 
         // Step 3: Handle jump input
         if (Input.GetButtonDown("Jump") && !isAttacking)
@@ -87,6 +89,7 @@ public class PlayerSSBoss2 : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         // Step 1: Skip logic if dashing, attacking, or dead
         if (isDead || isAttacking || isDashing)
             return;

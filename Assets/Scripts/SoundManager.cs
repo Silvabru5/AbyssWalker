@@ -113,12 +113,13 @@ public class SoundManager : MonoBehaviour
         // thing to try later, if playing sounds >= threshold, return without sound
 
         // look through the sound effect lists for any categories that match the one passed in and play a random one from the list
-        foreach (var entry in instance.soundEffects)
-            if (entry.type == sound && entry.clips.Length > 0) // if any match and have audio clips in them proceed, otherwise do nothing
-            {
-                instance.soundEffectsSource.PlayOneShot(entry.clips[Random.Range(0, entry.clips.Length)], volume);
-                return;
-            }
+        // temp commented by bruno uncomment if needed later
+        //foreach (var entry in instance.soundEffects)
+        //    if (entry.type == sound && entry.clips.Length > 0) // if any match and have audio clips in them proceed, otherwise do nothing
+        //    {
+        //        instance.soundEffectsSource.PlayOneShot(entry.clips[Random.Range(0, entry.clips.Length)], volume);
+        //        return;
+        //    }
     }
 
     // play a sound and wait for completion

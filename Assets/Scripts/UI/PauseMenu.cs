@@ -20,9 +20,10 @@ public class PauseMenu : MonoBehaviour
     // on load, read the values from the singleton that reads the config file and saves values into a dictionary then set the volumes
     private void Start()
     {
-        GameObject.Find("BackgroundMusic").GetComponent<AudioSource>().volume = ConfigManager.Instance.GetInt("musicVolume") / 100f;
-        GameObject.Find("SoundEffects").GetComponent<AudioSource>().volume = ConfigManager.Instance.GetInt("effectsVolume") / 100f;
-        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+        // temp commented by bruno uncomment if needed.
+        // GameObject.Find("BackgroundMusic").GetComponent<AudioSource>().volume = ConfigManager.Instance.GetInt("musicVolume") / 100f;
+        // GameObject.Find("SoundEffects").GetComponent<AudioSource>().volume = ConfigManager.Instance.GetInt("effectsVolume") / 100f;
+        // soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 
     // this checks for the escape key each frame to toggle pause

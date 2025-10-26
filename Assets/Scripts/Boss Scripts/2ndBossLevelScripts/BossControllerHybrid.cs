@@ -1,876 +1,3 @@
-
-
-////using UnityEngine;
-////using System.Collections;
-
-////public class BossControllerHybrid : MonoBehaviour
-////{
-////    [Header("Movement Settings")]
-////    public float moveSpeed = 2f;
-////    public float chaseRange = 8f;
-////    public float attackRange = 2f;
-
-////    [Header("Attack Settings")]
-////    public float meleeCooldown = 2f;
-////    public GameObject meleeHitbox;
-
-////    [Header("Jump Settings")]
-////    public float jumpForce = 10f;               // Adjust this for Dracula’s jump height
-////    public float jumpCheckDistance = 1.5f;      // How far ahead to check for walls
-////    public float groundCheckDistance = 0.2f;
-////    public LayerMask groundLayer;               // Assign to “Ground” layer in Inspector
-
-////    private bool isGrounded;
-////    private bool isJumping;
-
-////    private Transform player;
-////    private Rigidbody2D rb;
-////    private Animator anim;
-
-////    private bool facingRight = true;
-////    private bool isAttacking;
-////    private bool isMoving;
-////    private float lastMeleeTime;
-////    private float spawnDelay = 1.0f;
-////    private float spawnTimer;
-
-////    void Start()
-////    {
-////        player = GameObject.FindFirstObjectByType<PlayerSSBoss2>()?.transform;
-////        rb = GetComponent<Rigidbody2D>();
-////        anim = GetComponent<Animator>();
-////        meleeHitbox?.SetActive(false);
-////        spawnTimer = spawnDelay;
-////    }
-
-////    void Update()
-////    {
-////        if (player == null) return;
-
-////        spawnTimer -= Time.deltaTime;
-////        if (spawnTimer > 0) return;
-
-////        if (isAttacking)
-////        {
-////            rb.linearVelocity = Vector2.zero;
-////            return;
-////        }
-
-////        float distance = Vector2.Distance(transform.position, player.position);
-
-////        // Face the player
-////        if ((player.position.x > transform.position.x && !facingRight) ||
-////            (player.position.x < transform.position.x && facingRight))
-////        {
-////            Flip();
-////        }
-
-////        // Stop if too far
-////        if (distance > chaseRange)
-////        {
-////            if (!isAttacking)
-////                anim.SetBool("isMoving", false);
-
-////            rb.linearVelocity = Vector2.zero;
-////            return;
-////        }
-
-////        // Try to attack or move
-////        if (distance > attackRange)
-////        {
-////            MoveTowardPlayer();
-////        }
-////        else
-////        {
-////            TryAttack();
-////        }
-////    }
-
-////    private void MoveTowardPlayer()
-////    {
-////        isMoving = true;
-////        anim.SetBool("isMoving", true);
-
-
-////        Vector2 direction = (player.position - transform.position).normalized;
-
-////        // Handle ground + jump detection
-////        CheckGrounded();
-////        DetectAndJump(direction);
-
-////        // Move horizontally (ignore y when jumping)
-////        rb.linearVelocity = new Vector2(direction.x * moveSpeed, rb.linearVelocity.y);
-////    }
-
-////    private void CheckGrounded()
-////    {
-////        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer);
-////        isGrounded = hit.collider != null;
-////    }
-
-////    private void DetectAndJump(Vector2 direction)
-////    {
-////        // Don’t spam jump if already in air
-////        if (!isGrounded || isJumping) return;
-
-////        // Check for obstacle in front
-////        Vector2 rayDir = facingRight ? Vector2.right : Vector2.left;
-////        RaycastHit2D wallCheck = Physics2D.Raycast(transform.position, rayDir, jumpCheckDistance, groundLayer);
-
-////        // Check if player is above boss by a certain height
-////        bool playerAbove = player.position.y - transform.position.y > 1.0f;
-
-////        if (wallCheck.collider != null && playerAbove)
-////        {
-////            StartCoroutine(JumpRoutine());
-////        }
-////    }
-
-////    private IEnumerator JumpRoutine()
-////    {
-////        isJumping = true;
-////        anim.SetTrigger("jump");
-
-////        yield return new WaitForSeconds(0.05f);
-
-////        // Manual jump override (works despite 999 mass)
-////        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-
-////        // Wait until grounded again
-////        yield return new WaitUntil(() => isGrounded);
-////        isJumping = false;
-////    }
-
-////    private void TryAttack()
-////    {
-////        if (isAttacking) return;
-////        if (Time.time < lastMeleeTime + meleeCooldown) return;
-
-////        Debug.Log("Boss trying to attack");
-////        StartCoroutine(DoMeleeAttack());
-////        lastMeleeTime = Time.time;
-////    }
-
-////    private IEnumerator DoMeleeAttack()
-////    {
-////        isAttacking = true;
-////        rb.linearVelocity = Vector2.zero;
-
-////        anim.ResetTrigger("attack");
-////        anim.SetTrigger("attack");
-////        Debug.Log("Boss attack triggered");
-
-////        yield return new WaitForSeconds(0.05f);
-
-////        float attackDuration = 1.0f;
-////        float cancelDelay = 0.3f;
-////        float elapsed = 0f;
-
-////        while (elapsed < attackDuration)
-////        {
-////            rb.linearVelocity = Vector2.zero;
-
-////            float dx = Mathf.Abs(player.position.x - transform.position.x);
-////            if (elapsed > cancelDelay && dx > attackRange + 1.0f)
-////            {
-////                Debug.Log("Player escaped attack range — cancelling attack early");
-////                anim.ResetTrigger("attack");
-////                anim.SetBool("isMoving", true);
-////                isAttacking = false;
-////                anim.CrossFade("Running", 0.05f);
-////                yield break;
-////            }
-
-////            elapsed += Time.deltaTime;
-////            yield return null;
-////        }
-
-////        anim.ResetTrigger("attack");
-////        anim.SetBool("isMoving", true);
-////        isAttacking = false;
-////    }
-
-////    public void EnableHitbox()
-////    {
-////        if (meleeHitbox == null) return;
-////        var bossHitbox = meleeHitbox.GetComponent<BossAttackHitbox>();
-////        if (bossHitbox != null) bossHitbox.ActivateHitbox();
-////    }
-
-////    public void DisableHitbox()
-////    {
-////        if (meleeHitbox == null) return;
-////        var bossHitbox = meleeHitbox.GetComponent<BossAttackHitbox>();
-////        if (bossHitbox != null) bossHitbox.DeactivateHitbox();
-////    }
-
-////    private void Flip()
-////    {
-////        facingRight = !facingRight;
-////        Vector3 s = transform.localScale;
-////        s.x *= -1;
-////        transform.localScale = s;
-////    }
-////}
-////using UnityEngine;
-////using System.Collections;
-
-////public class BossControllerHybrid : MonoBehaviour
-////{
-////    [Header("Movement Settings")]
-////    public float moveSpeed = 2f;
-////    public float chaseRange = 8f;
-////    public float attackRange = 2f;
-
-////    [Header("Attack Settings")]
-////    public float meleeCooldown = 2f;
-////    public GameObject meleeHitbox;
-
-////    [Header("Jump Settings")]
-////    public float jumpForce = 10f;                 // Adjust this for Dracula’s jump height
-////    public float jumpCheckDistance = 1.5f;        // Distance to check for obstacles in front
-////    public float groundCheckDistance = 0.2f;      // Distance for checking ground under boss
-////    public float playerAboveThreshold = 1.5f;     // How much higher the player must be
-////    public float horizontalJumpRange = 3f;        // Max horizontal distance before jumping
-////    public LayerMask groundLayer;                 // Assign to “Ground” and “Platform” layers
-////    public LayerMask ceilingLayer;
-////    private bool isGrounded;
-////    private bool isJumping;
-
-////    private Transform player;
-////    private Rigidbody2D rb;
-////    private Animator anim;
-
-////    private bool facingRight = true;
-////    private bool isAttacking;
-////    private bool isMoving;
-////    private float lastMeleeTime;
-////    private float spawnDelay = 1.0f;
-////    private float spawnTimer;
-////    private Collider2D bossCollider;
-////    private Collider2D playerCollider;
-////    void Start()
-////    {
-////        //player = GameObject.FindFirstObjectByType<PlayerSSBoss2>()?.transform;
-////        //rb = GetComponent<Rigidbody2D>();
-////        //anim = GetComponent<Animator>();
-////        //meleeHitbox?.SetActive(false);
-////        //spawnTimer = spawnDelay;
-
-////        player = GameObject.FindFirstObjectByType<PlayerSSBoss2>()?.transform;
-////        rb = GetComponent<Rigidbody2D>();
-////        anim = GetComponent<Animator>();
-////        bossCollider = GetComponent<Collider2D>();
-
-////        if (player != null)
-////            playerCollider = player.GetComponent<Collider2D>();
-
-////        meleeHitbox?.SetActive(false);
-////        spawnTimer = spawnDelay;
-////    }
-
-////    void Update()
-////    {
-////        if (player == null) return;
-
-////        spawnTimer -= Time.deltaTime;
-////        if (spawnTimer > 0) return;
-
-////        if (isAttacking)
-////        {
-////            rb.linearVelocity = Vector2.zero;
-////            return;
-////        }
-
-////        float distance = Vector2.Distance(transform.position, player.position);
-
-////        // Face the player
-////        if ((player.position.x > transform.position.x && !facingRight) ||
-////            (player.position.x < transform.position.x && facingRight))
-////        {
-////            Flip();
-////        }
-
-////        // Stop if too far
-////        if (distance > chaseRange)
-////        {
-////            if (!isAttacking)
-////                anim.SetBool("isMoving", false);
-
-////            rb.linearVelocity = Vector2.zero;
-////            return;
-////        }
-
-////        // Try to attack or move
-////        if (distance > attackRange)
-////        {
-////            MoveTowardPlayer();
-////        }
-////        else
-////        {
-////            TryAttack();
-////        }
-////    }
-
-////    private void MoveTowardPlayer()
-////    {
-////        isMoving = true;
-////        anim.SetBool("isMoving", true);
-
-////        Vector2 direction = (player.position - transform.position).normalized;
-
-////        // Handle ground + jump detection
-////        CheckGrounded();
-////        DetectAndJump(direction);
-
-////        // Move horizontally (ignore y when jumping)
-////        rb.linearVelocity = new Vector2(direction.x * moveSpeed, rb.linearVelocity.y);
-////    }
-
-////    private void CheckGrounded()
-////    {
-////        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer);
-////        isGrounded = hit.collider != null;
-////    }
-
-
-
-////    private void DetectAndJump(Vector2 direction)
-////    {
-////        if (!isGrounded || isJumping) return;
-
-////        float verticalDiff = player.position.y - transform.position.y;
-////        float horizontalDiff = Mathf.Abs(player.position.x - transform.position.x);
-
-////        // Player must be somewhat above
-////        if (verticalDiff < playerAboveThreshold) return;
-
-////        // Check for headroom directly above Dracula
-////        RaycastHit2D ceilingCheck = Physics2D.Raycast(transform.position, Vector2.up, verticalDiff, groundLayer);
-
-////        if (ceilingCheck.collider != null)
-////        {
-////            // There's something blocking above — start repositioning
-////            Debug.Log("[Boss Jump] Path blocked above by: " + ceilingCheck.collider.name);
-////            StartCoroutine(RepositionForJump());
-////            return;
-////        }
-
-////        // Make sure player has ground/platform under them
-////        Vector2 playerFeet = player.position + Vector3.down * 0.5f;
-////        RaycastHit2D platformCheck = Physics2D.Raycast(playerFeet, Vector2.down, 3f, groundLayer);
-
-////        if (platformCheck.collider == null)
-////        {
-////            Debug.Log("[Boss Jump] No valid platform under player — skip jump");
-////            return;
-////        }
-
-////        // All conditions met, jump
-////        Debug.Log("[Boss Jump] Jumping toward player!");
-////        StartCoroutine(JumpRoutine());
-////    }
-
-////    private IEnumerator JumpRoutine()
-////    {
-////        isJumping = true;
-////        anim.SetTrigger("jump");
-
-////        yield return new WaitForSeconds(0.05f);
-
-////        // --- temporarily ignore collision with the player ---
-////        if (bossCollider != null && playerCollider != null)
-////        {
-////            Physics2D.IgnoreCollision(bossCollider, playerCollider, true);
-////            Debug.Log("[Boss Jump] Collision with player disabled");
-////        }
-
-////        // Apply jump velocity (diagonal if you wish)
-////        float horizontalDirection = player.position.x > transform.position.x ? 1f : -1f;
-////        float horizontalJumpForce = 4f;
-////        rb.linearVelocity = new Vector2(horizontalDirection * horizontalJumpForce, jumpForce);
-
-////        // Wait until grounded again
-////        yield return new WaitUntil(() =>
-////            Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer));
-
-////        // Re-enable collision
-////        if (bossCollider != null && playerCollider != null)
-////        {
-////            Physics2D.IgnoreCollision(bossCollider, playerCollider, false);
-////            Debug.Log("[Boss Jump] Collision with player re-enabled");
-////        }
-
-////        isJumping = false;
-////        anim.SetBool("isMoving", true);
-////        Debug.Log("[Boss Jump] Landed and resumed running");
-////    }
-
-////    private IEnumerator RepositionForJump()
-////    {
-////        isMoving = true;
-////        anim.SetBool("isMoving", true);
-
-////        // Choose a random side or the side opposite to the player’s x position
-////        float moveDir = player.position.x > transform.position.x ? -1f : 1f;
-
-////        float moveDuration = 1.0f;   // move for 1 second
-////        float timer = 0f;
-
-////        Debug.Log("[Boss AI] Repositioning sideways to find jump gap");
-
-////        while (timer < moveDuration)
-////        {
-////            rb.linearVelocity = new Vector2(moveDir * moveSpeed, rb.linearVelocity.y);
-
-////            // Check periodically if there's now room to jump
-////            RaycastHit2D ceilingCheck = Physics2D.Raycast(transform.position, Vector2.up, 2f, groundLayer);
-////            if (ceilingCheck.collider == null)
-////            {
-////                Debug.Log("[Boss AI] Found open space — jumping now!");
-////                StartCoroutine(JumpRoutine());
-////                yield break;
-////            }
-
-////            timer += Time.deltaTime;
-////            yield return null;
-////        }
-
-////        // stop moving if no gap found
-////        rb.linearVelocity = Vector2.zero;
-////        anim.SetBool("isMoving", false);
-////        Debug.Log("[Boss AI] Could not find open jump space, stopping reposition");
-////    }
-
-////    private void TryAttack()
-////    {
-////        if (isAttacking) return;
-////        if (Time.time < lastMeleeTime + meleeCooldown) return;
-
-////        Debug.Log("Boss trying to attack");
-////        StartCoroutine(DoMeleeAttack());
-////        lastMeleeTime = Time.time;
-////    }
-
-////    private IEnumerator DoMeleeAttack()
-////    {
-////        isAttacking = true;
-////        rb.linearVelocity = Vector2.zero;
-
-////        anim.ResetTrigger("attack");
-////        anim.SetTrigger("attack");
-////        Debug.Log("Boss attack triggered");
-
-////        yield return new WaitForSeconds(0.05f);
-
-////        float attackDuration = 1.0f;
-////        float cancelDelay = 0.3f;
-////        float elapsed = 0f;
-
-////        while (elapsed < attackDuration)
-////        {
-////            rb.linearVelocity = Vector2.zero;
-
-////            float dx = Mathf.Abs(player.position.x - transform.position.x);
-////            if (elapsed > cancelDelay && dx > attackRange + 1.0f)
-////            {
-////                Debug.Log("Player escaped attack range — cancelling attack early");
-////                anim.ResetTrigger("attack");
-////                anim.SetBool("isMoving", true);
-////                isAttacking = false;
-////                anim.CrossFade("Running", 0.05f);
-////                yield break;
-////            }
-
-////            elapsed += Time.deltaTime;
-////            yield return null;
-////        }
-
-////        anim.ResetTrigger("attack");
-////        anim.SetBool("isMoving", true);
-////        isAttacking = false;
-////    }
-
-////    public void EnableHitbox()
-////    {
-////        if (meleeHitbox == null) return;
-////        var bossHitbox = meleeHitbox.GetComponent<BossAttackHitbox>();
-////        if (bossHitbox != null) bossHitbox.ActivateHitbox();
-////    }
-
-////    public void DisableHitbox()
-////    {
-////        if (meleeHitbox == null) return;
-////        var bossHitbox = meleeHitbox.GetComponent<BossAttackHitbox>();
-////        if (bossHitbox != null) bossHitbox.DeactivateHitbox();
-////    }
-
-////    private void Flip()
-////    {
-////        facingRight = !facingRight;
-////        Vector3 s = transform.localScale;
-////        s.x *= -1;
-////        transform.localScale = s;
-////    }
-////}
-
-
-//using UnityEngine;
-//using System.Collections;
-
-//public class BossControllerHybrid : MonoBehaviour
-//{
-//    [Header("Movement Settings")]
-//    public float moveSpeed = 2f;
-//    public float chaseRange = 8f;
-//    public float attackRange = 2f;
-
-//    [Header("Attack Settings")]
-//    public float meleeCooldown = 2f;
-//    public GameObject meleeHitbox;
-
-//    [Header("Jump Settings")]
-//    public float jumpHeight = 3f;                 // desired jump height in world units
-//    public float horizontalJumpForce = 4f;        // side push during jump
-//    public float playerAboveThreshold = 1.5f;     // player must be this much higher
-//    public float horizontalJumpRange = 4f;        // jump only if horizontally close
-//    public float groundCheckDistance = 0.2f;      // how far down to check for ground
-//    public LayerMask groundLayer;                
-
-//    private bool isGrounded;
-//    private bool isJumping;
-//    private bool isAttacking;
-//    private bool facingRight = true;
-//    private bool isMoving;
-
-//    private Transform player;
-//    private Rigidbody2D rb;
-//    private Animator anim;
-//    private Collider2D bossCollider;
-//    private Collider2D playerCollider;
-
-//    private float lastMeleeTime;
-//    private float spawnDelay = 1.0f;
-//    private float spawnTimer;
-
-//    void Start()
-//    {
-//        player = GameObject.FindFirstObjectByType<PlayerSSBoss2>()?.transform;
-//        rb = GetComponent<Rigidbody2D>();
-//        anim = GetComponent<Animator>();
-//        bossCollider = GetComponent<Collider2D>();
-
-//        if (player != null)
-//            playerCollider = player.GetComponent<Collider2D>();
-
-//        meleeHitbox?.SetActive(false);
-//        spawnTimer = spawnDelay;
-//    }
-
-//    void Update()
-//    {
-//        if (player == null) return;
-
-//        spawnTimer -= Time.deltaTime;
-//        if (spawnTimer > 0) return;
-
-//        CheckGrounded();
-
-//        if (isAttacking)
-//        {
-//            rb.linearVelocity = Vector2.zero;
-//            return;
-//        }
-
-//        float distance = Vector2.Distance(transform.position, player.position);
-
-//        // Face the player
-//        if ((player.position.x > transform.position.x && !facingRight) ||
-//            (player.position.x < transform.position.x && facingRight))
-//            Flip();
-
-//        // Too far, idle
-//        if (distance > chaseRange)
-//        {
-//            anim.SetBool("isMoving", false);
-//            rb.linearVelocity = Vector2.zero;
-//            return;
-//        }
-
-//        // Within chase range
-//        if (distance > attackRange)
-//            HandleMovement();
-//        else
-//            TryAttack();
-//    }
-
-//    // -----------------------------------------------------------------------
-//    // MOVEMENT AND JUMPING
-//    // -----------------------------------------------------------------------
-//    private void HandleMovement()
-//    {
-//        isMoving = true;
-//        anim.SetBool("isMoving", true);
-
-//        Vector2 dir = (player.position - transform.position).normalized;
-//        rb.linearVelocity = new Vector2(dir.x * moveSpeed, rb.linearVelocity.y);
-
-//        // Jump if the player is above and reachable
-//        TryJumpToPlayer();
-//    }
-
-//    private void CheckGrounded()
-//    {
-//        isGrounded = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer);
-//        anim.SetBool("isGrounded", isGrounded);
-//    }
-
-//    private void TryJumpToPlayer()
-//    {
-//        if (!isGrounded || isJumping) return;
-
-//        float verticalDiff = player.position.y - transform.position.y;
-//        float horizontalDiff = Mathf.Abs(player.position.x - transform.position.x);
-
-//        // Player not high enough or too far horizontally
-//        if (verticalDiff < playerAboveThreshold || horizontalDiff > horizontalJumpRange)
-//            return;
-
-//        // Check if there is ground under the player (a platform)
-//        Vector2 playerFeet = player.position + Vector3.down * 0.6f;
-//        bool platformUnderPlayer = Physics2D.Raycast(playerFeet, Vector2.down, 2f, groundLayer);
-//        if (!platformUnderPlayer)
-//            return;
-
-//        // Check if there's headroom for jump
-//        bool blockedAbove = Physics2D.Raycast(transform.position, Vector2.up, 1.0f, groundLayer);
-//        if (blockedAbove)
-//        {
-//            // Try to reposition sideways before jumping
-//            StartCoroutine(RepositionThenJump());
-//            return;
-//        }
-
-//        // Jump directly if path is clear
-//        StartCoroutine(JumpRoutine());
-//    }
-
-//    private IEnumerator JumpRoutine()
-//    {
-//        isJumping = true;
-//        anim.SetTrigger("jump");
-
-//        // short delay for animation start
-//        yield return new WaitForSeconds(0.05f);
-
-//        // Compute physics-based vertical velocity
-//        float gravity = Mathf.Abs(Physics2D.gravity.y * rb.gravityScale);
-//        float verticalVelocity = Mathf.Sqrt(2 * gravity * jumpHeight);
-
-//        // Temporarily ignore collision with player
-//        if (bossCollider != null && playerCollider != null)
-//            Physics2D.IgnoreCollision(bossCollider, playerCollider, true);
-
-//        // Apply diagonal jump
-//        float horizontalDir = player.position.x > transform.position.x ? 1f : -1f;
-//        rb.linearVelocity = new Vector2(horizontalDir * horizontalJumpForce, verticalVelocity);
-
-//        // Wait until grounded again
-//        yield return new WaitUntil(() => Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer));
-
-//        // Restore collision
-//        if (bossCollider != null && playerCollider != null)
-//            Physics2D.IgnoreCollision(bossCollider, playerCollider, false);
-
-//        isJumping = false;
-//        anim.SetBool("isMoving", true);
-//    }
-
-//    // If blocked above, move sideways until open space, then jump
-//    private IEnumerator RepositionThenJump()
-//    {
-//        Debug.Log("[Boss AI] Repositioning for jump...");
-//        float side = player.position.x > transform.position.x ? -1f : 1f;
-//        float timer = 0f;
-//        float duration = 1f;
-
-//        while (timer < duration)
-//        {
-//            rb.linearVelocity = new Vector2(side * moveSpeed, rb.linearVelocity.y);
-
-//            // check if headroom opened
-//            bool blocked = Physics2D.Raycast(transform.position, Vector2.up, 1.0f, groundLayer);
-//            if (!blocked)
-//            {
-//                StartCoroutine(JumpRoutine());
-//                yield break;
-//            }
-
-//            timer += Time.deltaTime;
-//            yield return null;
-//        }
-
-//        rb.linearVelocity = Vector2.zero;
-//        anim.SetBool("isMoving", false);
-//        Debug.Log("[Boss AI] Could not find open jump space.");
-//    }
-
-//    // -----------------------------------------------------------------------
-//    // ATTACKING
-//    // -----------------------------------------------------------------------
-//    private void TryAttack()
-//    {
-//        if (isAttacking) return;
-//        if (Time.time < lastMeleeTime + meleeCooldown) return;
-
-//        StartCoroutine(DoMeleeAttack());
-//        lastMeleeTime = Time.time;
-//    }
-
-//    private IEnumerator DoMeleeAttack()
-//    {
-//        isAttacking = true;
-//        rb.linearVelocity = Vector2.zero;
-
-//        anim.ResetTrigger("attack");
-//        anim.SetTrigger("attack");
-
-//        yield return new WaitForSeconds(0.05f);
-
-//        float attackDuration = 1.0f;
-//        float elapsed = 0f;
-
-//        while (elapsed < attackDuration)
-//        {
-//            rb.linearVelocity = Vector2.zero;
-//            float dx = Mathf.Abs(player.position.x - transform.position.x);
-
-//            // Cancel attack if player moved out of range
-//            if (dx > attackRange + 1.0f)
-//            {
-//                anim.SetBool("isMoving", true);
-//                isAttacking = false;
-//                anim.CrossFade("Running", 0.05f);
-//                yield break;
-//            }
-
-//            elapsed += Time.deltaTime;
-//            yield return null;
-//        }
-
-//        anim.SetBool("isMoving", true);
-//        isAttacking = false;
-//    }
-
-//    // -----------------------------------------------------------------------
-//    // HITBOX
-//    // -----------------------------------------------------------------------
-//    public void EnableHitbox()
-//    {
-//        if (meleeHitbox == null) return;
-//        meleeHitbox.GetComponent<BossAttackHitbox>()?.ActivateHitbox();
-//    }
-
-//    public void DisableHitbox()
-//    {
-//        if (meleeHitbox == null) return;
-//        meleeHitbox.GetComponent<BossAttackHitbox>()?.DeactivateHitbox();
-//    }
-//    private void OnCollisionEnter2D(Collision2D collision)
-//    {
-//        var player = collision.collider.GetComponent<PlayerSSBoss2>();
-//        if (player == null) return;
-
-//        // Check if player is above boss (landing on head)
-//        foreach (ContactPoint2D contact in collision.contacts)
-//        {
-//            if (contact.point.y > transform.position.y + 1.0f)
-//            {
-//                Debug.Log("[Boss] Player landed on head – deal damage!");
-//                // player.TakeDamage(1);
-//                // Optional bounce-back
-//                Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-//                if (rb != null)
-//                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, 8f);
-//                break;
-//            }
-//        }
-//    }
-//    // -----------------------------------------------------------------------
-//    // UTILS
-//    // -----------------------------------------------------------------------
-//    private void Flip()
-//    {
-//        facingRight = !facingRight;
-//        Vector3 s = transform.localScale;
-//        s.x *= -1;
-//        transform.localScale = s;
-//    }
-
-//    // -----------------------------------------------------------------------
-//    // DEBUG GIZMOS
-//    // -----------------------------------------------------------------------
-//    private void OnDrawGizmos()
-//    {
-//        if (!Application.isPlaying) return;
-
-//        // Colors
-
-
-
-
-//        Color groundColor = Color.green;
-//        Color headColor = Color.red;
-//        Color playerColor = Color.cyan;
-//        Color jumpColor = Color.yellow;
-
-//        // === Ground Check Ray ===
-//        Gizmos.color = groundColor;
-//        Gizmos.DrawLine(transform.position,
-//                        transform.position + Vector3.down * groundCheckDistance);
-
-//        // === Headroom Check Ray ===
-//        Gizmos.color = headColor;
-//        Gizmos.DrawLine(transform.position,
-//                        transform.position + Vector3.up * 1.0f);
-
-//        // === Player Feet Ray (for platform detection) ===
-//        if (player != null)
-//        {
-//            Vector2 playerFeet = player.position + Vector3.down * 0.6f;
-//            Gizmos.color = playerColor;
-//            Gizmos.DrawLine(playerFeet,
-//                            playerFeet + Vector2.down * 2f);
-
-//            // Draw height and horizontal relation lines
-//            Gizmos.color = jumpColor;
-//            Gizmos.DrawLine(transform.position, player.position);
-//        }
-
-//        // === Optional: Show jump trajectory ===
-//        if (isJumping)
-//        {
-//            Vector3 start = transform.position;
-//            Vector3 velocity = rb.linearVelocity;
-//            Vector3 gravity = Physics2D.gravity * rb.gravityScale;
-
-//            Gizmos.color = new Color(1f, 0.5f, 0f, 0.7f); // orange arc
-
-//            // Simulate a few frames of jump path
-//            Vector3 pos = start;
-//            for (int i = 0; i < 20; i++)
-//            {
-//                Vector3 next = pos + velocity * 0.05f + 0.5f * gravity * 0.05f * 0.05f;
-//                Gizmos.DrawLine(pos, next);
-//                pos = next;
-//                velocity += gravity * 0.05f;
-//            }
-//        }
-//    }
-
-//}
-
-
 using UnityEngine;
 using System.Collections;
 
@@ -918,12 +45,30 @@ public class BossControllerHybrid : MonoBehaviour
 
     [Tooltip("Layer mask used for detecting ground/platform surfaces.")]
     public LayerMask groundLayer;
+    [Header("Jump Tuning")]
+    [SerializeField] private float minHorizontalForJump = 0.9f;   // how far left/right from Dracula before a jump is allowed
+    [SerializeField] private float jumpAnticipation = 0.08f;       // small wind-up before jump
+    [SerializeField] private float maxRepositionTime = 0.5f;       // how long to sidestep before giving up and jumping
+    [SerializeField] private float jumpCooldown = 1.0f;            // seconds between jumps
+    [SerializeField] private BossPlatformZone platformZone; // where both must be inside to allow jumping up
+    [SerializeField] private BossPlatformZone dropZone; // where player-only triggers “drop down”
+                                                        
+    [SerializeField] private float stuckTimeThreshold = 1.5f;  // Time boss must be stuck before picking a new direction
+    [SerializeField] private float ledgeCheckLength = 1.0f;    // How far ahead to check for a ledge
+    [SerializeField] private float dropSpeed = -8f;            // Vertical speed when dropping
 
+    // Add these new fields at the top of your class
+    [SerializeField] private float ledgeCheckDistance = 1.5f;
+    [SerializeField] private float ledgeCheckOffset = 0.6f;
 
     private bool isGrounded;
     private bool isJumping;
     private bool isAttacking;
     private bool facingRight = true;
+    private bool isDead = false;
+    // Debug tracking of zone flags to log only on changes
+    private bool lastSeenPlayerInZone = false;
+    private bool lastSeenBossInZone = false;
 
     private Transform player;
     private Rigidbody2D rb;
@@ -934,7 +79,8 @@ public class BossControllerHybrid : MonoBehaviour
     private float lastMeleeTime;
     private float spawnDelay = 1.0f;
     private float spawnTimer;
-
+    private float lastJumpTime = 0f;
+    
 
 
     private void Start()
@@ -946,18 +92,42 @@ public class BossControllerHybrid : MonoBehaviour
 
         if (player != null)
             playerCollider = player.GetComponent<Collider2D>();
-
+        
+        if (platformZone == null)
+            Debug.LogWarning("[Boss] platformZone reference is NULL. Boss will not be able to enforce zone-based jumping.");
+        else
+            Debug.Log("[Boss] platformZone hooked up: " + platformZone.name);
+        
         meleeHitbox?.SetActive(false);
         spawnTimer = spawnDelay;
     }
 
+    private void TraceZoneFlagsChange()
+    {
+        if (platformZone == null) return;
+
+        if (platformZone.playerInZone != lastSeenPlayerInZone)
+        {
+            Debug.Log("[Boss] Zone flag change: playerInZone=" + platformZone.playerInZone);
+            lastSeenPlayerInZone = platformZone.playerInZone;
+        }
+
+        if (platformZone.bossInZone != lastSeenBossInZone)
+        {
+            Debug.Log("[Boss] Zone flag change: bossInZone=" + platformZone.bossInZone);
+            lastSeenBossInZone = platformZone.bossInZone;
+        }
+    }
 
     private void Update()
     {
+        if (isDead) return;
         if (player == null) return;
 
         spawnTimer -= Time.deltaTime;
         if (spawnTimer > 0) return;
+        // track zone flag transitions
+        TraceZoneFlagsChange();
 
         CheckGrounded();
 
@@ -994,8 +164,24 @@ public class BossControllerHybrid : MonoBehaviour
     // Handles basic horizontal chasing movement and jump logic.
     private void HandleMovement()
     {
-        anim.SetBool("isMoving", true);
+        // Prevent moving if player is directly above with no platform path
+        float verticalDiff = player.position.y - transform.position.y;
+        if (verticalDiff > playerAboveThreshold)
+        {
+            // Check if there’s no nearby slope or stair to climb
+            bool wallAhead = Physics2D.Raycast(transform.position, facingRight ? Vector2.right : Vector2.left, 0.8f, groundLayer);
+            if (wallAhead)
+            {
+                rb.linearVelocity = Vector2.zero;
+                anim.SetBool("isMoving", false);
+                return;
+            }
+        }
 
+        if (meleeHitbox.activeSelf)
+            DisableHitbox();
+        
+        anim.SetBool("isMoving", true);
         Vector2 dir = (player.position - transform.position).normalized;
         rb.linearVelocity = new Vector2(dir.x * moveSpeed, rb.linearVelocity.y);
 
@@ -1010,96 +196,119 @@ public class BossControllerHybrid : MonoBehaviour
     }
 
 
-    // Attempts to jump toward the player if they are above and reachable.
-
     private void TryJumpToPlayer()
     {
-        if (!isGrounded || isJumping) return;
-
-        float verticalDiff = player.position.y - transform.position.y;
-        float horizontalDiff = Mathf.Abs(player.position.x - transform.position.x);
-
-        // Player not high enough or too far horizontally
-        if (verticalDiff < playerAboveThreshold || horizontalDiff > horizontalJumpRange)
+        if (!isGrounded || isJumping || isAttacking || isDead)
             return;
 
-        // Ensure the player is standing on a valid platform
-        Vector2 playerFeet = player.position + Vector3.down * 0.6f;
-        bool platformUnderPlayer = Physics2D.Raycast(playerFeet, Vector2.down, 2f, groundLayer);
-        if (!platformUnderPlayer)
-            return;
+        float vDiff = player.position.y - transform.position.y;
+        float hDiff = Mathf.Abs(player.position.x - transform.position.x);
+        bool playerRight = player.position.x > transform.position.x;
 
-        // Check headroom
-        bool blockedAbove = Physics2D.Raycast(transform.position, Vector2.up, 1.0f, groundLayer);
-        if (blockedAbove)
+        bool jzP = platformZone != null && platformZone.playerInZone;
+        bool jzB = platformZone != null && platformZone.bossInZone;
+        bool dzP = dropZone != null && dropZone.playerInZone;
+        bool dzB = dropZone != null && dropZone.bossInZone;
+
+        Debug.Log($"[BossZones] jumpZone(P,B)=({jzP},{jzB}) dropZone(P,B)=({dzP},{dzB}) vDiff={vDiff:F2} hDiff={hDiff:F2}");
+
+
+
+        // JUMP UP 
+        if (platformZone != null && jzP && jzB)
         {
-            StartCoroutine(RepositionThenJump());
-            return;
-        }
+            // Only jump if player is above and within horizontal reach
+            if (vDiff > playerAboveThreshold && hDiff < horizontalJumpRange)
+            {
+                if (Time.time - lastJumpTime < jumpCooldown)
+                    return;
 
-        StartCoroutine(JumpRoutine());
+                // Prevent jumping directly under player
+                if (hDiff < 0.8f)
+                {
+                    float side = playerRight ? -1f : 1f;
+                    Debug.Log("[BossJump] Player above & too close — sidestep instead of jump.");
+                    rb.linearVelocity = new Vector2(side * moveSpeed * 0.6f, rb.linearVelocity.y);
+                    return;
+                }
+
+                Vector2 _;
+                if (IsPlatformAboveReachable(out _))
+                {
+                    Debug.Log("[BossJump] Both in jump zone — jumping toward player/platform.");
+                    StartCoroutine(JumpRoutine());
+                    lastJumpTime = Time.time;
+                    return;
+                }
+                else
+                {
+                    Debug.Log("[BossJump] Platform above not detected — skipping jump.");
+                }
+            }
+        }
+        // DEFAULT CHASE
+        rb.linearVelocity = new Vector2((playerRight ? 1 : -1) * moveSpeed, rb.linearVelocity.y);
+        Debug.Log("[BossChase] Normal chase.");
     }
 
     // Executes the jump toward the player's platform.
-
     private IEnumerator JumpRoutine()
     {
         isJumping = true;
-        // add when i figure out how to fix animation
-        //anim.SetTrigger("jump");
+        anim.SetBool("isMoving", false);
+        rb.linearVelocity = Vector2.zero;
 
-        yield return new WaitForSeconds(0.05f);
+        // Re-validate zone right before takeoff
+        if (platformZone != null && (!platformZone.playerInZone || !platformZone.bossInZone))
+        {
+            Debug.Log("[BossJump] Abort at takeoff: zone invalid now. playerInZone=" + platformZone.playerInZone + ", bossInZone=" + platformZone.bossInZone);
+            isJumping = false;
+            anim.SetBool("isMoving", true);
+            yield break;
+        }
 
-        // Compute velocity from desired jump height
+        yield return new WaitForSeconds(0.15f);
+
+        // One more guard before the actual impulse
+        if (platformZone != null && (!platformZone.playerInZone || !platformZone.bossInZone))
+        {
+            Debug.Log("[BossJump] Abort right before impulse: zone invalid. playerInZone=" + platformZone.playerInZone + ", bossInZone=" + platformZone.bossInZone);
+            isJumping = false;
+            anim.SetBool("isMoving", true);
+            yield break;
+        }
+
         float gravity = Mathf.Abs(Physics2D.gravity.y * rb.gravityScale);
         float verticalVelocity = Mathf.Sqrt(2 * gravity * jumpHeight);
-
-        // Temporarily disable collision with player to avoid bumping
-        if (bossCollider && playerCollider)
-            Physics2D.IgnoreCollision(bossCollider, playerCollider, true);
-
-        // Launch diagonally toward the player
         float dirX = player.position.x > transform.position.x ? 1f : -1f;
+
         rb.linearVelocity = new Vector2(dirX * horizontalJumpForce, verticalVelocity);
+        Debug.Log("[BossJump] Jump started. vel=" + rb.linearVelocity + " time=" + Time.time.ToString("F2"));
 
-        // Wait until boss lands
         yield return new WaitUntil(() => Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer));
-
-        // Restore collision
-        if (bossCollider && playerCollider)
-            Physics2D.IgnoreCollision(bossCollider, playerCollider, false);
 
         isJumping = false;
         anim.SetBool("isMoving", true);
+        Debug.Log("[BossJump] Landed. time=" + Time.time.ToString("F2"));
     }
 
-    // If there's no space above, moves sideways until clear, then jumps.
 
-    private IEnumerator RepositionThenJump()
+    // Detect if the player is above and reachable via platform
+    private bool IsPlatformAboveReachable(out Vector2 platformPos)
     {
-        Debug.Log("[Boss AI] Repositioning to find jump space...");
-        float sideDir = player.position.x > transform.position.x ? -1f : 1f;
-        float timer = 0f;
-        const float duration = 1f;
+        platformPos = Vector2.zero;
 
-        while (timer < duration)
+        // Cast upward to detect a ground layer (a platform) above
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, jumpHeight * 2f, groundLayer);
+
+        if (hit.collider != null)
         {
-            rb.linearVelocity = new Vector2(sideDir * moveSpeed, rb.linearVelocity.y);
-
-            bool blocked = Physics2D.Raycast(transform.position, Vector2.up, 1.0f, groundLayer);
-            if (!blocked)
-            {
-                StartCoroutine(JumpRoutine());
-                yield break;
-            }
-
-            timer += Time.deltaTime;
-            yield return null;
+            platformPos = hit.point;
+            Debug.Log("[Boss] Found platform above at " + platformPos);
+            return true;
         }
 
-        rb.linearVelocity = Vector2.zero;
-        anim.SetBool("isMoving", false);
-        Debug.Log("[Boss AI] Could not find clear jump path.");
+        return false;
     }
 
 
@@ -1113,8 +322,8 @@ public class BossControllerHybrid : MonoBehaviour
         lastMeleeTime = Time.time;
     }
 
-    // Handles the melee attack coroutine.
 
+    // Handles the melee attack coroutine 
     private IEnumerator DoMeleeAttack()
     {
         isAttacking = true;
@@ -1123,46 +332,93 @@ public class BossControllerHybrid : MonoBehaviour
         anim.ResetTrigger("attack");
         anim.SetTrigger("attack");
 
-        yield return new WaitForSeconds(0.05f);
+        // Safety: always disable before enabling (prevents leftover states)
+        DisableHitbox();
 
-        float attackDuration = 1.0f;
+        yield return new WaitForSeconds(0.1f); // short wind-up before hit
+
+        // Enable hitbox during the swing
+        EnableHitbox();
+
+        float attackDuration = 0.8f;   // total time the swing is active
+        float cancelDistance = attackRange + 1.0f; // distance at which boss cancels attack
         float elapsed = 0f;
-
-        SoundManager.PlaySound(SoundTypeEffects.WARRIOR_ATTACK);
 
         while (elapsed < attackDuration)
         {
-            rb.linearVelocity = Vector2.zero;
+            // Cancel attack if player moves too far away
             float dx = Mathf.Abs(player.position.x - transform.position.x);
-
-            // Cancel attack if player moves out of range
-            if (dx > attackRange + 1.0f)
+            if (dx > cancelDistance)
             {
+                
+                DisableHitbox();
+
+                // Force cancel attack animation immediately
+                anim.ResetTrigger("attack");
+                anim.Play("Boss_Idle", 0, 0f); // change "Idle" to the name of your movement or idle anim
+                rb.linearVelocity = Vector2.zero;
                 anim.SetBool("isMoving", true);
+
                 isAttacking = false;
-                anim.CrossFade("Running", 0.05f);
-                yield break;
+                yield break; // stop attack early
             }
+
+            // Keep boss frozen while attacking
+            rb.linearVelocity = Vector2.zero;
 
             elapsed += Time.deltaTime;
             yield return null;
         }
 
+        // Attack finished normally
+        DisableHitbox();
+
+        // Return to moving/chasing animation
+        anim.ResetTrigger("attack");
+        anim.Play("Boss_Idle", 0, 0f); // change "Idle" if your move anim has a different name
         anim.SetBool("isMoving", true);
+        rb.linearVelocity = Vector2.zero;
+
         isAttacking = false;
     }
 
 
+
+
     public void EnableHitbox()
     {
-        meleeHitbox?.GetComponent<BossAttackHitbox>()?.ActivateHitbox();
+        if (meleeHitbox != null)
+        {
+            meleeHitbox.SetActive(true); // make object visible/active in hierarchy
+            meleeHitbox.GetComponent<BossAttackHitbox>()?.ActivateHitbox();
+            
+        }
     }
 
     public void DisableHitbox()
     {
-        meleeHitbox?.GetComponent<BossAttackHitbox>()?.DeactivateHitbox();
+        if (meleeHitbox != null)
+        {
+            meleeHitbox.GetComponent<BossAttackHitbox>()?.DeactivateHitbox();
+            meleeHitbox.SetActive(false);
+           
+        }
     }
 
+
+    public void OnDeath()
+    {
+        isDead = true;
+        isAttacking = false;
+        rb.linearVelocity = Vector2.zero;
+        DisableHitbox();
+
+        anim.ResetTrigger("attack");
+        anim.SetBool("isMoving", false);
+        anim.Play("Death", 0, 0f);
+        enabled = false;
+
+    }
 
 
 
@@ -1172,6 +428,19 @@ public class BossControllerHybrid : MonoBehaviour
         Vector3 s = transform.localScale;
         s.x *= -1;
         transform.localScale = s;
+        // Adjust hitbox side when flipping
+        UpdateHitboxDirection();
+    }
+
+
+    private void UpdateHitboxDirection()
+    {
+        if (meleeHitbox == null) return;
+
+        // Assume the hitbox starts on the right side of Dracula by default
+        Vector3 pos = meleeHitbox.transform.localPosition;
+        pos.x = Mathf.Abs(pos.x) * (facingRight ? 1 : -1);
+        meleeHitbox.transform.localPosition = pos;
     }
 }
 
