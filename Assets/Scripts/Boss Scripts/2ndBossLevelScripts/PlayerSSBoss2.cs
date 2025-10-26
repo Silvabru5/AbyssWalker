@@ -2,72 +2,79 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+// handles player control, movement, combat, and health during the dracula boss fight
 public class PlayerSSBoss2 : MonoBehaviour
 {
-    [SerializeField] private CharacterController2DBoss controller;
-    [SerializeField] private float _horizontalMove = 0;
-    [SerializeField] private float _runSpeed = 10f; 
-    [SerializeField] private Animator _anim;
-    private Collider2D _collider;
-    private Rigidbody2D _rb;
-    private bool jump = false;
+    [Header("movement settings")]
+    [SerializeField] private CharacterController2DBoss controller; // reference to custom character controller
+    [SerializeField] private float _runSpeed = 10f;                // player run speed
+    private float _horizontalMove = 0f;                            // current horizontal input
+    private bool jump = false;                                     // jump flag
 
-    [SerializeField] private Transform _attkPnt;
-    [SerializeField] private float _attackRange = 0.75f;
-    [SerializeField] private float _attackSpeed = 2f;
-    [SerializeField] private float _attackDamage = 30f;
-    [SerializeField] private LayerMask _enemyLayers;
-    private bool isAttacking = false;
-    private float nextAttkTime = 0f;
+    [Header("animation and physics")]
+    [SerializeField] private Animator _anim;                       // animator reference
+    private Collider2D _collider;                                  // collider reference
+    private Rigidbody2D _rb;                                       // rigidbody reference
+    private SpriteRenderer _spriteRenderer;                        // sprite renderer reference
 
-    [SerializeField] private TrailRenderer _trailRenderer;
-    [SerializeField] private float dashingPower = 10f;
-    private bool canDash = true;
-    private bool isDashing;
-    private float dashingTime = 0.2f;
-    private float dashingCooldown = 1f;
+    [Header("attack settings")]
+    [SerializeField] private Transform _attkPnt;                   // attack point transform
+    [SerializeField] private float _attackRange = 0.75f;           // radius of attack range
+    [SerializeField] private float _attackSpeed = 2f;              // attack speed (attacks per second)
+    [SerializeField] private float _attackDamage = 30f;            // attack damage amount
+    [SerializeField] private LayerMask _enemyLayers;               // layers the player can attack
+    private bool isAttacking = false;                              // attack flag
+    private float nextAttkTime = 0f;                               // cooldown timer
 
-    [SerializeField] private float _maxHealth = 100f;
-    [SerializeField] private float _currentHealth = 0f;
-    [SerializeField] private float iFrameDuration = 1.5f;
-    [SerializeField] private float blinkDuration = 0.1f;
-    private bool isDead = false;
-    private bool iFrame = false;
-    private SpriteRenderer _spriteRenderer;
+    [Header("dash settings")]
+    [SerializeField] private TrailRenderer _trailRenderer;         // trail renderer for dash effect
+    [SerializeField] private float dashingPower = 10f;             // dash force
+    private bool canDash = true;                                   // dash availability flag
+    private bool isDashing;                                        // dash state flag
+    private float dashingTime = 0.2f;                              // duration of dash
+    private float dashingCooldown = 1f;                            // dash cooldown delay
 
-    private GameObject _gameManager;
+    [Header("health settings")]
+    [SerializeField] private float _maxHealth = 100f;              // maximum player health
+    [SerializeField] private float _currentHealth = 0f;            // current health
+    [SerializeField] private float iFrameDuration = 1.5f;          // invulnerability duration after damage
+    [SerializeField] private float blinkDuration = 0.1f;           // blink rate while invulnerable
+    private bool isDead = false;                                   // death flag
+    private bool iFrame = false;                                   // invulnerability flag
+
+    [Header("ui and game references")]
+    private GameObject _gameManager;                               // ui manager reference
 
     private void Start()
     {
-        // Step 1: Initialize references and variables
+        // initialize core components
         _anim = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
         _rb = GetComponent<Rigidbody2D>();
         _currentHealth = _maxHealth;
         _gameManager = GameObject.Find("UIManager");
-        StartCoroutine(StartTimer());
 
+        // short intro recovery animation before control starts
+        StartCoroutine(StartTimer());
     }
 
     private void Update()
     {
-        // Step 1: Skip logic if dead or dashing
-        if (isDead || isDashing)
-            return;
+        // skip input handling when dead or dashing
+        if (isDead || isDashing) return;
 
-        // Step 2: Handle horizontal input
+        // handle horizontal input
         _horizontalMove = Input.GetAxisRaw("Horizontal") * _runSpeed;
 
-
-        // Step 3: Handle jump input
+        // handle jump input
         if (Input.GetButtonDown("Jump") && !isAttacking)
         {
             jump = true;
             _anim.SetTrigger("Jump");
         }
 
-        // Step 4: Handle attack input
+        // handle attack input with cooldown
         if (Time.time >= nextAttkTime)
         {
             if (Input.GetButtonDown("Fire1") && controller.m_Grounded)
@@ -79,7 +86,7 @@ public class PlayerSSBoss2 : MonoBehaviour
             }
         }
 
-        // Step 5: Handle dash input
+        // handle dash input
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             _anim.SetTrigger("Dash");
@@ -89,30 +96,29 @@ public class PlayerSSBoss2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        // Step 1: Skip logic if dashing, attacking, or dead
+        // skip movement logic if dead, attacking, or dashing
         if (isDead || isAttacking || isDashing)
             return;
 
-        // Step 2: Handle movement and slope correction
+        // apply input-based movement
         PlayerInput();
 
-        // Step 3: Prevent small sliding on slopes
+        // correct for slope sliding when idle
         HandleSlopeSliding();
     }
 
     private void PlayerInput()
     {
-        // Step 1: Handle animation state
+        // set animation based on movement state
         if (_horizontalMove != 0)
-            _anim.SetInteger("AnimState", 2);
+            _anim.SetInteger("AnimState", 2); // moving
         else
-            _anim.SetInteger("AnimState", 0);
+            _anim.SetInteger("AnimState", 0); // idle
 
-        // Step 2: Apply movement
+        // convert movement input to fixed delta movement
         float moveInput = _horizontalMove * Time.fixedDeltaTime;
 
-        // Step 3: Add slope compensation boost
+        // apply small ground boost for smoother control
         if (controller.m_Grounded)
             moveInput *= 1.3f;
 
@@ -122,105 +128,73 @@ public class PlayerSSBoss2 : MonoBehaviour
 
     private void HandleSlopeSliding()
     {
-        // Step 1: Stop micro-sliding when idle on slopes
+        // stops unwanted sliding when standing still on slopes
         if (controller.m_Grounded && Mathf.Abs(_rb.linearVelocity.x) < 0.05f)
             _rb.linearVelocity = new Vector2(0f, _rb.linearVelocity.y);
     }
 
     private void Attack()
     {
-        
-        // Step 1: Play animation and set flags
+        // triggers attack animation and locks movement
         _anim.SetTrigger("Attack");
         isAttacking = true;
-        _runSpeed = 0;
+        _runSpeed = 0f;
+
         SoundManager.PlaySound(SoundTypeEffects.WARRIOR_ATTACK);
         StartCoroutine(AttackCD());
-        
     }
 
-    //private void DealDamage()
-    //{
-    //    Debug.Log("[Player] DealDamage() called!");
-    //    // Step 1: Detect enemies in range
-    //    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attkPnt.position, _attackRange, _enemyLayers);
-    //    Debug.Log("[Player] HitEnemies count: " + hitEnemies.Length);
-        
-
-    //    // Step 2: Apply damage to each target type
-    //    foreach (Collider2D enemy in hitEnemies)
-    //    {
-    //        if (!enemy.gameObject.activeInHierarchy)
-    //            continue;
-
-    //        BossMonster dracula = enemy.GetComponent<BossMonster>();
-    //        if (dracula != null)
-    //        {
-    //            dracula.TakeDamage(10f); // Dracula loses 10 HP per hit
-    //            Debug.Log("Hit Dracula! HP reduced by 10");
-    //        }
-    //    }
-    //}
     private void DealDamage()
     {
-        Debug.Log("[Player] DealDamage() called!");
-
-        // Step 1: Find all enemies in range
+        // detects and damages all enemies in attack range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attkPnt.position, _attackRange, _enemyLayers);
-        Debug.Log("[Player] HitEnemies count: " + hitEnemies.Length);
 
         foreach (Collider2D enemy in hitEnemies)
         {
             if (!enemy.gameObject.activeInHierarchy)
                 continue;
 
-            Debug.Log("[Player] Found collider: " + enemy.name);
-
-            // Step 2: Try to get any boss-type component
-            var bossA = enemy.GetComponent<BossMonster>();
-            var bossB = enemy.GetComponent<BossMonsterDracula>();
+            // attempt to find valid boss scripts on the enemy
+            var bossA = enemy.GetComponent<BossMonster>() ?? enemy.GetComponentInParent<BossMonster>();
+            var bossB = enemy.GetComponent<BossMonsterDracula>() ?? enemy.GetComponentInParent<BossMonsterDracula>();
 
             if (bossA != null)
             {
-                Debug.Log("[Player] Damaging BossMonster component on: " + enemy.name);
-                bossA.TakeDamage(10f);
+                bossA.TakeDamage(_attackDamage);
                 SoundManager.PlaySound(SoundTypeEffects.VAMPIRE_TAKES_DAMAGE);
             }
             else if (bossB != null)
             {
-                Debug.Log("[Player] Damaging BossMonsterDracula component on: " + enemy.name);
-                bossB.TakeDamage(10f);
+                bossB.TakeDamage(_attackDamage);
                 SoundManager.PlaySound(SoundTypeEffects.VAMPIRE_TAKES_DAMAGE);
-            }
-            else
-            {
-                Debug.LogWarning("[Player] Enemy in range but no boss script found: " + enemy.name);
             }
         }
     }
 
     private void Dead()
     {
-        // Step 1: Play death animation and disable input
+        // plays death animation and stops all control
         _anim.SetTrigger("Death");
         SoundManager.PlaySound(SoundTypeEffects.WARRIOR_DEATH);
-        _runSpeed = 0;
-        controller.rb.linearVelocity = new Vector2(0f, 0f);
+        _runSpeed = 0f;
+        controller.rb.linearVelocity = Vector2.zero;
+
+        // shows game over screen via manager
         _gameManager.GetComponent<GameOverManager>().ShowGameOver();
         canDash = false;
     }
 
     public void TakeDamage(float damage)
     {
-        // Step 1: Handle invulnerability
+        // prevents repeated damage during invulnerability
         if (iFrame)
             return;
 
-        // Step 2: Apply damage
+        // apply damage and trigger hurt animation
         _currentHealth -= damage;
         _anim.SetTrigger("Hurt");
 
-        // Step 3: Handle death
+        // if health is depleted, trigger death
         if (_currentHealth <= 0)
         {
             isDead = true;
@@ -235,37 +209,39 @@ public class PlayerSSBoss2 : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        // Step 1: Set dash flags
+        // starts dash movement and temporary invulnerability
         canDash = false;
         isDashing = true;
         isAttacking = true;
         iFrame = true;
 
-        // Step 2: Disable collider during dash
         _collider.enabled = false;
 
-        // Step 3: Perform dash
+        // apply dash force
         float originalGravity = controller.rb.gravityScale;
         controller.rb.gravityScale = 0;
         controller.rb.linearVelocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+
         _trailRenderer.emitting = true;
         SoundManager.PlaySound(SoundTypeEffects.WARRIOR_DASH_PORTAL);
+
         yield return new WaitForSeconds(dashingTime);
 
-        // Step 4: End dash and reset
+        // stop dash and reset state
         _trailRenderer.emitting = false;
         controller.rb.gravityScale = originalGravity;
         isDashing = false;
         isAttacking = false;
         iFrame = false;
         _collider.enabled = true;
+
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }
 
     private IEnumerator AttackCD()
     {
-        // Step 1: Wait and restore run speed
+        // small delay after attack before resuming movement
         yield return new WaitForSeconds(0.67f);
         _runSpeed = 10f;
         isAttacking = false;
@@ -273,7 +249,7 @@ public class PlayerSSBoss2 : MonoBehaviour
 
     private IEnumerator IFrames()
     {
-        // Step 1: Blink and disable damage for a short time
+        // temporary invulnerability with sprite blinking
         iFrame = true;
         float elapsedTime = 0f;
 
@@ -290,7 +266,7 @@ public class PlayerSSBoss2 : MonoBehaviour
 
     private IEnumerator StartTimer()
     {
-        // Step 1: Small delay at start before player can move
+        // small startup recovery animation before control resumes
         isDead = true;
         _anim.SetTrigger("Recover");
         yield return new WaitForSeconds(1f);
@@ -299,15 +275,14 @@ public class PlayerSSBoss2 : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        // Step 1: Draw attack range gizmo
-        if (_attkPnt == null)
-            return;
+        // draws attack radius in editor for clarity
+        if (_attkPnt == null) return;
         Gizmos.DrawWireSphere(_attkPnt.position, _attackRange);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Step 1: Take damage on enemy or fire collision
+        // checks for collisions with enemies or hazards
         if (collision.gameObject.GetComponent<isEnemy>())
         {
             if (!iFrame)

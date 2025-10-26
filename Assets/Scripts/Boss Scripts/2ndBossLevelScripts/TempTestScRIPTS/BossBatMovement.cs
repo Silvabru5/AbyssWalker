@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BatMovement : MonoBehaviour
+public class BossBatMovement : MonoBehaviour
 {
     [SerializeField] private Transform[] _targets;
     [SerializeField] private Transform _enemyView;
@@ -77,15 +77,15 @@ public class BatMovement : MonoBehaviour
     {
         // check if the player is in the radius
         Collider2D foundPlayer = Physics2D.OverlapCircle(_enemyView.position, _viewRange, _playerLayer);
-      
+
         if (foundPlayer != null && foundPlayer.GetComponent<isHero>())
         {
             //Enable AI behaviour and stop the sine wave movement
             isChasing = true;
             ai.enabled = true;
-         
+
         }
- 
+
     }
 
     //private void OnDrawGizmos() // Drawing view to see ranges

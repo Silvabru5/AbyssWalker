@@ -1,120 +1,156 @@
 using System.Collections;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class BossMonsterDracula : MonoBehaviour
 {
-    [Header("Health Settings")]
-    [SerializeField] private float maxHealth = 100f;
-    [SerializeField] private float currentHealth;
-    private bool isDead;
+    [Header("health settings")]
+    [SerializeField] private float maxHealth = 100f;       // maximum health value for the boss
+    [SerializeField] private float currentHealth;          // current health value that changes during the fight
+    private bool isDead;                                   // flag to prevent multiple deaths
 
-    [Header("References")]
-    [SerializeField] private Animator animator;
-    [SerializeField] private Collider2D bossCollider;
-    [SerializeField] private HealthBar healthBar; // Custom HealthBar script
-    [SerializeField] private TextMeshProUGUI percentText; // MainBoss Text (TMP)
-    [SerializeField] private GameObject returnPortal;
-    void Start()
+    [Header("references")]
+    [SerializeField] private Animator animator;            // reference to the animator controlling animations
+    [SerializeField] private Collider2D bossCollider;      // boss collider for hit detection
+    [SerializeField] private HealthBar healthBar;          // ui health bar that displays boss health
+    [SerializeField] private TextMeshProUGUI percentText;  // ui text showing health percentage
+    [SerializeField] private GameObject returnPortal;      // portal object that activates after death
+
+    private void Start()
     {
+        // get component references if not already assigned
         if (animator == null) animator = GetComponent<Animator>();
         if (bossCollider == null) bossCollider = GetComponent<Collider2D>();
 
+        // set health to full at start
         currentHealth = maxHealth;
+
+        // set up the health bar and display initial values
         healthBar.SetMaxHealth(maxHealth);
         UpdateHealthUI();
     }
 
-    // Called when the player deals damage
+    // called whenever the boss takes damage from the player
+    //public void TakeDamage(float damage)
+    //{
+    //    // ignore any hits if already dead
+    //    if (isDead) return;
+
+    //    // subtract damage and make sure it stays within valid range
+    //    currentHealth -= damage;
+    //    currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+    //    // update ui elements to reflect new health
+    //    healthBar.SetHealth(currentHealth);
+    //    UpdateHealthUI();
+
+    //    // if boss still has health, play hit animation
+    //    if (currentHealth > 0)
+    //    {
+    //        animator.SetTrigger("Hit");
+    //    }
+    //    else
+    //    {
+    //        // if health reaches zero or less, start death process
+    //        Die();
+    //    }
+    //}
+    private IEnumerator EnableControllerAfterHit()
+    {
+        yield return new WaitForSeconds(0.6f); // length of hit animation
+        var controller = GetComponent<BossControllerHybrid>();
+        if (controller != null)
+            controller.enabled = true;
+    }
     public void TakeDamage(float damage)
     {
-        Debug.Log("[Boss] TakeDamage called! Damage: " + damage);
+        // ignore any hits if already dead
         if (isDead) return;
 
+        // subtract damage and make sure it stays within valid range
         currentHealth -= damage;
-        Debug.Log("[Boss] New HP: " + currentHealth);
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        // Update visuals
+        // update ui elements to reflect new health
         healthBar.SetHealth(currentHealth);
         UpdateHealthUI();
 
-        // Play hit animation
-        animator.SetTrigger("Hit");
-
-        // Check for death
-        if (currentHealth <= 0)
+        // if boss still has health, play hit animation
+        if (currentHealth > 0)
         {
+            // temporarily disable controller to prevent run/attack cancelling the hit animation
+            var controller = GetComponent<BossControllerHybrid>();
+            if (controller != null)
+                controller.enabled = false;
+
+            // reset and trigger the hit animation
+            animator.ResetTrigger("Hit");
+            animator.SetTrigger("Hit");
+
+            // re-enable controller after the hit animation finishes
+            StartCoroutine(EnableControllerAfterHit());
+        }
+        else
+        {
+            // if health reaches zero or less, start death process
             Die();
         }
     }
 
+    // updates the on-screen text to show current health percentage
     private void UpdateHealthUI()
     {
-        float percent = (currentHealth / maxHealth) * 100f;
-        percent = Mathf.Max(0, percent);
+        float percent = (currentHealth / maxHealth) * 100f; // calculate percentage
+        percent = Mathf.Max(0, percent);                    // ensure it doesn’t go below 0
+
         if (percentText != null)
-            percentText.text = percent.ToString("F1") + "%";
+            percentText.text = percent.ToString("F1") + "%"; // display value with one decimal place
     }
 
-
+    // handles all logic when the boss dies
     private void Die()
     {
+        // prevent multiple death triggers
         if (isDead) return;
         isDead = true;
 
-        Debug.Log("[Boss] Dracula Die() called!");
-
-        // Disable movement and physics
-        if (TryGetComponent<Rigidbody2D>(out var rb))
-        {
-            rb.linearVelocity = Vector2.zero;
-            rb.gravityScale = 0f;
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        }
-
-        if (bossCollider != null)
-            bossCollider.enabled = false;
-
-        // Tell controller to stop chasing and attacking
+        // disable boss ai movement logic
         var controller = GetComponent<BossControllerHybrid>();
         if (controller != null)
-            controller.OnDeath();
+            controller.enabled = false;
 
-        // Play the Death animation once
-        if (animator != null)
+        // stop all physics movement and freeze body in place
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
         {
-            animator.ResetTrigger("Hit");
-            animator.SetTrigger("Die");
-            Debug.Log("[Boss] Animator Trigger 'Die' set!");
+            rb.linearVelocity = Vector2.zero;              // stop moving
+            rb.gravityScale = 0f;                          // prevent falling
+            rb.constraints = RigidbodyConstraints2D.FreezeAll; // lock body
         }
 
+        // play death animation
+        if (animator != null)
+        {
+            animator.ResetTrigger("Hit");                  // clear any hit triggers
+            animator.SetTrigger("die");                    // play death animation
+        }
+
+        // start coroutine to wait for animation and cleanup
         StartCoroutine(DeathSequence());
     }
 
-
+    // waits for death animation to finish before activating portal and destroying boss
     private IEnumerator DeathSequence()
     {
-        Debug.Log("[Boss] Waiting for death animation...");
-        yield return new WaitForSeconds(4.3f); // your Death animation length
+        // wait for the length of the death animation
+        yield return new WaitForSeconds(4.3f);
 
-        // Activate portal after animation finishes
+        // enable the portal so the player can interact with it
         if (returnPortal != null)
-        {
             returnPortal.SetActive(true);
-            Debug.Log("[Boss] Portal activated!");
-        }
-        else
-        {
-            Debug.LogWarning("[Boss] Portal reference missing in Inspector!");
-        }
 
-        // Wait a short moment before removing the boss
-        yield return new WaitForSeconds(1f);
-        Debug.Log("[Boss] Destroying Dracula after death animation.");
+        // wait a bit before removing the boss from the scene
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
-
 }

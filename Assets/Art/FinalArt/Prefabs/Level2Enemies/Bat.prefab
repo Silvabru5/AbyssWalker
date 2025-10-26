@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5316647978930090877}
   - component: {fileID: 9048802420598685393}
   - component: {fileID: 8000236175050288172}
+  - component: {fileID: 8463966256554749862}
   m_Layer: 8
   m_Name: Bat
   m_TagString: Untagged
@@ -241,6 +242,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 103a744a91ce4cd49bab3e47c73713d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8463966256554749862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2985498443253108819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f7af61bb6d7054c858b33ce6e6a9fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targets: []
+  _enemyView: {fileID: 757099411836692439}
+  _viewRange: 4
+  moveFreq: 1
+  moveAmplitude: 1
+  moveSpeed: 0.15
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &7351216278746391142
 GameObject:
   m_ObjectHideFlags: 0
