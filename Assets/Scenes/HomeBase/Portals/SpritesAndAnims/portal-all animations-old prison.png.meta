@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2f0059b7dfcf1514ca32c5fa323eab72
+guid: 9fc5394ce8f4b7740970ed6575d99c9c
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -138,7 +138,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -159,36 +159,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -209,32 +183,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -242,12 +190,12 @@ TextureImporter:
       name: portal-all animations-old prison_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 585
-        width: 243
-        height: 182
+        x: 0
+        y: 576
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -264,12 +212,12 @@ TextureImporter:
       name: portal-all animations-old prison_1
       rect:
         serializedVersion: 2
-        x: 315
-        y: 585
-        width: 243
-        height: 182
+        x: 288
+        y: 576
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -286,12 +234,12 @@ TextureImporter:
       name: portal-all animations-old prison_2
       rect:
         serializedVersion: 2
-        x: 603
-        y: 585
-        width: 243
-        height: 182
+        x: 576
+        y: 576
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -308,12 +256,12 @@ TextureImporter:
       name: portal-all animations-old prison_3
       rect:
         serializedVersion: 2
-        x: 891
-        y: 585
-        width: 243
-        height: 182
+        x: 864
+        y: 576
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -330,12 +278,12 @@ TextureImporter:
       name: portal-all animations-old prison_4
       rect:
         serializedVersion: 2
-        x: 1179
-        y: 585
-        width: 243
-        height: 182
+        x: 1152
+        y: 576
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -352,12 +300,12 @@ TextureImporter:
       name: portal-all animations-old prison_5
       rect:
         serializedVersion: 2
-        x: 1467
-        y: 585
-        width: 243
-        height: 182
+        x: 1440
+        y: 576
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -374,12 +322,12 @@ TextureImporter:
       name: portal-all animations-old prison_6
       rect:
         serializedVersion: 2
-        x: 1755
-        y: 585
-        width: 243
-        height: 182
+        x: 1728
+        y: 576
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -396,12 +344,12 @@ TextureImporter:
       name: portal-all animations-old prison_7
       rect:
         serializedVersion: 2
-        x: 2043
-        y: 585
-        width: 243
-        height: 182
+        x: 2016
+        y: 576
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -418,12 +366,12 @@ TextureImporter:
       name: portal-all animations-old prison_8
       rect:
         serializedVersion: 2
-        x: 27
-        y: 393
-        width: 243
-        height: 182
+        x: 0
+        y: 384
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -440,12 +388,12 @@ TextureImporter:
       name: portal-all animations-old prison_9
       rect:
         serializedVersion: 2
-        x: 315
-        y: 393
-        width: 243
-        height: 182
+        x: 288
+        y: 384
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -462,12 +410,12 @@ TextureImporter:
       name: portal-all animations-old prison_10
       rect:
         serializedVersion: 2
-        x: 603
-        y: 393
-        width: 243
-        height: 182
+        x: 576
+        y: 384
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -484,12 +432,12 @@ TextureImporter:
       name: portal-all animations-old prison_11
       rect:
         serializedVersion: 2
-        x: 891
-        y: 393
-        width: 243
-        height: 182
+        x: 864
+        y: 384
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -506,12 +454,12 @@ TextureImporter:
       name: portal-all animations-old prison_12
       rect:
         serializedVersion: 2
-        x: 1179
-        y: 393
-        width: 243
-        height: 182
+        x: 1152
+        y: 384
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -528,12 +476,12 @@ TextureImporter:
       name: portal-all animations-old prison_13
       rect:
         serializedVersion: 2
-        x: 1467
-        y: 393
-        width: 243
-        height: 182
+        x: 1440
+        y: 384
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -550,12 +498,12 @@ TextureImporter:
       name: portal-all animations-old prison_14
       rect:
         serializedVersion: 2
-        x: 1755
-        y: 393
-        width: 243
-        height: 182
+        x: 1728
+        y: 384
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -572,12 +520,12 @@ TextureImporter:
       name: portal-all animations-old prison_15
       rect:
         serializedVersion: 2
-        x: 2043
-        y: 393
-        width: 243
-        height: 182
+        x: 2016
+        y: 384
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -594,12 +542,12 @@ TextureImporter:
       name: portal-all animations-old prison_16
       rect:
         serializedVersion: 2
-        x: 27
-        y: 201
-        width: 243
-        height: 182
+        x: 0
+        y: 192
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -616,12 +564,12 @@ TextureImporter:
       name: portal-all animations-old prison_17
       rect:
         serializedVersion: 2
-        x: 315
-        y: 201
-        width: 243
-        height: 182
+        x: 288
+        y: 192
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -638,12 +586,12 @@ TextureImporter:
       name: portal-all animations-old prison_18
       rect:
         serializedVersion: 2
-        x: 603
-        y: 201
-        width: 243
-        height: 182
+        x: 576
+        y: 192
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -660,12 +608,12 @@ TextureImporter:
       name: portal-all animations-old prison_19
       rect:
         serializedVersion: 2
-        x: 891
-        y: 201
-        width: 243
-        height: 182
+        x: 864
+        y: 192
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -682,12 +630,12 @@ TextureImporter:
       name: portal-all animations-old prison_20
       rect:
         serializedVersion: 2
-        x: 1179
-        y: 201
-        width: 243
-        height: 182
+        x: 1152
+        y: 192
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -704,12 +652,12 @@ TextureImporter:
       name: portal-all animations-old prison_21
       rect:
         serializedVersion: 2
-        x: 1467
-        y: 201
-        width: 243
-        height: 182
+        x: 1440
+        y: 192
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -726,12 +674,12 @@ TextureImporter:
       name: portal-all animations-old prison_22
       rect:
         serializedVersion: 2
-        x: 1755
-        y: 201
-        width: 243
-        height: 182
+        x: 1728
+        y: 192
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -748,12 +696,12 @@ TextureImporter:
       name: portal-all animations-old prison_23
       rect:
         serializedVersion: 2
-        x: 2043
-        y: 201
-        width: 243
-        height: 182
+        x: 2016
+        y: 192
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -770,12 +718,12 @@ TextureImporter:
       name: portal-all animations-old prison_24
       rect:
         serializedVersion: 2
-        x: 27
-        y: 9
-        width: 243
-        height: 182
+        x: 0
+        y: 0
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -792,12 +740,12 @@ TextureImporter:
       name: portal-all animations-old prison_25
       rect:
         serializedVersion: 2
-        x: 315
-        y: 9
-        width: 243
-        height: 182
+        x: 288
+        y: 0
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -814,12 +762,12 @@ TextureImporter:
       name: portal-all animations-old prison_26
       rect:
         serializedVersion: 2
-        x: 603
-        y: 9
-        width: 243
-        height: 182
+        x: 576
+        y: 0
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -836,12 +784,12 @@ TextureImporter:
       name: portal-all animations-old prison_27
       rect:
         serializedVersion: 2
-        x: 891
-        y: 9
-        width: 243
-        height: 182
+        x: 864
+        y: 0
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -858,12 +806,12 @@ TextureImporter:
       name: portal-all animations-old prison_28
       rect:
         serializedVersion: 2
-        x: 1179
-        y: 9
-        width: 243
-        height: 182
+        x: 1152
+        y: 0
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -880,12 +828,12 @@ TextureImporter:
       name: portal-all animations-old prison_29
       rect:
         serializedVersion: 2
-        x: 1467
-        y: 9
-        width: 243
-        height: 182
+        x: 1440
+        y: 0
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -902,7 +850,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 12a7e2f7698f7364ba90e9089b354271
+    spriteID: 4c1dc66b7766550418ead90276f6a091
     internalID: 0
     vertices: []
     indices: 

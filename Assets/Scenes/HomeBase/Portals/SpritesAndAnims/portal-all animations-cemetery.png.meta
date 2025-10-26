@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6a94c688b895188498cd094609d43a89
+guid: 2fb9bd48e11cfb0408d479eb9a5a9d12
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -138,7 +138,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -159,36 +159,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -209,32 +183,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -242,20 +190,20 @@ TextureImporter:
       name: portal-all animations-cemetery_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 585
-        width: 243
-        height: 182
+        x: 0
+        y: 576
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4d37c79dd377c7f70800000000000000
-      internalID: 9186348447454491604
+      spriteID: c6986e0c2af100447861d7217a83ac04
+      internalID: -506611478
       vertices: []
       indices: 
       edges: []
@@ -264,20 +212,20 @@ TextureImporter:
       name: portal-all animations-cemetery_1
       rect:
         serializedVersion: 2
-        x: 315
-        y: 585
-        width: 243
-        height: 182
+        x: 288
+        y: 576
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 73dca12a660e771d0800000000000000
-      internalID: -3352964666143093449
+      spriteID: 9f8488d828922234dbbe072786e61eb7
+      internalID: -982800154
       vertices: []
       indices: 
       edges: []
@@ -286,20 +234,20 @@ TextureImporter:
       name: portal-all animations-cemetery_2
       rect:
         serializedVersion: 2
-        x: 603
-        y: 585
-        width: 243
-        height: 182
+        x: 576
+        y: 576
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fa0af7f167a07dfe0800000000000000
-      internalID: -1164450476201107281
+      spriteID: dd188fc52554756459add9796d85a677
+      internalID: -2031527068
       vertices: []
       indices: 
       edges: []
@@ -308,20 +256,20 @@ TextureImporter:
       name: portal-all animations-cemetery_3
       rect:
         serializedVersion: 2
-        x: 891
-        y: 585
-        width: 243
-        height: 182
+        x: 864
+        y: 576
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e07b0716044c7c290800000000000000
-      internalID: -7870106043014924530
+      spriteID: 93fbbd0dcf4fda64aa62650137e13f5b
+      internalID: 109223632
       vertices: []
       indices: 
       edges: []
@@ -330,20 +278,20 @@ TextureImporter:
       name: portal-all animations-cemetery_4
       rect:
         serializedVersion: 2
-        x: 1179
-        y: 585
-        width: 243
-        height: 182
+        x: 1152
+        y: 576
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 15309cb692bcbab70800000000000000
-      internalID: 8911439666445091665
+      spriteID: 868f00a2ecaebbe4ea5179066122e816
+      internalID: 568928758
       vertices: []
       indices: 
       edges: []
@@ -352,20 +300,20 @@ TextureImporter:
       name: portal-all animations-cemetery_5
       rect:
         serializedVersion: 2
-        x: 1467
-        y: 585
-        width: 243
-        height: 182
+        x: 1440
+        y: 576
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1334a42dc88281c10800000000000000
-      internalID: 2024412617791652657
+      spriteID: ccf1ae0abcdeb8549bf9d23dcc391415
+      internalID: 975598246
       vertices: []
       indices: 
       edges: []
@@ -374,20 +322,20 @@ TextureImporter:
       name: portal-all animations-cemetery_6
       rect:
         serializedVersion: 2
-        x: 1755
-        y: 585
-        width: 243
-        height: 182
+        x: 1728
+        y: 576
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: adf8eb3db5bc988f0800000000000000
-      internalID: -537675085239119910
+      spriteID: a72003b642950e541b488dc7ff9cc584
+      internalID: -1506151780
       vertices: []
       indices: 
       edges: []
@@ -396,20 +344,20 @@ TextureImporter:
       name: portal-all animations-cemetery_7
       rect:
         serializedVersion: 2
-        x: 2043
-        y: 585
-        width: 243
-        height: 182
+        x: 2016
+        y: 576
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4edf4567e90d1a610800000000000000
-      internalID: 1630813919093521892
+      spriteID: 9eff8e98aa867aa4689b4853a728bcce
+      internalID: 584653707
       vertices: []
       indices: 
       edges: []
@@ -418,20 +366,20 @@ TextureImporter:
       name: portal-all animations-cemetery_8
       rect:
         serializedVersion: 2
-        x: 27
-        y: 393
-        width: 243
-        height: 182
+        x: 0
+        y: 384
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: abc96b0b57965c460800000000000000
-      internalID: 7261325928401640634
+      spriteID: cebcc04466eb8fd4ba54319d5319fb96
+      internalID: 1817982352
       vertices: []
       indices: 
       edges: []
@@ -440,20 +388,20 @@ TextureImporter:
       name: portal-all animations-cemetery_9
       rect:
         serializedVersion: 2
-        x: 315
-        y: 393
-        width: 243
-        height: 182
+        x: 288
+        y: 384
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 547496eb556ee4fc0800000000000000
-      internalID: -3508613803733858491
+      spriteID: a46bc4a21f091104e837c8b875f385ae
+      internalID: 1191896594
       vertices: []
       indices: 
       edges: []
@@ -462,20 +410,20 @@ TextureImporter:
       name: portal-all animations-cemetery_10
       rect:
         serializedVersion: 2
-        x: 603
-        y: 393
-        width: 243
-        height: 182
+        x: 576
+        y: 384
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8937fbcb2235d73d0800000000000000
-      internalID: -3207315950957268072
+      spriteID: 1d3224ce78b3fa34dbf2af73757ee7bd
+      internalID: -14578060
       vertices: []
       indices: 
       edges: []
@@ -484,20 +432,20 @@ TextureImporter:
       name: portal-all animations-cemetery_11
       rect:
         serializedVersion: 2
-        x: 891
-        y: 393
-        width: 243
-        height: 182
+        x: 864
+        y: 384
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e50667e3a0db9a5f0800000000000000
-      internalID: -744856411657838498
+      spriteID: 52fc2bc012d68d141b34654cd8850ccd
+      internalID: 443548720
       vertices: []
       indices: 
       edges: []
@@ -506,20 +454,20 @@ TextureImporter:
       name: portal-all animations-cemetery_12
       rect:
         serializedVersion: 2
-        x: 1179
-        y: 393
-        width: 243
-        height: 182
+        x: 1152
+        y: 384
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1543e4e91b65925c0800000000000000
-      internalID: -4239762253327485871
+      spriteID: b9c41748961512942b6fc7e005eb13a1
+      internalID: 1488370380
       vertices: []
       indices: 
       edges: []
@@ -528,20 +476,20 @@ TextureImporter:
       name: portal-all animations-cemetery_13
       rect:
         serializedVersion: 2
-        x: 1467
-        y: 393
-        width: 243
-        height: 182
+        x: 1440
+        y: 384
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3c576b59251d2bd80800000000000000
-      internalID: -8236290615877929533
+      spriteID: 1c29fcc07279791468402d3cb3f173d9
+      internalID: -960705361
       vertices: []
       indices: 
       edges: []
@@ -550,20 +498,20 @@ TextureImporter:
       name: portal-all animations-cemetery_14
       rect:
         serializedVersion: 2
-        x: 1755
-        y: 393
-        width: 243
-        height: 182
+        x: 1728
+        y: 384
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7452df7198d6857c0800000000000000
-      internalID: -4082392626630941369
+      spriteID: 7269487aad78f3d40ab3f27213d7f509
+      internalID: -305761256
       vertices: []
       indices: 
       edges: []
@@ -572,20 +520,20 @@ TextureImporter:
       name: portal-all animations-cemetery_15
       rect:
         serializedVersion: 2
-        x: 2043
-        y: 393
-        width: 243
-        height: 182
+        x: 2016
+        y: 384
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a8255b26be33fdcd0800000000000000
-      internalID: -2531247379492547958
+      spriteID: ae270245b79b5c840a545e4747861f77
+      internalID: 1975448149
       vertices: []
       indices: 
       edges: []
@@ -594,20 +542,20 @@ TextureImporter:
       name: portal-all animations-cemetery_16
       rect:
         serializedVersion: 2
-        x: 27
-        y: 201
-        width: 243
-        height: 182
+        x: 0
+        y: 192
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e24baa6dc71dceb30800000000000000
-      internalID: 4318056476849124398
+      spriteID: 606e349e6fbfe784ca89bd87fd30195f
+      internalID: -1116543813
       vertices: []
       indices: 
       edges: []
@@ -616,20 +564,20 @@ TextureImporter:
       name: portal-all animations-cemetery_17
       rect:
         serializedVersion: 2
-        x: 315
-        y: 201
-        width: 243
-        height: 182
+        x: 288
+        y: 192
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1d300e6506c9ec160800000000000000
-      internalID: 7047742404469720017
+      spriteID: c388d42f23af19e45b7887e8d83a032f
+      internalID: -81509254
       vertices: []
       indices: 
       edges: []
@@ -638,20 +586,20 @@ TextureImporter:
       name: portal-all animations-cemetery_18
       rect:
         serializedVersion: 2
-        x: 603
-        y: 201
-        width: 243
-        height: 182
+        x: 576
+        y: 192
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5b7df69241d6f9a80800000000000000
-      internalID: -8457921641816533067
+      spriteID: 3efb283e760821c4e9b2d53d9965b0e1
+      internalID: 711669247
       vertices: []
       indices: 
       edges: []
@@ -660,20 +608,20 @@ TextureImporter:
       name: portal-all animations-cemetery_19
       rect:
         serializedVersion: 2
-        x: 891
-        y: 201
-        width: 243
-        height: 182
+        x: 864
+        y: 192
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d1c1cd192ac9d0530800000000000000
-      internalID: 3822883880753175581
+      spriteID: d47f1dca89757804c99188e2274c149b
+      internalID: 1674953311
       vertices: []
       indices: 
       edges: []
@@ -682,20 +630,20 @@ TextureImporter:
       name: portal-all animations-cemetery_20
       rect:
         serializedVersion: 2
-        x: 1179
-        y: 201
-        width: 243
-        height: 182
+        x: 1152
+        y: 192
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b88d14e1b30c28cc0800000000000000
-      internalID: -3710191782856632181
+      spriteID: 2184968e3bc1c7241ad1e4f252ca9808
+      internalID: 439980657
       vertices: []
       indices: 
       edges: []
@@ -704,20 +652,20 @@ TextureImporter:
       name: portal-all animations-cemetery_21
       rect:
         serializedVersion: 2
-        x: 1467
-        y: 201
-        width: 243
-        height: 182
+        x: 1440
+        y: 192
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0924db56c10726540800000000000000
-      internalID: 4999681803602969232
+      spriteID: af0993fffaaad574eada5adda845ded5
+      internalID: 116622945
       vertices: []
       indices: 
       edges: []
@@ -726,20 +674,20 @@ TextureImporter:
       name: portal-all animations-cemetery_22
       rect:
         serializedVersion: 2
-        x: 1755
-        y: 201
-        width: 243
-        height: 182
+        x: 1728
+        y: 192
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5d501f5af732f3960800000000000000
-      internalID: 7583819328667059669
+      spriteID: 0a2c17d7e4a86f643a370721c99527b8
+      internalID: -934496595
       vertices: []
       indices: 
       edges: []
@@ -748,20 +696,20 @@ TextureImporter:
       name: portal-all animations-cemetery_23
       rect:
         serializedVersion: 2
-        x: 2043
-        y: 201
-        width: 243
-        height: 182
+        x: 2016
+        y: 192
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4276f9c7f1f3aaf30800000000000000
-      internalID: 4587548574897628964
+      spriteID: 6a64fa769a809b1469c44c5f6f0dcbc5
+      internalID: 1762241503
       vertices: []
       indices: 
       edges: []
@@ -770,20 +718,20 @@ TextureImporter:
       name: portal-all animations-cemetery_24
       rect:
         serializedVersion: 2
-        x: 27
-        y: 9
-        width: 243
-        height: 182
+        x: 0
+        y: 0
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d5328294bb4a628b0800000000000000
-      internalID: -5177269597322599587
+      spriteID: 01073ecbb0974f343846158a13472040
+      internalID: 590560093
       vertices: []
       indices: 
       edges: []
@@ -792,20 +740,20 @@ TextureImporter:
       name: portal-all animations-cemetery_25
       rect:
         serializedVersion: 2
-        x: 315
-        y: 9
-        width: 243
-        height: 182
+        x: 288
+        y: 0
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ddf68008befe6fb80800000000000000
-      internalID: -8361231863422357539
+      spriteID: c5258c1982df4ca469a79d835d2474e0
+      internalID: -1081229969
       vertices: []
       indices: 
       edges: []
@@ -814,20 +762,20 @@ TextureImporter:
       name: portal-all animations-cemetery_26
       rect:
         serializedVersion: 2
-        x: 603
-        y: 9
-        width: 243
-        height: 182
+        x: 576
+        y: 0
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 6a569ee618de79840800000000000000
-      internalID: 5230910632381474214
+      spriteID: c0a89b01534c04b4a85fb6513f2e7212
+      internalID: 1304993632
       vertices: []
       indices: 
       edges: []
@@ -836,20 +784,20 @@ TextureImporter:
       name: portal-all animations-cemetery_27
       rect:
         serializedVersion: 2
-        x: 891
-        y: 9
-        width: 243
-        height: 182
+        x: 864
+        y: 0
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e44aa2b73fed355a0800000000000000
-      internalID: -6533633497059646386
+      spriteID: 9f63b230a618c9c48bec5b3a568b2994
+      internalID: -469833702
       vertices: []
       indices: 
       edges: []
@@ -858,20 +806,20 @@ TextureImporter:
       name: portal-all animations-cemetery_28
       rect:
         serializedVersion: 2
-        x: 1179
-        y: 9
-        width: 243
-        height: 182
+        x: 1152
+        y: 0
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 76b08d97b3282c930800000000000000
-      internalID: 4162032197602642791
+      spriteID: 224e0cdd2a54d5f4685018f59544eb57
+      internalID: 310948351
       vertices: []
       indices: 
       edges: []
@@ -880,20 +828,20 @@ TextureImporter:
       name: portal-all animations-cemetery_29
       rect:
         serializedVersion: 2
-        x: 1467
-        y: 9
-        width: 243
-        height: 182
+        x: 1440
+        y: 0
+        width: 288
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 20f146221a1f50130800000000000000
-      internalID: 3532495157111037698
+      spriteID: fc42d9e2e70e373408422729d83c8046
+      internalID: 1256254344
       vertices: []
       indices: 
       edges: []
@@ -902,7 +850,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0bb77fab072854145a634e8e0a5ad00b
+    spriteID: b63f7c27bdadfcf47b37ccc44743cf35
     internalID: 0
     vertices: []
     indices: 
@@ -912,36 +860,36 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      portal-all animations-cemetery_0: 9186348447454491604
-      portal-all animations-cemetery_1: -3352964666143093449
-      portal-all animations-cemetery_10: -3207315950957268072
-      portal-all animations-cemetery_11: -744856411657838498
-      portal-all animations-cemetery_12: -4239762253327485871
-      portal-all animations-cemetery_13: -8236290615877929533
-      portal-all animations-cemetery_14: -4082392626630941369
-      portal-all animations-cemetery_15: -2531247379492547958
-      portal-all animations-cemetery_16: 4318056476849124398
-      portal-all animations-cemetery_17: 7047742404469720017
-      portal-all animations-cemetery_18: -8457921641816533067
-      portal-all animations-cemetery_19: 3822883880753175581
-      portal-all animations-cemetery_2: -1164450476201107281
-      portal-all animations-cemetery_20: -3710191782856632181
-      portal-all animations-cemetery_21: 4999681803602969232
-      portal-all animations-cemetery_22: 7583819328667059669
-      portal-all animations-cemetery_23: 4587548574897628964
-      portal-all animations-cemetery_24: -5177269597322599587
-      portal-all animations-cemetery_25: -8361231863422357539
-      portal-all animations-cemetery_26: 5230910632381474214
-      portal-all animations-cemetery_27: -6533633497059646386
-      portal-all animations-cemetery_28: 4162032197602642791
-      portal-all animations-cemetery_29: 3532495157111037698
-      portal-all animations-cemetery_3: -7870106043014924530
-      portal-all animations-cemetery_4: 8911439666445091665
-      portal-all animations-cemetery_5: 2024412617791652657
-      portal-all animations-cemetery_6: -537675085239119910
-      portal-all animations-cemetery_7: 1630813919093521892
-      portal-all animations-cemetery_8: 7261325928401640634
-      portal-all animations-cemetery_9: -3508613803733858491
+      portal-all animations-cemetery_0: -506611478
+      portal-all animations-cemetery_1: -982800154
+      portal-all animations-cemetery_10: -14578060
+      portal-all animations-cemetery_11: 443548720
+      portal-all animations-cemetery_12: 1488370380
+      portal-all animations-cemetery_13: -960705361
+      portal-all animations-cemetery_14: -305761256
+      portal-all animations-cemetery_15: 1975448149
+      portal-all animations-cemetery_16: -1116543813
+      portal-all animations-cemetery_17: -81509254
+      portal-all animations-cemetery_18: 711669247
+      portal-all animations-cemetery_19: 1674953311
+      portal-all animations-cemetery_2: -2031527068
+      portal-all animations-cemetery_20: 439980657
+      portal-all animations-cemetery_21: 116622945
+      portal-all animations-cemetery_22: -934496595
+      portal-all animations-cemetery_23: 1762241503
+      portal-all animations-cemetery_24: 590560093
+      portal-all animations-cemetery_25: -1081229969
+      portal-all animations-cemetery_26: 1304993632
+      portal-all animations-cemetery_27: -469833702
+      portal-all animations-cemetery_28: 310948351
+      portal-all animations-cemetery_29: 1256254344
+      portal-all animations-cemetery_3: 109223632
+      portal-all animations-cemetery_4: 568928758
+      portal-all animations-cemetery_5: 975598246
+      portal-all animations-cemetery_6: -1506151780
+      portal-all animations-cemetery_7: 584653707
+      portal-all animations-cemetery_8: 1817982352
+      portal-all animations-cemetery_9: 1191896594
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
