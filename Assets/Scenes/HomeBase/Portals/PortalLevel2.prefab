@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6751103367733817936}
   - component: {fileID: 9078524931934034542}
   - component: {fileID: 898900314438672383}
-  - component: {fileID: -37467239187612065}
-  - component: {fileID: 5634134641663725202}
+  - component: {fileID: 4885972691859872382}
+  - component: {fileID: 63014408024798971}
   m_Layer: 0
   m_Name: PortalLevel2
   m_TagString: Untagged
@@ -112,20 +112,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-37467239187612065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4537103269226007361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3c1c0321de94794da417a64a99af12e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetScene: 5
---- !u!61 &5634134641663725202
+--- !u!61 &4885972691859872382
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,7 +146,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.06605029, y: 0.100209236}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -169,5 +156,18 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.88, y: 1.92}
+  m_Size: {x: 1.1987274, y: 1.7195816}
   m_EdgeRadius: 0
+--- !u!114 &63014408024798971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4537103269226007361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fcdb84263dfa9648a04847c1fd2d998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetScene: 5
