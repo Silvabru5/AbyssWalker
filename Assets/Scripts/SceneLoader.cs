@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private GameObject crossfade;
+    [SerializeField] private GameObject inGameUI;
     [SerializeField] private float transitionTime;
     [SerializeField] private Canvas gameCanvas;
     public static SceneLoader instance;
@@ -12,14 +13,23 @@ public class SceneLoader : MonoBehaviour
     private void Awake()
     {
         if (instance == null)
+        {
             instance = this;
-    }
-    void Start()
-    {
-        DontDestroyOnLoad(this.gameObject);
-        DontDestroyOnLoad(gameCanvas);
-    }
 
+            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameCanvas);
+            // Subscribe to sceneLoaded event
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+        else
+        {
+            Destroy(gameObject); // Prevent duplicate persistent objects
+        }       
+    }
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -29,13 +39,17 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        LoadSpecificLevel(SceneManager.GetActiveScene().buildIndex + 1);
+        int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        LoadSpecificLevel(nextIndex);
     }
 
     IEnumerator LoadLevel(int levelIndex)
     {
-        crossfade = GameObject.Find("Crossfade");
-        crossfade.GetComponent<Animator>().SetTrigger("Start");
+        if (crossfade == null)
+            crossfade = GameObject.Find("Crossfade");
+
+        if (crossfade != null)
+            crossfade.GetComponent<Animator>().SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
 
@@ -47,6 +61,19 @@ public class SceneLoader : MonoBehaviour
         StartCoroutine(LoadLevel(buildIndex));
         ChangeBackgroundMusic(buildIndex);
         PlaySceneEntrySound(buildIndex);
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Enable or disable in-game UI depending on scene
+        if (scene.buildIndex == 3 || scene.buildIndex == 5)
+        {
+            inGameUI.SetActive(true);
+        }
+        else
+        {
+            inGameUI.SetActive(false);
+        }
     }
 
     // change the background sound on scene change
