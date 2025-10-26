@@ -27,6 +27,8 @@ public class Item : MonoBehaviour, IInteractable
     public void Interact()
     {
         if (!CanInteract()) return;
+        CollectibleManager.Instance?.AddCollectible("Skull");
+        Debug.Log($"collected item");
         TurnOnSwitch();
     }
 
@@ -37,9 +39,13 @@ public class Item : MonoBehaviour, IInteractable
 
     private void SetOpened(bool opened)
     {
-        if(IsOpened = opened)
+        if (IsOpened == opened)
         {
             anim.SetBool("isOpen", opened);
+        }
+        else
+        {
+            gameObject.SetActive(false); //for collectibles, no anim needed and it object removes from scene
         }
     }
 }
