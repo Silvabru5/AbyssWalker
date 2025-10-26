@@ -10,12 +10,11 @@ public class BossPortals : MonoBehaviour, IInteractable
     [SerializeField] private string requiredCollectibleType;
     [SerializeField] private int requiredAmount = 5;
 
-    private Animator anim;
+    [SerializeField] private Animator anim;
     private bool isUnlocked = false;
 
     void Start()
     {
-        anim = GetComponentInChildren<Animator>();
         CheckUnlockStatus(); 
     }
 
@@ -60,14 +59,14 @@ public class BossPortals : MonoBehaviour, IInteractable
     if (hasEnough)
     {
         isUnlocked = true;
-        if (anim != null)
-        {
-            anim.SetBool("isUnlocked", true);
-        }
-        else
-        {
-            Debug.LogWarning("no animator found");
-        }
+       
+        
+        anim.SetBool("isUnlocked", isUnlocked);
+        
+        // else
+        // {
+        //     Debug.LogWarning("no animator found");
+        // }
     }
 }
 
@@ -82,6 +81,8 @@ public class BossPortals : MonoBehaviour, IInteractable
         if (CanInteract())
         {
             Debug.Log($"tp'ing to {targetScene}");
+            if (CollectibleManager.Instance != null)
+            CollectibleManager.Instance.ResetText();
             SceneManager.LoadScene(targetScene);
         }
         else
