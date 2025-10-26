@@ -289,6 +289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bd1cb1b902953469aed29480fb871e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectibleType: Skull
+  isCollectable: 1
 --- !u!61 &17958628
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1280,6 +1282,7 @@ MonoBehaviour:
   targetScene: Boss1_scene
   requiredCollectibleType: Skull
   requiredAmount: 5
+  anim: {fileID: 260742249}
 --- !u!1 &266965798 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3803624001124079507, guid: 422e819451d16dc4ab0f84b214f7be97, type: 3}
@@ -1657,6 +1660,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bd1cb1b902953469aed29480fb871e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectibleType: Skull
+  isCollectable: 1
 --- !u!61 &350629068
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3997,7 +4002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &831083351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4865,6 +4870,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bd1cb1b902953469aed29480fb871e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectibleType: Skull
+  isCollectable: 1
 --- !u!61 &954259795
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10233,6 +10240,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bd1cb1b902953469aed29480fb871e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectibleType: Skull
+  isCollectable: 1
 --- !u!61 &1478528021
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11582,6 +11591,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bd1cb1b902953469aed29480fb871e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectibleType: Skull
+  isCollectable: 1
 --- !u!61 &1738961499
 BoxCollider2D:
   m_ObjectHideFlags: 0

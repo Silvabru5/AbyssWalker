@@ -37,4 +37,12 @@ public class CollectibleManager : MonoBehaviour
     {
         return collected.ContainsKey(type) ? collected[type] : 0;
     }
+
+
+    //Reset counts after each scene
+    public void ResetText()
+    {
+        collected.Clear();
+        Debug.Log("Collectible counts reset.");
+    }
 }

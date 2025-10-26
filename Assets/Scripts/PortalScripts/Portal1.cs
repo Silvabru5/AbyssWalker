@@ -14,6 +14,10 @@ public class Portal1 : MonoBehaviour,IInteractable
     public void Interact()
     {
         if (!CanInteract()) return;
+
+        if (CollectibleManager.Instance != null)
+        CollectibleManager.Instance.ResetText();
+
        SceneLoader.instance.LoadSpecificLevel(targetScene);
     }
 }

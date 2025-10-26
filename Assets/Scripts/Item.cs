@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class Item : MonoBehaviour, IInteractable
 {
+
+    //for collectible items
+    [Header("Collectible Settings")]
+    [SerializeField] private string collectibleType = "Skull";
     public bool IsOpened { get; set; }
     public string ItemID { get; private set; }
     private Animator anim;
+    [SerializeField] private bool isCollectable = true;
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,7 +32,7 @@ public class Item : MonoBehaviour, IInteractable
     public void Interact()
     {
         if (!CanInteract()) return;
-        CollectibleManager.Instance?.AddCollectible("Skull");
+        CollectibleManager.Instance?.AddCollectible(collectibleType);
         Debug.Log($"collected item");
         TurnOnSwitch();
     }
@@ -39,13 +44,14 @@ public class Item : MonoBehaviour, IInteractable
 
     private void SetOpened(bool opened)
     {
-        if (IsOpened == opened)
+        if (IsOpened = opened && !isCollectable)
         {
             anim.SetBool("isOpen", opened);
         }
-        else
+        else if (isCollectable)
         {
             gameObject.SetActive(false); //for collectibles, no anim needed and it object removes from scene
+            
         }
     }
 }
