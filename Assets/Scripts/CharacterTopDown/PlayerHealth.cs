@@ -3,20 +3,34 @@ using TMPro;
 using System.Collections;
 using UnityEngine.InputSystem.Processors;
 using System;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     public float maxHealth = 100;
+    public float baseHealth = 100;
     [HideInInspector] public float currentHealth;
+    [HideInInspector] public Image healthBarFill;
 
     private Animator animator;
-    public  float deathAnimationTime = 0.1f;
+    public float deathAnimationTime = 0.1f;
     [HideInInspector]
     public TextMeshProUGUI healthText; // drag the health ui text here in the inspector
 
     // this runs when the game starts and sets up the player's health and health regen
     void Start()
     {
+        GameObject textObj = GameObject.FindWithTag("HealthText");
+        GameObject fillObj = GameObject.FindWithTag("HealthFill");
+        if (textObj != null && textObj.activeInHierarchy)
+        {
+            healthText = textObj.GetComponent<TextMeshProUGUI>();
+        }
+        if(fillObj != null && fillObj.activeInHierarchy)
+        {
+            Debug.LogWarning("Fill found");
+            healthBarFill = fillObj.GetComponent<Image>();
+        }
         currentHealth = maxHealth;
         UpdateHealthText(); // update the UI with initial health
         InvokeRepeating(nameof(RegenerateHealth), 3f, 3f); // heal 2 hp every 3 seconds
@@ -33,7 +47,8 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(float amount)
     {
         currentHealth -= CalculateDamage(amount);
-//        currentHealth = Mathf.Max(0, currentHealth); // prevent negative health
+        
+        //        currentHealth = Mathf.Max(0, currentHealth); // prevent negative health
         Debug.Log($"Player HP: {currentHealth}");
 
         if (currentHealth > -99999 && currentHealth <= 0)
@@ -53,7 +68,7 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator DeathSequence()
     {
-        
+
         // SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_DEATH, 1);
 
         yield return new WaitForSeconds(deathAnimationTime);
@@ -87,11 +102,28 @@ public class PlayerHealth : MonoBehaviour
     {
         if (healthText != null)
             healthText.text = $"{currentHealth} / {maxHealth}";
+        if(healthBarFill!=null)
+            healthBarFill.fillAmount = currentHealth/maxHealth;
     }
+    public void UpdateHealthFromStats()
+    {
+        // use base health so it doesn’t shrink if player is damaged
+        baseHealth = 100; //
+        maxHealth = baseHealth * StatManager.instance.GetHealthAmount();
 
+        // optionally refill current health
+        currentHealth = maxHealth;
+
+        UpdateHealthText(); // update the UI
+    }
+    public float GetHealth()
+    {
+        return currentHealth;
+    }
     float CalculateDamage(float amount)
     {
         float calculatedDamage = amount * StatManager.instance.GetDefenseAmount();
+        Debug.Log(calculatedDamage);
         return calculatedDamage;
     }
 }

@@ -12,11 +12,13 @@ public class StatMenuController : MonoBehaviour
     [SerializeField] private Button critDamageButton;
     [SerializeField] private Button healthButton;
     [SerializeField] private Button defenseButton;
+    private PlayerHealth playerHealth;
 
     private bool isOpen = false;
 
     private void Start()
     {
+       
         menuPanel.SetActive(false);
 
         //1. add button listeners
@@ -48,6 +50,9 @@ public class StatMenuController : MonoBehaviour
     private void OnHealthUpgrade()
     {
         StatManager.instance.UpgradeHealth();
+        GameObject player = GameObject.FindWithTag("Player");
+        playerHealth = player.GetComponent<PlayerHealth>();
+        playerHealth.UpdateHealthFromStats();
         UpdateUI();
     }
 

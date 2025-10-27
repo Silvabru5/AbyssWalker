@@ -45,4 +45,7 @@ public class EnemyLevel : MonoBehaviour
         Debug.Log($"{enemyType} (Lvl {enemyLevel}) → Base: {baseExp}, Exp: {exp}");
         return exp; 
     }
+
+    public int GetEnemyLevel()
+        { return enemyLevel; }
 }

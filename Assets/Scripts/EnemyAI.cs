@@ -246,10 +246,11 @@ public class EnemyAI : MonoBehaviour
 {
     // reference to the player object
     public GameObject player;
+    PlayerHealth playerHealth;
     // how fast the enemy moves
     public float moveSpeed = 2f;
     // how much damage the enemy deals to the player
-    public int damage = 10;
+    public float damage = 10;
     // time between each attack
     public float attackCooldown = 1.5f;
     // how close enemies can be before pushing apart
@@ -284,6 +285,7 @@ public class EnemyAI : MonoBehaviour
     {
         // find the player in the scene (by name)
         player = GameObject.FindWithTag("Player");
+        playerHealth = player.GetComponent<PlayerHealth>();
         // get all required components
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -375,19 +377,19 @@ public class EnemyAI : MonoBehaviour
 
                         if (hitDiagUpLeft.collider == null)
                         {
-                            avoidanceDirection = diagUpLeft; 
+                            avoidanceDirection = diagUpLeft;
                         }
                         else if (hitDiagDownLeft.collider == null)
                         {
-                            avoidanceDirection = diagDownLeft; 
+                            avoidanceDirection = diagDownLeft;
                         }
                         else if (hitDiagUpRight.collider == null)
                         {
-                            avoidanceDirection = diagUpRight; 
+                            avoidanceDirection = diagUpRight;
                         }
                         else if (hitDiagDownRight.collider == null)
                         {
-                            avoidanceDirection = diagDownRight; 
+                            avoidanceDirection = diagDownRight;
                         }
                         else
                         {
@@ -485,7 +487,7 @@ public class EnemyAI : MonoBehaviour
         if (other.GetComponent<PlayerHealth>() != null)
         {
             playerInRange = true;
-            rb.linearVelocity = Vector2.zero;
+            // rb.linearVelocity = Vector2.zero;
         }
     }
 
@@ -504,13 +506,17 @@ public class EnemyAI : MonoBehaviour
     {
         if (attackRegistered) return;
 
-        if (playerInRange && player != null)
+        if (playerInRange)
         {
-            PlayerHealth health = player.GetComponent<PlayerHealth>();
-            if (health != null)
-                health.TakeDamage(damage);
-
-            attackRegistered = true;
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damage);
+                Debug.Log($"Player Hit! Damage: {damage}, Health: {playerHealth.currentHealth}");
+            }
+            else
+            {
+                Debug.LogWarning("PlayerHealth reference is null!");
+            }
         }
         else
         {

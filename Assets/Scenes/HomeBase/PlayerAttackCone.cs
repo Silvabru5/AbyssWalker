@@ -64,7 +64,7 @@ public class PlayerAttackCone : MonoBehaviour
                     float damage = CalculateDamage();
                     enemyHealth.TakeDamage(damage);
                     DamageNumberSpawner.instance.SpawnDamageNumber(enemy.transform.position, damage);
-                    Debug.Log($"Hit {enemy.name} for {damage:F1} damage");
+                   // Debug.Log($"Hit {enemy.name} for {damage:F1} damage");
                 }
             }
         }

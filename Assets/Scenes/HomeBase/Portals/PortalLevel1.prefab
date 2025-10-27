@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1582182314572246261}
   - component: {fileID: 6246244266003388410}
   - component: {fileID: 8664494033797043192}
-  - component: {fileID: 8068564712424714548}
+  - component: {fileID: 5019627670278679236}
   m_Layer: 0
   m_Name: PortalLevel1
   m_TagString: Untagged
@@ -158,7 +158,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1266727, y: 1.731371}
   m_EdgeRadius: 0
---- !u!114 &8068564712424714548
+--- !u!114 &5019627670278679236
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4755628073014131431}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fcdb84263dfa9648a04847c1fd2d998, type: 3}
+  m_Script: {fileID: 11500000, guid: 09696c6cd0c668d47a3ed3140475cc36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetScene: 3

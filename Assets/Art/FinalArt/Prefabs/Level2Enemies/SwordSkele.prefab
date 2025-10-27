@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2952573398836511118}
   - component: {fileID: 7058505604794547995}
   - component: {fileID: 6292491709570807755}
+  - component: {fileID: 8739513812128756359}
   m_Layer: 8
   m_Name: SwordSkele
   m_TagString: Untagged
@@ -172,7 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   moveSpeed: 2
-  damage: 10
+  damage: 45
   attackCooldown: 1.5
   separationDistance: 0.7
   isAttacking: 0
@@ -190,7 +191,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90ade68d3e0a92448c27f39fae89f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 150
+  baseHealth: 70
+  healthGrowth: 0.15
 --- !u!114 &2952573398836511118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +208,7 @@ MonoBehaviour:
   enemyType: sword skeleton
   baseExp: 0
   enemyLevel: 0
-  growthFactor: 1.43
+  growthFactor: 1.06
 --- !u!114 &7058505604794547995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,3 +243,39 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!58 &8739513812128756359
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5235022016673129028}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.04705572, y: -0.48661566}
+  m_Radius: 1.1185479

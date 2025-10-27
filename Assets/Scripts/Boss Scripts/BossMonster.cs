@@ -81,6 +81,6 @@ public class BossMonster : MonoBehaviour
         ScreenShakeController.instance.StartShake(3f, 0.5f);
         yield return new WaitForSeconds(4f);
         gameObject.SetActive(false);
-        SceneManager.LoadScene(0);
+        SceneLoader.instance.LoadSpecificLevel(2);
     }
 }

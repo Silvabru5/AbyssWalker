@@ -108,18 +108,18 @@ public class SoundManager : MonoBehaviour
     public static void PlaySound(SoundTypeEffects sound, float volume = 0.35f)
     {
         // // if the sound is to be a takes damage, attack sounds only play some of the time
-        // if (Regex.IsMatch(sound.ToString(), "(_TAKES_DAMAGE|_ATTACK)$") & Random.Range(0, 2) == 0) return;
+        //if (Regex.IsMatch(sound.ToString(), "(_TAKES_DAMAGE|_ATTACK)$") & Random.Range(0, 2) == 0) return;
 
         // thing to try later, if playing sounds >= threshold, return without sound
 
         // look through the sound effect lists for any categories that match the one passed in and play a random one from the list
         // temp commented by bruno uncomment if needed later
-        //foreach (var entry in instance.soundEffects)
-        //    if (entry.type == sound && entry.clips.Length > 0) // if any match and have audio clips in them proceed, otherwise do nothing
-        //    {
-        //        instance.soundEffectsSource.PlayOneShot(entry.clips[Random.Range(0, entry.clips.Length)], volume);
-        //        return;
-        //    }
+        foreach (var entry in instance.soundEffects)
+            if (entry.type == sound && entry.clips.Length > 0) // if any match and have audio clips in them proceed, otherwise do nothing
+            {
+                instance.soundEffectsSource.PlayOneShot(entry.clips[Random.Range(0, entry.clips.Length)], volume);
+                return;
+            }
     }
 
     // play a sound and wait for completion
