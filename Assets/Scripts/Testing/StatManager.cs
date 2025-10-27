@@ -10,7 +10,7 @@ public class StatManager : MonoBehaviour
     private float critChance = 0;
     private float critDamage = 1.15f;
     private float healthAmount = 1;
-    private float defenseAmount = 0;
+    private float defenseAmount = 1;
 
     //Counters for skill point total
     [SerializeField] private int skillPoints;
@@ -114,9 +114,12 @@ public class StatManager : MonoBehaviour
             skillPoints--;
             defenseLevel++;
         }
+        // Calculate damage multiplier (1 = full damage, 0.1 = 90% reduced)
+        float maxReduction = 0.9f; // max 90% reduction
+        defenseAmount = 1f - (defenseLevel / (float)skillCap) * maxReduction;
 
-        defenseAmount = 1f - (defenseLevel * 0.15f);
-        defenseAmount = Mathf.Max(defenseAmount, 0.1f);
+        // Ensure damage never completely blocked
+        defenseAmount = Mathf.Clamp(defenseAmount, 0.1f, 1f);
     }
 
     //Tristan Addition - Getter for skill points to update UI

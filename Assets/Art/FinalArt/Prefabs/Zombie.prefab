@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2937709109116282902}
   - component: {fileID: 3878126338322414085}
   - component: {fileID: 3992572538279786240}
+  - component: {fileID: 2672776325043198388}
   m_Layer: 8
   m_Name: Zombie
   m_TagString: Enemy
@@ -168,7 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90ade68d3e0a92448c27f39fae89f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  baseHealth: 55
+  healthGrowth: 0.15
 --- !u!114 &7447056840601356381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,8 +197,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1147425144039576481, guid: 322e4995a0e3ca94cbc6a7be542f9dec, type: 3}
-  moveSpeed: 5
-  damage: 10
+  moveSpeed: 7
+  damage: 15
   attackCooldown: 1.5
   separationDistance: 0.3
   isAttacking: 0
@@ -217,7 +219,7 @@ MonoBehaviour:
   enemyType: zombie
   baseExp: 0
   enemyLevel: 0
-  growthFactor: 1.3
+  growthFactor: 1.11
 --- !u!70 &3992572538279786240
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -255,3 +257,39 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0000005501967, y: -0.015458902}
   m_Size: {x: 0.42106372, y: 1.4127662}
   m_Direction: 0
+--- !u!58 &2672776325043198388
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3764445054084472124}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.71875

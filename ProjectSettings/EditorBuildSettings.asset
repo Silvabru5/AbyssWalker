@@ -6,23 +6,26 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TitleScene.unity
+    path: Assets/Scenes/FINAL SCENES/TitleScene.unity
     guid: bd55aad9fefc91d418c5aba71ddff7fc
   - enabled: 1
     path: Assets/Scenes/CharacterSelect/CharacterDisplay.unity
     guid: 43165cf705c90a54081722137ccfee68
   - enabled: 1
-    path: Assets/Scenes/HomeBase/HomeBase.unity
+    path: Assets/Scenes/FINAL SCENES/HomeBase.unity
     guid: 86ef3cbd5a84a8f4ca1cf4b8af8f9a94
   - enabled: 1
-    path: Assets/Scenes/Level1/Level1Revamp.unity
+    path: Assets/Scenes/FINAL SCENES/Level1Revamp.unity
     guid: 26d50c020d17a6645a78e27a94ac4e7f
   - enabled: 1
-    path: Assets/Scenes/Level1/Boss1_scene.unity
+    path: Assets/Scenes/FINAL SCENES/Boss1_scene.unity
     guid: 6984bfd656943974bb09a6d5b62bf778
   - enabled: 1
-    path: Assets/Scenes/Level2/Level2.unity
+    path: Assets/Scenes/FINAL SCENES/Level2.unity
     guid: f1bffcc26c76ef146aec78e945fcbf1d
+  - enabled: 1
+    path: Assets/Scenes/FINAL SCENES/Level2_Boss.unity
+    guid: e2750d1cbab9dfd4b88f072e735c6331
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

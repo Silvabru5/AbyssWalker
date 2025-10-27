@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 5082512188777644342}
   - component: {fileID: 1950418637025576598}
   - component: {fileID: 6969012092738390239}
+  - component: {fileID: 3580873742221190622}
   m_Layer: 8
   m_Name: Skeleton
   m_TagString: Enemy
@@ -181,7 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90ade68d3e0a92448c27f39fae89f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  baseHealth: 60
+  healthGrowth: 0.15
 --- !u!114 &5082512188777644342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,8 +197,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  moveSpeed: 5
-  damage: 10
+  moveSpeed: 7
+  damage: 20
   attackCooldown: 1.5
   separationDistance: 0.3
   isAttacking: 0
@@ -217,7 +219,7 @@ MonoBehaviour:
   enemyType: skeleton
   baseExp: 0
   enemyLevel: 0
-  growthFactor: 1.5
+  growthFactor: 1.12
 --- !u!70 &6969012092738390239
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -255,3 +257,39 @@ CapsuleCollider2D:
   m_Offset: {x: 0.035894353, y: -0.0042419834}
   m_Size: {x: 0.47375703, y: 1.2584842}
   m_Direction: 0
+--- !u!58 &3580873742221190622
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7158932129712686433}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.625
