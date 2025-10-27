@@ -33,8 +33,12 @@ public class BossSmallEnemies : MonoBehaviour
         if(_currentHealth <= 0)
         {
             isDead = true;
-            Die(); 
+            SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_VATS_DESTROYED);
+            Die();
         }
+        else
+            SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_VATS_TAKES_DAMAGE);
+
     }
 
     void Die()
