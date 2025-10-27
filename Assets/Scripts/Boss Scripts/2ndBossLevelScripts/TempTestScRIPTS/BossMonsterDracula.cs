@@ -16,6 +16,10 @@ public class BossMonsterDracula : MonoBehaviour
     [SerializeField] private TextMeshProUGUI percentText;  // ui text showing health percentage
     [SerializeField] private GameObject returnPortal;      // portal object that activates after death
 
+    public float getHealth()
+    {
+        return currentHealth;
+    }
     private void Start()
     {
         // get component references if not already assigned
