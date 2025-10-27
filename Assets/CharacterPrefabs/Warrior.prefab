@@ -314,8 +314,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  attackCooldown: 0
-  attackRange: 5
+  attackCooldown: 0.75
+  attackRange: 2
   attackAngle: 60
   enemyLayers:
     serializedVersion: 2
