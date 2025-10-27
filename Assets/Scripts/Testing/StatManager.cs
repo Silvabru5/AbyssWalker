@@ -68,7 +68,7 @@ public class StatManager : MonoBehaviour
     //Spend Skill Points
     public void UpgradeDamage()
     {
-        if (damageLevel != skillCap)
+        if (damageLevel != skillCap && skillPoints >= 1)
         {
             skillPoints--;
             damageLevel++;
@@ -78,7 +78,7 @@ public class StatManager : MonoBehaviour
 
     public void UpgradeCritChance()
     {
-        if (critChanceLevel != skillCap)
+        if (critChanceLevel != skillCap && skillPoints >= 1)
         {
             skillPoints--;
             critChanceLevel++;
@@ -88,7 +88,7 @@ public class StatManager : MonoBehaviour
 
     public void UpgradeCritDamage()
     {
-        if (critDamageLevel != skillCap)
+        if (critDamageLevel != skillCap && skillPoints >= 1)
         {
             skillPoints--;
             critDamageLevel++;
@@ -98,7 +98,7 @@ public class StatManager : MonoBehaviour
 
     public void UpgradeHealth()
     {
-        if (healthLevel != skillCap)
+        if (healthLevel != skillCap && skillPoints >= 1)
         {
             skillPoints--;
             healthLevel++;
@@ -109,7 +109,7 @@ public class StatManager : MonoBehaviour
 
     public void UpgradeDefense()
     {
-        if (defenseLevel != skillCap)
+        if (defenseLevel != skillCap && skillPoints >= 1)
         {
             skillPoints--;
             defenseLevel++;

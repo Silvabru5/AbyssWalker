@@ -7,9 +7,10 @@ public class PlayerSpawner : MonoBehaviour
     public GameObject warriorPrefab;
     public GameObject magePrefab;
     public CinemachineCamera vCam;
+    private int selected = 0;
     void Start()
     {
-        int selected = PlayerPrefs.GetInt("SelectedCharacter", 0);
+        selected = PlayerPrefs.GetInt("SelectedCharacter", 0);
 
         GameObject player;
 

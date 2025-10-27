@@ -103,7 +103,7 @@ public class PlayerHealth : MonoBehaviour
         if (healthText != null)
             healthText.text = $"{currentHealth} / {maxHealth}";
         if(healthBarFill!=null)
-            healthBarFill.fillAmount = currentHealth/100;
+            healthBarFill.fillAmount = currentHealth/maxHealth;
     }
     public void UpdateHealthFromStats()
     {

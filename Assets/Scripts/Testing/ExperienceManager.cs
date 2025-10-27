@@ -68,6 +68,10 @@ public class ExperienceManager : MonoBehaviour
             currentLevel++;
             StatManager.instance.AddSkillPoint();
             UpdateLevel();
+            if (currentLevel == levelCap)
+            {
+                StatManager.instance.AddSkillPoint();
+            }
         }
     }
 

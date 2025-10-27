@@ -33,8 +33,8 @@ public class AimingCursor : MonoBehaviour
         cursorMarker.transform.position = player.position + direction * RADIUS;
 
         // Rotate the target marker
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        cursorMarker.transform.rotation = Quaternion.Euler(0, 0, angle);
+        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+       // cursorMarker.transform.rotation = Quaternion.Euler(0, 0, angle);
 
         // Rotate player to face marker
         animator.SetFloat("Vertical", direction.y);
