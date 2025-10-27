@@ -36,6 +36,10 @@ public class SpawnEnemies : MonoBehaviour
         StartCoroutine(RespawnEnemy());
     }
 
+    public float getHealth()
+    {
+        return _currentHealth;
+    }
     public void TakeDamage(float damage)
     {
         _currentHealth -= damage;

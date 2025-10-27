@@ -104,7 +104,10 @@ public class PlayerSS : MonoBehaviour
                 BossSmallEnemies smallEnemy = enemy.GetComponent<BossSmallEnemies>();
                 if (smallEnemy != null)
                 {
-                    SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_VATS_TAKES_DAMAGE); // play a sound
+                    if (smallEnemy.GetCurrenthealth() <= _attackDamage)
+                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_VATS_DESTROYED); // play a sound
+                    else
+                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_VATS_TAKES_DAMAGE); // play a sound
                     smallEnemy.TakeDamage(_attackDamage);
                     Debug.Log("Hit " + enemy.name);
                 }
@@ -112,7 +115,10 @@ public class PlayerSS : MonoBehaviour
                 BossMonster bossEnemy = enemy.GetComponent<BossMonster>();
                 if (bossEnemy != null)
                 {
-                    SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_TAKES_DAMAGE); // play a sound
+                    if (bossEnemy.getHealth() <= _attackDamage)
+                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_DEATH); // play a sound
+                    else
+                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_TAKES_DAMAGE); // play a sound
                     bossEnemy.TakeDamage(_attackDamage);
                     Debug.Log("HIT: " + bossEnemy.name);
                 }
@@ -120,7 +126,10 @@ public class PlayerSS : MonoBehaviour
                 SpawnEnemies spawnEnemy = enemy.GetComponent<SpawnEnemies>();
                 if (spawnEnemy != null)
                 {
-                    SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_MINION_TAKES_DAMAGE); // play a sound
+                    if (spawnEnemy.getHealth() <= _attackDamage)
+                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_MINION_DEATH); // play a sound
+                    else
+                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_MINION_TAKES_DAMAGE); // play a sound
                     spawnEnemy.TakeDamage(_attackDamage);
                     Debug.Log("HIT: " + spawnEnemy.name);
                 }
@@ -128,7 +137,10 @@ public class PlayerSS : MonoBehaviour
                 isEnemy skullEnemy = enemy.GetComponent<isEnemy>();
                 if (skullEnemy != null)
                 {
-                    SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_SKULLS_TAKES_DAMAGE); // play a sound
+                    if (spawnEnemy.getHealth() <= _attackDamage)
+                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_SKULLS_DEATH); // play a sound
+                    else
+                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_SKULLS_TAKES_DAMAGE); // play a sound
                     skullEnemy.TakeDamage(_attackDamage);
                     Debug.Log("HIT: " + skullEnemy.name);
                 }
