@@ -8,6 +8,7 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private GameObject inGameUI;
     [SerializeField] private float transitionTime;
     [SerializeField] private Canvas gameCanvas;
+    [SerializeField] private GameObject UICanvas;
     public static SceneLoader instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -25,6 +26,10 @@ public class SceneLoader : MonoBehaviour
         {
             Destroy(gameObject); // Prevent duplicate persistent objects
         }       
+    }
+    private void Start()
+    {
+       UICanvas.SetActive(true);
     }
     private void OnDestroy()
     {
@@ -74,7 +79,7 @@ public class SceneLoader : MonoBehaviour
             case 3: inGameUI.SetActive(true); break;
             case 4: inGameUI.SetActive(false); break;
             case 5: inGameUI.SetActive(true); break;
-            case 6: 
+            case 6: inGameUI.SetActive(false); break;
             default: break;
         }
     }

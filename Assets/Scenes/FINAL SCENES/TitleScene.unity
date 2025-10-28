@@ -5514,7 +5514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1058103251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7639,6 +7639,7 @@ MonoBehaviour:
   inGameUI: {fileID: 1204042385}
   transitionTime: 1
   gameCanvas: {fileID: 1058103253}
+  UICanvas: {fileID: 1058103250}
 --- !u!114 &1453322962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7766,6 +7767,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c4ccaf29720dc469b51782a040f95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveData:
+    warrior:
+      experience: 0
+      skillPointsDamage: 0
+      skillPointsDefense: 0
+      skillPointsHealth: 0
+      skillPointsCritChance: 0
+      skillPointsCritDamage: 0
+      highestBossDefeated: 0
+      skillPointsUnspent: 0
+    mage:
+      experience: 0
+      skillPointsDamage: 0
+      skillPointsDefense: 0
+      skillPointsHealth: 0
+      skillPointsCritChance: 0
+      skillPointsCritDamage: 0
+      highestBossDefeated: 0
+      skillPointsUnspent: 0
 --- !u!114 &1453322969
 MonoBehaviour:
   m_ObjectHideFlags: 0
