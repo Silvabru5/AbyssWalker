@@ -2495,6 +2495,10 @@ PrefabInstance:
       propertyPath: targetScene
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 898900314438672383, guid: 27a0976928276b44382543897f86653f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 219a12821599c194cbfb1fba8b1253bf, type: 2}
     - target: {fileID: 4537103269226007361, guid: 27a0976928276b44382543897f86653f, type: 3}
       propertyPath: m_Name
       value: PortalLevel2
@@ -2628,6 +2632,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PortalLevel1
       objectReference: {fileID: 0}
+    - target: {fileID: 6246244266003388410, guid: e536fb087384f9d459908865347531c9, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 03ff595cf6087ec4cbe6f24c1c17f5ad, type: 2}
     - target: {fileID: 6331360000126307089, guid: e536fb087384f9d459908865347531c9, type: 3}
       propertyPath: targetScene
       value: 3

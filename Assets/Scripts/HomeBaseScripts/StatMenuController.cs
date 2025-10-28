@@ -49,9 +49,9 @@ public class StatMenuController : MonoBehaviour
 
     private void OnHealthUpgrade()
     {
-        StatManager.instance.UpgradeHealth();
         GameObject player = GameObject.FindWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
+        StatManager.instance.UpgradeHealth();
         playerHealth.UpdateHealthFromStats();
         UpdateUI();
     }

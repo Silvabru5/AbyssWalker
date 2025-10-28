@@ -137,7 +137,7 @@ public class PlayerSS : MonoBehaviour
                 isEnemy skullEnemy = enemy.GetComponent<isEnemy>();
                 if (skullEnemy != null)
                 {
-                    if (spawnEnemy.getHealth() <= _attackDamage)
+                    if (skullEnemy.getHealth()<=_attackDamage)
                         SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_SKULLS_DEATH); // play a sound
                     else
                         SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_SKULLS_TAKES_DAMAGE); // play a sound
