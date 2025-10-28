@@ -272,25 +272,44 @@ public class WarriorController2D : MonoBehaviour
         SceneLoader.instance.LoadSpecificLevel(2);
         canDash = false;
     }
-    
 
-        private IEnumerator Dash()
+
+    private IEnumerator Dash()
     {
         SoundManager.PlaySound(SoundTypeEffects.WARRIOR_DASH_PORTAL);
+
         canDash = false;
         isDashing = true;
         iFrame = true;
         _collider.enabled = false;
+
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0;
-        rb.linearVelocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+
+        // Determine dash direction
+        float moveInput = Input.GetAxisRaw("Horizontal");
+        float dashDirection;
+
+        // Use input direction if given, otherwise use facing direction (flipX)
+        if (moveInput != 0)
+            dashDirection = moveInput;
+        else
+            dashDirection = sr.flipX ? -1f : 1f;
+
+        // Apply dash force
+        rb.linearVelocity = new Vector2(dashDirection * dashingPower, 0f);
+
         _trailRenderer.emitting = true;
         yield return new WaitForSeconds(dashingTime);
+
+        // End dash
         _trailRenderer.emitting = false;
         rb.gravityScale = originalGravity;
         isDashing = false;
         iFrame = false;
         _collider.enabled = true;
+
+        // Small pause before dash can happen again
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }

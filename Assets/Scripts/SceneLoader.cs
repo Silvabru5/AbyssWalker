@@ -33,8 +33,8 @@ public class SceneLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-            LoadNextLevel();
+        //if (Input.GetKeyDown(KeyCode.P))
+        //    LoadNextLevel();
     }
 
     public void LoadNextLevel()

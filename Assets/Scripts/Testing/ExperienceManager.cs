@@ -1,6 +1,6 @@
-using System.Xml.Serialization;
+//using System.Xml.Serialization;
 using TMPro;
-using UnityEditor.U2D.Animation;
+//using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,14 +37,14 @@ public class ExperienceManager : MonoBehaviour
     {
         CheckLevelUp();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            AddExperience(5);
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            AddExperience(20);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    AddExperience(5);
+        //}
+        //if (Input.GetKeyDown(KeyCode.J))
+        //{
+        //    AddExperience(20);
+        //}
     }
 
     public int GetCurrentLevel()

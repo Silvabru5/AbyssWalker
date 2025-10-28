@@ -1,11 +1,11 @@
 using System;
 using System.IO;
-using System.IO.Enumeration;
-using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditor.Overlays;
+//using System.IO.Enumeration;
+//using System.Runtime.Serialization.Formatters.Binary;
+//using UnityEditor.Overlays;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static UnityEngine.Rendering.DebugUI;
+//using UnityEngine.InputSystem;
+//using static UnityEngine.Rendering.DebugUI;
 
 // container for character specific data
 [Serializable]

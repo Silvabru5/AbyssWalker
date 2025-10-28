@@ -45,6 +45,7 @@ public class Item : MonoBehaviour, IInteractable
     private void TurnOnSwitch()
     {
         SetOpened(true);
+        SoundManager.PlaySound(SoundTypeEffects.GATE_OPENING);
     }
 
     private void SetOpened(bool opened)
