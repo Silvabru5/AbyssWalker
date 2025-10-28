@@ -15,6 +15,7 @@ public class AimingCursor : MonoBehaviour
         player = GetComponent<Transform>();
         cursorMarker = GameObject.Find("Target");
         Cursor.visible = false; 
+        Cursor.lockState = CursorLockMode.Confined;
     }        
 
     void FixedUpdate()

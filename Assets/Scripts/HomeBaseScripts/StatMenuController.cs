@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class StatMenuController : MonoBehaviour
 {
@@ -81,12 +82,16 @@ public class StatMenuController : MonoBehaviour
     {
         isOpen = !isOpen;
         menuPanel.SetActive(isOpen);
-        if (isOpen)
+        if (isOpen && SceneManager.GetActiveScene().buildIndex == 2)
         {
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
         }
         else
         {
+            isOpen = false;
+            menuPanel.SetActive(false);
+            Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false;
         }
         Time.timeScale = isOpen ? 0 : 1; //3. Freeze/unfreeze game

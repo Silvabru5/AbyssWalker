@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenuUI; // drag the pause menu panel from the canvas here
     [SerializeField] private GameObject startMenuUI; // drag the pause menu panel from the canvas here
+    [SerializeField] private GameObject inGameUI; // drag the pause menu panel from the canvas here
     [SerializeField] private GameObject characterSelectUI; // drag the pause menu panel from the canvas here
   
     public GameObject soundMenuUI; // drag the sound menu panel from the canvas here
@@ -45,6 +46,8 @@ public class PauseMenu : MonoBehaviour
     public void ResumeGame()
     {
         pauseMenuUI.SetActive(false);
+        Cursor.lockState = CursorLockMode.Confined;   
+        Cursor.visible = false;
         Time.timeScale = 1f;
         isPaused = false;
     }
@@ -52,6 +55,8 @@ public class PauseMenu : MonoBehaviour
     // this shows the pause menu and stops time in the game
     public void PauseGame()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
@@ -71,6 +76,8 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(0); // replace with your actual main menu scene name
         pauseMenuUI.SetActive(false);
         startMenuUI.SetActive(true);
+        inGameUI.SetActive(false);
+        Cursor.visible = true;
     }
 
     public void QuitGame()
