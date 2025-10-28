@@ -14,7 +14,7 @@ public class AimingCursor : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GetComponent<Transform>();
         cursorMarker = GameObject.Find("Target");
-
+        Cursor.visible = false; 
     }        
 
     void FixedUpdate()

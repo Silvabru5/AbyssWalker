@@ -203,7 +203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 50
-  healthGrowth: 0.15
+  healthGrowth: 0.03
+  currentHealth: 0
 --- !u!114 &4895533559905003630
 MonoBehaviour:
   m_ObjectHideFlags: 0

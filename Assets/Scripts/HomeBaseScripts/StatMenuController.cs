@@ -73,6 +73,7 @@ public class StatMenuController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             ToggleMenu();
+          
         }
     }
 
@@ -80,7 +81,14 @@ public class StatMenuController : MonoBehaviour
     {
         isOpen = !isOpen;
         menuPanel.SetActive(isOpen);
-
+        if (isOpen)
+        {
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.visible = false;
+        }
         Time.timeScale = isOpen ? 0 : 1; //3. Freeze/unfreeze game
         UpdateUI();
     }

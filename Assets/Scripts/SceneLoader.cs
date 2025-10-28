@@ -66,15 +66,15 @@ public class SceneLoader : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Enable in-game UI just for scenes 3-6, save game on scene 2
-        inGameUI.SetActive(false);
+        // Enable in-game UI just for scenes 3+5 save game on scene 2
+        
         switch (scene.buildIndex)
         {
             case 2: SaveAndLoadManager.instance.SaveGame(); break;
-            case 3:
-            case 4:
-            case 5:
-            case 6: inGameUI.SetActive(true); break;
+            case 3: inGameUI.SetActive(true); break;
+            case 4: inGameUI.SetActive(false); break;
+            case 5: inGameUI.SetActive(true); break;
+            case 6: 
             default: break;
         }
     }
