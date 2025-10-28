@@ -24,7 +24,6 @@ public class BatDamage : MonoBehaviour
             }
 
             lastHitTime = Time.time;
-
             Debug.Log("[Bat] Hit player — dealing " + damageAmount + " damage.");
             player.TakeDamage(damageAmount);
             return;

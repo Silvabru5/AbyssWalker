@@ -54,6 +54,7 @@ public class SceneLoader : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
 
         // LoadSceneMode.Single ensures the old scene is removed
+        if (levelIndex == 5) SoundManager.PlaySound(SoundTypeEffects.CAVE_BOSS_LOAD);
         SceneManager.LoadScene(levelIndex,LoadSceneMode.Single);
     }
 
