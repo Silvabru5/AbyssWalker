@@ -44,7 +44,7 @@ public class BossControllerHybrid : MonoBehaviour
     [Header("jump tuning")]
     [SerializeField] private float jumpCooldown = 1.0f;              // seconds between jumps
     [SerializeField] private BossPlatformZone platformZone;          // where both must be inside to allow jumping
-    [SerializeField] private BossPlatformZone dropZone;              // where player-only triggers “drop down”
+    [SerializeField] private BossPlatformZone dropZone;              // where player-only triggers ï¿½drop downï¿½
 
     private bool isGrounded;
     private bool isJumping;
@@ -52,7 +52,8 @@ public class BossControllerHybrid : MonoBehaviour
     private bool facingRight = true;
     private bool isDead = false;
 
-    private Transform player;
+    // private Transform player;
+    private GameObject player;
     private Rigidbody2D rb;
     private Animator anim;
     private float lastMeleeTime;
@@ -62,7 +63,8 @@ public class BossControllerHybrid : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindFirstObjectByType<PlayerSSBoss2>()?.transform;
+        // player = GameObject.FindFirstObjectByType<PlayerSSBoss2>()?.transform;
+        player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
@@ -85,11 +87,11 @@ public class BossControllerHybrid : MonoBehaviour
             return;
         }
 
-        float distance = Vector2.Distance(transform.position, player.position);
+        float distance = Vector2.Distance(transform.position, player.transform.position);
 
         // flip to face the player
-        if ((player.position.x > transform.position.x && !facingRight) ||
-            (player.position.x < transform.position.x && facingRight))
+        if ((player.transform.position.x > transform.position.x && !facingRight) ||
+            (player.transform.position.x < transform.position.x && facingRight))
             Flip();
 
         // too far: stop moving
@@ -101,7 +103,7 @@ public class BossControllerHybrid : MonoBehaviour
         }
 
         // within chase range: move or attack
-        if (distance > attackRange)
+        if (distance > attackRange && !isDead )
             HandleMovement();
         else
             TryAttack();
@@ -110,7 +112,7 @@ public class BossControllerHybrid : MonoBehaviour
     // handles horizontal chasing movement and jump logic
     private void HandleMovement()
     {
-        float verticalDiff = player.position.y - transform.position.y;
+        float verticalDiff = player.transform.position.y - transform.position.y;
 
         // stop if player is too high with no platform path
         if (verticalDiff > playerAboveThreshold)
@@ -128,7 +130,7 @@ public class BossControllerHybrid : MonoBehaviour
             DisableHitbox();
 
         anim.SetBool("isMoving", true);
-        Vector2 dir = (player.position - transform.position).normalized;
+        Vector2 dir = (player.transform.position - transform.position).normalized;
         rb.linearVelocity = new Vector2(dir.x * moveSpeed, rb.linearVelocity.y);
 
         TryJumpToPlayer();
@@ -147,9 +149,9 @@ public class BossControllerHybrid : MonoBehaviour
         if (!isGrounded || isJumping || isAttacking || isDead)
             return;
 
-        float vDiff = player.position.y - transform.position.y;
-        float hDiff = Mathf.Abs(player.position.x - transform.position.x);
-        bool playerRight = player.position.x > transform.position.x;
+        float vDiff = player.transform.position.y - transform.position.y;
+        float hDiff = Mathf.Abs(player.transform.position.x - transform.position.x);
+        bool playerRight = player.transform.position.x > transform.position.x;
 
         bool jzP = platformZone != null && platformZone.playerInZone;
         bool jzB = platformZone != null && platformZone.bossInZone;
@@ -193,7 +195,7 @@ public class BossControllerHybrid : MonoBehaviour
 
         float gravity = Mathf.Abs(Physics2D.gravity.y * rb.gravityScale);
         float verticalVelocity = Mathf.Sqrt(2 * gravity * jumpHeight);
-        float dirX = player.position.x > transform.position.x ? 1f : -1f;
+        float dirX = player.transform.position.x > transform.position.x ? 1f : -1f;
 
         rb.linearVelocity = new Vector2(dirX * horizontalJumpForce, verticalVelocity);
 
@@ -203,7 +205,7 @@ public class BossControllerHybrid : MonoBehaviour
         anim.SetBool("isMoving", true);
     }
 
-    // checks if there’s a platform above
+    // checks if thereï¿½s a platform above
     private bool IsPlatformAboveReachable()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, jumpHeight * 2f, groundLayer);
@@ -226,6 +228,7 @@ public class BossControllerHybrid : MonoBehaviour
 
         anim.ResetTrigger("attack");
         anim.SetTrigger("attack");
+        anim.SetBool("isAttacking", isAttacking);
 
         DisableHitbox();
         yield return new WaitForSeconds(0.1f);
@@ -244,11 +247,13 @@ public class BossControllerHybrid : MonoBehaviour
 
         DisableHitbox();
         anim.ResetTrigger("attack");
-        anim.Play("Boss_Idle", 0, 0f);
-        anim.SetBool("isMoving", true);
+        // anim.Play("Boss_Idle", 0, 0f);
+        anim.SetBool("isMoving", false);
+        
 
         rb.linearVelocity = Vector2.zero;
         isAttacking = false;
+        anim.SetBool("isAttacking", isAttacking);
     }
 
     // enables the melee hitbox
@@ -281,12 +286,12 @@ public class BossControllerHybrid : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         DisableHitbox();
 
-        anim.ResetTrigger("attack");
+        // anim.ResetTrigger("attack");
         anim.SetBool("isMoving", false);
         enabled = false;
     }
 
-    // flips dracula’s sprite when changing direction
+    // flips draculaï¿½s sprite when changing direction
     private void Flip()
     {
         facingRight = !facingRight;

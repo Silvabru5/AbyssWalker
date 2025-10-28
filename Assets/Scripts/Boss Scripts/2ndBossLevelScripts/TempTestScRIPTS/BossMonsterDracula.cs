@@ -16,6 +16,9 @@ public class BossMonsterDracula : MonoBehaviour
     [SerializeField] private TextMeshProUGUI percentText;  // ui text showing health percentage
     [SerializeField] private GameObject returnPortal;      // portal object that activates after death
 
+    [SerializeField] private GameObject attackPoint;     
+
+
     public float getHealth()
     {
         return currentHealth;
@@ -135,7 +138,7 @@ public class BossMonsterDracula : MonoBehaviour
         // play death animation
         if (animator != null)
         {
-            animator.ResetTrigger("Hit");                  // clear any hit triggers
+            // animator.ResetTrigger("Hit");                  // clear any hit triggers
             animator.SetTrigger("die");                    // play death animation
         }
 
@@ -147,14 +150,14 @@ public class BossMonsterDracula : MonoBehaviour
     private IEnumerator DeathSequence()
     {
         // wait for the length of the death animation
-        yield return new WaitForSeconds(4.3f);
+        attackPoint.SetActive(false);
+        animator.SetBool("isDead", true);
+        yield return new WaitForSeconds(3.5f);
 
         // enable the portal so the player can interact with it
         if (returnPortal != null)
             returnPortal.SetActive(true);
-
-        // wait a bit before removing the boss from the scene
-        yield return new WaitForSeconds(0.5f);
+      
         Destroy(gameObject);
     }
 }

@@ -3,22 +3,25 @@ using UnityEngine;
 public class BossAttackHitbox : MonoBehaviour
 {
     [SerializeField] private int damage = 10;
+    private GameObject playerObject;
     private bool active;
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         Debug.Log($"[BossHitbox] Triggered with {other.name}, Active={active}");
         if (!active) return;
 
-        var player = other.GetComponent<PlayerSSBoss2>();
+         
+        playerObject = GameObject.FindWithTag("Player");
+        var player = other.GetComponent<WarriorController2D>();
         if (player != null)
         {
-            Debug.Log("[BossHitbox] Player detected – applying damage!");
+            Debug.Log("[BossHitbox] Player detected ï¿½ applying damage!");
             player.TakeDamage(damage);
 
-            var blink = player.GetComponent<PlayerHitEffect>();
-            if (blink != null)
-                blink.TriggerBlink();
+            // var blink = player.GetComponent<PlayerHitEffect>();
+            // if (blink != null)
+            //     blink.TriggerBlink();
         }
     }
 
