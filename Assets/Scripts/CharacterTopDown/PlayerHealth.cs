@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public float maxHealth = 100;
+    public float maxHealth;
     public float baseHealth = 100;
     [HideInInspector] public float currentHealth;
     [HideInInspector] public Image healthBarFill;
@@ -20,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
     // this runs when the game starts and sets up the player's health and health regen
     void Start()
     {
+        UpdateHealthFromStats();
         GameObject textObj = GameObject.FindWithTag("HealthText");
         GameObject fillObj = GameObject.FindWithTag("HealthFill");
         if (textObj != null && textObj.activeInHierarchy)
@@ -108,7 +109,6 @@ public class PlayerHealth : MonoBehaviour
     public void UpdateHealthFromStats()
     {
         // use base health so it doesn’t shrink if player is damaged
-        baseHealth = 100; //
         maxHealth = baseHealth * StatManager.instance.GetHealthAmount();
 
         // optionally refill current health
