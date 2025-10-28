@@ -15,7 +15,8 @@ public class PlayerSS : MonoBehaviour
     [SerializeField] private Transform _attkPnt;
     [SerializeField] private float _attackRange;
     [SerializeField] private float _attackSpeed;
-    [SerializeField] private float _attackDamage;
+    [SerializeField] private float baseDamage = 10f;
+    [SerializeField] private float scaleFactor = 0.15f;
     [SerializeField] private LayerMask _enemyLayers;
     bool isAttacking = false;
     float nextAttkTime = 0f;
@@ -29,7 +30,8 @@ public class PlayerSS : MonoBehaviour
     private float dashingCooldown = 1f;
 
     //Player Health
-    [SerializeField] private float _maxHealth = 100f;
+    [SerializeField] private float _baseHealth = 100f;
+    [SerializeField] private float _maxHealth = 0f;
     [SerializeField] private float _currentHealth = 0f;
     [SerializeField] private float iFrameDuration = 1.5f;
     [SerializeField] private float blinkDuration = 0.1f;
@@ -42,6 +44,7 @@ public class PlayerSS : MonoBehaviour
     private GameObject _gameManager;
     private void Start()
     {
+        _maxHealth = _baseHealth * StatManager.instance.GetHealthAmount();
         _anim = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _currentHealth = _maxHealth;
@@ -49,11 +52,11 @@ public class PlayerSS : MonoBehaviour
         _collider = GetComponent<Collider2D>();
         _gameManager = GameObject.Find("UIManager");
         StartCoroutine(StartTimer());
-       
+
     }
     private void Update()
     {
-       
+
         if (!isDead)
         {
             if (isDashing)
@@ -97,6 +100,7 @@ public class PlayerSS : MonoBehaviour
     void DealDamage()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attkPnt.position, _attackRange, _enemyLayers);
+        float damage = CalculateDamage();
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.gameObject.activeInHierarchy) // Check if spawned
@@ -104,44 +108,44 @@ public class PlayerSS : MonoBehaviour
                 BossSmallEnemies smallEnemy = enemy.GetComponent<BossSmallEnemies>();
                 if (smallEnemy != null)
                 {
-                    if (smallEnemy.GetCurrenthealth() <= _attackDamage)
+                    if (smallEnemy.GetCurrenthealth() <= damage)
                         SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_VATS_DESTROYED); // play a sound
                     else
                         SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_VATS_TAKES_DAMAGE); // play a sound
-                    smallEnemy.TakeDamage(_attackDamage);
+                    smallEnemy.TakeDamage(damage);
                     Debug.Log("Hit " + enemy.name);
                 }
 
                 BossMonster bossEnemy = enemy.GetComponent<BossMonster>();
                 if (bossEnemy != null)
                 {
-                    if (bossEnemy.getHealth() <= _attackDamage)
+                    if (bossEnemy.getHealth() <= damage)
                         SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_DEATH); // play a sound
                     else
                         SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_TAKES_DAMAGE); // play a sound
-                    bossEnemy.TakeDamage(_attackDamage);
+                    bossEnemy.TakeDamage(damage);
                     Debug.Log("HIT: " + bossEnemy.name);
                 }
 
                 SpawnEnemies spawnEnemy = enemy.GetComponent<SpawnEnemies>();
                 if (spawnEnemy != null)
                 {
-                    if (spawnEnemy.getHealth() <= _attackDamage)
+                    if (spawnEnemy.getHealth() <= damage)
                         SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_MINION_DEATH); // play a sound
                     else
                         SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_MINION_TAKES_DAMAGE); // play a sound
-                    spawnEnemy.TakeDamage(_attackDamage);
+                    spawnEnemy.TakeDamage(damage);
                     Debug.Log("HIT: " + spawnEnemy.name);
                 }
 
                 isEnemy skullEnemy = enemy.GetComponent<isEnemy>();
                 if (skullEnemy != null)
                 {
-                    if (skullEnemy.getHealth()<=_attackDamage)
+                    if (skullEnemy.getHealth() <= damage)
                         SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_SKULLS_DEATH); // play a sound
                     else
                         SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_SKULLS_TAKES_DAMAGE); // play a sound
-                    skullEnemy.TakeDamage(_attackDamage);
+                    skullEnemy.TakeDamage(damage);
                     Debug.Log("HIT: " + skullEnemy.name);
                 }
             }
@@ -151,8 +155,8 @@ public class PlayerSS : MonoBehaviour
     {
         _anim.SetTrigger("Death");
         _runSpeed = 0;
-        controller.rb.linearVelocity = new Vector2(0f,0f);
-        _gameManager.GetComponent<GameOverManager>().ShowGameOver();
+        controller.rb.linearVelocity = new Vector2(0f, 0f);
+        SceneLoader.instance.LoadSpecificLevel(2);
         canDash = false;
     }
     public void TakeDamage(float damage)
@@ -165,7 +169,7 @@ public class PlayerSS : MonoBehaviour
         _healthBar.SetHealth(_currentHealth);
         _anim.SetTrigger("Hurt");
 
-        if(_currentHealth <= 0)
+        if (_currentHealth <= 0)
         {
             SoundManager.PlaySound(SoundTypeEffects.WARRIOR_DEATH); // play a sound
             isDead = true;
@@ -189,7 +193,7 @@ public class PlayerSS : MonoBehaviour
         }
 
         controller.Move(_horizontalMove * Time.fixedDeltaTime, false, jump);
-       
+
         jump = false;
     }
 
@@ -209,9 +213,9 @@ public class PlayerSS : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if(_attkPnt == null)
+        if (_attkPnt == null)
         {
-            return; 
+            return;
         }
         Gizmos.DrawWireSphere(_attkPnt.position, _attackRange);
     }
@@ -219,15 +223,15 @@ public class PlayerSS : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.GetComponent<isEnemy>())
+        if (collision.gameObject.GetComponent<isEnemy>())
         {
-            if(!iFrame)
+            if (!iFrame)
             {
                 TakeDamage(10f);
                 Destroy(collision.gameObject);
             }
         }
-        if(collision.gameObject.GetComponent<isFire>())
+        if (collision.gameObject.GetComponent<isFire>())
         {
             TakeDamage(15f);
         }
@@ -287,5 +291,20 @@ public class PlayerSS : MonoBehaviour
         _anim.SetTrigger("Recover");
         yield return new WaitForSeconds(1f);
         isDead = false;
+    }
+
+    private float CalculateDamage()
+    {
+        int level = ExperienceManager.instance != null ? ExperienceManager.instance.GetCurrentLevel() : 1;
+        float damage = (baseDamage * (1f + scaleFactor * level)) * StatManager.instance.GetDamageIncrease();
+
+        // Crit check
+        if (Random.value < StatManager.instance.GetCritChance())
+        {
+            damage *= StatManager.instance.GetCritDamage();
+            Debug.Log($"Critical hit! {damage:F1}");
+        }
+
+        return damage;
     }
 }

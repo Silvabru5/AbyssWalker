@@ -64,7 +64,27 @@ public class StatManager : MonoBehaviour
         return defenseAmount;
     }
 
+    public int GetDamageLevel()
+    {
+        return damageLevel;
+    }
 
+    public int GetCritChanceLevel()
+    {
+        return critChanceLevel;
+    }
+    public int GetCritDamageLevel()
+    {
+        return critDamageLevel;
+    }
+    public int GetDefenseLevel()
+    {
+        return defenseLevel;
+    }
+    public int GetHealthLevel()
+    {
+        return healthLevel;
+    }
     //Spend Skill Points
     public void UpgradeDamage()
     {

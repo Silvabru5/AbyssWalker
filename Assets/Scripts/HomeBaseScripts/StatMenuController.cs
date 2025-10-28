@@ -7,6 +7,11 @@ public class StatMenuController : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private TMP_Text skillPointsText;
+    [SerializeField] private TMP_Text critChanceText;
+    [SerializeField] private TMP_Text critDamageText;
+    [SerializeField] private TMP_Text defenseText;
+    [SerializeField] private TMP_Text healthText;
+    [SerializeField] private TMP_Text damageText;
     [SerializeField] private Button damageButton;
     [SerializeField] private Button critChanceButton;
     [SerializeField] private Button critDamageButton;
@@ -83,5 +88,11 @@ public class StatMenuController : MonoBehaviour
     private void UpdateUI()
     {
         skillPointsText.text = $"Skill Points: {StatManager.instance.GetSkillPoints()}";
+        critChanceText.text = $"Level: {StatManager.instance.GetCritChanceLevel()}";
+        critDamageText.text = $"Level: {StatManager.instance.GetCritDamageLevel()}";
+        defenseText.text = $"Level: {StatManager.instance.GetDefenseLevel()}";
+        healthText.text = $"Level: {StatManager.instance.GetHealthLevel()}";
+        damageText.text = $"Level: {StatManager.instance.GetDamageLevel()}";
+
     }
 }

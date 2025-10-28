@@ -29,7 +29,6 @@ public class PlayerHealth : MonoBehaviour
         }
         if(fillObj != null && fillObj.activeInHierarchy)
         {
-            Debug.LogWarning("Fill found");
             healthBarFill = fillObj.GetComponent<Image>();
         }
         currentHealth = maxHealth;
@@ -74,11 +73,7 @@ public class PlayerHealth : MonoBehaviour
 
         yield return new WaitForSeconds(deathAnimationTime);
 
-        GameOverManager gameOver = FindAnyObjectByType<GameOverManager>();
-        if (gameOver != null)
-            gameOver.ShowGameOver();
-        else
-            Debug.LogWarning("GameOverManager not found in scene!");
+        SceneLoader.instance.LoadSpecificLevel(2);
     }
 
     // this returns the player's current health as a percentage (0.0 to 1.0)
