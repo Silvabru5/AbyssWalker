@@ -23,7 +23,11 @@ public class Collectible : MonoBehaviour, IInteractable
 
         
         if (CollectibleManager.Instance != null)
+        {
             CollectibleManager.Instance.AddCollectible(collectibleType);
+            SoundManager.PlaySound(SoundTypeEffects.TOKEN_PICKED_UP);
+        }
+            
 
 
 
