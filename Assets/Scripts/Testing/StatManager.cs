@@ -37,6 +37,8 @@ public class StatManager : MonoBehaviour
     public void AddSkillPoint()
     {
         skillPoints++;
+        SaveAndLoadManager.instance.SaveGame();
+
     }
 
     //Getters for Stats
@@ -91,9 +93,9 @@ public class StatManager : MonoBehaviour
         if (damageLevel != skillCap && skillPoints >= 1)
         {
             skillPoints--;
-            damageLevel++;
+            SetDamageLevel(++damageLevel);
+            SaveAndLoadManager.instance.SaveGame();
         }
-        damageIncrease = 1f + (damageLevel * 0.15f);
     }
 
     public void UpgradeCritChance()
@@ -101,9 +103,9 @@ public class StatManager : MonoBehaviour
         if (critChanceLevel != skillCap && skillPoints >= 1)
         {
             skillPoints--;
-            critChanceLevel++;
+            SetCritChanceLevel(++critChanceLevel);
+            SaveAndLoadManager.instance.SaveGame();
         }
-        critChance = Mathf.Min(critChanceLevel * 0.25f, 1f);
     }
 
     public void UpgradeCritDamage()
@@ -111,9 +113,9 @@ public class StatManager : MonoBehaviour
         if (critDamageLevel != skillCap && skillPoints >= 1)
         {
             skillPoints--;
-            critDamageLevel++;
+            SetCritDamageLevel(++critDamageLevel);
+            SaveAndLoadManager.instance.SaveGame();
         }
-        critDamage = 1f + (critDamageLevel * 0.25f); // 25% chance to hit
     }
 
     public void UpgradeHealth()
@@ -121,10 +123,9 @@ public class StatManager : MonoBehaviour
         if (healthLevel != skillCap && skillPoints >= 1)
         {
             skillPoints--;
-            healthLevel++;
+            SetHealthLevel(++healthLevel);
+            SaveAndLoadManager.instance.SaveGame();
         }
-
-        healthAmount = 1f + (healthLevel * 0.1f); //10% health increase per level
     }
 
     public void UpgradeDefense()
@@ -132,8 +133,36 @@ public class StatManager : MonoBehaviour
         if (defenseLevel != skillCap && skillPoints >= 1)
         {
             skillPoints--;
-            defenseLevel++;
+            SetDefenseLevel(++defenseLevel);
+            SaveAndLoadManager.instance.SaveGame();
         }
+    }
+
+    //Tristan Addition - Getter for skill points to update UI
+    public int GetSkillPoints()
+    {
+        return skillPoints;
+    }
+
+    public void SetDamageLevel(int _damageLevel)
+    {
+        damageLevel = _damageLevel;
+        damageIncrease = 1f + (damageLevel * 0.15f);
+    }
+
+    public void SetCritChanceLevel(int _critChanceLevel)
+    {
+        critChanceLevel = _critChanceLevel;
+        critChance = Mathf.Min(critChanceLevel * 0.25f, 1f);
+    }
+    public void SetCritDamageLevel(int _critDamageLevel)
+    {
+        critDamageLevel = _critDamageLevel;
+        critDamage = 1f + (critDamageLevel * 0.25f); // 25% chance to hit
+    }
+    public void SetDefenseLevel(int _defenseLevel)
+    {
+        defenseLevel = _defenseLevel;
         // Calculate damage multiplier (1 = full damage, 0.1 = 90% reduced)
         float maxReduction = 0.9f; // max 90% reduction
         defenseAmount = 1f - (defenseLevel / (float)skillCap) * maxReduction;
@@ -141,10 +170,20 @@ public class StatManager : MonoBehaviour
         // Ensure damage never completely blocked
         defenseAmount = Mathf.Clamp(defenseAmount, 0.1f, 1f);
     }
-
-    //Tristan Addition - Getter for skill points to update UI
-    public int GetSkillPoints()
+    public void SetHealthLevel(int _healthLevel)
     {
-        return skillPoints;
+        healthLevel = _healthLevel;
+        healthAmount = 1f + (healthLevel * 0.1f); //10% health increase per level
+    }
+    public void SetSkillPoints(int _skillPoints)
+    {
+        skillPoints = _skillPoints;
+
+        //// adjust for skill points automatically assigned from exp curve in this setter
+        //skillPoints -= damageLevel;
+        //skillPoints -= critChanceLevel;
+        //skillPoints -= critDamageLevel;
+        //skillPoints -= defenseLevel;
+        //skillPoints -= healthLevel;
     }
 }

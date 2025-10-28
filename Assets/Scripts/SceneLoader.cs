@@ -54,7 +54,6 @@ public class SceneLoader : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
 
         // LoadSceneMode.Single ensures the old scene is removed
-        if (levelIndex == 5) SoundManager.PlaySound(SoundTypeEffects.CAVE_BOSS_LOAD);
         SceneManager.LoadScene(levelIndex,LoadSceneMode.Single);
     }
 
@@ -67,14 +66,16 @@ public class SceneLoader : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Enable or disable in-game UI depending on scene
-        if (scene.buildIndex == 3 || scene.buildIndex == 5)
+        // Enable in-game UI just for scenes 3-6, save game on scene 2
+        inGameUI.SetActive(false);
+        switch (scene.buildIndex)
         {
-            inGameUI.SetActive(true);
-        }
-        else
-        {
-            inGameUI.SetActive(false);
+            case 2: SaveAndLoadManager.instance.SaveGame(); break;
+            case 3:
+            case 4:
+            case 5:
+            case 6: inGameUI.SetActive(true); break;
+            default: break;
         }
     }
 

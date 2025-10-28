@@ -4,6 +4,8 @@ using System.IO.Enumeration;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEditor.Overlays;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 // container for character specific data
 [Serializable]
@@ -16,10 +18,10 @@ public class CharacterData
     public int skillPointsCritChance;
     public int skillPointsCritDamage;
     public int highestBossDefeated;
+    public int skillPointsUnspent;
 
     // these are used in game but not saved to the file
-    public int level;
-    public int skillPointsUnspent;
+    private int level;
 
     // define constants to ensure save data validity
     private const int MAX_EXPERIENCE = 99999;
@@ -29,6 +31,7 @@ public class CharacterData
     private const int MAX_SKILL_POINTS_CRIT_CHANCE = 99;
     private const int MAX_SKILL_POINTS_CRIT_DAMAGE = 99;
     private const int MAX_BOSS_LEVEL_DEFEATED = 2;
+    private const int MAX_SKILL_POINTS_UNSPENT = 50;
 
     // used to initialize all values, if any value is read in that is invalid it is replaced with these defaults
     public void LoadDefaultValues()
@@ -40,20 +43,21 @@ public class CharacterData
         skillPointsCritChance = 0;
         skillPointsCritDamage = 0;
         highestBossDefeated = 0;
-        level = 0;
         skillPointsUnspent = 0;
     }
 
     // create a key/value pair to save all character stat names and values and save the string encrypted
     public string GenerateEncryptedSaveString()
     {
-        return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"Experience={experience}," +
+        return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(
+            $"Experience={experience}," +
             $"SkillPointsDamage={skillPointsDamage}," +
             $"SkillPointsDefense={skillPointsDefense}," +
-            $"SkillPointsDefense={skillPointsHealth}," +
+            $"SkillPointsHealth={skillPointsHealth}," +
             $"SkillPointsCritChance={skillPointsCritChance}," +
             $"SkillPointsCritDamage={skillPointsCritDamage}," +
-            $"HighestBossDefeated={highestBossDefeated}"));
+            $"HighestBossDefeated={highestBossDefeated}," +
+            $"SkillPointsUnspent={skillPointsUnspent}"));
     }
 
     // parse the load game player data read in and apply any valid values found
@@ -83,13 +87,14 @@ public class CharacterData
             if (!int.TryParse(attributeKeyValuePair[1], out int value))
                 continue;
 
-            if (key == "Experience" && value > 0 && value <= MAX_EXPERIENCE) experience = value;
-            else if (key == "SkillPointsDamage" && value > 0 && value <= MAX_SKILL_POINTS_DAMAGE) skillPointsDamage = value;
-            else if (key == "SkillPointsDefense" && value > 0 && value <= MAX_SKILL_POINTS_DEFENSE) skillPointsDefense = value;
-            else if (key == "SkillPointsHealth" && value > 0 && value <= MAX_SKILL_POINTS_HEALTH) skillPointsDefense = value;
-            else if (key == "SkillPointsCritChance" && value > 0 && value <= MAX_SKILL_POINTS_CRIT_CHANCE) skillPointsCritChance = value;
-            else if (key == "SkillPointsCritDamage" && value > 0 && value <= MAX_SKILL_POINTS_CRIT_DAMAGE) skillPointsCritDamage = value;
-            else if (key == "HighestBossDefeated" && value > 0 && value <= MAX_BOSS_LEVEL_DEFEATED) highestBossDefeated = value;
+            if (key == "Experience" && value >= 0 && value <= MAX_EXPERIENCE) experience = value;
+            else if (key == "SkillPointsDamage" && value >= 0 && value <= MAX_SKILL_POINTS_DAMAGE) skillPointsDamage = value;
+            else if (key == "SkillPointsDefense" && value >= 0 && value <= MAX_SKILL_POINTS_DEFENSE) skillPointsDefense = value;
+            else if (key == "SkillPointsHealth" && value >= 0 && value <= MAX_SKILL_POINTS_HEALTH) skillPointsHealth = value;
+            else if (key == "SkillPointsCritChance" && value >= 0 && value <= MAX_SKILL_POINTS_CRIT_CHANCE) skillPointsCritChance = value;
+            else if (key == "SkillPointsCritDamage" && value >= 0 && value <= MAX_SKILL_POINTS_CRIT_DAMAGE) skillPointsCritDamage = value;
+            else if (key == "HighestBossDefeated" && value >= 0 && value <= MAX_BOSS_LEVEL_DEFEATED) highestBossDefeated = value;
+            else if (key == "SkillPointsUnspent" && value >= 0 && value <= MAX_SKILL_POINTS_UNSPENT) skillPointsUnspent = value;
         }
     }
 }
@@ -98,7 +103,7 @@ public class CharacterData
 [Serializable]
 public class SaveData
 {
-    public int currentCharacter = 0;
+    //public int currentCharacter = 0;
     public CharacterData warrior = new CharacterData();
     public CharacterData mage = new CharacterData();
 }
@@ -112,7 +117,7 @@ public class SaveAndLoadManager : MonoBehaviour
     public static SaveAndLoadManager instance { get; private set; }
 
     // save data manager
-    private SaveData saveData = new SaveData();
+    public SaveData saveData = new SaveData();
 
     // hold the path to the datafile
     private string filename;
@@ -135,7 +140,7 @@ public class SaveAndLoadManager : MonoBehaviour
         
         filename = Path.Combine(Application.persistentDataPath, "save.dat");
 
-        LoadData();
+     //   LoadData();
     }
 
     // save the data to a file in binary format
@@ -147,7 +152,13 @@ public class SaveAndLoadManager : MonoBehaviour
             {
                 using (BinaryWriter binaryWriter = new BinaryWriter(fileStream))
                 {
-                    binaryWriter.Write(0); // current character
+                    // update player data
+                    switch (PlayerPrefs.GetInt("SelectedCharacter",0))
+                    {
+                        case 0: UpdateCharacterData(saveData.warrior); break;
+                        //case 1: UpdateCharacterData(saveData.mage); break;
+                        default: Debug.Log("Error: character index out of range in SaveGame"); break;
+                    }
 
                     // write out class data based in encrypted binary
                     binaryWriter.Write(saveData.warrior.GenerateEncryptedSaveString());
@@ -161,13 +172,25 @@ public class SaveAndLoadManager : MonoBehaviour
         }
     }
 
+    // grab the character data from the experience manager and statmanager
+    public void UpdateCharacterData(CharacterData characterData)
+    {
+        characterData.experience = ExperienceManager.instance.GetExperience();
+        characterData.skillPointsDamage = StatManager.instance.GetDamageLevel();
+        characterData.skillPointsDefense = StatManager.instance.GetDefenseLevel();
+        characterData.skillPointsCritChance = StatManager.instance.GetCritChanceLevel();
+        characterData.skillPointsCritDamage = StatManager.instance.GetCritDamageLevel();
+        characterData.skillPointsHealth = StatManager.instance.GetHealthLevel();
+        characterData.highestBossDefeated = 0; // not using this yet
+        characterData.skillPointsUnspent = StatManager.instance.GetSkillPoints(); // - characterData.skillPointsDamage - characterData.skillPointsDefense - characterData.skillPointsCritChance - characterData.skillPointsCritDamage - characterData.skillPointsHealth;
+    }
+
     // load he save data from a binary file
     public void LoadData()
     {
         // load the default values, then overwrite if the values found in the datafile are valid 
         saveData.warrior.LoadDefaultValues();
         saveData.mage.LoadDefaultValues();
-        saveData.currentCharacter = 0;
 
         // if the file doesn't exist, make a new one
         if (!File.Exists(filename))
@@ -183,10 +206,10 @@ public class SaveAndLoadManager : MonoBehaviour
             {
                 using (BinaryReader binaryReader = new BinaryReader(fileStream))
                 {
-                    // read in last played character and update if valid
-                    int currentCharacter = binaryReader.ReadInt32();
-                    if (currentCharacter >= 0 && currentCharacter <= MAX_LAST_PLAYED_CHARACTER)
-                        saveData.currentCharacter = currentCharacter;
+                    //// read in last played character and update if valid
+                    //int currentCharacter = binaryReader.ReadInt32();
+                    //if (currentCharacter >= 0 && currentCharacter <= MAX_LAST_PLAYED_CHARACTER)
+                    //    saveData.currentCharacter = currentCharacter;
 
                     // read in class specific data, and apply it if valid, apply defaults if not
                     string warriorData = binaryReader.ReadString();
@@ -201,5 +224,43 @@ public class SaveAndLoadManager : MonoBehaviour
         {
             Debug.LogError("ERROR: failed to load save data file (" + filename + "), using default values" + e.Message);
         }
+
+        // update the experience and stat manager
+        switch (PlayerPrefs.GetInt("SelectedCharacter",0))
+        {
+            case 0: LoadCharacterData(saveData.warrior); break;
+            case 1: LoadCharacterData(saveData.mage); break;
+            default: Debug.Log("Error: character index out of range in SaveGame"); break;
+        }
+    }
+
+    // populate the experience manager and statmanager with save game data
+    public void LoadCharacterData(CharacterData characterData)
+    {
+        //ExperienceManager.instance.AddExperience(characterData.experience);
+        //for (int i = 0; i < characterData.skillPointsDamage; i++) { StatManager.instance.UpgradeDamage(); }
+        //for (int i = 0; i < characterData.skillPointsDefense; i++) { StatManager.instance.UpgradeDefense(); }
+        //for (int i = 0; i < characterData.skillPointsHealth; i++) { StatManager.instance.UpgradeHealth(); }
+        //for (int i = 0; i < characterData.skillPointsCritChance; i++) { StatManager.instance.UpgradeCritChance(); }
+        //for (int i = 0; i < characterData.skillPointsCritDamage; i++) { StatManager.instance.UpgradeCritDamage(); }
+
+        //Debug.Log($"Loading: CritChance:{characterData.skillPointsCritChance}, {StatManager.instance.GetCritChanceLevel()}, {saveData.warrior.skillPointsCritChance}");
+
+        //ExperienceManager.instance.SetExperience(characterData.experience);
+        //StatManager.instance.SetDamageLevel(characterData.skillPointsDamage);
+        //StatManager.instance.SetDefenseLevel(characterData.skillPointsDefense);
+        //StatManager.instance.SetHealthLevel(characterData.skillPointsHealth);
+        //StatManager.instance.SetCritChanceLevel(characterData.skillPointsCritChance);
+        //StatManager.instance.SetCritDamageLevel(characterData.skillPointsCritDamage);
+        //StatManager.instance.SetSkillPoints(characterData.skillPointsUnspent);
+
+        ExperienceManager.instance.SetExperience(characterData.experience);
+        for (int i = 0; i < characterData.skillPointsDamage; i++) { StatManager.instance.SetDamageLevel(StatManager.instance.GetDamageLevel()+1); StatManager.instance.SetSkillPoints(StatManager.instance.GetSkillPoints() - 1); }
+        for (int i = 0; i < characterData.skillPointsCritDamage; i++) { StatManager.instance.SetCritDamageLevel(StatManager.instance.GetCritDamageLevel() + 1); StatManager.instance.SetSkillPoints(StatManager.instance.GetSkillPoints() - 1); }
+        for (int i = 0; i < characterData.skillPointsCritChance; i++) { StatManager.instance.SetCritChanceLevel(StatManager.instance.GetCritChanceLevel() + 1); StatManager.instance.SetSkillPoints(StatManager.instance.GetSkillPoints() - 1); }
+        for (int i = 0; i < characterData.skillPointsHealth; i++) { StatManager.instance.SetHealthLevel(StatManager.instance.GetHealthLevel() + 1); StatManager.instance.SetSkillPoints(StatManager.instance.GetSkillPoints() - 1); }
+        for (int i = 0; i < characterData.skillPointsDefense; i++) { StatManager.instance.SetDefenseLevel(StatManager.instance.GetDefenseLevel() + 1); StatManager.instance.SetSkillPoints(StatManager.instance.GetSkillPoints() - 1); }
+
+        StatManager.instance.GetHealthAmount(); // update player health
     }
 }

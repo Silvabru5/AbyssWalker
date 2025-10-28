@@ -78,7 +78,10 @@ public class SelectCharacter : MonoBehaviour
     public void PlayGame()
     {
         PlayerPrefs.SetInt("SelectedCharacter", (int)currentCharacter);
-        //PlayerPrefs.Save(); commented out for testing purposes
+        PlayerPrefs.Save(); //commented out for testing purposes
+
+        // load the save game data
+        SaveAndLoadManager.instance.LoadData();
 
         SceneLoader.instance.LoadSpecificLevel(2);
         characterSelectUI.SetActive(false);

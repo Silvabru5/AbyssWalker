@@ -35,6 +35,7 @@ public class Item : MonoBehaviour, IInteractable
 
         if(isCollectable){
             CollectibleManager.Instance?.AddCollectible(collectibleType);
+            SoundManager.PlaySound(SoundTypeEffects.TOKEN_PICKED_UP);
             Debug.Log($"collected item");
         }
         

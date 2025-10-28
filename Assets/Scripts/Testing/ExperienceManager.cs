@@ -1,7 +1,8 @@
+using System.Xml.Serialization;
+using TMPro;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System.Xml.Serialization;
 
 public class ExperienceManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] int levelCap;
 
 
-    int currentLevel = 1, totalExperience;
+    int currentLevel = 1, totalExperience = 0;
     int previousLevelsExp, nextLevelExp;
 
     private void Awake()
@@ -51,6 +52,15 @@ public class ExperienceManager : MonoBehaviour
         return currentLevel;
     }
 
+    public int GetExperience()
+    {
+        return totalExperience;
+    }
+    public void SetExperience(int _totalExperience)
+    {
+        totalExperience = _totalExperience;
+        StatManager.instance.SetSkillPoints(0); // adding total experience when loading from the save file, assigns more skill points, negate that effect
+    }
     public void AddExperience(int amount)
     {
         totalExperience += amount;
@@ -63,7 +73,7 @@ public class ExperienceManager : MonoBehaviour
 
     void CheckLevelUp()
     {
-        if (totalExperience >= nextLevelExp && currentLevel != levelCap)
+        while (totalExperience >= nextLevelExp && currentLevel != levelCap)
         {
             currentLevel++;
             StatManager.instance.AddSkillPoint();
