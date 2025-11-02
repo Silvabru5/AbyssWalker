@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6174794931231642009}
   - component: {fileID: 6091067240485422297}
   m_Layer: 5
-  m_Name: DamageText
+  m_Name: CritText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,8 +76,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278207231
+  m_fontColor: {r: 1, g: 0.25882354, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

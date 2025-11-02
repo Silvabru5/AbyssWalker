@@ -18,6 +18,7 @@ public class PlayerAttackCone : MonoBehaviour
     public float scaleFactor = 0.15f;
 
     private bool canAttack = true;
+    private bool isCrit = false;
 
     void Start()
     {
@@ -63,8 +64,15 @@ public class PlayerAttackCone : MonoBehaviour
                 {
                     float damage = CalculateDamage();
                     enemyHealth.TakeDamage(damage);
-                    DamageNumberSpawner.instance.SpawnDamageNumber(enemy.transform.position, damage);
-                   // Debug.Log($"Hit {enemy.name} for {damage:F1} damage");
+                    if (isCrit)
+                    {
+                        DamageNumberSpawner.instance.SpawnCritNumber(enemy.transform.position, damage);
+                        isCrit = false;
+                    }
+                    else if(!isCrit)
+                    {
+                        DamageNumberSpawner.instance.SpawnDamageNumber(enemy.transform.position, damage);
+                    }
                 }
             }
         }
@@ -85,8 +93,8 @@ public class PlayerAttackCone : MonoBehaviour
         // Crit check
         if (Random.value < StatManager.instance.GetCritChance())
         {
+            isCrit = true;
             damage *= StatManager.instance.GetCritDamage();
-            Debug.Log($"Critical hit! {damage:F1}");
         }
 
         return damage;

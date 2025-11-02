@@ -153,7 +153,7 @@ public class StatManager : MonoBehaviour
     public void SetCritChanceLevel(int _critChanceLevel)
     {
         critChanceLevel = _critChanceLevel;
-        critChance = Mathf.Min(critChanceLevel * 0.25f, 1f);
+        critChance = Mathf.Min(critChanceLevel * (1f/skillCap), 1f);
     }
     public void SetCritDamageLevel(int _critDamageLevel)
     {

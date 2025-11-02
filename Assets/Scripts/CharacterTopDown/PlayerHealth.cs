@@ -49,7 +49,6 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= CalculateDamage(amount);
         
         //        currentHealth = Mathf.Max(0, currentHealth); // prevent negative health
-        Debug.Log($"Player HP: {currentHealth}");
 
         if (currentHealth > -99999 && currentHealth <= 0)
         {
