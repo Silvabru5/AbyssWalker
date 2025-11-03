@@ -75,7 +75,7 @@ public class SceneLoader : MonoBehaviour
         
         switch (scene.buildIndex)
         {
-            case 2: SaveAndLoadManager.instance.SaveGame(); break;
+            case 2: SaveAndLoadManager.instance.SaveGame(); inGameUI.SetActive(false); break;
             case 3: inGameUI.SetActive(true); break;
             case 4: inGameUI.SetActive(false); break;
             case 5: inGameUI.SetActive(true); break;

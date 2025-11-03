@@ -96,7 +96,7 @@ public class PlayerHealth : MonoBehaviour
     private void UpdateHealthText()
     {
         if (healthText != null)
-            healthText.text = $"{currentHealth} / {maxHealth}";
+            healthText.text = currentHealth.ToString("F0") + " / " + maxHealth.ToString("F0");
         if(healthBarFill!=null)
             healthBarFill.fillAmount = currentHealth/maxHealth;
     }

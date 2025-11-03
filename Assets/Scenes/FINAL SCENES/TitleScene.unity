@@ -5514,7 +5514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1058103251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7608,7 +7608,6 @@ GameObject:
   - component: {fileID: 1453322965}
   - component: {fileID: 1453322964}
   - component: {fileID: 1453322963}
-  - component: {fileID: 1453322962}
   - component: {fileID: 1453322961}
   - component: {fileID: 1453322967}
   - component: {fileID: 1453322966}
@@ -7639,19 +7638,6 @@ MonoBehaviour:
   inGameUI: {fileID: 1204042385}
   transitionTime: 1
   gameCanvas: {fileID: 1058103253}
-  UICanvas: {fileID: 1058103250}
---- !u!114 &1453322962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1453322960}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55699a5f1aca5fc46b5633679762747c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1453322963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7752,7 +7738,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1332764848}
   startMenuUI: {fileID: 167892234}
-  inGameUI: {fileID: 1204042385}
   characterSelectUI: {fileID: 1763470057}
   soundMenuUI: {fileID: 1454769907}
   soundManager: {fileID: 432708955}
