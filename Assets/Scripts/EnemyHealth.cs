@@ -1,5 +1,13 @@
 using System;
 using UnityEngine;
+/*
+    Author(s): Bruno Silva
+    Description: manages enemy health, taking damage, hurt reactions, and death logic.
+                 handles damage reduction, hurt animations, attack interruption, death
+                 animations, collider disabling, and cleanup. also updates health based
+                 on enemy level and reports kills to the spawner and boss meter ui.
+    Date (last modification): 11/22/2025
+*/
 
 public class EnemyHealth : MonoBehaviour
 {

@@ -1882,6 +1882,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c4ccaf29720dc469b51782a040f95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveData:
+    warrior:
+      experience: 0
+      skillPointsDamage: 0
+      skillPointsDefense: 0
+      skillPointsHealth: 0
+      skillPointsCritChance: 0
+      skillPointsCritDamage: 0
+      highestBossDefeated: 0
+      skillPointsUnspent: 0
+    mage:
+      experience: 0
+      skillPointsDamage: 0
+      skillPointsDefense: 0
+      skillPointsHealth: 0
+      skillPointsCritChance: 0
+      skillPointsCritDamage: 0
+      highestBossDefeated: 0
+      skillPointsUnspent: 0
 --- !u!114 &266111100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1908,6 +1927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 0}
   startMenuUI: {fileID: 0}
+  inGameUI: {fileID: 0}
   characterSelectUI: {fileID: 0}
   soundMenuUI: {fileID: 0}
   soundManager: {fileID: 2011891851}
@@ -1927,6 +1947,7 @@ MonoBehaviour:
   inGameUI: {fileID: 536981375}
   transitionTime: 1
   gameCanvas: {fileID: 914352920}
+  UICanvas: {fileID: 0}
 --- !u!114 &266111103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5061,6 +5082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1054969842}
   startMenuUI: {fileID: 0}
+  inGameUI: {fileID: 0}
   characterSelectUI: {fileID: 0}
   soundMenuUI: {fileID: 0}
   soundManager: {fileID: 0}
@@ -10240,6 +10262,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  animator: {fileID: 0}
+  rb: {fileID: 0}
+  moveInput: 0
+  lastMoveInput: 0
+  wasMoving: 0
 --- !u!114 &1201813875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17290,7 +17317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3009046588853682179, guid: e30c0f0cbfa7bde4b8eed684b488d27f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4270769183129422918, guid: e30c0f0cbfa7bde4b8eed684b488d27f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17340,6 +17367,10 @@ PrefabInstance:
       propertyPath: '_targets.Array.data[1]'
       value: 
       objectReference: {fileID: 1040961351}
+    - target: {fileID: 5566059391412332379, guid: e30c0f0cbfa7bde4b8eed684b488d27f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5566059391412332379, guid: e30c0f0cbfa7bde4b8eed684b488d27f, type: 3}
       propertyPath: m_IsTrigger
       value: 1
