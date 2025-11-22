@@ -8,8 +8,7 @@ public class EnemyLevel : MonoBehaviour
     [SerializeField] private int enemyLevel;
     [SerializeField] private float growthFactor;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
         int playerLevel = ExperienceManager.instance.GetCurrentLevel();
         // Assign base exp values that will increase base on players level
@@ -37,6 +36,12 @@ public class EnemyLevel : MonoBehaviour
             "sword skeleton" => playerLevel + 4,
             _ => playerLevel
         };
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+    
     }
 
     public int CalculateExp() // Calculating the amount of exp distributed based on enemy type

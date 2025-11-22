@@ -18,6 +18,7 @@ public class PlayerAttackCone : MonoBehaviour
     public float scaleFactor = 0.15f;
 
     private bool canAttack = true;
+    private bool isCrit = false;
 
     void Start()
     {
@@ -49,6 +50,17 @@ public class PlayerAttackCone : MonoBehaviour
         // Detect enemies within range
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayers);
 
+        //Calculate damage delt
+        int level = ExperienceManager.instance != null ? ExperienceManager.instance.GetCurrentLevel() : 1;
+        float damage = (baseDamage * (1f + scaleFactor * level)) * StatManager.instance.GetDamageIncrease();
+        isCrit = Random.value < StatManager.instance.GetCritChance();
+        // Crit check
+        if (isCrit)
+        {
+            damage *= StatManager.instance.GetCritDamage();
+        }
+
+
         foreach (Collider2D enemy in hits)
         {
             if (enemy == null) continue;
@@ -58,14 +70,16 @@ public class PlayerAttackCone : MonoBehaviour
             float angleToEnemy = Vector2.Angle(aimDir, dirToEnemy);
             if (angleToEnemy <= attackAngle / 2f)
             {
-                EnemyHealth enemyHealth = enemy.GetComponentInParent<EnemyHealth>();
-                if (enemyHealth != null)
+                enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
+                if (isCrit)
                 {
-                    float damage = CalculateDamage();
-                    enemyHealth.TakeDamage(damage);
-                    DamageNumberSpawner.instance.SpawnDamageNumber(enemy.transform.position, damage);
-                   // Debug.Log($"Hit {enemy.name} for {damage:F1} damage");
+                    DamageNumberSpawner.instance.SpawnCritNumber(enemy.transform.position, damage);
                 }
+                else
+                {
+                    DamageNumberSpawner.instance.SpawnDamageNumber(enemy.transform.position, damage);
+                }
+
             }
         }
 
@@ -75,21 +89,6 @@ public class PlayerAttackCone : MonoBehaviour
         // Cooldown
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
-    }
-
-    private float CalculateDamage()
-    {
-        int level = ExperienceManager.instance != null ? ExperienceManager.instance.GetCurrentLevel() : 1;
-        float damage = (baseDamage * (1f + scaleFactor * level)) * StatManager.instance.GetDamageIncrease();
-
-        // Crit check
-        if (Random.value < StatManager.instance.GetCritChance())
-        {
-            damage *= StatManager.instance.GetCritDamage();
-            Debug.Log($"Critical hit! {damage:F1}");
-        }
-
-        return damage;
     }
 
     private void OnDrawGizmosSelected()

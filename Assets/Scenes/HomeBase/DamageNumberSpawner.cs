@@ -4,6 +4,7 @@ public class DamageNumberSpawner : MonoBehaviour
 {
     public static DamageNumberSpawner instance;
 
+    public GameObject critNumberPrefab; 
     public GameObject damageNumberPrefab; 
     public Canvas canvas;                 
 
@@ -24,6 +25,18 @@ public class DamageNumberSpawner : MonoBehaviour
         Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
 
         GameObject dmgNum = Instantiate(damageNumberPrefab, canvas.transform);
+        dmgNum.transform.position = screenPos;
+
+        DamageNumber dmgScript = dmgNum.GetComponent<DamageNumber>();
+        dmgScript.SetText(damage.ToString("F0")); // whole numbers
+    }
+
+    public void SpawnCritNumber(Vector3 worldPos, float damage)
+    {
+        // Convert world to canvas position
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
+
+        GameObject dmgNum = Instantiate(critNumberPrefab, canvas.transform);
         dmgNum.transform.position = screenPos;
 
         DamageNumber dmgScript = dmgNum.GetComponent<DamageNumber>();

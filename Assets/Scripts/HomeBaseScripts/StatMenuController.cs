@@ -1,12 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class StatMenuController : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private TMP_Text skillPointsText;
+    [SerializeField] private TMP_Text critChanceText;
+    [SerializeField] private TMP_Text critDamageText;
+    [SerializeField] private TMP_Text defenseText;
+    [SerializeField] private TMP_Text healthText;
+    [SerializeField] private TMP_Text damageText;
     [SerializeField] private Button damageButton;
     [SerializeField] private Button critChanceButton;
     [SerializeField] private Button critDamageButton;
@@ -49,9 +55,9 @@ public class StatMenuController : MonoBehaviour
 
     private void OnHealthUpgrade()
     {
-        StatManager.instance.UpgradeHealth();
         GameObject player = GameObject.FindWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
+        StatManager.instance.UpgradeHealth();
         playerHealth.UpdateHealthFromStats();
         UpdateUI();
     }
@@ -68,6 +74,7 @@ public class StatMenuController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             ToggleMenu();
+          
         }
     }
 
@@ -75,7 +82,18 @@ public class StatMenuController : MonoBehaviour
     {
         isOpen = !isOpen;
         menuPanel.SetActive(isOpen);
-
+        if (isOpen && SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+        else
+        {
+            isOpen = false;
+            menuPanel.SetActive(false);
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
+        }
         Time.timeScale = isOpen ? 0 : 1; //3. Freeze/unfreeze game
         UpdateUI();
     }
@@ -83,5 +101,11 @@ public class StatMenuController : MonoBehaviour
     private void UpdateUI()
     {
         skillPointsText.text = $"Skill Points: {StatManager.instance.GetSkillPoints()}";
+        critChanceText.text = $"Level: {StatManager.instance.GetCritChanceLevel()}";
+        critDamageText.text = $"Level: {StatManager.instance.GetCritDamageLevel()}";
+        defenseText.text = $"Level: {StatManager.instance.GetDefenseLevel()}";
+        healthText.text = $"Level: {StatManager.instance.GetHealthLevel()}";
+        damageText.text = $"Level: {StatManager.instance.GetDamageLevel()}";
+
     }
 }

@@ -25,13 +25,16 @@ public class BossPlatformZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<PlayerSSBoss2>() != null) playerInZone = true;
+        // if (other.GetComponent<PlayerSSBoss2>() != null) playerInZone = true;
+        if (other.GetComponent<isHero>() != null) playerInZone = true;
+
         if (other.GetComponent<BossControllerHybrid>() != null) bossInZone = true;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<PlayerSSBoss2>() != null) playerInZone = false;
+        // if (other.GetComponent<PlayerSSBoss2>() != null) playerInZone = false;
+        if (other.GetComponent<isHero>() != null) playerInZone = false;
         if (other.GetComponent<BossControllerHybrid>() != null) bossInZone = false;
     }
 }

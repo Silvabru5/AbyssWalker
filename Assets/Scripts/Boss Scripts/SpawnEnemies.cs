@@ -31,11 +31,15 @@ public class SpawnEnemies : MonoBehaviour
         _anim.SetTrigger("Death");
         _col.enabled = false;
         boss = GameObject.Find("Boss");
-        player = GameObject.Find("Player");
+        player = GameObject.FindWithTag("Player");
         isDead= true;   
         StartCoroutine(RespawnEnemy());
     }
 
+    public float getHealth()
+    {
+        return _currentHealth;
+    }
     public void TakeDamage(float damage)
     {
         _currentHealth -= damage;
@@ -57,7 +61,8 @@ public class SpawnEnemies : MonoBehaviour
         Collider2D playerCol = Physics2D.OverlapCircle(attackPtn.position, attackRange, Player);
         if (playerCol != null)
         {
-            PlayerSS player = playerCol.GetComponent<PlayerSS>();
+            // PlayerSS player = playerCol.GetComponent<PlayerSS>();
+            WarriorController2D player = playerCol.GetComponent<WarriorController2D>();
             player.TakeDamage(attackDmg);
         }
     }

@@ -24,6 +24,11 @@ public class BossSmallEnemies : MonoBehaviour
         _spawner = GameObject.Find("SpawnPoints");
     }
 
+    public float  GetCurrenthealth()
+    {
+        return _currentHealth;
+    }
+
     public void TakeDamage(float damage)
     {
         _currentHealth -= damage;
@@ -33,8 +38,12 @@ public class BossSmallEnemies : MonoBehaviour
         if(_currentHealth <= 0)
         {
             isDead = true;
-            Die(); 
+   //         SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_VATS_DESTROYED);
+            Die();
         }
+       // else
+     //       SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_VATS_TAKES_DAMAGE);
+
     }
 
     void Die()

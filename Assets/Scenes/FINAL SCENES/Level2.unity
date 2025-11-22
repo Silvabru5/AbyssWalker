@@ -260,7 +260,7 @@ Transform:
   m_GameObject: {fileID: 196049141}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.105, y: -1.136, z: -0.14879316}
+  m_LocalPosition: {x: 35.56185, y: 36.949745, z: -0.14879316}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -591,8 +591,8 @@ MonoBehaviour:
   - {fileID: 770045898}
   - {fileID: 1101829576}
   - {fileID: 1573709789}
-  spawnRate: 1
-  maxEnemies: 30
+  spawnRate: 1.5
+  maxEnemies: 35
   numOfEnemiesDead: 0
 --- !u!4 &283930904
 Transform:
@@ -840,7 +840,7 @@ Transform:
   m_GameObject: {fileID: 355160661}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.149, y: -1.144, z: -0.14879316}
+  m_LocalPosition: {x: 32.14, y: -0.07, z: -0.14879316}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1106,7 +1106,7 @@ Transform:
   m_GameObject: {fileID: 714552932}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.14, y: -1.16, z: -0.14879316}
+  m_LocalPosition: {x: -23.503572, y: 26.64701, z: -0.14879316}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1955,7 +1955,7 @@ Transform:
   m_GameObject: {fileID: 1329344225}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.079, y: -1.162, z: -0.14879316}
+  m_LocalPosition: {x: 12.579959, y: 25.162363, z: -0.14879316}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12750,7 +12750,7 @@ Transform:
   m_GameObject: {fileID: 1700882791}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.131, y: -1.154, z: -0.14879316}
+  m_LocalPosition: {x: -24.976168, y: -4.937601, z: -0.14879316}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

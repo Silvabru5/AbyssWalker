@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public float maxHealth = 100;
+    public float maxHealth;
     public float baseHealth = 100;
     [HideInInspector] public float currentHealth;
     [HideInInspector] public Image healthBarFill;
@@ -20,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
     // this runs when the game starts and sets up the player's health and health regen
     void Start()
     {
+        UpdateHealthFromStats();
         GameObject textObj = GameObject.FindWithTag("HealthText");
         GameObject fillObj = GameObject.FindWithTag("HealthFill");
         if (textObj != null && textObj.activeInHierarchy)
@@ -28,7 +29,6 @@ public class PlayerHealth : MonoBehaviour
         }
         if(fillObj != null && fillObj.activeInHierarchy)
         {
-            Debug.LogWarning("Fill found");
             healthBarFill = fillObj.GetComponent<Image>();
         }
         currentHealth = maxHealth;
@@ -49,7 +49,6 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= CalculateDamage(amount);
         
         //        currentHealth = Mathf.Max(0, currentHealth); // prevent negative health
-        Debug.Log($"Player HP: {currentHealth}");
 
         if (currentHealth > -99999 && currentHealth <= 0)
         {
@@ -73,11 +72,7 @@ public class PlayerHealth : MonoBehaviour
 
         yield return new WaitForSeconds(deathAnimationTime);
 
-        GameOverManager gameOver = FindAnyObjectByType<GameOverManager>();
-        if (gameOver != null)
-            gameOver.ShowGameOver();
-        else
-            Debug.LogWarning("GameOverManager not found in scene!");
+        SceneLoader.instance.LoadSpecificLevel(2);
     }
 
     // this returns the player's current health as a percentage (0.0 to 1.0)
@@ -101,14 +96,13 @@ public class PlayerHealth : MonoBehaviour
     private void UpdateHealthText()
     {
         if (healthText != null)
-            healthText.text = $"{currentHealth} / {maxHealth}";
+            healthText.text = currentHealth.ToString("F0") + " / " + maxHealth.ToString("F0");
         if(healthBarFill!=null)
             healthBarFill.fillAmount = currentHealth/maxHealth;
     }
     public void UpdateHealthFromStats()
     {
         // use base health so it doesn’t shrink if player is damaged
-        baseHealth = 100; //
         maxHealth = baseHealth * StatManager.instance.GetHealthAmount();
 
         // optionally refill current health

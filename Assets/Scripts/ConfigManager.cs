@@ -11,7 +11,7 @@ public class ConfigManager : MonoBehaviour
 
     private Dictionary<string, string> config = new Dictionary<string, string>();
     private string filename;
-    private List<string> validKeys = new List<string> { "musicVolume", "effectsVolume", "playerName" };
+    private List<string> validKeys = new List<string> { "musicVolume", "effectsVolume" }; //, "playerName" };
 
     void Awake()
     {

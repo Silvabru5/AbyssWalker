@@ -32,14 +32,20 @@ public class Item : MonoBehaviour, IInteractable
     public void Interact()
     {
         if (!CanInteract()) return;
-        CollectibleManager.Instance?.AddCollectible(collectibleType);
-        Debug.Log($"collected item");
+
+        if(isCollectable){
+            CollectibleManager.Instance?.AddCollectible(collectibleType);
+            SoundManager.PlaySound(SoundTypeEffects.TOKEN_PICKED_UP);
+            Debug.Log($"collected item");
+        }
+        
         TurnOnSwitch();
     }
 
     private void TurnOnSwitch()
     {
         SetOpened(true);
+        SoundManager.PlaySound(SoundTypeEffects.GATE_OPENING);
     }
 
     private void SetOpened(bool opened)

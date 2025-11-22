@@ -79,6 +79,7 @@ public class PlayerSSBoss2 : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1") && controller.m_Grounded)
             {
+                SoundManager.PlaySound(SoundTypeEffects.WARRIOR_ATTACK);
                 jump = false;
                 Attack();
                 nextAttkTime = Time.time + 1f / _attackSpeed;
@@ -89,6 +90,7 @@ public class PlayerSSBoss2 : MonoBehaviour
         // handle dash input
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
+            SoundManager.PlaySound(SoundTypeEffects.WARRIOR_DASH_PORTAL);
             _anim.SetTrigger("Dash");
             StartCoroutine(Dash());
         }
@@ -140,7 +142,6 @@ public class PlayerSSBoss2 : MonoBehaviour
         isAttacking = true;
         _runSpeed = 0f;
 
-        SoundManager.PlaySound(SoundTypeEffects.WARRIOR_ATTACK);
         StartCoroutine(AttackCD());
     }
 
@@ -166,7 +167,10 @@ public class PlayerSSBoss2 : MonoBehaviour
             else if (bossB != null)
             {
                 bossB.TakeDamage(_attackDamage);
-                SoundManager.PlaySound(SoundTypeEffects.VAMPIRE_TAKES_DAMAGE);
+                if (bossB.getHealth() <= _attackDamage)
+                    SoundManager.PlaySound(SoundTypeEffects.VAMPIRE_DEATH);
+                else
+                    SoundManager.PlaySound(SoundTypeEffects.VAMPIRE_TAKES_DAMAGE);
             }
         }
     }
@@ -197,6 +201,7 @@ public class PlayerSSBoss2 : MonoBehaviour
         // if health is depleted, trigger death
         if (_currentHealth <= 0)
         {
+            SoundManager.PlaySound(SoundTypeEffects.WARRIOR_DEATH);
             isDead = true;
             Dead();
         }
