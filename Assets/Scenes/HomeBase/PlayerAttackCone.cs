@@ -1,54 +1,76 @@
 using System.Collections;
 using UnityEngine;
 
+
+// This script handles player attack mechanics using a cone-shaped area in front of the player | FOR WARRIOR CLASS
 public class PlayerAttackCone : MonoBehaviour
 {
     [Header("References")]
-    public Animator animator;
-    private AimingCursor aimingCursor;
+    public Animator animator; // Reference to the player's animator
+    private AimingCursor aimingCursor; // Reference to aiming cursor script
 
     [Header("Attack Settings")]
-    public float attackCooldown = 0.8f;
+    public float attackCooldown = 0.8f; // Time between attacks
     public float attackRange = 2f;       // How far the attack reaches
     public float attackAngle = 60f;      // Cone angle in degrees
-    public LayerMask enemyLayers;
+    public LayerMask enemyLayers;      // Layers considered as enemies
 
     [Header("Damage Stats")]
-    public float baseDamage = 10f;
-    public float scaleFactor = 0.15f;
+    public float baseDamage = 10f; // Base damage of the attack
+    public float scaleFactor = 0.15f; // Damage scaling per player level
 
-    private bool canAttack = true;
+    private bool canAttack = true; // Track if player can attack & prevent spamming left click
+    private bool isCrit = false; // Track if the current attack is a critical hit
 
     void Start()
     {
+        // Get reference to aiming cursor
         aimingCursor = GetComponent<AimingCursor>();
+
+        // Get reference to animator if not set
         if (animator == null)
             animator = GetComponentInParent<Animator>();
     }
 
     void Update()
     {
+
+        // Check for attack input, cant attack while on cool down or game is paused.
         if (!canAttack || Time.timeScale == 0f) return;
 
         if (Input.GetMouseButtonDown(0)) // Left click
         {
+            // Determine aim direction
             Vector2 aimDir = aimingCursor != null ? aimingCursor.direction.normalized : Vector2.right;
 
+            // Trigger attack animation based on aim direction
             animator.SetFloat("AttackHorizontal", aimDir.x);
             animator.SetFloat("AttackVertical", aimDir.y);
             animator.SetTrigger("BasicAttack");
 
+            // Start attack coroutine
             StartCoroutine(PerformAttack(aimDir));
         }
     }
 
     private IEnumerator PerformAttack(Vector2 aimDir)
     {
-        canAttack = false;
+        canAttack = false; // Disable further attacks until cooldown is over
 
         // Detect enemies within range
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayers);
 
+        //Calculate damage delt
+        int level = ExperienceManager.instance != null ? ExperienceManager.instance.GetCurrentLevel() : 1;
+        float damage = (baseDamage * (1f + scaleFactor * level)) * StatManager.instance.GetDamageIncrease();
+        isCrit = Random.value < StatManager.instance.GetCritChance();
+        // Crit check
+        if (isCrit)
+        {
+            damage *= StatManager.instance.GetCritDamage();
+        }
+
+        // Apply damage to enemies within cone
         foreach (Collider2D enemy in hits)
         {
             if (enemy == null) continue;
@@ -58,38 +80,27 @@ public class PlayerAttackCone : MonoBehaviour
             float angleToEnemy = Vector2.Angle(aimDir, dirToEnemy);
             if (angleToEnemy <= attackAngle / 2f)
             {
-                EnemyHealth enemyHealth = enemy.GetComponentInParent<EnemyHealth>();
-                if (enemyHealth != null)
+                // Enemy is within cone, apply damage
+                enemy.GetComponent<EnemyHealth>().TakeDamage(damage);
+                
+                if (isCrit) // Spawn critical hit damage number
                 {
-                    float damage = CalculateDamage();
-                    enemyHealth.TakeDamage(damage);
-                    DamageNumberSpawner.instance.SpawnDamageNumber(enemy.transform.position, damage);
-                   // Debug.Log($"Hit {enemy.name} for {damage:F1} damage");
+                    DamageNumberSpawner.instance.SpawnCritNumber(enemy.transform.position, damage);
                 }
+                else // Spawn regular damage number
+                {
+                    DamageNumberSpawner.instance.SpawnDamageNumber(enemy.transform.position, damage);
+                }
+
             }
         }
 
-        // Optional: debug draw
+        // Draw red debug ray for attack direction (used for debugging)
         Debug.DrawRay(transform.position, aimDir * attackRange, Color.red, 0.5f);
 
         // Cooldown
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
-    }
-
-    private float CalculateDamage()
-    {
-        int level = ExperienceManager.instance != null ? ExperienceManager.instance.GetCurrentLevel() : 1;
-        float damage = (baseDamage * (1f + scaleFactor * level)) * StatManager.instance.GetDamageIncrease();
-
-        // Crit check
-        if (Random.value < StatManager.instance.GetCritChance())
-        {
-            damage *= StatManager.instance.GetCritDamage();
-            Debug.Log($"Critical hit! {damage:F1}");
-        }
-
-        return damage;
     }
 
     private void OnDrawGizmosSelected()
@@ -102,6 +113,8 @@ public class PlayerAttackCone : MonoBehaviour
         if (aimingCursor != null)
         {
             Vector2 dir = aimingCursor.direction.normalized;
+
+            // Calculate left and right directions of the cone
             Quaternion leftRot = Quaternion.Euler(0, 0, -attackAngle / 2f);
             Quaternion rightRot = Quaternion.Euler(0, 0, attackAngle / 2f);
 
@@ -109,6 +122,8 @@ public class PlayerAttackCone : MonoBehaviour
             Vector2 rightDir = rightRot * dir;
 
             Gizmos.color = Color.red;
+
+            // Draw cone lines
             Gizmos.DrawLine(transform.position, (Vector2)transform.position + leftDir * attackRange);
             Gizmos.DrawLine(transform.position, (Vector2)transform.position + rightDir * attackRange);
         }

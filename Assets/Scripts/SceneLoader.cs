@@ -8,6 +8,7 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private GameObject inGameUI;
     [SerializeField] private float transitionTime;
     [SerializeField] private Canvas gameCanvas;
+    [SerializeField] private GameObject UICanvas;
     public static SceneLoader instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -26,6 +27,10 @@ public class SceneLoader : MonoBehaviour
             Destroy(gameObject); // Prevent duplicate persistent objects
         }       
     }
+    private void Start()
+    {
+       UICanvas.SetActive(true);
+    }
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -33,8 +38,8 @@ public class SceneLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-            LoadNextLevel();
+        //if (Input.GetKeyDown(KeyCode.P))
+        //    LoadNextLevel();
     }
 
     public void LoadNextLevel()
@@ -66,14 +71,16 @@ public class SceneLoader : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Enable or disable in-game UI depending on scene
-        if (scene.buildIndex == 3 || scene.buildIndex == 5)
+        // Enable in-game UI just for scenes 3+5 save game on scene 2
+        
+        switch (scene.buildIndex)
         {
-            inGameUI.SetActive(true);
-        }
-        else
-        {
-            inGameUI.SetActive(false);
+            case 2: SaveAndLoadManager.instance.SaveGame(); inGameUI.SetActive(false); break;
+            case 3: inGameUI.SetActive(true); break;
+            case 4: inGameUI.SetActive(false); break;
+            case 5: inGameUI.SetActive(true); break;
+            case 6: inGameUI.SetActive(false); break;
+            default: break;
         }
     }
 

@@ -1,11 +1,19 @@
 using System;
 using UnityEngine;
+/*
+    Author(s): Bruno Silva
+    Description: manages enemy health, taking damage, hurt reactions, and death logic.
+                 handles damage reduction, hurt animations, attack interruption, death
+                 animations, collider disabling, and cleanup. also updates health based
+                 on enemy level and reports kills to the spawner and boss meter ui.
+    Date (last modification): 11/22/2025
+*/
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int baseHealth = 20; // how much health the enemy starts with
+    public int baseHealth; // how much health the enemy starts with
     public float healthGrowth = 0.15f; // how much health the enemy starts with
-    private float currentHealth; // current health value
+    [SerializeField]private float currentHealth; // current health value
     private float maxHealth; // current health value
     private Animator animator; // reference to the animator
     [HideInInspector]
@@ -19,11 +27,7 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         level = GetComponent<EnemyLevel>();
-        int enemyLevel = 1;
-        if (level != null)
-            enemyLevel = level.GetEnemyLevel();
-        maxHealth = Mathf.RoundToInt(baseHealth * Mathf.Pow(1 + healthGrowth, enemyLevel - 1));
-        currentHealth = maxHealth; // set health at start
+        UpdateHealth();
         animator = GetComponent<Animator>(); // get animator attached to this object
         enemyType = SoundManager.GetPlayerOrEnemyType(this.gameObject);
         ai = GetComponent<EnemyAI>();
@@ -157,5 +161,14 @@ public class EnemyHealth : MonoBehaviour
     {
         return (float)currentHealth / maxHealth;
     }
+    private void UpdateHealth()
+    {
+        int enemyLevel = 1;
+        if (level != null)
+        enemyLevel = level.GetEnemyLevel();
+        maxHealth = Mathf.RoundToInt(baseHealth * Mathf.Pow(1 + healthGrowth, enemyLevel - 1));
+        currentHealth = maxHealth;
+        Debug.Log($"[UpdateHealth] Level: {enemyLevel}, Base: {baseHealth}, Growth: {healthGrowth}, Max: {maxHealth}");
 
+    }
 }
