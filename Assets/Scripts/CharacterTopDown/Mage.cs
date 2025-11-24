@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Mage : Character
+public class Mage : MonoBehaviour
 {
 //calling on abstract class
 }

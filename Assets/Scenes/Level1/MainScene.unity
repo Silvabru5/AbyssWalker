@@ -55321,7 +55321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55699a5f1aca5fc46b5633679762747c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationMultiplier: 7.5
+  source: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &1141337576
 GameObject:
   m_ObjectHideFlags: 0
@@ -84085,7 +84086,6 @@ GameObject:
   - component: {fileID: 1977234614}
   - component: {fileID: 1977234613}
   - component: {fileID: 1977234612}
-  - component: {fileID: 1977234611}
   - component: {fileID: 1977234619}
   - component: {fileID: 1977234620}
   m_Layer: 9
@@ -84095,23 +84095,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1977234611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1977234610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c862d8739a2325444b58b10ea172ee75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  basicAttackHitbox: {fileID: 1460835178}
-  strongAttackHitbox: {fileID: 241284739}
-  attackCooldown: 1
-  hitboxShowTime: 0.2
-  offsetDistance: 1
 --- !u!114 &1977234612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84125,7 +84108,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  baseHealth: 100
   currentHealth: 0
+  healthBarFill: {fileID: 0}
   deathAnimationTime: 4.5
   healthText: {fileID: 24742518}
 --- !u!114 &1977234613
@@ -84626,8 +84611,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1249282199}
+  startMenuUI: {fileID: 0}
+  inGameUI: {fileID: 0}
+  characterSelectUI: {fileID: 0}
   soundMenuUI: {fileID: 1734492170}
-  configManager: {fileID: 0}
   soundManager: {fileID: 0}
 --- !u!114 &1992408037
 MonoBehaviour:
