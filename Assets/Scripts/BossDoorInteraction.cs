@@ -50,7 +50,7 @@ public class BossDoorInteraction : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<isHero>())
         {
-            Debug.Log("Hero interacted with boss door");
+            
             if (killCount >= threshold)
             {
                 //SoundManager.PlaySound(SoundTypeEffects.BOSS_DOOR_ENTER);

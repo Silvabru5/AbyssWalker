@@ -58,7 +58,6 @@ public class BossMonster : MonoBehaviour
         _anim.SetBool("Dead", true);
         _bCollider.enabled = false;
         StartCoroutine(Death());
-        Debug.Log("Boss Dead");
     }
     // Update is called once per frame
     void Update()

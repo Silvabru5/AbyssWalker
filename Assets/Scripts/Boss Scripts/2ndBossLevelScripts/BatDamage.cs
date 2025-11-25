@@ -28,7 +28,6 @@ public class BatDamage : MonoBehaviour
             // check if the cooldown is still active
             if (Time.time < lastHitTime + damageCooldown)
             {
-                Debug.Log("[bat] hit ignored — cooldown active");
                 return;
             }
 
@@ -36,7 +35,6 @@ public class BatDamage : MonoBehaviour
             lastHitTime = Time.time;
 
             // apply damage to the player
-            Debug.Log("[bat] damaged player for " + damageAmount + " health");
             player.TakeDamage(damageAmount);
         }
     }

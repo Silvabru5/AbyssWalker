@@ -73,7 +73,6 @@ public class SpawnEnemies : MonoBehaviour
         moveSpeed = 0f;
         _anim.SetTrigger("Death");
         _col.enabled = false;
-        Debug.Log("Enemy Died");
         StartCoroutine(RespawnEnemy());
 
     }

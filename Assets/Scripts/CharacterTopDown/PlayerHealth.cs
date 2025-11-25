@@ -57,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
             animator.SetTrigger("DeathTrigger");
 
             // SoundManager.PlaySound(SoundTypeEffects.PLAYER_BARBARIAN_DEATH, 1);
-            Debug.Log("Player has died.");
+
             StartCoroutine(DeathSequence());
         }
         else
@@ -88,7 +88,6 @@ public class PlayerHealth : MonoBehaviour
         {
             float healAmount = Mathf.Min(2, maxHealth - currentHealth);
             currentHealth += healAmount;
-            Debug.Log($"Regenerated {healAmount} HP. Current HP: {currentHealth}");
         }
     }
 
@@ -117,7 +116,6 @@ public class PlayerHealth : MonoBehaviour
     float CalculateDamage(float amount)
     {
         float calculatedDamage = amount * StatManager.instance.GetDefenseAmount();
-        Debug.Log(calculatedDamage);
         return calculatedDamage;
     }
 }

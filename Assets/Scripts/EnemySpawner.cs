@@ -1,5 +1,15 @@
 using UnityEngine;
 
+/*
+    Author(s): Bruno Silva
+    Description: Handles spawning of enemies during gameplay. Randomly selects 
+                 enemy types and spawn points, enforces a maximum number of active
+                 enemies. Works with EnemyHealth, which calls 
+                 EnemyDied() upon death to increment progression counters.
+    Date (last modification): 11/22/2025
+*/
+
+
 public class EnemySpawner : MonoBehaviour
 {
     // list of enemy prefabs (skeleton, spider, undead)
@@ -23,7 +33,6 @@ public class EnemySpawner : MonoBehaviour
     public void EnemyDied()
     {
         numOfEnemiesDead++;
-        Debug.Log("Enemies dead: " + numOfEnemiesDead);
     }
     void Update()
     {

@@ -281,7 +281,6 @@ public class EnemyAI : MonoBehaviour
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(damage);
-                Debug.Log($"Player Hit! Damage: {damage}, Health: {playerHealth.currentHealth}");
             }
             else
             {

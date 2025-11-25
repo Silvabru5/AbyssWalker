@@ -30,7 +30,7 @@ public class SpawnPoints : MonoBehaviour
             {
                 GameObject newEnemy = Instantiate(_enemyPrefab, spawnPos, Quaternion.identity);
                 _spawnedEnemies.Add(newEnemy); // Keep track of spawned enemies
-                Debug.Log("Spawned one enemy at: " + spawnPoint.position);
+
                 break; // Exit the loop to ensure only one enemy spawns per call
             }
         }

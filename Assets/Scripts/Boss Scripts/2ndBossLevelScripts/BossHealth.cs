@@ -41,7 +41,6 @@ public class BossHealth : MonoBehaviour
         // play hurt animation
         animator.SetTrigger("hurt");
 
-        Debug.Log("[boss] took " + damage + " damage. current hp: " + currentHealth);
 
         // check for death
         if (currentHealth <= 0)
@@ -63,7 +62,6 @@ public class BossHealth : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        Debug.Log("[boss] dracula defeated!");
         animator.SetTrigger("die");
 
         // stop boss movement and behaviour

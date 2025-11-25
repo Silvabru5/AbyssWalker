@@ -168,7 +168,6 @@ public class EnemyHealth : MonoBehaviour
         enemyLevel = level.GetEnemyLevel();
         maxHealth = Mathf.RoundToInt(baseHealth * Mathf.Pow(1 + healthGrowth, enemyLevel - 1));
         currentHealth = maxHealth;
-        Debug.Log($"[UpdateHealth] Level: {enemyLevel}, Base: {baseHealth}, Growth: {healthGrowth}, Max: {maxHealth}");
 
     }
 }
