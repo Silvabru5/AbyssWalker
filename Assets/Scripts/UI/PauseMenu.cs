@@ -6,6 +6,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// filename:    PauseMenu.cs
+// author:      Carey Cunningham
+// description: button handlers for title and pause menu actions
+
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenuUI; // drag the pause menu panel from the canvas here
@@ -79,12 +83,14 @@ public class PauseMenu : MonoBehaviour
         inGameUI.SetActive(false);
         Cursor.visible = true;
     }
-
+    
+    // exit game action from pause menu and title menu
     public void QuitGame()
     {
         Application.Quit();
     }
 
+    // play game button action in the title screen, loads the player select menu
     public void PlayGame()
     {
         // done in SceneLoader now SoundManager.PlayBackgroundMusic(SoundTypeBackground.CHARACTER_SELECT);
@@ -92,9 +98,10 @@ public class PauseMenu : MonoBehaviour
         // done after character select now - GameObject.Find("GameManager").GetComponent<SaveAndLoadManager>().LoadData();
         characterSelectUI.SetActive(true);
         startMenuUI.SetActive(false);
-       
+
     }
 
+    // update the volumes action for sound menu sliders
     public void SoundMenu()
     {
         // get the volumes from the components
@@ -111,13 +118,19 @@ public class PauseMenu : MonoBehaviour
         UpdateVolumes();
 
     }
+
+    // action for when the user hits back in the sound menu to bring them back to the main pause menu
     public void SoundMenuBack()
     {
         // swap menus
         soundMenuUI.SetActive(false);
         pauseMenuUI.SetActive(true);
     }
-
+    
+    // use this function to:
+    //   update the text beside the sliders when the users cange values
+    //   update the audio controller volumes
+    //   update the value in the config file and write to the config file
     public void UpdateVolumes()
     {
         // save the values from the sliders

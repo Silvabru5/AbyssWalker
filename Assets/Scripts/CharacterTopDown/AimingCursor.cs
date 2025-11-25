@@ -1,5 +1,9 @@
 using UnityEngine;
 
+// filename:    AimingCursor.ca
+// author:      Carey Cunningham
+// description: make a player target cursor in the direction of the mouse then aim the player and attack towards the mouse
+
 public class AimingCursor : MonoBehaviour
 {
     [SerializeField] private Transform player;         // Drag your player here
@@ -33,17 +37,12 @@ public class AimingCursor : MonoBehaviour
         // Place the marker at fixed radius (constant set above)
         cursorMarker.transform.position = player.position + direction * RADIUS;
 
-        // Rotate the target marker
+        // Rotate the target marker -- no longer needed, originally the target was an ellipse that needed this
         //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-       // cursorMarker.transform.rotation = Quaternion.Euler(0, 0, angle);
+        // cursorMarker.transform.rotation = Quaternion.Euler(0, 0, angle);
 
         // Rotate player to face marker
         animator.SetFloat("Vertical", direction.y);
         animator.SetFloat("Horizontal", direction.x);
-
-        
-
-        // Rotate the player aim with the way they face
-
     }
 }

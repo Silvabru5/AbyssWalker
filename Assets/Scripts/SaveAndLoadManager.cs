@@ -1,16 +1,16 @@
 using System;
 using System.IO;
-//using System.IO.Enumeration;
-//using System.Runtime.Serialization.Formatters.Binary;
-//using UnityEditor.Overlays;
 using UnityEngine;
-//using UnityEngine.InputSystem;
-//using static UnityEngine.Rendering.DebugUI;
+
+// filename:    SaveAndLoadManager.cs
+// author:      Carey Cunningham
+// description: class to handle save game I/O in a binary encrypted format
 
 // container for character specific data
 [Serializable]
 public class CharacterData
 {
+    // variables to store experience, highest boss defeated, and skill points
     public int experience;
     public int skillPointsDamage;
     public int skillPointsDefense;
@@ -200,17 +200,13 @@ public class SaveAndLoadManager : MonoBehaviour
             return;
         }
 
+        // write out the binary encrypted strings for stats for each player class
         try
         {
             using (FileStream fileStream = new FileStream(filename, FileMode.Open))
             {
                 using (BinaryReader binaryReader = new BinaryReader(fileStream))
                 {
-                    //// read in last played character and update if valid
-                    //int currentCharacter = binaryReader.ReadInt32();
-                    //if (currentCharacter >= 0 && currentCharacter <= MAX_LAST_PLAYED_CHARACTER)
-                    //    saveData.currentCharacter = currentCharacter;
-
                     // read in class specific data, and apply it if valid, apply defaults if not
                     string warriorData = binaryReader.ReadString();
                     if (warriorData != null) saveData.warrior.ParseAndValidateEncryptedSaveFileString(warriorData);
@@ -225,7 +221,7 @@ public class SaveAndLoadManager : MonoBehaviour
             Debug.LogError("ERROR: failed to load save data file (" + filename + "), using default values" + e.Message);
         }
 
-        // update the experience and stat manager
+        // update the experience and stat manager for the active class
         switch (PlayerPrefs.GetInt("SelectedCharacter",0))
         {
             case 0: LoadCharacterData(saveData.warrior); break;
@@ -234,26 +230,9 @@ public class SaveAndLoadManager : MonoBehaviour
         }
     }
 
-    // populate the experience manager and statmanager with save game data
+    // populate the experience manager and statmanager with save game data for the active character
     public void LoadCharacterData(CharacterData characterData)
     {
-        //ExperienceManager.instance.AddExperience(characterData.experience);
-        //for (int i = 0; i < characterData.skillPointsDamage; i++) { StatManager.instance.UpgradeDamage(); }
-        //for (int i = 0; i < characterData.skillPointsDefense; i++) { StatManager.instance.UpgradeDefense(); }
-        //for (int i = 0; i < characterData.skillPointsHealth; i++) { StatManager.instance.UpgradeHealth(); }
-        //for (int i = 0; i < characterData.skillPointsCritChance; i++) { StatManager.instance.UpgradeCritChance(); }
-        //for (int i = 0; i < characterData.skillPointsCritDamage; i++) { StatManager.instance.UpgradeCritDamage(); }
-
-        //Debug.Log($"Loading: CritChance:{characterData.skillPointsCritChance}, {StatManager.instance.GetCritChanceLevel()}, {saveData.warrior.skillPointsCritChance}");
-
-        //ExperienceManager.instance.SetExperience(characterData.experience);
-        //StatManager.instance.SetDamageLevel(characterData.skillPointsDamage);
-        //StatManager.instance.SetDefenseLevel(characterData.skillPointsDefense);
-        //StatManager.instance.SetHealthLevel(characterData.skillPointsHealth);
-        //StatManager.instance.SetCritChanceLevel(characterData.skillPointsCritChance);
-        //StatManager.instance.SetCritDamageLevel(characterData.skillPointsCritDamage);
-        //StatManager.instance.SetSkillPoints(characterData.skillPointsUnspent);
-
         ExperienceManager.instance.SetExperience(characterData.experience);
         for (int i = 0; i < characterData.skillPointsDamage; i++) { StatManager.instance.SetDamageLevel(StatManager.instance.GetDamageLevel()+1); StatManager.instance.SetSkillPoints(StatManager.instance.GetSkillPoints() - 1); }
         for (int i = 0; i < characterData.skillPointsCritDamage; i++) { StatManager.instance.SetCritDamageLevel(StatManager.instance.GetCritDamageLevel() + 1); StatManager.instance.SetSkillPoints(StatManager.instance.GetSkillPoints() - 1); }
