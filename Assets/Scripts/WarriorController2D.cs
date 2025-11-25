@@ -1,5 +1,16 @@
+/*
+    Author(s): Bruno Silva, Carey Cunninghum, Adrian Agius, Tristan Ung
+    Description: Handles full 2D Warrior player control including movement, jumping, 
+                 melee combat, dashing with invulnerability frames, taking damage, 
+                 blinking immunity, death logic, and interaction with various enemy types. 
+                 Works with StatManager, ExperienceManager, SoundManager, and SceneLoader 
+                 to support dynamic stat scaling, sound effects, and scene transitions.
+    Date (last modification): 11/24/2025
+*/
+
 using System.Collections;
 using UnityEngine;
+
 
 public class WarriorController2D : MonoBehaviour
 {
@@ -51,118 +62,140 @@ public class WarriorController2D : MonoBehaviour
     private bool isDead = false;
     private bool iFrame = false;
 
+    // called when the object is first created
     private void Start()
     {
+        // calculate player max health using stat bonuses
         _maxHealth = _baseHealth * StatManager.instance.GetHealthAmount();
-         _currentHealth = _maxHealth;
+        _currentHealth = _maxHealth;
+
+        // update the health bar ui
         _healthBar.SetMaxHealth(_maxHealth);
+
+        // get component references
         _collider = GetComponent<Collider2D>();
-        
-
-
-
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
     }
 
+    // called every frame
     private void Update()
     {
-
+        // do nothing if the player is dead
         if (!isDead)
         {
+            // stop all other movement while dashing
             if (isDashing)
             {
                 return;
             }
 
+            // read horizontal movement input
             float move = Input.GetAxisRaw("Horizontal");
+
+            // apply movement velocity
             rb.linearVelocity = new Vector2(move * moveSpeed, rb.linearVelocity.y);
 
+            // flip the sprite based on direction
             if (move > 0) sr.flipX = false;
             else if (move < 0) sr.flipX = true;
 
+            // update animation values
             anim.SetFloat("Speed", Mathf.Abs(move));
             anim.SetBool("isJumping", !IsGrounded());
 
+            // jump if grounded
             if (Input.GetButtonDown("Jump") && IsGrounded())
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             }
 
-            if (Input.GetMouseButtonDown(0) && canAttack) // Left click to attack
+            // attack on left click if not on cooldown
+            if (Input.GetMouseButtonDown(0) && canAttack)
             {
                 Attack();
             }
+
+            // dash when left shift is pressed and dash is available
             if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
             {
-                // _anim.SetTrigger("Dash");
                 StartCoroutine(Dash());
             }
         }
-
-
-
-
-
-
     }
-    
 
+
+
+    // handles dealing damage to all enemy types hit by the attack
     void DealDamage()
     {
+        // detect all enemies inside the attack radius
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         float damage = CalculateDamage();
+
+        // loop through every enemy that was hit
         foreach (Collider2D enemy in hitEnemies)
         {
-            if (enemy.gameObject.activeInHierarchy) // Check if spawned
+            // make sure the enemy is active in the scene
+            if (enemy.gameObject.activeInHierarchy)
             {
+                // check for small enemy type
                 BossSmallEnemies smallEnemy = enemy.GetComponent<BossSmallEnemies>();
                 if (smallEnemy != null)
                 {
+                    // choose death or damage sound based on remaining health
                     if (smallEnemy.GetCurrenthealth() <= damage)
-                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_VATS_DESTROYED); // play a sound
+                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_VATS_DESTROYED);
                     else
-                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_VATS_TAKES_DAMAGE); // play a sound
+                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_VATS_TAKES_DAMAGE);
+
                     smallEnemy.TakeDamage(damage);
-                    Debug.Log("Hit " + enemy.name);
+                   
                 }
 
+                // check for boss enemy type
                 BossMonster bossEnemy = enemy.GetComponent<BossMonster>();
                 if (bossEnemy != null)
                 {
                     if (bossEnemy.getHealth() <= damage)
-                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_DEATH); // play a sound
+                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_DEATH);
                     else
-                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_TAKES_DAMAGE); // play a sound
+                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_TAKES_DAMAGE);
+
                     bossEnemy.TakeDamage(damage);
-                    Debug.Log("HIT: " + bossEnemy.name);
+                    
                 }
 
+                // check for spawned minion enemy type
                 SpawnEnemies spawnEnemy = enemy.GetComponent<SpawnEnemies>();
                 if (spawnEnemy != null)
                 {
                     if (spawnEnemy.getHealth() <= damage)
-                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_MINION_DEATH); // play a sound
+                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_MINION_DEATH);
                     else
-                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_MINION_TAKES_DAMAGE); // play a sound
+                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_MINION_TAKES_DAMAGE);
+
                     spawnEnemy.TakeDamage(damage);
-                    Debug.Log("HIT: " + spawnEnemy.name);
+                    
                 }
 
+                // check for skull enemy type
                 isEnemy skullEnemy = enemy.GetComponent<isEnemy>();
                 if (skullEnemy != null)
                 {
                     if (skullEnemy.getHealth() <= damage)
-                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_SKULLS_DEATH); // play a sound
+                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_SKULLS_DEATH);
                     else
-                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_SKULLS_TAKES_DAMAGE); // play a sound
+                        SoundManager.PlaySound(SoundTypeEffects.NECROMANCER_SKULLS_TAKES_DAMAGE);
+
                     skullEnemy.TakeDamage(damage);
-                    Debug.Log("HIT: " + skullEnemy.name);
+                    
                 }
             }
         }
     }
+
 
 
     private void Attack()
@@ -240,29 +273,36 @@ public class WarriorController2D : MonoBehaviour
     }
 
 
+    // handles player taking damage
     public void TakeDamage(float damage)
     {
+        // if the player is currently invincible, ignore damage
         if (iFrame)
         {
             return;
         }
+
+        // reduce health and update the health bar ui
         _currentHealth -= damage;
         _healthBar.SetHealth(_currentHealth);
 
-
+        // check if the player has died
         if (_currentHealth <= 0)
         {
-            SoundManager.PlaySound(SoundTypeEffects.WARRIOR_DEATH); // play a sound
+            // play death sound and mark player as dead
+            SoundManager.PlaySound(SoundTypeEffects.WARRIOR_DEATH);
             isDead = true;
+
+            // run death logic (scene change, stop movement, etc.)
             Dead();
         }
         else
         {
-            SoundManager.PlaySound(SoundTypeEffects.WARRIOR_TAKES_DAMAGE); // play a sound
+            // play hurt sound and start temporary invincibility frames
+            SoundManager.PlaySound(SoundTypeEffects.WARRIOR_TAKES_DAMAGE);
             StartCoroutine(IFrames());
         }
     }
-
 
     void Dead()
     {
