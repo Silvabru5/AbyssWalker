@@ -1,5 +1,13 @@
 using UnityEngine;
 
+/*
+ * Author: Adrian Agius
+ * File: Item.cs
+ * Description: this script is attached to items we wanted interactable in 
+ * order to have animations and allow for checks if players in range. 
+ * 
+ */
+
 public class Item : MonoBehaviour, IInteractable
 {
 

@@ -110,6 +110,7 @@ public class StatMenuController : MonoBehaviour
 
     private void UpdateUI() //function to update the stat menu ui elements
     {
+        //Each line adds functionality to the buttons for stat upgrading
         skillPointsText.text = $"Skill Points: {StatManager.instance.GetSkillPoints()}";
         critChanceText.text = $"Level: {StatManager.instance.GetCritChanceLevel()}";
         critDamageText.text = $"Level: {StatManager.instance.GetCritDamageLevel()}";

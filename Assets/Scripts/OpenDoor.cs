@@ -1,5 +1,11 @@
 using UnityEngine;
-
+/*
+ * Author: Adrian Agius
+ * File: OpenDoor.cs
+ * Description: this script is attached to switches we wanted interactable to open gates in level 2 in 
+ * order to have animations and allow for checks if players in range. 
+ * 
+ */
 public class OpenDoor : MonoBehaviour
 {
     [SerializeField] private GameObject doorSwitch;

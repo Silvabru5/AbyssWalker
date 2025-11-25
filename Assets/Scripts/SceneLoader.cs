@@ -2,6 +2,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+
+/*
+ * Author: Adrian Agius + Carey Cunningham
+ * File: SceneLoader.cs
+ * Description: This script was created for transitions for scenes. We included the save system to save player progress when
+ * loaded on homebase scene.
+ */
 public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private GameObject crossfade;
@@ -13,11 +20,11 @@ public class SceneLoader : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        if (instance == null)
+        if (instance == null) // Creating a singleton pattern so sceneloader can be called anywhere in the game
         {
             instance = this;
 
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(this.gameObject); // keep object alive permanently 
             DontDestroyOnLoad(gameCanvas);
             // Subscribe to sceneLoaded event
             SceneManager.sceneLoaded += OnSceneLoaded;
@@ -29,7 +36,7 @@ public class SceneLoader : MonoBehaviour
     }
     private void Start()
     {
-       UICanvas.SetActive(true);
+       UICanvas.SetActive(true); // have the UI active on game start
     }
     private void OnDestroy()
     {
@@ -38,17 +45,17 @@ public class SceneLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.P))
+        //if (Input.GetKeyDown(KeyCode.P)) -- testing purposes
         //    LoadNextLevel();
     }
 
     public void LoadNextLevel()
     {
         int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        LoadSpecificLevel(nextIndex);
+        LoadSpecificLevel(nextIndex); // load next level based on the build index that the scene is on ex: scene 1 -> scene 2
     }
 
-    IEnumerator LoadLevel(int levelIndex)
+    IEnumerator LoadLevel(int levelIndex) // Create a co routine to have crossfade play on scene load
     {
         if (crossfade == null)
             crossfade = GameObject.Find("Crossfade");
@@ -62,7 +69,7 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(levelIndex,LoadSceneMode.Single);
     }
 
-    public void LoadSpecificLevel(int buildIndex)
+    public void LoadSpecificLevel(int buildIndex) // Created to load a specific level based on build index ex: scene 2 -> scene 4
     {
         StartCoroutine(LoadLevel(buildIndex));
         ChangeBackgroundMusic(buildIndex);
@@ -73,7 +80,7 @@ public class SceneLoader : MonoBehaviour
     {
         // Enable in-game UI just for scenes 3+5 save game on scene 2
         
-        switch (scene.buildIndex)
+        switch (scene.buildIndex) // Created a switch case to enable/disable UI and save game on load for scene 2
         {
             case 2: SaveAndLoadManager.instance.SaveGame(); inGameUI.SetActive(false); break;
             case 3: inGameUI.SetActive(true); break;
@@ -87,7 +94,7 @@ public class SceneLoader : MonoBehaviour
     // change the background sound on scene change
     public void ChangeBackgroundMusic(int sceneIndex)
     {
-        switch (sceneIndex)
+        switch (sceneIndex) // Switch case for music loading based on scene
         {
             case 0: SoundManager.PlayBackgroundMusic(SoundTypeBackground.MAIN_MENU); break;
             case 1: SoundManager.PlayBackgroundMusic(SoundTypeBackground.CHARACTER_SELECT); break;

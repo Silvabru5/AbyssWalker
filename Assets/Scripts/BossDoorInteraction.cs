@@ -5,6 +5,11 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
+/*
+ * This is an older script that we used before we changed to collectibles; 
+ * We used this to keep track of how many enemies were killed & open the door based on the minimum requirement
+ */
+
 public class BossDoorInteraction : MonoBehaviour
 {
     private bool bossDoorOpen = false;

@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/*
+ * Author: Adrian Agius
+ * File: GlobalHelper.cs
+ * Description: This script is designed to help label items we use for collectibles. Ensures we do not interact with the same one twice if used.
+ */
 public static class GlobalHelper
 {
     // Creating global helper so that we can access ID's for the interactable objects. 

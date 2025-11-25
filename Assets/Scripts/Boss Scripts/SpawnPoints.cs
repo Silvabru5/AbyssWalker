@@ -1,6 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+ * Author: Adrian Agius
+ * File: SpawnPoints.cs
+ * Description: this script enables spawnpoints for enemies after the vats have been destroyed. 
+ * 
+ */
 public class SpawnPoints : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyPrefab;

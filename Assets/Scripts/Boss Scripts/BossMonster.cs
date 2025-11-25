@@ -3,7 +3,12 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+/*
+ * Author: Adrian Agius
+ * File: BossMonster.cs
+ * Description: this script was created for the first boss. THis controls health, animations, and death sequence.
+ * 
+ */
 public class BossMonster : MonoBehaviour
 {
     [SerializeField] private float _maxHealth = 350f;
@@ -17,6 +22,7 @@ public class BossMonster : MonoBehaviour
     private float _healthPercent;
     public HealthBar healthBar;
 
+    //Getters for boss
     public bool getDead()
     {
         return isDead;
@@ -30,7 +36,7 @@ public class BossMonster : MonoBehaviour
     {
         return _maxHealth;
     }
-    void Start()
+    void Start() //Grab components of Game Object
     {
         _anim = GetComponent<Animator>();
         _current = _maxHealth;
@@ -39,7 +45,7 @@ public class BossMonster : MonoBehaviour
         _bCollider.enabled = false;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage) //Damage boss
     {
         _current -= damage;
         ScreenShakeController.instance.StartShake(0.2f, 0.4f);
@@ -53,7 +59,7 @@ public class BossMonster : MonoBehaviour
         }
     }
 
-    void Die()
+    void Die() // set death animation and remove collision
     {
         _anim.SetBool("Dead", true);
         _bCollider.enabled = false;
@@ -75,7 +81,7 @@ public class BossMonster : MonoBehaviour
 
     }
 
-    private IEnumerator Death()
+    private IEnumerator Death() // start death coroutine/timer
     {
         ScreenShakeController.instance.StartShake(3f, 0.5f);
         yield return new WaitForSeconds(4f);

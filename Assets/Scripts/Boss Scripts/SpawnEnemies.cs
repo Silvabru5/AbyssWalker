@@ -1,7 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
-
+/*
+ * Author: Adrian Agius
+ * File: SpawnEnemies.cs
+ * Description: this script creates a reanimated enemy. It respawns enemies after they have been killed, meant for boss use only
+ * can be implemented else where.
+ * 
+ */
 public class SpawnEnemies : MonoBehaviour
 {
     [SerializeField] private float _maxHealth = 100f;
@@ -24,6 +30,7 @@ public class SpawnEnemies : MonoBehaviour
     private bool m_FacingRight = false;
     void Start()
     {
+        //Grab all components of prefab
         _anim = GetComponent<Animator>();
         _currentHealth = _maxHealth;
         _anim.SetFloat("CurrentHP", 100);
@@ -36,11 +43,11 @@ public class SpawnEnemies : MonoBehaviour
         StartCoroutine(RespawnEnemy());
     }
 
-    public float getHealth()
+    public float getHealth() // get enemy health
     {
         return _currentHealth;
     }
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage) // function to damage this enemy
     {
         _currentHealth -= damage;
         _anim.SetTrigger("Hurt");
@@ -50,13 +57,13 @@ public class SpawnEnemies : MonoBehaviour
         }
     }
 
-    void Attack()
+    void Attack() // set the animations
     {
         _anim.SetTrigger("Attack");
         moveSpeed = 0;
     }
 
-    void DealDamage()
+    void DealDamage() // deal damage to player
     {
         Collider2D playerCol = Physics2D.OverlapCircle(attackPtn.position, attackRange, Player);
         if (playerCol != null)
@@ -67,7 +74,7 @@ public class SpawnEnemies : MonoBehaviour
         }
     }
 
-    void Die()
+    void Die() // function for death to play the animation and start the respawn effect
     {
         isDead = true;
         moveSpeed = 0f;
@@ -80,27 +87,27 @@ public class SpawnEnemies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _anim.SetFloat("CurrentHP", (_currentHealth / _maxHealth) * 100);
+        _anim.SetFloat("CurrentHP", (_currentHealth / _maxHealth) * 100); //HP for enemy
 
         if(Time.time >= attackTime && !isDead)
         {
-            Collider2D playerCol = Physics2D.OverlapCircle(attackPtn.position, attackRange, Player);
+            Collider2D playerCol = Physics2D.OverlapCircle(attackPtn.position, attackRange, Player); // check for overlap and if player is in range
             if (playerCol != null)
             {
                 Attack();
-                attackTime = Time.time + 1f / attackSpeed;
+                attackTime = Time.time + 1f / attackSpeed; // attack time is how often they can attack
             }
             else
             {
                 moveSpeed = 2f;
             }
         }
-        if(boss.GetComponent<BossMonster>().getDead() == true)
+        if(boss.GetComponent<BossMonster>().getDead() == true) // despawn game object if the bass is dead
         {
             Destroy(this.gameObject);
         }
 
-        if (!isDead && canChase && player != null)
+        if (!isDead && canChase && player != null) // player collision/overlap with other enemies
         {
             if (!IsTooCloseToOtherEnemy())
             {
@@ -109,7 +116,7 @@ public class SpawnEnemies : MonoBehaviour
         }
     }
 
-    private IEnumerator RespawnEnemy()
+    private IEnumerator RespawnEnemy() // starting the delay to respawn the enemy
     {
         yield return new WaitForSeconds(8f);
         isDead = false;
@@ -121,7 +128,7 @@ public class SpawnEnemies : MonoBehaviour
         _currentHealth = _maxHealth;
 
     }
-    private void ChasePlayer()
+    private void ChasePlayer() // function to start the movement towards the player, updating the animations as well
     {
         if (player != null)
         {
@@ -143,7 +150,7 @@ public class SpawnEnemies : MonoBehaviour
         }
         Gizmos.DrawWireSphere(attackPtn.position, attackRange);
     }
-    private void Flip()
+    private void Flip() // Flip character based on direction facing
     {
         // Switch the way the player is labelled as facing.
         m_FacingRight = !m_FacingRight;
@@ -154,7 +161,7 @@ public class SpawnEnemies : MonoBehaviour
         transform.localScale = theScale;
     }
 
-    private bool IsTooCloseToOtherEnemy()
+    private bool IsTooCloseToOtherEnemy() // check for overlap with other enemies
     {
         Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, 0.8f, _enemyLayers);
         return nearbyEnemies.Length > 1; // If more than one (itself), it's too close
