@@ -1,6 +1,11 @@
 using TMPro;
 using UnityEngine;
 
+/*
+Author: Tristan Ung
+File: CollectibleProgressUI.cs
+Description: Script to update UI text showing collectible progress towards opening the boss arena.
+*/
 public class CollectibleProgressUI : MonoBehaviour
 {
     // Type of collectible to track

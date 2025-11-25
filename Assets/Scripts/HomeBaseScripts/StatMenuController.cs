@@ -3,7 +3,13 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-// This scriptcontrols the stat upgrade menu in the home base
+
+/*
+author: Tristan & Adrian
+file: StatMenuController.cs
+description: Controls the stat upgrade ui menu
+*/
+
 public class StatMenuController : MonoBehaviour
 {
 

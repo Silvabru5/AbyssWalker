@@ -1,6 +1,11 @@
 using UnityEngine;
 using TMPro;
 
+/*
+author: Tristan Ung
+file: DamageNumber.cs
+description: This script handles the behavior of floating damage numbers in the game
+*/
 public class DamageNumber : MonoBehaviour
 {
     // How fast damage numbers float upwards

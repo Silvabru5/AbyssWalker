@@ -1,8 +1,11 @@
 using UnityEngine;
 using Unity.Cinemachine;
 
-
-//This script spawns the selected character based off of player prefs from character select screen 
+/*
+author: Tristan Ung
+file: PlayerSpawner.cs
+description: This script spawns the selected character based off of player prefs from character select screen 
+*/
 public class PlayerSpawner : MonoBehaviour
 {
 

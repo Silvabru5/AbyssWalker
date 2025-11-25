@@ -1,7 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
-
-// Script is a manager to track collected items across scenes (level 1 and 2)
+/*
+Author: Tristan Ung
+File: CollectibleManager.cs
+Description: Script is a manager to track collected items across scenes (level 1 and 2)
+once all collectables are collected, player can proceed to boss room.
+*/
 public class CollectibleManager : MonoBehaviour
 {
     // Singleton instance

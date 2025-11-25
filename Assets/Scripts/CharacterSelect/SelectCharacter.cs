@@ -1,6 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
+/*
+Author: Tristan Ung
+File: SelectCharacter.cs
+Description: This script allows the player to select between different characters in the character select screen.
+Used in Character Select Scene.
+
+*/
 public class SelectCharacter : MonoBehaviour
 {
 

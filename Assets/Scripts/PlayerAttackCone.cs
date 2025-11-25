@@ -1,8 +1,13 @@
 using System.Collections;
 using UnityEngine;
 
+/*
+author: Tristan ung
+file: PlayerAttackCone.cs
+description:
+This script handles player attack mechanics using a cone-shaped area in front of the player | FOR WARRIOR CLASS
 
-// This script handles player attack mechanics using a cone-shaped area in front of the player | FOR WARRIOR CLASS
+*/ 
 public class PlayerAttackCone : MonoBehaviour
 {
     [Header("References")]
@@ -95,7 +100,7 @@ public class PlayerAttackCone : MonoBehaviour
             }
         }
 
-        // Draw red debug ray for attack direction (used for debugging)
+        // Draw red debug ray for attack direction
         Debug.DrawRay(transform.position, aimDir * attackRange, Color.red, 0.5f);
 
         // Cooldown
@@ -103,6 +108,7 @@ public class PlayerAttackCone : MonoBehaviour
         canAttack = true;
     }
 
+    //used for debugging attack cone in unity
     private void OnDrawGizmosSelected()
     {
         // Draw attack range circle

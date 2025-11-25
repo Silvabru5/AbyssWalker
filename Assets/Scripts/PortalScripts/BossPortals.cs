@@ -1,17 +1,24 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+Author: Tristan Ung
+File: BossPortals.cs
+Description: Manages boss portals that unlock based on collectible counts.
+*/
+
 public class BossPortals : MonoBehaviour, IInteractable
 {
+    // Serialized fields for scene and unlock conditions
     [Header("Scene Settings")]
-    [SerializeField] private string targetScene;
+    [SerializeField] private string targetScene; // Target scene to load on interaction
 
     [Header("Unlock Condition")]
-    [SerializeField] private string requiredCollectibleType;
-    [SerializeField] private int requiredAmount = 5;
+    [SerializeField] private string requiredCollectibleType; // Type of collectible required to unlock
+    [SerializeField] private int requiredAmount = 5; // Amount of collectibles needed to unlock
 
-    [SerializeField] private Animator anim;
-    private bool isUnlocked = false;
+    [SerializeField] private Animator anim; // Animator for portal animations
+    private bool isUnlocked = false; // Tracks if the portal is unlocked
 
     void Start()
     {
@@ -24,24 +31,7 @@ public class BossPortals : MonoBehaviour, IInteractable
         CheckUnlockStatus();
     }
 
-    // private void CheckUnlockStatus()
-    // {
-    //     if (isUnlocked) return; // don’t re-trigger
-
-    //     if (CollectibleManager.Instance != null &&
-    //         CollectibleManager.Instance.HasEnough(requiredCollectibleType, requiredAmount))
-    //     {
-    //         isUnlocked = true;
-
-    //         // Play activation animation if animator exists
-    //         if (anim != null)
-    //         {
-    //             anim.SetBool("isUnlocked", true);
-    //             Debug.Log($"{name} portal unlocked!");
-    //         }
-    //     }
-    // }
-
+    //checks if the portal should be unlocked based on collectibles
     private void CheckUnlockStatus()
 {
     if (isUnlocked) return;
@@ -51,11 +41,13 @@ public class BossPortals : MonoBehaviour, IInteractable
         Debug.LogWarning("CollectibleManager missing");
         return;
     }
-
+    // Check if enough collectibles have been collected
     bool hasEnough = CollectibleManager.Instance.HasEnough(requiredCollectibleType, requiredAmount);
+    // Log current collectible count for debugging
     int count = CollectibleManager.Instance.GetCount(requiredCollectibleType);
     Debug.Log($"Portal Checking unlock: {count}/{requiredAmount} {requiredCollectibleType}");
 
+    // Unlock the portal if enough collectibles are present
     if (hasEnough)
     {
         isUnlocked = true;
@@ -70,20 +62,21 @@ public class BossPortals : MonoBehaviour, IInteractable
     }
 }
 
-
+    // IInteractable implementation
     public bool CanInteract()
     {
         return isUnlocked;
     }
 
+    // Teleports player to target scene if portal is unlocked
     public void Interact()
     {
         if (CanInteract())
         {
             Debug.Log($"tp'ing to {targetScene}");
             if (CollectibleManager.Instance != null)
-            CollectibleManager.Instance.ResetText();
-            SceneManager.LoadScene(targetScene);
+            CollectibleManager.Instance.ResetText(); // Reset collectible UI text on scene change
+            SceneManager.LoadScene(targetScene); // Load the target scene
         }
         else
         {

@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+author: Tristan Ung
+file: Portal.cs
+description: This script handles the functionality of a portal
+*/
 public class Portal : MonoBehaviour, IInteractable
 {
     [Header("Portal Settings")]

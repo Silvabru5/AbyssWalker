@@ -1,6 +1,12 @@
 using UnityEngine;
 
-// Script for collectible items that the player can interact with and collect to proceed to boss room
+/*
+Author: Tristan Ung
+File: Collectible.cs
+Description:
+Script for collectible items that the player can interact with and collect to proceed to boss room
+
+*/
 public class Collectible : MonoBehaviour, IInteractable
 {
     // Type of collectible (e.g., "Skull", "Blood", etc.)

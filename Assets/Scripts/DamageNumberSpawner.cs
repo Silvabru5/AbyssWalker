@@ -1,7 +1,13 @@
 using UnityEngine;
 
+/*
+author: Tristan Ung
+file: DamageNumberSpawner.cs
+description: Spawns damage number prefabs at specified world positions.
+*/
 public class DamageNumberSpawner : MonoBehaviour
 {
+    // Singleton instance
     public static DamageNumberSpawner instance;
 
     // Prefab for critical hit damage numbers
