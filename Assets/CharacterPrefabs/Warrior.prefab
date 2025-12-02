@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 9217319436023032831}
   - component: {fileID: -6034333431089109286}
   - component: {fileID: 2064891760249008699}
+  - component: {fileID: 7064666589219102823}
   m_Layer: 9
   m_Name: Warrior
   m_TagString: Player
@@ -246,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099a405da78c5da48b433d42eb486ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movSpeed: 10
+  movSpeed: 7
   diagonalLeeway: 0.2
   dashingPower: 20
   dashingTime: 0.2
@@ -318,6 +319,7 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
+  impulseForce: 0.2
   baseDamage: 10
   scaleFactor: 0.15
 --- !u!70 &2064891760249008699
@@ -357,6 +359,59 @@ CapsuleCollider2D:
   m_Offset: {x: -0.13725536, y: -0.11829885}
   m_Size: {x: 0.8593089, y: 2.086787}
   m_Direction: 0
+--- !u!114 &7064666589219102823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147425144039576481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImpulseDefinition:
+    ImpulseChannel: 1
+    ImpulseShape: 2
+    CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ImpulseDuration: 0.2
+    ImpulseType: 0
+    DissipationRate: 0.25
+    RawSignal: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    RepeatMode: 0
+    Randomize: 1
+    TimeEnvelope:
+      AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      AttackTime: 0
+      SustainTime: 0.2
+      DecayTime: 0.7
+      ScaleWithImpact: 1
+      HoldForever: 0
+    ImpactRadius: 100
+    DirectionMode: 0
+    DissipationMode: 2
+    DissipationDistance: 100
+    PropagationSpeed: 343
+  DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &1262598044991644154
 GameObject:
   m_ObjectHideFlags: 0

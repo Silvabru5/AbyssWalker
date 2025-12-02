@@ -9311,6 +9311,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7064666589219102823, guid: 322e4995a0e3ca94cbc6a7be542f9dec, type: 3}
+      propertyPath: ImpulseDefinition.ImpulseShape
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8215109982036143140, guid: 322e4995a0e3ca94cbc6a7be542f9dec, type: 3}
       propertyPath: m_LocalScale.x
       value: 5

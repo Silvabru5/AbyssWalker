@@ -28,7 +28,6 @@ public class OpenDoor : MonoBehaviour
         {
             col.enabled = false;
             anim.SetBool("isOpen", doorOpened);
-                
         }
     }
 

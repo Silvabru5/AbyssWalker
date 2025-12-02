@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Level1Revamp.tmx",
+    "activeFile": "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/VampireLevel.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -20,11 +20,11 @@
             }
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/AncientRuins/HomeBase.tmx": {
-            "scale": 0.5,
+            "scale": 0.75,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 997,
-                "y": 658
+                "x": 747.3333333333333,
+                "y": 697.3333333333333
             }
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/AncientRuins/Tilesets/Ancient Ruins-Animated Terrains-16 frames-with transparency.tsx": {
@@ -167,8 +167,8 @@
             "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 992,
-                "y": 1067
+                "x": 1225,
+                "y": 674
             }
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/FOG.tsx": {
@@ -180,19 +180,19 @@
             "expandedObjectLayers": [
                 7
             ],
-            "scale": 0.75,
+            "scale": 0.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 644.6666666666667,
-                "y": 540.6666666666667
+                "x": 1291,
+                "y": 746
             }
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Sample Map.tmx": {
             "scale": 0.5,
             "selectedLayer": 11,
             "viewCenter": {
-                "x": 560,
-                "y": 319
+                "x": 559,
+                "y": 96
             }
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Tilesets/Terrain - cemetery.tsx": {
@@ -288,12 +288,16 @@
             "scaleInEditor": 1
         },
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/VampireLevel.tmx": {
-            "scale": 0.5,
+            "scale": 0.75,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 1023,
-                "y": 1057
+                "x": 933.9999999999999,
+                "y": 514.6666666666666
             }
+        },
+        "E:/Projects/AbyssWalker/Assets/Art/Tiled/VampireDungeon/Vampire_Dungeon.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         }
     },
     "last.externalTilesetPath": "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor",
@@ -306,23 +310,25 @@
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Cemetery example map.tmx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Sample Map.tmx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Level1Revamp.tmx",
-        "E:/Projects/AbyssWalker/Assets/Art/Tiled/AncientRuins/HomeBase.tmx"
+        "E:/Projects/AbyssWalker/Assets/Art/Tiled/AncientRuins/HomeBase.tmx",
+        "E:/Projects/AbyssWalker/Assets/Art/Tiled/VampireDungeon/Vampire_Dungeon.tsx",
+        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/VampireLevel.tmx"
     ],
     "project": "Level2Map.tiled-project",
     "property.type": "object",
     "recentFiles": [
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Cemetery example map.tmx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Sample Map.tmx",
-        "E:/Projects/AbyssWalker/Assets/Art/Tiled/AncientRuins/HomeBase.tmx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Level1Revamp.tmx",
+        "E:/Projects/AbyssWalker/Assets/Art/Tiled/AncientRuins/HomeBase.tmx",
+        "E:/Projects/AbyssWalker/Assets/Art/Tiled/VampireDungeon/Vampire_Dungeon.tsx",
+        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/VampireLevel.tmx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/FOG.tsx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Tilesets/atlas-props-sprites.tsx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Cemetery/TiledMap Editor/Tilesets/atlas-Props.tsx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/atlas-props.tsx",
         "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Blood pool - style2 - with spikes.tsx",
-        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Tileset-Terrain-old prison.tsx",
-        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Tileset - wall 2.tsx",
-        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Tileset - wall 1.tsx"
+        "E:/Projects/AbyssWalker/Assets/Art/Tiled/Prison/Tilesets/Tileset-Terrain-old prison.tsx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",

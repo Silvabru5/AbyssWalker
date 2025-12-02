@@ -53,7 +53,6 @@ public class Item : MonoBehaviour, IInteractable
     private void TurnOnSwitch()
     {
         SetOpened(true);
-        SoundManager.PlaySound(SoundTypeEffects.GATE_OPENING);
     }
 
     private void SetOpened(bool opened)
@@ -61,6 +60,7 @@ public class Item : MonoBehaviour, IInteractable
         if (IsOpened = opened && !isCollectable)
         {
             anim.SetBool("isOpen", opened);
+            SoundManager.PlaySound(SoundTypeEffects.GATE_OPENING);
         }
         else if (isCollectable)
         {

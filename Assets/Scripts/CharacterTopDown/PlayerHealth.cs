@@ -4,6 +4,7 @@ using System.Collections;
 using UnityEngine.InputSystem.Processors;
 using System;
 using UnityEngine.UI;
+using Unity.Cinemachine;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class PlayerHealth : MonoBehaviour
     public float baseHealth = 100;
     [HideInInspector] public float currentHealth;
     [HideInInspector] public Image healthBarFill;
-
+    CinemachineImpulseSource impulseSource;
+    private float impulseForce = 0.2f;
     private Animator animator;
     public float deathAnimationTime = 0.1f;
     [HideInInspector]
@@ -23,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthFromStats();
         GameObject textObj = GameObject.FindWithTag("HealthText");
         GameObject fillObj = GameObject.FindWithTag("HealthFill");
+        impulseSource = GetComponent<CinemachineImpulseSource>();
         if (textObj != null && textObj.activeInHierarchy)
         {
             healthText = textObj.GetComponent<TextMeshProUGUI>();
@@ -47,7 +50,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(float amount)
     {
         currentHealth -= CalculateDamage(amount);
-        
+        impulseSource.GenerateImpulse(impulseForce);
         //        currentHealth = Mathf.Max(0, currentHealth); // prevent negative health
 
         if (currentHealth > -99999 && currentHealth <= 0)

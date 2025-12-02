@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 
 /*
@@ -35,6 +36,7 @@ public class PlayerAttackCone : MonoBehaviour
         // Get reference to animator if not set
         if (animator == null)
             animator = GetComponentInParent<Animator>();
+   
     }
 
     void Update()
